@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Rename-Item *)",
+      "PowerShell(cd \"C:\\\\Users\\\\cindy\\\\Documents\\\\claude\\\\faminv\"; $content = [System.IO.File]::ReadAllText\\(\"package-lock.json\", [System.Text.Encoding]::UTF8\\); $updated = $content -replace '\"name\": \"faminv\"', '\"name\": \"herencia\"'; [System.IO.File]::WriteAllText\\(\"package-lock.json\", $updated, [System.Text.Encoding]::UTF8\\); Write-Output \"Fixed\")"
+    ]
+  }
+}
