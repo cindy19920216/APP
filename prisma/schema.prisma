@@ -32,6 +32,15 @@ model Asset {
   updatedAt    DateTime      @updatedAt
 }
 
+model TickerMaster {
+  id       Int     @id @default(autoincrement())
+  ticker   String  @unique
+  name     String
+  type     String  // STOCK_KR, STOCK_US, CRYPTO, ETF, FUND
+  currency String  @default("KRW")
+  market   String? // KOSPI, KOSDAQ, NYSE, NASDAQ, CRYPTO
+}
+
 model Transaction {
   id         Int          @id @default(autoincrement())
   memberId   Int

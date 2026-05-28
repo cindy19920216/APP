@@ -1,99 +1,132 @@
-import SummaryCards from "@/components/dashboard/SummaryCards";
-import AllocationChart from "@/components/dashboard/AllocationChart";
-import MemberChart from "@/components/dashboard/MemberChart";
-import { PortfolioSummary } from "@/lib/types";
+"use client";
 
-async function getDashboardData() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
-  const res = await fetch(`${baseUrl}/api/dashboard`, {
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error("대시보드 데이터 로드 실패");
-  return res.json();
-}
+// ─────────────────────────────────────────────
+//  page.tsx  –  메인 페이지 (Herencia 앱)
+// ─────────────────────────────────────────────
+import React, { useState } from 'react';
+import { FAMILY_MEMBERS } from '@/data/familyData';
+import AssetsTab from '@/components/redesign/AssetsTab';
+import PinScreen from '@/components/redesign/PinScreen';
+import DetailScreen from '@/components/redesign/DetailScreen';
+import PlaceholderTab from '@/components/redesign/PlaceholderTab';
 
-export default async function DashboardPage() {
-  let data: {
-    summary: PortfolioSummary;
-    members: {
-      id: number;
-      name: string;
-      color: string;
-      totalValue: number;
-      profitLossPct: number;
-      assets: { type: string; currentValue: number }[];
-    }[];
-  } | null = null;
+const TABS = [
+  { key: 'assets',      label: '자산현황' },
+  { key: 'portfolio',   label: '포트폴리오' },
+  { key: 'market',      label: '시장지표' },
+  { key: 'inheritance', label: '상속플래너' },
+];
 
-  try {
-    data = await getDashboardData();
-  } catch {
-    // DB가 비어있을 때 기본값
-  }
+export default function App() {
+  const [activeTab, setActiveTab] = useState('assets');
+  const [screen, setScreen]       = useState('main');
+  const [selectedMember, setSelectedMember] = useState<any>(null);
 
-  const summary: PortfolioSummary = data?.summary ?? {
-    totalValue: 0,
-    totalCost: 0,
-    profitLoss: 0,
-    profitLossPct: 0,
-    memberCount: 0,
-    assetCount: 0,
+  // 트리맵 노드 탭 → PIN 화면
+  const handleNodeTap = (member: any) => {
+    setSelectedMember(member);
+    setScreen('pin');
   };
 
-  const allAssets = data?.members.flatMap((m) => m.assets) ?? [];
+  // PIN 성공 → 상세 화면
+  const handlePinSuccess = (member: any) => {
+    setScreen('detail');
+  };
+
+  // 뒤로가기 → 메인
+  const handleBack = () => {
+    setScreen('main');
+    setSelectedMember(null);
+  };
+
+  // 탭 전환 시 화면 초기화
+  const handleTabChange = (key: string) => {
+    setActiveTab(key);
+    setScreen('main');
+    setSelectedMember(null);
+  };
+
+  const renderContent = () => {
+    // PIN / 상세 화면은 탭 위에 오버레이
+    if (screen === 'pin' && selectedMember) {
+      return (
+        <PinScreen
+          member={selectedMember}
+          onSuccess={handlePinSuccess}
+          onBack={handleBack}
+        />
+      );
+    }
+    if (screen === 'detail' && selectedMember) {
+      return (
+        <DetailScreen
+          member={selectedMember}
+          onBack={handleBack}
+        />
+      );
+    }
+
+    // 일반 탭 콘텐츠
+    switch (activeTab) {
+      case 'assets':
+        return (
+          <AssetsTab
+            members={FAMILY_MEMBERS}
+            onNodeTap={handleNodeTap}
+          />
+        );
+      case 'portfolio':
+        return <PlaceholderTab tabKey="portfolio" />;
+      case 'market':
+        return <PlaceholderTab tabKey="market" />;
+      case 'inheritance':
+        return <PlaceholderTab tabKey="inheritance" />;
+      default:
+        return null;
+    }
+  };
+
+  const isOverlay = screen !== 'main';
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">대시보드</h1>
-        <p className="text-sm text-gray-500 mt-1">가족 투자 자산 현황</p>
+    <div className="phone-frame">
+      {/* 상단 상태바 */}
+      <div className="status-bar">
+        <span>9:41</span>
+        <span className="status-icons">
+          <i className="ti ti-wifi" />
+          <i className="ti ti-battery" />
+        </span>
       </div>
 
-      <SummaryCards summary={summary} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <AllocationChart assets={allAssets} />
-        <MemberChart members={data?.members ?? []} />
+      {/* 앱 헤더 */}
+      <div className="app-header">
+        <span className="app-title">Herencia</span>
+        <div className="live-badge">
+          <span className="live-dot" />
+          <span>실시간</span>
+        </div>
       </div>
 
-      {data && data.members.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm">
-          <div className="px-6 py-4 border-b border-gray-100">
-            <h2 className="text-base font-semibold text-gray-800">구성원별 자산 현황</h2>
-          </div>
-          <div className="divide-y divide-gray-50">
-            {data.members.map((m) => {
-              const isProfit = m.profitLossPct >= 0;
-              return (
-                <div key={m.id} className="px-6 py-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="w-3 h-3 rounded-full"
-                      style={{ backgroundColor: m.color }}
-                    />
-                    <span className="font-medium text-gray-800">{m.name}</span>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-gray-900">
-                      {m.totalValue.toLocaleString("ko-KR")}원
-                    </p>
-                    <p className={`text-sm ${isProfit ? "text-green-600" : "text-red-500"}`}>
-                      {isProfit ? "+" : ""}{m.profitLossPct.toFixed(2)}%
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+      {/* 탭바 — 오버레이 중엔 숨김 */}
+      {!isOverlay && (
+        <div className="tab-bar">
+          {TABS.map((t) => (
+            <button
+              key={t.key}
+              className={`tab-btn ${activeTab === t.key ? 'active' : ''}`}
+              onClick={() => handleTabChange(t.key)}
+            >
+              {t.label}
+            </button>
+          ))}
         </div>
       )}
 
-      {(!data || data.members.length === 0) && (
-        <div className="bg-white rounded-xl border border-gray-100 p-12 shadow-sm text-center">
-          <p className="text-gray-400 text-sm mb-2">아직 데이터가 없습니다</p>
-          <p className="text-gray-300 text-xs">가족 구성원과 자산을 추가해보세요</p>
-        </div>
-      )}
+      {/* 콘텐츠 영역 */}
+      <div className="content-area">
+        {renderContent()}
+      </div>
     </div>
   );
 }

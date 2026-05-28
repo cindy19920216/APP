@@ -11,5 +11,7 @@ export async function GET() {
   for (const a of assets) uniqueMap.set(a.ticker, a);
 
   const prices = await fetchPrices(Array.from(uniqueMap.values()));
-  return NextResponse.json(prices);
+  return NextResponse.json(prices, {
+    headers: { "Cache-Control": "no-store, max-age=0" },
+  });
 }

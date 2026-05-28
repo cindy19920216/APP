@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "PowerShell(Rename-Item *)",
-      "PowerShell(cd \"C:\\\\Users\\\\cindy\\\\Documents\\\\claude\\\\faminv\"; $content = [System.IO.File]::ReadAllText\\(\"package-lock.json\", [System.Text.Encoding]::UTF8\\); $updated = $content -replace '\"name\": \"faminv\"', '\"name\": \"herencia\"'; [System.IO.File]::WriteAllText\\(\"package-lock.json\", $updated, [System.Text.Encoding]::UTF8\\); Write-Output \"Fixed\")"
+      "PowerShell(cd \"C:\\\\Users\\\\cindy\\\\Documents\\\\claude\\\\faminv\"; $content = [System.IO.File]::ReadAllText\\(\"package-lock.json\", [System.Text.Encoding]::UTF8\\); $updated = $content -replace '\"name\": \"faminv\"', '\"name\": \"herencia\"'; [System.IO.File]::WriteAllText\\(\"package-lock.json\", $updated, [System.Text.Encoding]::UTF8\\); Write-Output \"Fixed\")",
+      "PowerShell(Get-Process *)",
+      "Bash(npm run *)",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s \"https://query1.finance.yahoo.com/v8/finance/chart/12345.KS?interval=1d&range=1d\" -H \"User-Agent: Mozilla/5.0\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('chart',{}\\).get\\('result',[None]\\)[0] and d['chart']['result'][0]['meta'] if d.get\\('chart',{}\\).get\\('result'\\) else d.get\\('chart',{}\\).get\\('error'\\), indent=2\\)\\)\")",
+      "Bash(curl -s \"https://query1.finance.yahoo.com/v8/finance/chart/005930.KS?interval=1d&range=1d\" -H \"User-Agent: Mozilla/5.0\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); r=d.get\\('chart',{}\\).get\\('result'\\); print\\('price:', r[0]['meta']['regularMarketPrice'] if r else 'NOT FOUND'\\)\")",
+      "Bash(npx prisma *)",
+      "Bash(curl -s \"http://localhost:3000/api/chart/005930?range=max\")",
+      "Bash(python -c ' *)"
     ]
   }
 }
