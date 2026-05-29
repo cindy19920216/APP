@@ -5,37 +5,115 @@ import { FAMILY_MEMBERS } from '@/data/familyData';
 import AssetsTab from '@/components/redesign/AssetsTab';
 import PinScreen from '@/components/redesign/PinScreen';
 import DetailScreen from '@/components/redesign/DetailScreen';
-import PlaceholderTab from '@/components/redesign/PlaceholderTab';
 import MarketTab from '@/components/redesign/MarketTab';
 import PortfolioTab from '@/components/redesign/PortfolioTab';
 import CompanyTab from '@/components/redesign/CompanyTab';
 
 const TABS = [
-  { key: 'market',      label: '시장지표' },
-  { key: 'assets',      label: '자산현황' },
-  { key: 'portfolio',   label: '포트폴리오' },
-  { key: 'company',     label: '기업분석' },
+  { key: 'market',    label: '시장지표' },
+  { key: 'assets',    label: '자산현황' },
+  { key: 'portfolio', label: '포트폴리오' },
+  { key: 'company',   label: '기업분석' },
 ];
 
-// 0 = 스플래시 표시 중, 1 = 스플래시 퇴장 중, 2 = 메인 표시
-type Phase = 0 | 1 | 2;
+type Phase = 0 | 1 | 2; // 0=스플래시, 1=퇴장중, 2=메인
+
+// ─── 나무 일러스트 SVG ─────────────────────────────────────────────
+function TreeIllustration() {
+  return (
+    <svg width="210" height="215" viewBox="0 0 210 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* 그림자 */}
+      <ellipse cx="105" cy="205" rx="52" ry="9" fill="#060610" opacity="0.5"/>
+
+      {/* 뿌리 */}
+      <path d="M 92 198 Q 76 201 62 198" stroke="#3d2812" strokeWidth="5" strokeLinecap="round"/>
+      <path d="M 118 198 Q 134 201 148 198" stroke="#3d2812" strokeWidth="5" strokeLinecap="round"/>
+
+      {/* 줄기 */}
+      <path d="M 93 198 C 91 182 89 164 90 148 C 91 132 94 122 105 118 C 116 114 119 126 119 142 C 119 158 117 176 116 196" fill="#3d2812"/>
+      {/* 줄기 결 */}
+      <path d="M 97 182 Q 100 174 97 166" stroke="#5a3a20" strokeWidth="1.2" opacity="0.4" fill="none"/>
+      <path d="M 107 185 Q 110 177 107 169" stroke="#5a3a20" strokeWidth="1.2" opacity="0.4" fill="none"/>
+
+      {/* 가지 - 왼쪽 하단 */}
+      <path d="M 92 162 Q 68 154 46 142" stroke="#3d2812" strokeWidth="8" strokeLinecap="round"/>
+      {/* 가지 - 오른쪽 하단 */}
+      <path d="M 118 160 Q 142 152 164 140" stroke="#3d2812" strokeWidth="8" strokeLinecap="round"/>
+      {/* 가지 - 왼쪽 상단 */}
+      <path d="M 93 142 Q 68 132 48 118" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+      {/* 가지 - 오른쪽 상단 */}
+      <path d="M 117 140 Q 142 130 162 116" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+      {/* 가지 - 중앙 상단 */}
+      <path d="M 105 130 L 105 90" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+
+      {/* 잎사귀 - 어두운 배경 레이어 */}
+      <circle cx="44" cy="120" r="34" fill="#0b4430"/>
+      <circle cx="166" cy="120" r="34" fill="#0b4430"/>
+      <circle cx="105" cy="72" r="42" fill="#0b4430"/>
+
+      {/* 잎사귀 - 중간 레이어 */}
+      <circle cx="42" cy="114" r="29" fill="#166647"/>
+      <circle cx="168" cy="114" r="29" fill="#166647"/>
+      <circle cx="103" cy="66" r="36" fill="#166647"/>
+
+      {/* 잎사귀 - 밝은 앞쪽 레이어 */}
+      <circle cx="38" cy="108" r="23" fill="#1D9E75"/>
+      <circle cx="164" cy="108" r="23" fill="#1D9E75"/>
+      <circle cx="99"  cy="60" r="30" fill="#1D9E75"/>
+      <circle cx="114" cy="63" r="24" fill="#22a87e"/>
+
+      {/* 잎사귀 - 하이라이트 */}
+      <circle cx="95"  cy="52" r="20" fill="#28B888"/>
+      <circle cx="112" cy="56" r="16" fill="#2EC496"/>
+
+      {/* 꽃/열매 장식 */}
+      <circle cx="20"  cy="108" r="5.5" fill="#EF9F27"/>
+      <circle cx="20"  cy="108" r="2.8" fill="#FAC775"/>
+      <circle cx="190" cy="108" r="5.5" fill="#7F77DD"/>
+      <circle cx="190" cy="108" r="2.8" fill="#BAB5F8"/>
+      <circle cx="105" cy="28"  r="4.5" fill="#EF9F27"/>
+      <circle cx="105" cy="28"  r="2.2" fill="#FAC775"/>
+      <circle cx="72"  cy="58"  r="4"   fill="#E24B4A" opacity="0.85"/>
+      <circle cx="72"  cy="58"  r="2"   fill="#FFA0A0" opacity="0.85"/>
+      <circle cx="136" cy="54"  r="4"   fill="#E24B4A" opacity="0.85"/>
+      <circle cx="136" cy="54"  r="2"   fill="#FFA0A0" opacity="0.85"/>
+
+      {/* 반짝이 애니메이션 */}
+      <circle cx="178" cy="125" r="2.5" fill="#EF9F27">
+        <animate attributeName="opacity" values="0.9;0;0.9"   dur="2.2s"              repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2.5;4;2.5"   dur="2.2s"              repeatCount="indefinite"/>
+      </circle>
+      <circle cx="32"  cy="120" r="2"   fill="#7F77DD">
+        <animate attributeName="opacity" values="0.7;0;0.7"   dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2;3.2;2"     dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="110" cy="12"  r="2"   fill="#5DCAA5">
+        <animate attributeName="opacity" values="0.6;0;0.6"   dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2;3;2"       dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="56"  cy="100" r="1.5" fill="#FAC775">
+        <animate attributeName="opacity" values="0.5;0;0.5"   dur="3s"   begin="1s"   repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  );
+}
 
 export default function App() {
-  const [phase, setPhase] = useState<Phase>(0);
-  const [activeTab, setActiveTab] = useState('market');
-  const [screen, setScreen] = useState('main');
+  const [phase, setPhase]               = useState<Phase>(0);
+  const [activeTab, setActiveTab]       = useState('market');
+  const [screen, setScreen]             = useState('main');
   const [selectedMember, setSelectedMember] = useState<any>(null);
 
-  React.useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 2200); // 퇴장 애니메이션 시작
-    const t2 = setTimeout(() => setPhase(2), 2750); // 메인 표시
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
+  // 입장하기 클릭 → 페이드 아웃 후 메인 진입
+  const handleEnter = () => {
+    setPhase(1);
+    setTimeout(() => setPhase(2), 520);
+  };
 
-  const handleNodeTap = (member: any) => { setSelectedMember(member); setScreen('pin'); };
-  const handlePinSuccess = () => { setScreen('detail'); };
-  const handleBack = () => { setScreen('main'); setSelectedMember(null); };
-  const handleTabChange = (key: string) => { setActiveTab(key); setScreen('main'); setSelectedMember(null); };
+  const handleNodeTap    = (member: any) => { setSelectedMember(member); setScreen('pin'); };
+  const handlePinSuccess = ()            => { setScreen('detail'); };
+  const handleBack       = ()            => { setScreen('main'); setSelectedMember(null); };
+  const handleTabChange  = (key: string) => { setActiveTab(key); setScreen('main'); setSelectedMember(null); };
 
   const renderContent = () => {
     if (screen === 'pin' && selectedMember)
@@ -43,63 +121,43 @@ export default function App() {
     if (screen === 'detail' && selectedMember)
       return <DetailScreen member={selectedMember} onBack={handleBack} />;
     switch (activeTab) {
-      case 'assets':      return <AssetsTab members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
-      case 'portfolio':   return <PortfolioTab />;
-      case 'market':      return <MarketTab />;
-      case 'company':     return <CompanyTab />;
-      default:            return null;
+      case 'assets':    return <AssetsTab members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
+      case 'portfolio': return <PortfolioTab />;
+      case 'market':    return <MarketTab />;
+      case 'company':   return <CompanyTab />;
+      default:          return null;
     }
   };
 
-  // ── 스플래시 ────────────────────────────────
+  // ── 스플래시 ───────────────────────────────────────────────────────
   if (phase < 2) {
     return (
-      <div className={`phone-frame ${phase === 1 ? 'splash-exit' : ''}`} style={S.splash}>
-        <div style={S.logoBox}>
-          {/* 이모지 가족 나무 */}
-          <div style={S.emojiTree}>
-            {/* 나무 */}
-            <div style={{ fontSize: 64, lineHeight: 1, marginBottom: 8 }}>🌳</div>
+      <div className={`phone-frame ${phase === 1 ? 'splash-exit' : ''}`}>
+        {/* 완전한 가운데 정렬 컨테이너 */}
+        <div style={S.splashInner}>
 
-            {/* 1세대 */}
-            <div style={S.treeRow}>
-              <span style={S.e1}>👴</span>
-              <span style={S.eHeart}>💕</span>
-              <span style={S.e1}>👵</span>
-            </div>
-            <div style={S.genLabel}>이찬희 · 전지우</div>
-
-            {/* 연결선 */}
-            <div style={S.stemLine} />
-
-            {/* 2세대 */}
-            <div style={S.treeRow}>
-              <div style={S.eCouple}>
-                <span style={S.e2}>👩</span><span style={S.eHeart}>💕</span><span style={S.e2}>👨</span>
-              </div>
-              <div style={S.eCouple}>
-                <span style={S.e2}>👩</span><span style={S.eHeart}>💕</span><span style={S.e2}>👨</span>
-              </div>
-              <span style={S.e2}>🧑</span>
-            </div>
-
-            {/* 3세대 */}
-            <div style={{ ...S.treeRow, marginTop: 6 }}>
-              <span style={{ fontSize: 11, color: '#3a3a55', marginRight: 2 }}>└</span>
-              <span style={S.e3}>👶</span>
-              <span style={{ fontSize: 10, color: '#555', marginLeft: 4 }}>식목이</span>
-            </div>
+          {/* 나무 일러스트 + 타이틀 */}
+          <div style={S.logoBox}>
+            <TreeIllustration />
+            <div style={S.splashTitle}>Herencia</div>
+            <div style={S.splashSub}>가족의 자산, 하나의 미래</div>
           </div>
 
-          <div style={S.splashTitle}>Herencia</div>
-          <div style={S.splashSub}>가족의 자산, 하나의 미래</div>
+          {/* 입장하기 버튼 */}
+          {phase === 0 && (
+            <button className="enter-btn" style={S.enterBtn} onClick={handleEnter}>
+              입장하기&nbsp;&nbsp;→
+            </button>
+          )}
+
+          {/* 하단 카피라이트 */}
+          <div style={S.splashFooter}>© 2026 Herencia Inc.</div>
         </div>
-        <div style={S.splashFooter}>© 2026 Herencia Inc.</div>
       </div>
     );
   }
 
-  // ── 메인 앱 ─────────────────────────────────
+  // ── 메인 앱 ────────────────────────────────────────────────────────
   const isOverlay = screen !== 'main';
 
   return (
@@ -134,47 +192,50 @@ export default function App() {
 }
 
 const S = {
-  splash: {
+  // 스플래시 내부 컨테이너: phone-frame 안에서 flex 1 차지
+  splashInner: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center',
     justifyContent: 'center',
-    background: '#0f1117',
-    height: '100%',
     position: 'relative' as const,
+    gap: 0,
   },
   logoBox: {
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center',
-    gap: 14,
+    gap: 12,
   },
   splashTitle: {
-    fontSize: 30,
-    fontWeight: 600,
+    fontSize: 32,
+    fontWeight: 700,
     color: '#fff',
-    letterSpacing: '3px',
+    letterSpacing: '4px',
+    marginTop: 4,
   },
   splashSub: {
     fontSize: 13,
     color: '#555',
     letterSpacing: '0.5px',
   },
+  enterBtn: {
+    marginTop: 36,
+    background: 'linear-gradient(135deg, #4a41a8 0%, #7F77DD 100%)',
+    border: 'none',
+    borderRadius: 16,
+    padding: '15px 52px',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: 'pointer',
+    letterSpacing: '1.5px',
+  },
   splashFooter: {
     position: 'absolute' as const,
-    bottom: 24,
+    bottom: 22,
     fontSize: 10,
-    color: '#2e2e3e',
+    color: '#282838',
   },
-
-  // 이모지 트리
-  emojiTree: { display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 6 },
-  treeRow:   { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  e1:        { fontSize: 36 },
-  e2:        { fontSize: 28 },
-  e3:        { fontSize: 22 },
-  eHeart:    { fontSize: 14 },
-  eCouple:   { display: 'flex', alignItems: 'center', gap: 2 },
-  genLabel:  { fontSize: 10, color: '#444' },
-  stemLine:  { width: 1, height: 18, background: '#2e2e45', margin: '2px auto' },
 };
