@@ -10,6 +10,7 @@ import PinScreen from '@/components/redesign/PinScreen';
 import DetailScreen from '@/components/redesign/DetailScreen';
 import PlaceholderTab from '@/components/redesign/PlaceholderTab';
 import MarketTab from '@/components/redesign/MarketTab';
+import PortfolioTab from '@/components/redesign/PortfolioTab';
 
 const TABS = [
   { key: 'market',      label: '시장지표' },
@@ -84,7 +85,7 @@ export default function App() {
           />
         );
       case 'portfolio':
-        return <PlaceholderTab tabKey="portfolio" />;
+        return <PortfolioTab />;
       case 'market':
         return <MarketTab />;
       case 'inheritance':
