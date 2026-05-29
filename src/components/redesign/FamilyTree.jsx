@@ -125,7 +125,7 @@ const styles = {
   },
   gen2Row: {
     display: 'flex',
-    gap: 12,
+    gap: 24,
     overflowX: 'auto',
     padding: '0 2px 4px',
     scrollbarWidth: 'none',

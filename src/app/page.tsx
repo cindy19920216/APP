@@ -90,15 +90,6 @@ export default function App() {
 
   return (
     <div className="phone-frame">
-      {/* 상단 상태바 */}
-      <div className="status-bar">
-        <span>9:41</span>
-        <span className="status-icons">
-          <i className="ti ti-wifi" />
-          <i className="ti ti-battery" />
-        </span>
-      </div>
-
       {/* 앱 헤더 */}
       <div className="app-header">
         <span className="app-title">Herencia</span>
