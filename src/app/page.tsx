@@ -9,17 +9,18 @@ import AssetsTab from '@/components/redesign/AssetsTab';
 import PinScreen from '@/components/redesign/PinScreen';
 import DetailScreen from '@/components/redesign/DetailScreen';
 import PlaceholderTab from '@/components/redesign/PlaceholderTab';
+import MarketTab from '@/components/redesign/MarketTab';
 
 const TABS = [
+  { key: 'market',      label: '시장지표' },
   { key: 'assets',      label: '자산현황' },
   { key: 'portfolio',   label: '포트폴리오' },
-  { key: 'market',      label: '시장지표' },
   { key: 'inheritance', label: '상속플래너' },
 ];
 
 export default function App() {
   const [isSplashing, setIsSplashing] = useState(true);
-  const [activeTab, setActiveTab] = useState('assets');
+  const [activeTab, setActiveTab] = useState('market');
   const [screen, setScreen]       = useState('main');
   const [selectedMember, setSelectedMember] = useState<any>(null);
 
@@ -85,7 +86,7 @@ export default function App() {
       case 'portfolio':
         return <PlaceholderTab tabKey="portfolio" />;
       case 'market':
-        return <PlaceholderTab tabKey="market" />;
+        return <MarketTab />;
       case 'inheritance':
         return <PlaceholderTab tabKey="inheritance" />;
       default:
@@ -163,3 +164,37 @@ export default function App() {
     </div>
   );
 }
+
+const splashStyles = {
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: '#0f1117',
+    height: '100%',
+  },
+  logoBox: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    gap: 16,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: 600,
+    color: '#fff',
+    letterSpacing: '2px',
+  },
+  subTitle: {
+    fontSize: 13,
+    color: '#555',
+    letterSpacing: '0.5px',
+  },
+  footer: {
+    position: 'absolute' as const,
+    bottom: 24,
+    fontSize: 10,
+    color: '#333',
+  },
+};
