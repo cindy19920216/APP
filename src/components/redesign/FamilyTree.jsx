@@ -7,10 +7,11 @@ import React from 'react';
 import Avatar from './Avatar';
 
 function PersonNode({ member, onTap }) {
+  const size = member.generation === 1 ? 46 : member.generation === 3 ? 34 : 38;
   return (
     <div onClick={() => onTap(member)} style={styles.node}>
       <div style={{ ...styles.ring, borderColor: member.ringColor }}>
-        <Avatar id={member.id} size={member.generation === 1 ? 38 : 32} />
+        <Avatar id={member.id} size={size} />
       </div>
       <div style={styles.nodeName}>{member.name}</div>
       <div style={styles.lockIcon}>
@@ -101,26 +102,26 @@ export default function FamilyTree({ members, onTap }) {
 const styles = {
   treeWrap: {
     background: '#181820',
-    borderRadius: 12,
-    padding: '10px 6px',
+    borderRadius: 14,
+    padding: '12px 4px 10px',
   },
   genLabel: {
     fontSize: 8,
     color: '#333',
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: 5,
     letterSpacing: '0.5px',
   },
   gen1Row: {
     display: 'flex',
     justifyContent: 'center',
-    gap: 6,
+    gap: 8,
     marginBottom: 2,
     alignItems: 'center',
   },
   gen2Row: {
     display: 'flex',
-    gap: 12,
+    gap: 10,
     justifyContent: 'center',
     padding: '0 2px 4px',
   },
@@ -139,7 +140,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 38,
+    padding: '0 1px',
   },
   gen3CenterRow: {
     display: 'flex',
@@ -153,17 +154,18 @@ const styles = {
     cursor: 'pointer',
     flexShrink: 0,
     transition: 'transform 0.15s',
+    WebkitTapHighlightColor: 'transparent',
   },
   ring: {
     borderRadius: '50%',
     padding: 2.5,
-    border: '1.5px solid',
+    border: '2px solid',
   },
   nodeName: {
-    fontSize: 8,
+    fontSize: 9,
     fontWeight: 500,
     color: '#ccc',
-    marginTop: 3,
+    marginTop: 4,
     whiteSpace: 'nowrap',
   },
   lockIcon: {
