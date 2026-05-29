@@ -10,11 +10,11 @@ function PersonNode({ member, onTap }) {
   return (
     <div onClick={() => onTap(member)} style={styles.node}>
       <div style={{ ...styles.ring, borderColor: member.ringColor }}>
-        <Avatar id={member.id} size={member.generation === 1 ? 46 : 38} />
+        <Avatar id={member.id} size={member.generation === 1 ? 38 : 32} />
       </div>
       <div style={styles.nodeName}>{member.name}</div>
       <div style={styles.lockIcon}>
-        <i className="ti ti-lock" style={{ fontSize: 9, color: '#444' }} />
+        <i className="ti ti-lock" style={{ fontSize: 8, color: '#444' }} />
       </div>
     </div>
   );
@@ -23,7 +23,7 @@ function PersonNode({ member, onTap }) {
 function HeartSep() {
   return (
     <div style={styles.heartWrap}>
-      <i className="ti ti-heart-filled" style={{ fontSize: 12, color: '#E24B4A' }} />
+      <i className="ti ti-heart-filled" style={{ fontSize: 10, color: '#E24B4A' }} />
     </div>
   );
 }
@@ -50,12 +50,12 @@ export default function FamilyTree({ members, onTap }) {
       </div>
 
       {/* 1→2세대 연결선 */}
-      <svg width="100%" height="20" viewBox="0 0 300 20" preserveAspectRatio="none">
-        <line x1="150" y1="0" x2="150" y2="9" stroke="#2a2a3a" strokeWidth="1.5" />
-        <line x1="46" y1="9" x2="254" y2="9" stroke="#2a2a3a" strokeWidth="1.5" />
-        <line x1="46" y1="9" x2="46" y2="20" stroke="#2a2a3a" strokeWidth="1.5" />
-        <line x1="150" y1="9" x2="150" y2="20" stroke="#2a2a3a" strokeWidth="1.5" />
-        <line x1="254" y1="9" x2="254" y2="20" stroke="#2a2a3a" strokeWidth="1.5" />
+      <svg width="100%" height="16" viewBox="0 0 300 16" preserveAspectRatio="none">
+        <line x1="150" y1="0" x2="150" y2="8" stroke="#2a2a3a" strokeWidth="1.2" />
+        <line x1="50" y1="8" x2="250" y2="8" stroke="#2a2a3a" strokeWidth="1.2" />
+        <line x1="50" y1="8" x2="50" y2="16" stroke="#2a2a3a" strokeWidth="1.2" />
+        <line x1="150" y1="8" x2="150" y2="16" stroke="#2a2a3a" strokeWidth="1.2" />
+        <line x1="250" y1="8" x2="250" y2="16" stroke="#2a2a3a" strokeWidth="1.2" />
       </svg>
 
       {/* 2세대 */}
@@ -70,10 +70,10 @@ export default function FamilyTree({ members, onTap }) {
             <PersonNode member={sl1} onTap={onTap} />
           </div>
           {/* 3세대 연결선 */}
-          <svg width="100%" height="16" viewBox="0 0 80 16">
-            <line x1="40" y1="0" x2="40" y2="10" stroke="#2a2a3a" strokeWidth="1.5" />
+          <svg width="100%" height="12" viewBox="0 0 80 12">
+            <line x1="40" y1="0" x2="40" y2="8" stroke="#2a2a3a" strokeWidth="1.2" />
           </svg>
-          {/* 3세대 (식목이) 를 큰딸 부부 아래에 배치 */}
+          {/* 3세대 (식목이) */}
           <div style={styles.gen3CenterRow}>
             <PersonNode member={baby} onTap={onTap} />
           </div>
@@ -102,33 +102,27 @@ const styles = {
   treeWrap: {
     background: '#181820',
     borderRadius: 12,
-    padding: '12px 8px',
+    padding: '10px 6px',
   },
   genLabel: {
-    fontSize: 9,
+    fontSize: 8,
     color: '#333',
     textAlign: 'center',
-    marginBottom: 6,
+    marginBottom: 4,
     letterSpacing: '0.5px',
   },
   gen1Row: {
     display: 'flex',
     justifyContent: 'center',
-    gap: 8,
-    marginBottom: 4,
+    gap: 6,
+    marginBottom: 2,
     alignItems: 'center',
-  },
-  coupleSep: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingBottom: 22,
   },
   gen2Row: {
     display: 'flex',
-    gap: 24,
-    overflowX: 'auto',
+    gap: 12,
+    justifyContent: 'center',
     padding: '0 2px 4px',
-    scrollbarWidth: 'none',
   },
   coupleGroup: {
     display: 'flex',
@@ -138,14 +132,14 @@ const styles = {
   },
   coupleRow: {
     display: 'flex',
-    gap: 6,
+    gap: 4,
     alignItems: 'center',
   },
   heartWrap: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 46,
+    height: 38,
   },
   gen3CenterRow: {
     display: 'flex',
@@ -162,19 +156,18 @@ const styles = {
   },
   ring: {
     borderRadius: '50%',
-    padding: 3,
-    border: '2px solid',
-    transition: 'transform 0.2s',
+    padding: 2.5,
+    border: '1.5px solid',
   },
   nodeName: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 500,
     color: '#ccc',
-    marginTop: 4,
+    marginTop: 3,
     whiteSpace: 'nowrap',
   },
   lockIcon: {
-    marginTop: 1,
+    marginTop: 0,
     textAlign: 'center',
   },
 };
