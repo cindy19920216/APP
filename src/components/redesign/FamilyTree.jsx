@@ -23,11 +23,7 @@ function PersonNode({ member, onTap }) {
 function HeartSep() {
   return (
     <div style={styles.heartWrap}>
-      <svg width="14" height="12" viewBox="0 0 14 12">
-        <path d="M7 6 L1 2 L3.5 6 L1 10Z" fill="#2a3a35" />
-        <path d="M7 6 L13 2 L10.5 6 L13 10Z" fill="#2a3a35" />
-        <circle cx="7" cy="6" r="2.2" fill="#1a2820" />
-      </svg>
+      <i className="ti ti-heart-filled" style={{ fontSize: 12, color: '#E24B4A' }} />
     </div>
   );
 }
@@ -49,13 +45,7 @@ export default function FamilyTree({ members, onTap }) {
       <div style={styles.genLabel}>1세대</div>
       <div style={styles.gen1Row}>
         <PersonNode member={gp} onTap={onTap} />
-        <div style={styles.coupleSep}>
-          <svg width="22" height="14" viewBox="0 0 22 14">
-            <path d="M11 7 L2 3 L5 7 L2 11Z" fill="#2a2a3a" />
-            <path d="M11 7 L20 3 L17 7 L20 11Z" fill="#2a2a3a" />
-            <circle cx="11" cy="7" r="2.5" fill="#3a3050" />
-          </svg>
-        </div>
+        <HeartSep />
         <PersonNode member={gm} onTap={onTap} />
       </div>
 
@@ -81,8 +71,12 @@ export default function FamilyTree({ members, onTap }) {
           </div>
           {/* 3세대 연결선 */}
           <svg width="100%" height="16" viewBox="0 0 80 16">
-            <line x1="40" y1="0" x2="40" y2="16" stroke="#2a2a3a" strokeWidth="1.5" />
+            <line x1="40" y1="0" x2="40" y2="10" stroke="#2a2a3a" strokeWidth="1.5" />
           </svg>
+          {/* 3세대 (식목이) 를 큰딸 부부 아래에 배치 */}
+          <div style={styles.gen3CenterRow}>
+            <PersonNode member={baby} onTap={onTap} />
+          </div>
         </div>
 
         {/* 작은딸 부부 */}
@@ -92,20 +86,12 @@ export default function FamilyTree({ members, onTap }) {
             <HeartSep />
             <PersonNode member={sl2} onTap={onTap} />
           </div>
-          <div style={{ height: 16 }} />
         </div>
 
         {/* 아들 */}
         <div style={styles.coupleGroup}>
           <PersonNode member={son} onTap={onTap} />
-          <div style={{ height: 16 }} />
         </div>
-      </div>
-
-      {/* 3세대 */}
-      <div style={styles.genLabel}>3세대</div>
-      <div style={styles.gen3Row}>
-        <PersonNode member={baby} onTap={onTap} />
       </div>
 
     </div>
@@ -116,7 +102,7 @@ const styles = {
   treeWrap: {
     background: '#181820',
     borderRadius: 12,
-    padding: '8px 8px 6px',
+    padding: '12px 8px',
   },
   genLabel: {
     fontSize: 9,
@@ -128,8 +114,9 @@ const styles = {
   gen1Row: {
     display: 'flex',
     justifyContent: 'center',
-    gap: 12,
+    gap: 8,
     marginBottom: 4,
+    alignItems: 'center',
   },
   coupleSep: {
     display: 'flex',
@@ -138,7 +125,7 @@ const styles = {
   },
   gen2Row: {
     display: 'flex',
-    gap: 6,
+    gap: 12,
     overflowX: 'auto',
     padding: '0 2px 4px',
     scrollbarWidth: 'none',
@@ -151,18 +138,19 @@ const styles = {
   },
   coupleRow: {
     display: 'flex',
-    gap: 4,
-    alignItems: 'flex-start',
+    gap: 6,
+    alignItems: 'center',
   },
   heartWrap: {
     display: 'flex',
     alignItems: 'center',
-    paddingBottom: 20,
+    justifyContent: 'center',
+    height: 46,
   },
-  gen3Row: {
+  gen3CenterRow: {
     display: 'flex',
-    paddingLeft: 8,
-    marginBottom: 4,
+    justifyContent: 'center',
+    marginTop: -2,
   },
   node: {
     display: 'flex',
