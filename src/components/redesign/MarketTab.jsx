@@ -120,32 +120,28 @@ export default function MarketTab() {
         <span style={S.msgText}>{msg.text}</span>
       </div>
 
-      {/* ② 주요 지수 (클릭 → 차트) */}
+      {/* ② 주요 지수 (클릭 → 차트) — 세로 리스트 */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>주요 지수</span>
           <span style={S.cardSub}>15분 지연 · 탭해서 차트 보기</span>
         </div>
-        <div style={S.grid2}>
-          {INDICES.map((idx, i) => (
-            <button
-              key={i}
-              style={{
-                ...S.indexCell,
-                borderRight:  i % 2 === 0 ? '0.5px solid #151520' : 'none',
-                borderBottom: i < 2       ? '0.5px solid #151520' : 'none',
-              }}
-              onClick={() => setSelectedInstrument({ key: idx.name, value: idx.value, change: idx.change })}
-            >
-              <div style={S.indexName}>{idx.name}</div>
-              <div style={S.indexValue}>{idx.value}</div>
-              <div style={{ ...S.indexChange, color: idx.up ? '#1D9E75' : '#E24B4A' }}>
+        {INDICES.map((idx, i) => (
+          <button
+            key={i}
+            style={{ ...S.listRow, borderBottom: i < INDICES.length - 1 ? '0.5px solid #151520' : 'none' }}
+            onClick={() => setSelectedInstrument({ key: idx.name, value: idx.value, change: idx.change })}
+          >
+            <span style={S.listName}>{idx.name}</span>
+            <div style={S.listRight}>
+              <span style={S.listValue}>{idx.value}</span>
+              <span style={{ ...S.listChange, color: idx.up ? '#1D9E75' : '#E24B4A' }}>
                 {idx.up ? '▲' : '▼'} {idx.change}
-              </div>
-              <i className="ti ti-chart-line" style={{ fontSize: 9, color: '#333', marginTop: 4 }} />
-            </button>
-          ))}
-        </div>
+              </span>
+            </div>
+            <i className="ti ti-chevron-right" style={S.rowChevron} />
+          </button>
+        ))}
       </div>
 
       {/* ② 환율 (클릭 → 차트) */}
@@ -176,34 +172,31 @@ export default function MarketTab() {
         ))}
       </div>
 
-      {/* ③ 원자재 (클릭 → 차트) */}
+      {/* ③ 원자재 (클릭 → 차트) — 세로 리스트 */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>원자재</span>
           <span style={S.cardSub}>USD 기준 · 탭해서 차트 보기</span>
         </div>
-        <div style={S.grid2}>
-          {COMMODITIES.map((c, i) => (
-            <button
-              key={i}
-              style={{
-                ...S.commodCell,
-                borderRight:  i % 2 === 0 ? '0.5px solid #151520' : 'none',
-                borderBottom: i < 2       ? '0.5px solid #151520' : 'none',
-              }}
-              onClick={() => setSelectedInstrument({ key: c.name, value: c.value, change: c.change })}
-            >
-              <div style={{ ...S.commodIc, background: c.bg }}>
-                <i className={`ti ${c.icon}`} style={{ color: c.ic, fontSize: 15 }} />
-              </div>
-              <div style={S.commodName}>{c.name}</div>
-              <div style={S.commodValue}>{c.value}</div>
-              <div style={{ ...S.commodChange, color: c.up ? '#1D9E75' : '#E24B4A' }}>
+        {COMMODITIES.map((c, i) => (
+          <button
+            key={i}
+            style={{ ...S.listRow, borderBottom: i < COMMODITIES.length - 1 ? '0.5px solid #151520' : 'none' }}
+            onClick={() => setSelectedInstrument({ key: c.name, value: c.value, change: c.change })}
+          >
+            <div style={{ ...S.commodIc, background: c.bg, marginRight: 10, flexShrink: 0 }}>
+              <i className={`ti ${c.icon}`} style={{ color: c.ic, fontSize: 14 }} />
+            </div>
+            <span style={{ ...S.listName, flex: 1 }}>{c.name}</span>
+            <div style={S.listRight}>
+              <span style={S.listValue}>{c.value}</span>
+              <span style={{ ...S.listChange, color: c.up ? '#1D9E75' : '#E24B4A' }}>
                 {c.up ? '▲' : '▼'} {c.change}
-              </div>
-            </button>
-          ))}
-        </div>
+              </span>
+            </div>
+            <i className="ti ti-chevron-right" style={S.rowChevron} />
+          </button>
+        ))}
       </div>
 
       <div style={{ height: 20 }} />
@@ -214,16 +207,23 @@ export default function MarketTab() {
 const S = {
   wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1, minHeight: 0 },
 
-  card: { background: '#181820', borderRadius: 14, overflow: 'hidden' },
-  cardHeader: { padding: '10px 14px', borderBottom: '0.5px solid #151520', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
+  card: { background: '#181820', borderRadius: 14, overflow: 'visible' },
+  cardHeader: { padding: '10px 14px', borderBottom: '0.5px solid #151520', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderRadius: '14px 14px 0 0' },
   cardTitle: { fontSize: 12, fontWeight: 500, color: '#ccc' },
   cardSub: { fontSize: 9, color: '#444' },
 
-  grid2: { display: 'grid', gridTemplateColumns: '1fr 1fr' },
-  indexCell: { padding: '12px 14px', background: 'transparent', border: 'none', textAlign: 'left', cursor: 'pointer' },
-  indexName: { fontSize: 10, color: '#555', marginBottom: 4 },
-  indexValue: { fontSize: 14, fontWeight: 500, color: '#fff' },
-  indexChange: { fontSize: 10, marginTop: 3 },
+  // ── 세로 리스트 공통 행 ──
+  listRow: {
+    display: 'flex', alignItems: 'center',
+    padding: '12px 14px', gap: 8,
+    width: '100%', background: 'transparent', border: 'none',
+    textAlign: 'left', cursor: 'pointer',
+  },
+  listName:    { fontSize: 13, fontWeight: 500, color: '#ccc', minWidth: 70 },
+  listValue:   { fontSize: 15, fontWeight: 600, color: '#fff' },
+  listChange:  { fontSize: 11, marginTop: 2 },
+  listRight:   { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
+  rowChevron:  { fontSize: 11, color: '#333', flexShrink: 0, marginLeft: 4 },
 
   fxRow: { display: 'flex', alignItems: 'center', padding: '11px 14px', gap: 10, width: '100%', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' },
   fxFlag: { fontSize: 18, flexShrink: 0 },
@@ -232,11 +232,7 @@ const S = {
   fxValue: { fontSize: 14, fontWeight: 500, color: '#fff' },
   fxChange: { fontSize: 10 },
 
-  commodCell: { padding: '12px 14px', background: 'transparent', border: 'none', textAlign: 'left', cursor: 'pointer' },
-  commodIc: { width: 28, height: 28, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 },
-  commodName: { fontSize: 10, color: '#555', marginBottom: 2 },
-  commodValue: { fontSize: 14, fontWeight: 500, color: '#fff' },
-  commodChange: { fontSize: 10, marginTop: 2 },
+  commodIc: { width: 28, height: 28, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' },
 
   fgCard: {
     background: 'linear-gradient(135deg, #1c1c2e 0%, #181820 100%)',
