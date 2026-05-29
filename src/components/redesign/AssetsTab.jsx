@@ -8,8 +8,19 @@ import Avatar from './Avatar';
 import FamilyTree from './FamilyTree';
 import { DAILY_WINNER } from '../../data/familyData';
 
+function getBestHolding(member) {
+  if (!member.holdings || member.holdings.length === 0) return null;
+  return member.holdings
+    .filter(h => h.up)
+    .reduce((best, h) => {
+      if (!best) return h;
+      return parseFloat(h.change) > parseFloat(best.change) ? h : best;
+    }, null);
+}
+
 export default function AssetsTab({ members, onNodeTap }) {
-  const w = DAILY_WINNER;
+  const w    = DAILY_WINNER;
+  const best = getBestHolding(w);
 
   return (
     <div style={styles.wrap}>
@@ -48,6 +59,19 @@ export default function AssetsTab({ members, onNodeTap }) {
             <circle cx="70" cy="3" r="3" fill="#1D9E75" />
           </svg>
         </div>
+
+        {/* 베스트 종목 한 줄 */}
+        {best && (
+          <div style={styles.bestRow}>
+            <span style={styles.bestMedal}>🏅</span>
+            <span style={styles.bestText}>
+              <span style={{ color: '#ccc' }}>{w.name}님의&nbsp;</span>
+              <span style={{ color: '#fff', fontWeight: 500 }}>{best.name}&nbsp;</span>
+              <span style={{ color: '#777' }}>이 가장 성과가 좋아요!</span>
+              <span style={{ color: '#1D9E75', fontWeight: 500 }}>&nbsp;{best.change}</span>
+            </span>
+          </div>
+        )}
       </div>
 
       {/* 안내 문구 */}
@@ -138,4 +162,14 @@ const styles = {
     textTransform: 'uppercase',
     paddingLeft: 2,
   },
+  bestRow: {
+    marginTop: 12,
+    paddingTop: 10,
+    borderTop: '0.5px solid #1e1e28',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 6,
+  },
+  bestMedal: { fontSize: 14, flexShrink: 0 },
+  bestText:  { fontSize: 11, lineHeight: 1.5 },
 };
