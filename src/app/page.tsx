@@ -18,9 +18,16 @@ const TABS = [
 ];
 
 export default function App() {
+  const [isSplashing, setIsSplashing] = useState(true);
   const [activeTab, setActiveTab] = useState('assets');
   const [screen, setScreen]       = useState('main');
   const [selectedMember, setSelectedMember] = useState<any>(null);
+
+  // 스플래시 화면 지연 (2초)
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsSplashing(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // 트리맵 노드 탭 → PIN 화면
   const handleNodeTap = (member: any) => {
@@ -87,6 +94,41 @@ export default function App() {
   };
 
   const isOverlay = screen !== 'main';
+
+  if (isSplashing) {
+    return (
+      <div className="phone-frame" style={splashStyles.wrap}>
+        <div style={splashStyles.logoBox}>
+          {/* 가족 트리를 형상화한 헤렌시아 로고 */}
+          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* 배경 원형 장식 */}
+            <circle cx="50" cy="50" r="48" stroke="#534AB7" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.3" />
+            
+            {/* 연결선 (뿌리/가지) */}
+            <path d="M50 30 L50 45" stroke="#7F77DD" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M50 45 L30 65" stroke="#7F77DD" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M50 45 L70 65" stroke="#7F77DD" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M50 45 L50 75" stroke="#7F77DD" strokeWidth="2.5" strokeLinecap="round" />
+            
+            {/* 노드 (가족 구성원) */}
+            <circle cx="50" cy="30" r="8" fill="#7F77DD" /> {/* 1세대 */}
+            <circle cx="30" cy="65" r="6" fill="#5DCAA5" /> {/* 2세대 1 */}
+            <circle cx="70" cy="65" r="6" fill="#EF9F27" /> {/* 2세대 2 */}
+            <circle cx="50" cy="75" r="6" fill="#378ADD" /> {/* 2세대 3 */}
+            
+            {/* 빛나는 효과 */}
+            <circle cx="50" cy="30" r="12" stroke="#7F77DD" strokeWidth="1" opacity="0.4">
+              <animate attributeName="r" values="8;15;8" dur="3s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+          <div style={splashStyles.title}>Herencia</div>
+          <div style={splashStyles.subTitle}>가족의 자산, 하나의 미래</div>
+        </div>
+        <div style={splashStyles.footer}>© 2026 Herencia Inc.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="phone-frame">
