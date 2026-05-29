@@ -102,7 +102,7 @@ export default function PortfolioTab() {
   const selectedStyle = STYLES.find((s) => s.key === selected);
 
   return (
-    <div style={S.wrap}>
+    <div className="tab-wrap">
 
       {/* 이번 주 요약 배너 */}
       <div style={S.banner}>
@@ -239,8 +239,6 @@ export default function PortfolioTab() {
 
 // ─── 스타일 ───────────────────────────────────
 const S = {
-  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1, minHeight: 0 },
-
   banner: {
     background: 'linear-gradient(135deg, #1c1c30 0%, #181820 100%)',
     border: '0.5px solid #2a2a45',

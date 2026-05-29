@@ -93,7 +93,7 @@ export default function MarketTab() {
   const msg  = getSummaryMsg(FEAR_GREED.score);
 
   return (
-    <div style={S.wrap}>
+    <div className="tab-wrap">
 
       {/* ① 공포·탐욕 지수 (최상단) */}
       <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
@@ -205,8 +205,6 @@ export default function MarketTab() {
 }
 
 const S = {
-  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1, minHeight: 0 },
-
   card: { background: '#181820', borderRadius: 14, overflow: 'visible' },
   cardHeader: { padding: '10px 14px', borderBottom: '0.5px solid #151520', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderRadius: '14px 14px 0 0' },
   cardTitle: { fontSize: 12, fontWeight: 500, color: '#ccc' },

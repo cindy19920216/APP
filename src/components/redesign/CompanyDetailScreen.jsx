@@ -286,7 +286,7 @@ const S = {
   headerCenter: { textAlign: 'center' },
   headerName: { fontSize: 14, fontWeight: 500, color: '#fff' },
   headerTicker: { fontSize: 9, color: '#444', marginTop: 1 },
-  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10 },
+  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
 
   priceCard: { background: '#181820', borderRadius: 14, padding: 14 },
   priceMain: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },

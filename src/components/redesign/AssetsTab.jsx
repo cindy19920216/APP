@@ -23,7 +23,7 @@ export default function AssetsTab({ members, onNodeTap }) {
   const best = getBestHolding(w);
 
   return (
-    <div style={styles.wrap}>
+    <div className="tab-wrap">
 
       {/* 오늘의 1위 카드 */}
       <div style={styles.winnerCard}>
@@ -88,15 +88,6 @@ export default function AssetsTab({ members, onNodeTap }) {
 }
 
 const styles = {
-  wrap: {
-    padding: '12px 12px 0',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 10,
-    overflowY: 'auto',
-    flex: 1,
-    minHeight: 0,
-  },
   winnerCard: {
     background: '#181820',
     borderRadius: 14,

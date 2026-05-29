@@ -124,20 +124,47 @@ body {
 /* ── 콘텐츠 영역 ── */
 .content-area {
   flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
   position: relative;
   min-height: 0;
-}
-/* 모든 탭 컴포넌트가 내부 스크롤을 가질 수 있도록 */
-.content-area > * {
-  min-height: 0;
+  overflow: hidden; /* 자식이 tab-wrap(absolute)일 때 영역 이탈 방지 */
 }
 
-/* ── 공통 스크롤바 숨김 ── */
-::-webkit-scrollbar { display: none; }
-* { scrollbar-width: none; }
+/* ── 탭 공통 스크롤 래퍼 ──
+   position:absolute + inset:0 으로 content-area를 꽉 채우고
+   overflow-y: auto로 내부 스크롤 활성화 */
+.tab-wrap {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: 12px 12px 24px; /* 하단 여백 추가 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── 공통 스크롤바 스타일 (얇고 세련되게) ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a4a;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #534AB7;
+}
+
+/* Firefox용 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a4a transparent;
+}
 
 /* ── 버튼 기본 리셋 ── */
 button { font-family: inherit; }

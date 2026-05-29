@@ -253,7 +253,7 @@ const S = {
   header: { padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #1e1e28', flexShrink: 0 },
   backBtn: { background: 'none', border: 'none', color: '#7F77DD', fontSize: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3, minWidth: 72 },
   headerTitle: { fontSize: 15, fontWeight: 500, color: '#fff' },
-  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10 },
+  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
 
   priceCard: { background: '#181820', borderRadius: 12, padding: '12px 14px' },
   priceRow: { display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 5 },

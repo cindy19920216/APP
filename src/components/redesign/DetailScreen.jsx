@@ -161,7 +161,7 @@ const styles = {
   scroll: {
     flex: 1,
     overflowY: 'auto',
-    padding: '14px 14px 0',
+    padding: '14px 14px 24px',
     display: 'flex',
     flexDirection: 'column',
     gap: 10,

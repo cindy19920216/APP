@@ -343,7 +343,7 @@ const S = {
   },
   backBtn: { background: 'none', border: 'none', color: '#7F77DD', fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3 },
   headerTitle: { fontSize: 15, fontWeight: 500, color: '#fff' },
-  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10 },
+  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
 
   gaugeCard: { background: '#181820', borderRadius: 14, padding: '14px 14px 16px' },
   scoreSummary: { display: 'flex', justifyContent: 'space-around', marginTop: 14, borderTop: '0.5px solid #1e1e28', paddingTop: 14 },
