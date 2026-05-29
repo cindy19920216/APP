@@ -29,94 +29,95 @@ export default function DetailScreen({ member, onBack }) {
 
       {/* 스크롤 영역 */}
       <div style={styles.scroll}>
-
-        {/* 프로필 카드 */}
-        <div style={styles.profileCard}>
-          <div style={{ ...styles.avatarRing, borderColor: member.ringColor }}>
-            <Avatar id={member.id} size={52} />
-          </div>
-          <div>
-            <div style={styles.name}>{member.name}</div>
-            <div style={{ ...styles.role, color: member.color }}>{member.role}</div>
-            <div style={styles.weekRow}>
-              <span style={styles.weekLabel}>이번 주 수익</span>
-              <span style={{ ...styles.weekMoney, color: pctColor }}>{member.weekMoney}</span>
-              <span style={{ ...styles.weekPct, background: wpBg, color: pctColor }}>
-                {pctText}
-              </span>
+        <div style={styles.scrollContent}>
+          {/* 프로필 카드 */}
+          <div style={styles.profileCard}>
+            <div style={{ ...styles.avatarRing, borderColor: member.ringColor }}>
+              <Avatar id={member.id} size={52} />
             </div>
-          </div>
-        </div>
-
-        {member.empty ? (
-          <div style={styles.emptyCard}>
-            <i className="ti ti-plant" style={{ fontSize: 36, color: '#3a3a45' }} />
-            <div style={styles.emptyText}>아직 등록된 자산이 없어요</div>
-            <div style={styles.emptySubText}>자산을 추가해 식목이의 첫 씨앗을 심어보세요</div>
-          </div>
-        ) : (
-          <>
-            {/* 자산 유형별 그리드 */}
-            <div style={styles.typeGrid}>
-              {member.assetTypes.map((t, i) => (
-                <div key={i} style={styles.typeCard}>
-                  <div style={{ ...styles.typeIcon, background: t.bg }}>
-                    <i className={`ti ${t.icon}`} style={{ color: t.ic, fontSize: 15 }} />
-                  </div>
-                  <div style={styles.typeLabel}>{t.label}</div>
-                  <div style={styles.typeValue}>{t.value}</div>
-                  <div style={{ ...styles.typeChange, color: t.up ? '#1D9E75' : '#E24B4A' }}>
-                    {t.up ? '▲' : '▼'} {t.change}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 수익률 차트 */}
-            <ReturnChart chartData={member.chart} />
-
-            {/* 보유 종목 */}
-            <div style={styles.holdingsCard}>
-              <div style={styles.holdingsHeader}>
-                <span style={styles.holdingsTitle}>보유 종목</span>
-                <span style={styles.holdingsCount}>{member.holdings.length}개 항목</span>
+            <div>
+              <div style={styles.name}>{member.name}</div>
+              <div style={{ ...styles.role, color: member.color }}>{member.role}</div>
+              <div style={styles.weekRow}>
+                <span style={styles.weekLabel}>이번 주 수익</span>
+                <span style={{ ...styles.weekMoney, color: pctColor }}>{member.weekMoney}</span>
+                <span style={{ ...styles.weekPct, background: wpBg, color: pctColor }}>
+                  {pctText}
+                </span>
               </div>
-              {member.holdings.map((h, i) => (
-                <div
-                  key={i}
-                  style={{
-                    ...styles.holdingRow,
-                    borderBottom: i < member.holdings.length - 1 ? '0.5px solid #151520' : 'none',
-                  }}
-                >
-                  <div style={{ ...styles.holdingIc, background: h.bg, color: h.ic }}>
-                    {h.ini}
-                  </div>
-                  <div style={styles.holdingInfo}>
-                    <div style={styles.holdingName}>{h.name}</div>
-                    <div style={styles.holdingType}>{h.type}</div>
-                    <div style={styles.barWrap}>
-                      <div
-                        style={{
-                          ...styles.bar,
-                          width: `${h.barPct}%`,
-                          background: h.barColor,
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div style={styles.holdingRight}>
-                    <div style={styles.holdingValue}>{h.value}</div>
-                    <div style={{ fontSize: 10, color: h.up ? '#1D9E75' : '#E24B4A', marginTop: 2 }}>
-                      {h.up ? '▲' : '▼'} {h.change}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
-          </>
-        )}
-        <div style={{ height: 24 }} />
+          </div>
+
+          {member.empty ? (
+            <div style={styles.emptyCard}>
+              <i className="ti ti-plant" style={{ fontSize: 36, color: '#3a3a45' }} />
+              <div style={styles.emptyText}>아직 등록된 자산이 없어요</div>
+              <div style={styles.emptySubText}>자산을 추가해 식목이의 첫 씨앗을 심어보세요</div>
+            </div>
+          ) : (
+            <>
+              {/* 자산 유형별 그리드 */}
+              <div style={styles.typeGrid}>
+                {member.assetTypes.map((t, i) => (
+                  <div key={i} style={styles.typeCard}>
+                    <div style={{ ...styles.typeIcon, background: t.bg }}>
+                      <i className={`ti ${t.icon}`} style={{ color: t.ic, fontSize: 15 }} />
+                    </div>
+                    <div style={styles.typeLabel}>{t.label}</div>
+                    <div style={styles.typeValue}>{t.value}</div>
+                    <div style={{ ...styles.typeChange, color: t.up ? '#1D9E75' : '#E24B4A' }}>
+                      {t.up ? '▲' : '▼'} {t.change}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 수익률 차트 */}
+              <ReturnChart chartData={member.chart} />
+
+              {/* 보유 종목 */}
+              <div style={styles.holdingsCard}>
+                <div style={styles.holdingsHeader}>
+                  <span style={styles.holdingsTitle}>보유 종목</span>
+                  <span style={styles.holdingsCount}>{member.holdings.length}개 항목</span>
+                </div>
+                {member.holdings.map((h, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      ...styles.holdingRow,
+                      borderBottom: i < member.holdings.length - 1 ? '0.5px solid #151520' : 'none',
+                    }}
+                  >
+                    <div style={{ ...styles.holdingIc, background: h.bg, color: h.ic }}>
+                      {h.ini}
+                    </div>
+                    <div style={styles.holdingInfo}>
+                      <div style={styles.holdingName}>{h.name}</div>
+                      <div style={styles.holdingType}>{h.type}</div>
+                      <div style={styles.barWrap}>
+                        <div
+                          style={{
+                            ...styles.bar,
+                            width: `${h.barPct}%`,
+                            background: h.barColor,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div style={styles.holdingRight}>
+                      <div style={styles.holdingValue}>{h.value}</div>
+                      <div style={{ fontSize: 10, color: h.up ? '#1D9E75' : '#E24B4A', marginTop: 2 }}>
+                        {h.up ? '▲' : '▼'} {h.change}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+          <div style={{ height: 24 }} />
+        </div>
       </div>
     </div>
   );
@@ -124,10 +125,12 @@ export default function DetailScreen({ member, onBack }) {
 
 const styles = {
   wrap: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
     display: 'flex',
     flexDirection: 'column',
     background: '#0f1117',
-    height: '100%',
+    overflow: 'hidden',
   },
   header: {
     padding: '10px 14px',
@@ -161,6 +164,10 @@ const styles = {
   scroll: {
     flex: 1,
     overflowY: 'auto',
+    minHeight: 0,
+    WebkitOverflowScrolling: 'touch',
+  },
+  scrollContent: {
     padding: '14px 14px 24px',
     display: 'flex',
     flexDirection: 'column',

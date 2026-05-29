@@ -196,64 +196,84 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
       </div>
 
       <div style={S.scroll}>
-        {/* 현재값 */}
-        <div style={S.priceCard}>
-          <div style={S.priceRow}>
-            <span style={S.priceVal}>{currentValue}</span>
-            <span style={{ ...S.priceChg, color: parseFloat(currentChange) >= 0 ? '#1D9E75' : '#E24B4A' }}>
-              {currentChange}
-            </span>
-          </div>
-          <div style={S.unitLabel}>{meta.unit} · 기간 수익률{' '}
-            <span style={{ color: +periodReturn >= 0 ? '#1D9E75' : '#E24B4A', fontWeight: 500 }}>
-              {+periodReturn >= 0 ? '+' : ''}{periodReturn}%
-            </span>
-          </div>
-        </div>
-
-        {/* 메인 차트 */}
-        <div style={S.chartCard}>
-          <div style={{ height: 180 }}>
-            <Line data={chartData} options={chartOptions} />
-          </div>
-
-          {/* 드래그 범위 바 */}
-          <div style={S.dragSection}>
-            <div style={S.dragTitle}>
-              <i className="ti ti-arrows-left-right" style={{ fontSize: 11, marginRight: 4, color: '#555' }} />
-              <span style={{ fontSize: 9, color: '#444' }}>드래그로 기간 선택</span>
+        <div style={S.scrollContent}>
+          {/* 현재값 */}
+          <div style={S.priceCard}>
+            <div style={S.priceRow}>
+              <span style={S.priceVal}>{currentValue}</span>
+              <span style={{ ...S.priceChg, color: parseFloat(currentChange) >= 0 ? '#1D9E75' : '#E24B4A' }}>
+                {currentChange}
+              </span>
             </div>
-            <DragRangeBar values={values} range={range} onChange={setRange} />
-          </div>
-        </div>
-
-        {/* 통계 */}
-        <div style={S.statsCard}>
-          {[
-            { label: '조회 기간', value: `${LABELS[range.startIdx]} ~ ${LABELS[range.endIdx]}` },
-            { label: '기간 최고', value: meta.fmt(Math.max(...slicedValues)) },
-            { label: '기간 최저', value: meta.fmt(Math.min(...slicedValues)) },
-            { label: '기간 수익률', value: (+periodReturn >= 0 ? '+' : '') + periodReturn + '%', color: +periodReturn >= 0 ? '#1D9E75' : '#E24B4A' },
-          ].map((s, i) => (
-            <div key={i} style={{ ...S.statRow, borderBottom: i < 3 ? '0.5px solid #151520' : 'none' }}>
-              <span style={S.statLabel}>{s.label}</span>
-              <span style={{ ...S.statValue, color: s.color ?? '#fff' }}>{s.value}</span>
+            <div style={S.unitLabel}>{meta.unit} · 기간 수익률{' '}
+              <span style={{ color: +periodReturn >= 0 ? '#1D9E75' : '#E24B4A', fontWeight: 500 }}>
+                {+periodReturn >= 0 ? '+' : ''}{periodReturn}%
+              </span>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div style={{ height: 24 }} />
+          {/* 메인 차트 */}
+          <div style={S.chartCard}>
+            <div style={{ height: 180 }}>
+              <Line data={chartData} options={chartOptions} />
+            </div>
+
+            {/* 드래그 범위 바 */}
+            <div style={S.dragSection}>
+              <div style={S.dragTitle}>
+                <i className="ti ti-arrows-left-right" style={{ fontSize: 11, marginRight: 4, color: '#555' }} />
+                <span style={{ fontSize: 9, color: '#444' }}>드래그로 기간 선택</span>
+              </div>
+              <DragRangeBar values={values} range={range} onChange={setRange} />
+            </div>
+          </div>
+
+          {/* 통계 */}
+          <div style={S.statsCard}>
+            {[
+              { label: '조회 기간', value: `${LABELS[range.startIdx]} ~ ${LABELS[range.endIdx]}` },
+              { label: '기간 최고', value: meta.fmt(Math.max(...slicedValues)) },
+              { label: '기간 최저', value: meta.fmt(Math.min(...slicedValues)) },
+              { label: '기간 수익률', value: (+periodReturn >= 0 ? '+' : '') + periodReturn + '%', color: +periodReturn >= 0 ? '#1D9E75' : '#E24B4A' },
+            ].map((s, i) => (
+              <div key={i} style={{ ...S.statRow, borderBottom: i < 3 ? '0.5px solid #151520' : 'none' }}>
+                <span style={S.statLabel}>{s.label}</span>
+                <span style={{ ...S.statValue, color: s.color ?? '#fff' }}>{s.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ height: 24 }} />
+        </div>
       </div>
     </div>
   );
 }
 
 const S = {
-  wrap: { display: 'flex', flexDirection: 'column', background: '#0f1117', height: '100%' },
+  wrap: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    background: '#0f1117',
+    overflow: 'hidden',
+  },
   header: { padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #1e1e28', flexShrink: 0 },
   backBtn: { background: 'none', border: 'none', color: '#7F77DD', fontSize: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3, minWidth: 72 },
   headerTitle: { fontSize: 15, fontWeight: 500, color: '#fff' },
-  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
+  scroll: {
+    flex: 1,
+    overflowY: 'auto',
+    minHeight: 0,
+    WebkitOverflowScrolling: 'touch',
+  },
+  scrollContent: {
+    padding: '12px 12px 24px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
 
   priceCard: { background: '#181820', borderRadius: 12, padding: '12px 14px' },
   priceRow: { display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 5 },

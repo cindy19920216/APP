@@ -143,6 +143,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 0; /* Flexbox scrolling fix */
 }
 
 /* ── 공통 스크롤바 스타일 (얇고 세련되게) ── */

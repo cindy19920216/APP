@@ -241,109 +241,128 @@ export default function PanicBoomScreen({ onBack }) {
       </div>
 
       <div style={S.scroll}>
-
-        {/* 게이지 카드 */}
-        <div style={S.gaugeCard}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 4 }}>
-            <Gauge score={SCORE} />
-          </div>
-          <div style={S.scoreSummary}>
-            <div style={S.summaryCell}>
-              <div style={S.summaryLabel}>종합 점수</div>
-              <div style={{ ...S.summaryValue, color }}>{SCORE}<span style={{ fontSize: 11, color: '#444', fontWeight: 400 }}>/100</span></div>
+        <div style={S.scrollContent}>
+          {/* 게이지 카드 */}
+          <div style={S.gaugeCard}>
+            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 4 }}>
+              <Gauge score={SCORE} />
             </div>
-            <div style={S.summaryDivider} />
-            <div style={S.summaryCell}>
-              <div style={S.summaryLabel}>전일 대비</div>
-              <div style={{ ...S.summaryValue, color: diff >= 0 ? '#1D9E75' : '#E24B4A' }}>
-                {diff >= 0 ? '+' : ''}{diff}<span style={{ fontSize: 11, fontWeight: 400 }}>pt</span>
+            <div style={S.scoreSummary}>
+              <div style={S.summaryCell}>
+                <div style={S.summaryLabel}>종합 점수</div>
+                <div style={{ ...S.summaryValue, color }}>{SCORE}<span style={{ fontSize: 11, color: '#444', fontWeight: 400 }}>/100</span></div>
+              </div>
+              <div style={S.summaryDivider} />
+              <div style={S.summaryCell}>
+                <div style={S.summaryLabel}>전일 대비</div>
+                <div style={{ ...S.summaryValue, color: diff >= 0 ? '#1D9E75' : '#E24B4A' }}>
+                  {diff >= 0 ? '+' : ''}{diff}<span style={{ fontSize: 11, fontWeight: 400 }}>pt</span>
+                </div>
+              </div>
+              <div style={S.summaryDivider} />
+              <div style={S.summaryCell}>
+                <div style={S.summaryLabel}>1개월 전</div>
+                <div style={{ ...S.summaryValue, color: '#7F77DD' }}>{MONTH_AGO}</div>
               </div>
             </div>
-            <div style={S.summaryDivider} />
-            <div style={S.summaryCell}>
-              <div style={S.summaryLabel}>1개월 전</div>
-              <div style={{ ...S.summaryValue, color: '#7F77DD' }}>{MONTH_AGO}</div>
-            </div>
           </div>
-        </div>
 
-        {/* 존 범례 */}
-        <div style={S.legendRow}>
-          {ZONE_COLORS.map((z, i) => (
-            <div key={i} style={S.legendItem}>
-              <div style={{ ...S.legendDot, background: z.color }} />
-              <span style={S.legendLabel}>{z.label}</span>
-            </div>
-          ))}
-        </div>
+          {/* 존 범례 */}
+          <div style={S.legendRow}>
+            {ZONE_COLORS.map((z, i) => (
+              <div key={i} style={S.legendItem}>
+                <div style={{ ...S.legendDot, background: z.color }} />
+                <span style={S.legendLabel}>{z.label}</span>
+              </div>
+            ))}
+          </div>
 
-        {/* 세부 지표 카테고리 */}
-        {INDICATORS.map((section, si) => (
-          <div key={si} style={S.indCard}>
-            <div style={S.indHeader}>
-              <i className={`ti ${section.icon}`} style={{ color: '#7F77DD', fontSize: 13, marginRight: 6 }} />
-              <span style={S.indTitle}>{section.category}</span>
-            </div>
-            {section.items.map((item, ii) => {
-              const badge = getLevelBadge(item.level);
-              return (
-                <div
-                  key={ii}
-                  style={{
-                    ...S.indRow,
-                    borderBottom: ii < section.items.length - 1 ? '0.5px solid #151520' : 'none',
-                  }}
-                >
-                  <div style={S.indLeft}>
-                    <div style={S.indName}>{item.name}</div>
-                    <div style={S.indNote}>{item.note}</div>
-                  </div>
-                  <div style={S.indRight}>
-                    <div style={S.indValue}>{item.value}</div>
-                    <div style={{ ...S.indBadge, background: badge.bg, color: badge.color }}>
-                      {badge.label}
+          {/* 세부 지표 카테고리 */}
+          {INDICATORS.map((section, si) => (
+            <div key={si} style={S.indCard}>
+              <div style={S.indHeader}>
+                <i className={`ti ${section.icon}`} style={{ color: '#7F77DD', fontSize: 13, marginRight: 6 }} />
+                <span style={S.indTitle}>{section.category}</span>
+              </div>
+              {section.items.map((item, ii) => {
+                const badge = getLevelBadge(item.level);
+                return (
+                  <div
+                    key={ii}
+                    style={{
+                      ...S.indRow,
+                      borderBottom: ii < section.items.length - 1 ? '0.5px solid #151520' : 'none',
+                    }}
+                  >
+                    <div style={S.indLeft}>
+                      <div style={S.indName}>{item.name}</div>
+                      <div style={S.indNote}>{item.note}</div>
+                    </div>
+                    <div style={S.indRight}>
+                      <div style={S.indValue}>{item.value}</div>
+                      <div style={{ ...S.indBadge, background: badge.bg, color: badge.color }}>
+                        {badge.label}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        ))}
-
-        {/* 히스토리컬 차트 */}
-        <div style={S.chartCard}>
-          <div style={S.chartHeader}>
-            <span style={S.indTitle}>히스토리컬 차트</span>
-            <div style={S.periodRow}>
-              {PERIODS.map((p) => (
-                <button
-                  key={p}
-                  style={{ ...S.pBtn, ...(period === p ? S.pBtnActive : {}) }}
-                  onClick={() => setPeriod(p)}
-                >
-                  {p}
-                </button>
-              ))}
+                );
+              })}
             </div>
-          </div>
-          <HistoryChart period={period} />
-        </div>
+          ))}
 
-        <div style={{ height: 24 }} />
+          {/* 히스토리컬 차트 */}
+          <div style={S.chartCard}>
+            <div style={S.chartHeader}>
+              <span style={S.indTitle}>히스토리컬 차트</span>
+              <div style={S.periodRow}>
+                {PERIODS.map((p) => (
+                  <button
+                    key={p}
+                    style={{ ...S.pBtn, ...(period === p ? S.pBtnActive : {}) }}
+                    onClick={() => setPeriod(p)}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <HistoryChart period={period} />
+          </div>
+
+          <div style={{ height: 24 }} />
+        </div>
       </div>
     </div>
   );
 }
 
 const S = {
-  wrap: { display: 'flex', flexDirection: 'column', background: '#0f1117', height: '100%' },
+  wrap: {
+    position: 'absolute',
+    top: 0, left: 0, right: 0, bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    background: '#0f1117',
+    overflow: 'hidden',
+  },
   header: {
     padding: '10px 14px', display: 'flex', alignItems: 'center',
     justifyContent: 'space-between', borderBottom: '0.5px solid #1e1e28', flexShrink: 0,
   },
   backBtn: { background: 'none', border: 'none', color: '#7F77DD', fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3 },
   headerTitle: { fontSize: 15, fontWeight: 500, color: '#fff' },
-  scroll: { flex: 1, overflowY: 'auto', padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
+  scroll: {
+    flex: 1,
+    overflowY: 'auto',
+    minHeight: 0,
+    WebkitOverflowScrolling: 'touch',
+  },
+  scrollContent: {
+    padding: '12px 12px 24px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
 
   gaugeCard: { background: '#181820', borderRadius: 14, padding: '14px 14px 16px' },
   scoreSummary: { display: 'flex', justifyContent: 'space-around', marginTop: 14, borderTop: '0.5px solid #1e1e28', paddingTop: 14 },
