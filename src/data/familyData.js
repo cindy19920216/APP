@@ -226,7 +226,7 @@ export const FAMILY_MEMBERS = {
     id: 'baby',
     name: '식목이',
     role: '큰딸 애기',
-    pin: '1004',
+    pin: '1111',
     pct: null,
     weekMoney: '–',
     color: '#F09595',
