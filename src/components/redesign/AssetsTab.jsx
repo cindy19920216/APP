@@ -95,6 +95,7 @@ const styles = {
     gap: 10,
     overflowY: 'auto',
     flex: 1,
+    minHeight: 0,
   },
   winnerCard: {
     background: '#181820',

@@ -103,8 +103,9 @@ export default function App() {
   const [activeTab, setActiveTab]       = useState('market');
   const [screen, setScreen]             = useState('main');
   const [selectedMember, setSelectedMember] = useState<any>(null);
+  // 탭을 다시 누를 때 컴포넌트를 리셋하기 위한 버전 카운터
+  const [tabKeys, setTabKeys] = useState<Record<string, number>>({ market: 0, assets: 0, portfolio: 0, company: 0 });
 
-  // 입장하기 클릭 → 페이드 아웃 후 메인 진입
   const handleEnter = () => {
     setPhase(1);
     setTimeout(() => setPhase(2), 520);
@@ -113,7 +114,13 @@ export default function App() {
   const handleNodeTap    = (member: any) => { setSelectedMember(member); setScreen('pin'); };
   const handlePinSuccess = ()            => { setScreen('detail'); };
   const handleBack       = ()            => { setScreen('main'); setSelectedMember(null); };
-  const handleTabChange  = (key: string) => { setActiveTab(key); setScreen('main'); setSelectedMember(null); };
+  const handleTabChange  = (key: string) => {
+    // 같은 탭을 다시 누르면 key 증가 → 컴포넌트 리마운트 → 내부 상태 초기화
+    setTabKeys(prev => ({ ...prev, [key]: (prev[key] ?? 0) + 1 }));
+    setActiveTab(key);
+    setScreen('main');
+    setSelectedMember(null);
+  };
 
   const renderContent = () => {
     if (screen === 'pin' && selectedMember)
@@ -121,10 +128,10 @@ export default function App() {
     if (screen === 'detail' && selectedMember)
       return <DetailScreen member={selectedMember} onBack={handleBack} />;
     switch (activeTab) {
-      case 'assets':    return <AssetsTab members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
-      case 'portfolio': return <PortfolioTab />;
-      case 'market':    return <MarketTab />;
-      case 'company':   return <CompanyTab />;
+      case 'assets':    return <AssetsTab    key={`assets-${tabKeys.assets}`}       members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
+      case 'portfolio': return <PortfolioTab key={`portfolio-${tabKeys.portfolio}`} />;
+      case 'market':    return <MarketTab    key={`market-${tabKeys.market}`}       />;
+      case 'company':   return <CompanyTab   key={`company-${tabKeys.company}`}     />;
       default:          return null;
     }
   };

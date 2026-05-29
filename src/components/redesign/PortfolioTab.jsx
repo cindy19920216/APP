@@ -239,7 +239,7 @@ export default function PortfolioTab() {
 
 // ─── 스타일 ───────────────────────────────────
 const S = {
-  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1 },
+  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1, minHeight: 0 },
 
   banner: {
     background: 'linear-gradient(135deg, #1c1c30 0%, #181820 100%)',

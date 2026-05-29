@@ -104,8 +104,9 @@ body {
 .tab-btn {
   flex: 1;
   text-align: center;
-  padding: 7px 0;
-  font-size: 10px;
+  padding: 9px 0;
+  font-size: 13px;
+  font-weight: 500;
   color: #555;
   background: none;
   border: none;
@@ -113,6 +114,7 @@ body {
   transition: color 0.15s;
   border-bottom: 2px solid transparent;
   margin-bottom: -0.5px;
+  white-space: nowrap;
 }
 .tab-btn.active {
   color: #7F77DD;
@@ -126,6 +128,11 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  min-height: 0;
+}
+/* 모든 탭 컴포넌트가 내부 스크롤을 가질 수 있도록 */
+.content-area > * {
+  min-height: 0;
 }
 
 /* ── 공통 스크롤바 숨김 ── */

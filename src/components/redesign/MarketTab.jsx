@@ -95,7 +95,32 @@ export default function MarketTab() {
   return (
     <div style={S.wrap}>
 
-      {/* ① 주요 지수 (클릭 → 차트) */}
+      {/* ① 공포·탐욕 지수 (최상단) */}
+      <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
+        <div style={S.fgLeft}>
+          <div style={S.fgTopRow}>
+            <span style={S.fgTag}>공포 · 탐욕 지수</span>
+            <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
+            <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{FEAR_GREED.score}</span>
+            <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
+          </div>
+          <div style={S.fgSub}>
+            전일 대비 <span style={{ color: diff >= 0 ? '#1D9E75' : '#E24B4A' }}>{diff >= 0 ? '+' : ''}{diff}pt</span>
+            &nbsp;· 탭해서 상세보기
+          </div>
+        </div>
+        <MiniGauge score={FEAR_GREED.score} />
+      </button>
+
+      {/* 오늘의 한 줄 요약 */}
+      <div style={{ ...S.msgCard, borderColor: color + '44' }}>
+        <span style={S.msgEmoji}>{msg.emoji}</span>
+        <span style={S.msgText}>{msg.text}</span>
+      </div>
+
+      {/* ② 주요 지수 (클릭 → 차트) */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>주요 지수</span>
@@ -181,38 +206,13 @@ export default function MarketTab() {
         </div>
       </div>
 
-      {/* ④ 공포·탐욕 지수 */}
-      <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
-        <div style={S.fgLeft}>
-          <div style={S.fgTopRow}>
-            <span style={S.fgTag}>공포 · 탐욕 지수</span>
-            <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
-            <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{FEAR_GREED.score}</span>
-            <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
-          </div>
-          <div style={S.fgSub}>
-            전일 대비 <span style={{ color: diff >= 0 ? '#1D9E75' : '#E24B4A' }}>{diff >= 0 ? '+' : ''}{diff}pt</span>
-            &nbsp;· 탭해서 상세보기
-          </div>
-        </div>
-        <MiniGauge score={FEAR_GREED.score} />
-      </button>
-
-      {/* ⑤ 오늘의 한 줄 요약 */}
-      <div style={{ ...S.msgCard, borderColor: color + '44' }}>
-        <span style={S.msgEmoji}>{msg.emoji}</span>
-        <span style={S.msgText}>{msg.text}</span>
-      </div>
-
       <div style={{ height: 20 }} />
     </div>
   );
 }
 
 const S = {
-  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1 },
+  wrap: { padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', flex: 1, minHeight: 0 },
 
   card: { background: '#181820', borderRadius: 14, overflow: 'hidden' },
   cardHeader: { padding: '10px 14px', borderBottom: '0.5px solid #151520', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
