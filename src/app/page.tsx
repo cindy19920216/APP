@@ -8,12 +8,13 @@ import DetailScreen from '@/components/redesign/DetailScreen';
 import PlaceholderTab from '@/components/redesign/PlaceholderTab';
 import MarketTab from '@/components/redesign/MarketTab';
 import PortfolioTab from '@/components/redesign/PortfolioTab';
+import CompanyTab from '@/components/redesign/CompanyTab';
 
 const TABS = [
   { key: 'market',      label: '시장지표' },
   { key: 'assets',      label: '자산현황' },
   { key: 'portfolio',   label: '포트폴리오' },
-  { key: 'inheritance', label: '상속플래너' },
+  { key: 'company',     label: '기업분석' },
 ];
 
 // 0 = 스플래시 표시 중, 1 = 스플래시 퇴장 중, 2 = 메인 표시
@@ -45,7 +46,7 @@ export default function App() {
       case 'assets':      return <AssetsTab members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
       case 'portfolio':   return <PortfolioTab />;
       case 'market':      return <MarketTab />;
-      case 'inheritance': return <PlaceholderTab tabKey="inheritance" />;
+      case 'company':     return <CompanyTab />;
       default:            return null;
     }
   };
