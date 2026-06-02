@@ -22,14 +22,14 @@ const SEG_COLORS = ZONE_COLORS.map(z => z.color);
 const SEGS       = ZONE_COLORS.map(z => [z.from, z.to]);
 const PERIODS    = ['1년', '3년', '5년', '전체'];
 
-const STATUS_COLORS: Record<string, string> = {
+const STATUS_COLORS = {
   BOOM:  '#22c55e',
   WARM:  '#84cc16',
   MILD:  '#eab308',
   COLD:  '#f97316',
   PANIC: '#ef4444',
 };
-const STATUS_BG: Record<string, string> = {
+const STATUS_BG = {
   BOOM:  '#0a2a10',
   WARM:  '#1a2a05',
   MILD:  '#2a2000',
