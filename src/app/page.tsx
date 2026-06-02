@@ -1,0 +1,248 @@
+"use client";
+
+import React, { useState } from 'react';
+import { FAMILY_MEMBERS } from '@/data/familyData';
+import AssetsTab from '@/components/redesign/AssetsTab';
+import PinScreen from '@/components/redesign/PinScreen';
+import DetailScreen from '@/components/redesign/DetailScreen';
+import MarketTab from '@/components/redesign/MarketTab';
+import PortfolioTab from '@/components/redesign/PortfolioTab';
+import CompanyTab from '@/components/redesign/CompanyTab';
+
+const TABS = [
+  { key: 'market',    label: '시장지표' },
+  { key: 'assets',    label: '자산현황' },
+  { key: 'portfolio', label: '포트폴리오' },
+  { key: 'company',   label: '기업분석' },
+];
+
+type Phase = 0 | 1 | 2; // 0=스플래시, 1=퇴장중, 2=메인
+
+// ─── 나무 일러스트 SVG ─────────────────────────────────────────────
+function TreeIllustration() {
+  return (
+    <svg width="210" height="215" viewBox="0 0 210 215" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* 그림자 */}
+      <ellipse cx="105" cy="205" rx="52" ry="9" fill="#060610" opacity="0.5"/>
+
+      {/* 뿌리 */}
+      <path d="M 92 198 Q 76 201 62 198" stroke="#3d2812" strokeWidth="5" strokeLinecap="round"/>
+      <path d="M 118 198 Q 134 201 148 198" stroke="#3d2812" strokeWidth="5" strokeLinecap="round"/>
+
+      {/* 줄기 */}
+      <path d="M 93 198 C 91 182 89 164 90 148 C 91 132 94 122 105 118 C 116 114 119 126 119 142 C 119 158 117 176 116 196" fill="#3d2812"/>
+      {/* 줄기 결 */}
+      <path d="M 97 182 Q 100 174 97 166" stroke="#5a3a20" strokeWidth="1.2" opacity="0.4" fill="none"/>
+      <path d="M 107 185 Q 110 177 107 169" stroke="#5a3a20" strokeWidth="1.2" opacity="0.4" fill="none"/>
+
+      {/* 가지 - 왼쪽 하단 */}
+      <path d="M 92 162 Q 68 154 46 142" stroke="#3d2812" strokeWidth="8" strokeLinecap="round"/>
+      {/* 가지 - 오른쪽 하단 */}
+      <path d="M 118 160 Q 142 152 164 140" stroke="#3d2812" strokeWidth="8" strokeLinecap="round"/>
+      {/* 가지 - 왼쪽 상단 */}
+      <path d="M 93 142 Q 68 132 48 118" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+      {/* 가지 - 오른쪽 상단 */}
+      <path d="M 117 140 Q 142 130 162 116" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+      {/* 가지 - 중앙 상단 */}
+      <path d="M 105 130 L 105 90" stroke="#3d2812" strokeWidth="6" strokeLinecap="round"/>
+
+      {/* 잎사귀 - 어두운 배경 레이어 */}
+      <circle cx="44" cy="120" r="34" fill="#0b4430"/>
+      <circle cx="166" cy="120" r="34" fill="#0b4430"/>
+      <circle cx="105" cy="72" r="42" fill="#0b4430"/>
+
+      {/* 잎사귀 - 중간 레이어 */}
+      <circle cx="42" cy="114" r="29" fill="#166647"/>
+      <circle cx="168" cy="114" r="29" fill="#166647"/>
+      <circle cx="103" cy="66" r="36" fill="#166647"/>
+
+      {/* 잎사귀 - 밝은 앞쪽 레이어 */}
+      <circle cx="38" cy="108" r="23" fill="#1D9E75"/>
+      <circle cx="164" cy="108" r="23" fill="#1D9E75"/>
+      <circle cx="99"  cy="60" r="30" fill="#1D9E75"/>
+      <circle cx="114" cy="63" r="24" fill="#22a87e"/>
+
+      {/* 잎사귀 - 하이라이트 */}
+      <circle cx="95"  cy="52" r="20" fill="#28B888"/>
+      <circle cx="112" cy="56" r="16" fill="#2EC496"/>
+
+      {/* 꽃/열매 장식 */}
+      <circle cx="20"  cy="108" r="5.5" fill="#EF9F27"/>
+      <circle cx="20"  cy="108" r="2.8" fill="#FAC775"/>
+      <circle cx="190" cy="108" r="5.5" fill="#7F77DD"/>
+      <circle cx="190" cy="108" r="2.8" fill="#BAB5F8"/>
+      <circle cx="105" cy="28"  r="4.5" fill="#EF9F27"/>
+      <circle cx="105" cy="28"  r="2.2" fill="#FAC775"/>
+      <circle cx="72"  cy="58"  r="4"   fill="#E24B4A" opacity="0.85"/>
+      <circle cx="72"  cy="58"  r="2"   fill="#FFA0A0" opacity="0.85"/>
+      <circle cx="136" cy="54"  r="4"   fill="#E24B4A" opacity="0.85"/>
+      <circle cx="136" cy="54"  r="2"   fill="#FFA0A0" opacity="0.85"/>
+
+      {/* 반짝이 애니메이션 */}
+      <circle cx="178" cy="125" r="2.5" fill="#EF9F27">
+        <animate attributeName="opacity" values="0.9;0;0.9"   dur="2.2s"              repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2.5;4;2.5"   dur="2.2s"              repeatCount="indefinite"/>
+      </circle>
+      <circle cx="32"  cy="120" r="2"   fill="#7F77DD">
+        <animate attributeName="opacity" values="0.7;0;0.7"   dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2;3.2;2"     dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="110" cy="12"  r="2"   fill="#5DCAA5">
+        <animate attributeName="opacity" values="0.6;0;0.6"   dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+        <animate attributeName="r"       values="2;3;2"       dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="56"  cy="100" r="1.5" fill="#FAC775">
+        <animate attributeName="opacity" values="0.5;0;0.5"   dur="3s"   begin="1s"   repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  );
+}
+
+export default function App() {
+  const [phase, setPhase]               = useState<Phase>(0);
+  const [activeTab, setActiveTab]       = useState('market');
+  const [screen, setScreen]             = useState('main');
+  const [selectedMember, setSelectedMember] = useState<any>(null);
+  // 탭을 다시 누를 때 컴포넌트를 리셋하기 위한 버전 카운터
+  const [tabKeys, setTabKeys] = useState<Record<string, number>>({ market: 0, assets: 0, portfolio: 0, company: 0 });
+
+  const handleEnter = () => {
+    setPhase(1);
+    setTimeout(() => setPhase(2), 520);
+  };
+
+  const handleNodeTap    = (member: any) => { setSelectedMember(member); setScreen('pin'); };
+  const handlePinSuccess = ()            => { setScreen('detail'); };
+  const handleBack       = ()            => { setScreen('main'); setSelectedMember(null); };
+  const handleTabChange  = (key: string) => {
+    // 같은 탭을 다시 누르면 key 증가 → 컴포넌트 리마운트 → 내부 상태 초기화
+    setTabKeys(prev => ({ ...prev, [key]: (prev[key] ?? 0) + 1 }));
+    setActiveTab(key);
+    setScreen('main');
+    setSelectedMember(null);
+  };
+
+  const renderContent = () => {
+    if (screen === 'pin' && selectedMember)
+      return <PinScreen member={selectedMember} onSuccess={handlePinSuccess} onBack={handleBack} />;
+    if (screen === 'detail' && selectedMember)
+      return <DetailScreen member={selectedMember} onBack={handleBack} />;
+    switch (activeTab) {
+      case 'assets':    return <AssetsTab    key={`assets-${tabKeys.assets}`}       members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
+      case 'portfolio': return <PortfolioTab key={`portfolio-${tabKeys.portfolio}`} />;
+      case 'market':    return <MarketTab    key={`market-${tabKeys.market}`}       />;
+      case 'company':   return <CompanyTab   key={`company-${tabKeys.company}`}     />;
+      default:          return null;
+    }
+  };
+
+  // ── 스플래시 ───────────────────────────────────────────────────────
+  if (phase < 2) {
+    return (
+      <div className={`phone-frame ${phase === 1 ? 'splash-exit' : ''}`}>
+        {/* 완전한 가운데 정렬 컨테이너 */}
+        <div style={S.splashInner}>
+
+          {/* 나무 일러스트 + 타이틀 */}
+          <div style={S.logoBox}>
+            <TreeIllustration />
+            <div style={S.splashTitle}>Herencia</div>
+            <div style={S.splashSub}>가족의 자산, 하나의 미래</div>
+          </div>
+
+          {/* 입장하기 버튼 */}
+          {phase === 0 && (
+            <button className="enter-btn" style={S.enterBtn} onClick={handleEnter}>
+              입장하기&nbsp;&nbsp;→
+            </button>
+          )}
+
+          {/* 하단 카피라이트 */}
+          <div style={S.splashFooter}>© 2026 Herencia Inc.</div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── 메인 앱 ────────────────────────────────────────────────────────
+  const isOverlay = screen !== 'main';
+
+  return (
+    <div className="phone-frame main-enter">
+      <div className="app-header">
+        <span className="app-title">Herencia</span>
+        <div className="live-badge">
+          <span className="live-dot" />
+          <span>실시간</span>
+        </div>
+      </div>
+
+      {!isOverlay && (
+        <div className="tab-bar">
+          {TABS.map((t) => (
+            <button
+              key={t.key}
+              className={`tab-btn ${activeTab === t.key ? 'active' : ''}`}
+              onClick={() => handleTabChange(t.key)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="content-area">
+        {renderContent()}
+      </div>
+    </div>
+  );
+}
+
+const S = {
+  // 스플래시 내부 컨테이너: phone-frame 안에서 flex 1 차지
+  splashInner: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative' as const,
+    gap: 0,
+  },
+  logoBox: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    gap: 12,
+  },
+  splashTitle: {
+    fontSize: 32,
+    fontWeight: 700,
+    color: '#fff',
+    letterSpacing: '4px',
+    marginTop: 4,
+  },
+  splashSub: {
+    fontSize: 13,
+    color: '#555',
+    letterSpacing: '0.5px',
+  },
+  enterBtn: {
+    marginTop: 36,
+    background: 'linear-gradient(135deg, #4a41a8 0%, #7F77DD 100%)',
+    border: 'none',
+    borderRadius: 16,
+    padding: '15px 52px',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: 'pointer',
+    letterSpacing: '1.5px',
+  },
+  splashFooter: {
+    position: 'absolute' as const,
+    bottom: 22,
+    fontSize: 10,
+    color: '#282838',
+  },
+};

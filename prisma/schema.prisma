@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model FamilyMember {
+  id           Int           @id @default(autoincrement())
+  name         String
+  role         String?
+  color        String        @default("#6366f1")
+  assets       Asset[]
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+model Asset {
+  id           Int           @id @default(autoincrement())
+  memberId     Int
+  member       FamilyMember  @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  type         String        // STOCK_KR, STOCK_US, CRYPTO, ETF, FUND
+  ticker       String
+  name         String
+  quantity     Float         @default(0)
+  avgPrice     Float         @default(0)
+  currency     String        @default("KRW")
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model TickerMaster {
+  id       Int     @id @default(autoincrement())
+  ticker   String  @unique
+  name     String
+  type     String  // STOCK_KR, STOCK_US, CRYPTO, ETF, FUND
+  currency String  @default("KRW")
+  market   String? // KOSPI, KOSDAQ, NYSE, NASDAQ, CRYPTO
+}
+
+model Transaction {
+  id         Int          @id @default(autoincrement())
+  memberId   Int
+  member     FamilyMember @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  assetId    Int
+  asset      Asset        @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  type       String       // BUY, SELL, DIVIDEND
+  quantity   Float
+  price      Float
+  fee        Float        @default(0)
+  date       DateTime
+  memo       String?
+  createdAt  DateTime     @default(now())
+}
