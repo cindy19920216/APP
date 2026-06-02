@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+
+// 1시간 캐시 (Vercel Edge Cache)
+export const revalidate = 3600;
+
+const API_KEY  = process.env.FRED_API_KEY;
+const BASE_URL = 'https://api.stlouisfed.org/fred/series/observations';
 
 // ── 시리즈 정의 ──────────────────────────────────────────
 const SERIES: Record<string, string> = {
@@ -80,23 +84,37 @@ const CATEGORIES: Record<string, { icon: string; items: string[] }> = {
   },
 };
 
-// ── 유틸 ─────────────────────────────────────────────────
-function readCsv(sid: string): { date: string; value: number }[] {
+// ── FRED API 호출 ─────────────────────────────────────────
+async function fetchFred(seriesId: string): Promise<{ date: string; value: number }[]> {
   try {
-    const p = path.join(process.cwd(), 'data', `${sid}.csv`);
-    if (!fs.existsSync(p)) return [];
-    const lines = fs.readFileSync(p, 'utf-8').trim().split('\n');
-    return lines.slice(1).map(l => {
-      const [date, val] = l.split(',');
-      return { date: date.trim(), value: parseFloat(val.trim()) };
-    }).filter(r => !isNaN(r.value));
-  } catch { return []; }
+    const url = new URL(BASE_URL);
+    url.searchParams.set('series_id',  seriesId);
+    url.searchParams.set('api_key',    API_KEY ?? '');
+    url.searchParams.set('file_type',  'json');
+    url.searchParams.set('sort_order', 'asc');
+    url.searchParams.set('limit',      '100000');
+
+    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+
+    const json = await res.json();
+    return (json.observations ?? [])
+      .filter((o: { value: string }) => o.value !== '.')
+      .map((o: { date: string; value: string }) => ({
+        date:  o.date,
+        value: parseFloat(o.value),
+      }));
+  } catch {
+    return [];
+  }
 }
 
+// ── 유틸 ─────────────────────────────────────────────────
 function percentileOf(val: number, arr: number[], panicUp: boolean): number {
   if (arr.length === 0) return 50;
-  if (panicUp) return (arr.filter(v => v < val).length / arr.length) * 100;
-  return (arr.filter(v => v > val).length / arr.length) * 100;
+  return panicUp
+    ? (arr.filter(v => v < val).length / arr.length) * 100
+    : (arr.filter(v => v > val).length / arr.length) * 100;
 }
 
 function getStatus(pct: number): string {
@@ -121,20 +139,28 @@ function fmtVal(v: number): string {
 
 // ── 메인 ─────────────────────────────────────────────────
 export async function GET() {
-  // 1. CSV 로드
-  const raw: Record<string, { date: string; value: number }[]> = {};
-  for (const [name, sid] of Object.entries(SERIES)) {
-    const data = readCsv(sid);
-    if (data.length > 0) raw[name] = data;
+  if (!API_KEY) {
+    return NextResponse.json({ error: 'FRED_API_KEY 환경변수가 설정되지 않았습니다.' }, { status: 500 });
   }
 
-  // 2. 파생 지표
+  // 1. 전체 시리즈 병렬 호출
+  const entries = Object.entries(SERIES);
+  const results = await Promise.all(
+    entries.map(([, sid]) => fetchFred(sid))
+  );
+
+  const raw: Record<string, { date: string; value: number }[]> = {};
+  entries.forEach(([name], i) => {
+    if (results[i].length > 0) raw[name] = results[i];
+  });
+
+  // 2. 파생 지표 계산
   if (raw['CAD/USD'] && raw['JPY/USD']) {
     const cadMap = Object.fromEntries(raw['CAD/USD'].map(r => [r.date, r.value]));
     const jpyMap = Object.fromEntries(raw['JPY/USD'].map(r => [r.date, r.value]));
-    const dates = raw['CAD/USD'].map(r => r.date).filter(d => jpyMap[d]);
+    const dates  = raw['CAD/USD'].map(r => r.date).filter(d => jpyMap[d]);
     raw['캐나다 달러/일본 엔화'] = dates.map(d => ({
-      date: d,
+      date:  d,
       value: (1 / cadMap[d]) / (1 / jpyMap[d]),
     }));
   }
@@ -142,7 +168,7 @@ export async function GET() {
   if (raw['금 가격'] && raw['원유 가격 WTI']) {
     const goldMap = Object.fromEntries(raw['금 가격'].map(r => [r.date, r.value]));
     const oilMap  = Object.fromEntries(raw['원유 가격 WTI'].map(r => [r.date, r.value]));
-    const dates = raw['금 가격'].map(r => r.date).filter(d => oilMap[d] && oilMap[d] !== 0);
+    const dates   = raw['금 가격'].map(r => r.date).filter(d => oilMap[d] && oilMap[d] !== 0);
     raw['금/석유 가격 비율'] = dates.map(d => ({ date: d, value: goldMap[d] / oilMap[d] }));
   }
 
@@ -165,18 +191,17 @@ export async function GET() {
     const catItems = [];
     for (const name of items) {
       if (!raw[name]) continue;
-      const series = raw[name];
-      const vals = series.map(r => r.value);
+      const vals   = raw[name].map(r => r.value);
       const latest = vals[vals.length - 1];
-      const pu = PANIC_UP[name] ?? true;
-      const pct = percentileOf(latest, vals, pu);
+      const pu     = PANIC_UP[name] ?? true;
+      const pct    = percentileOf(latest, vals, pu);
       const status = getStatus(pct);
       allPercentiles.push(pct);
       catItems.push({
         name,
-        value: fmtVal(latest),
-        note: NOTES[name] ?? '',
-        level: statusToLevel(status),
+        value:      fmtVal(latest),
+        note:       NOTES[name] ?? '',
+        level:      statusToLevel(status),
         status,
         percentile: Math.round(pct * 10) / 10,
       });
@@ -190,27 +215,18 @@ export async function GET() {
     : 50;
   const compositeScore = Math.round(100 - avgPct);
 
-  // 5. 히스토리컬 차트 (NFCI 기반, 월별 샘플링)
+  // 5. 히스토리컬 차트 (NFCI 기반, 월별 샘플링, 최근 5년)
   const chartData: { label: string; value: number }[] = [];
   if (raw['미국 금융시장 경색 지수']) {
-    const nfci = raw['미국 금융시장 경색 지수'];
+    const nfci    = raw['미국 금융시장 경색 지수'];
     const allVals = nfci.map(r => r.value);
-    // 월별 마지막 값 추출
     const byMonth: Record<string, number> = {};
-    for (const r of nfci) {
-      const ym = r.date.slice(0, 7); // YYYY-MM
-      byMonth[ym] = r.value;
-    }
-    const months = Object.keys(byMonth).sort();
-    // 최근 5년치
-    const recentMonths = months.slice(-60);
-    for (const ym of recentMonths) {
+    for (const r of nfci) byMonth[r.date.slice(0, 7)] = r.value;
+    const months = Object.keys(byMonth).sort().slice(-60); // 최근 5년
+    for (const ym of months) {
       const val = byMonth[ym];
       const pct = percentileOf(val, allVals, true);
-      chartData.push({
-        label: ym,
-        value: Math.round((100 - pct) * 10) / 10,
-      });
+      chartData.push({ label: ym, value: Math.round((100 - pct) * 10) / 10 });
     }
   }
 
