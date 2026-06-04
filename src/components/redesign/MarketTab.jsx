@@ -302,10 +302,10 @@ const S = {
   fgSub: { fontSize: 10, color: '#444', marginTop: 7 },
 
   msgCard: {
-    background: '#181820', borderRadius: 12, padding: '12px 14px',
-    display: 'flex', alignItems: 'center', gap: 10,
-    border: '0.5px solid', overflow: 'hidden',
+    background: '#181820', borderRadius: 12, padding: '14px 14px',
+    display: 'flex', alignItems: 'flex-start', gap: 10,
+    border: '0.5px solid',
   },
-  msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1 },
-  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.4, wordBreak: 'keep-all', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
+  msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1.6 },
+  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.8, wordBreak: 'keep-all', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
 };
