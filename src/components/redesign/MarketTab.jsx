@@ -274,7 +274,7 @@ const S = {
     textAlign: 'left', cursor: 'pointer',
   },
   listName:    { fontSize: 13, fontWeight: 500, color: '#ccc', display: 'block' },
-  summary:     { fontSize: 10, color: '#888', marginTop: 3, lineHeight: 1.4 },
+  summary:     { fontSize: 10, color: '#888', marginTop: 3, lineHeight: 1.4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
   listValue:   { fontSize: 15, fontWeight: 600, color: '#fff' },
   listChange:  { fontSize: 11, marginTop: 2 },
   listRight:   { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
@@ -303,9 +303,9 @@ const S = {
 
   msgCard: {
     background: '#181820', borderRadius: 12, padding: '12px 14px',
-    display: 'flex', alignItems: 'flex-start', gap: 10,
-    border: '0.5px solid',
+    display: 'flex', alignItems: 'center', gap: 10,
+    border: '0.5px solid', overflow: 'hidden',
   },
-  msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1.3 },
-  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.6 },
+  msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1 },
+  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
 };
