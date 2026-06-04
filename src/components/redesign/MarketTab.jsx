@@ -13,17 +13,36 @@ const FALLBACK_INDICES = [
   { name: 'DAX',       value: '—', change: '—', up: true },
   { name: '항셍',      value: '—', change: '—', up: true },
 ];
+const FLAG_MAP = {
+  USD: 'us', EUR: 'eu', JPY: 'jp', GBP: 'gb', CNY: 'cn',
+  AUD: 'au', CAD: 'ca', CHF: 'ch', HKD: 'hk', SGD: 'sg',
+};
+
+function FxFlag({ pair, emoji }) {
+  const code = FLAG_MAP[pair?.slice(0, 3)];
+  if (!code) return <span style={{ fontSize: 18 }}>{emoji}</span>;
+  return (
+    <img
+      src={`https://flagcdn.com/w28/${code}.png`}
+      srcSet={`https://flagcdn.com/w56/${code}.png 2x`}
+      alt={pair?.slice(0, 3)}
+      style={{ width: 24, height: 18, objectFit: 'cover', borderRadius: 3, flexShrink: 0, display: 'block' }}
+      onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling && (e.currentTarget.nextSibling.style.display = 'inline'); }}
+    />
+  );
+}
+
 const FALLBACK_FX = [
-  { pair: 'USD / KRW', value: '—', change: '—', up: true, flag: '🇺🇸' },
-  { pair: 'EUR / KRW', value: '—', change: '—', up: true, flag: '🇪🇺' },
-  { pair: 'JPY / KRW', value: '—', change: '—', up: true, flag: '🇯🇵' },
-  { pair: 'GBP / KRW', value: '—', change: '—', up: true, flag: '🇬🇧' },
-  { pair: 'CNY / KRW', value: '—', change: '—', up: true, flag: '🇨🇳' },
-  { pair: 'AUD / KRW', value: '—', change: '—', up: true, flag: '🇦🇺' },
-  { pair: 'CAD / KRW', value: '—', change: '—', up: true, flag: '🇨🇦' },
-  { pair: 'CHF / KRW', value: '—', change: '—', up: true, flag: '🇨🇭' },
-  { pair: 'HKD / KRW', value: '—', change: '—', up: true, flag: '🇭🇰' },
-  { pair: 'SGD / KRW', value: '—', change: '—', up: true, flag: '🇸🇬' },
+  { pair: 'USD / KRW', value: '—', change: '—', up: true, flag: '🇺🇸', country: '미국' },
+  { pair: 'EUR / KRW', value: '—', change: '—', up: true, flag: '🇪🇺', country: '유럽연합' },
+  { pair: 'JPY / KRW', value: '—', change: '—', up: true, flag: '🇯🇵', country: '일본' },
+  { pair: 'GBP / KRW', value: '—', change: '—', up: true, flag: '🇬🇧', country: '영국' },
+  { pair: 'CNY / KRW', value: '—', change: '—', up: true, flag: '🇨🇳', country: '중국' },
+  { pair: 'AUD / KRW', value: '—', change: '—', up: true, flag: '🇦🇺', country: '호주' },
+  { pair: 'CAD / KRW', value: '—', change: '—', up: true, flag: '🇨🇦', country: '캐나다' },
+  { pair: 'CHF / KRW', value: '—', change: '—', up: true, flag: '🇨🇭', country: '스위스' },
+  { pair: 'HKD / KRW', value: '—', change: '—', up: true, flag: '🇭🇰', country: '홍콩' },
+  { pair: 'SGD / KRW', value: '—', change: '—', up: true, flag: '🇸🇬', country: '싱가포르' },
 ];
 const FALLBACK_COMMODITIES = [
   { name: '금',        value: '—', change: '—', up: true, icon: 'ti-coin',             bg: '#2a2010', ic: '#EF9F27' },
@@ -187,7 +206,7 @@ export default function MarketTab() {
             style={{ ...S.fxRow, borderBottom: i < fx.length - 1 ? '0.5px solid #151520' : 'none' }}
             onClick={() => setSelectedInstrument({ key: f.pair, value: f.value, change: f.change })}
           >
-            <span style={S.fxFlag}>{f.flag}</span>
+            <span style={S.fxFlag}><FxFlag pair={f.pair} emoji={f.flag} /></span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={S.fxPair}>{f.pair}</div>
               {f.country && <div style={S.fxCountry}>{f.country}</div>}
