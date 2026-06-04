@@ -19,15 +19,18 @@ const FLAG_MAP = {
 };
 
 function FxFlag({ pair, emoji }) {
+  const [failed, setFailed] = React.useState(false);
   const code = FLAG_MAP[pair?.slice(0, 3)];
-  if (!code) return <span style={{ fontSize: 18 }}>{emoji}</span>;
+  if (!code || failed) {
+    return <span style={{ fontSize: 20, lineHeight: 1, flexShrink: 0 }}>{emoji}</span>;
+  }
   return (
     <img
       src={`https://flagcdn.com/w28/${code}.png`}
       srcSet={`https://flagcdn.com/w56/${code}.png 2x`}
       alt={pair?.slice(0, 3)}
-      style={{ width: 24, height: 18, objectFit: 'cover', borderRadius: 3, flexShrink: 0, display: 'block' }}
-      onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling && (e.currentTarget.nextSibling.style.display = 'inline'); }}
+      style={{ width: 24, height: 16, objectFit: 'cover', borderRadius: 2, verticalAlign: 'middle', flexShrink: 0 }}
+      onError={() => setFailed(true)}
     />
   );
 }
