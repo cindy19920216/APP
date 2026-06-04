@@ -26,8 +26,8 @@ function FxFlag({ pair, emoji }) {
   }
   return (
     <img
-      src={`https://flagcdn.com/w28/${code}.png`}
-      srcSet={`https://flagcdn.com/w56/${code}.png 2x`}
+      src={`https://flagcdn.com/w40/${code}.png`}
+      srcSet={`https://flagcdn.com/w80/${code}.png 2x`}
       alt={pair?.slice(0, 3)}
       style={{ width: 24, height: 16, objectFit: 'cover', borderRadius: 2, verticalAlign: 'middle', flexShrink: 0 }}
       onError={() => setFailed(true)}
