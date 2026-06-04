@@ -274,7 +274,7 @@ const S = {
     textAlign: 'left', cursor: 'pointer',
   },
   listName:    { fontSize: 13, fontWeight: 500, color: '#ccc', display: 'block' },
-  summary:     { fontSize: 10, color: '#888', marginTop: 3, lineHeight: 1.4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  summary:     { fontSize: 10, color: '#888', marginTop: 3, lineHeight: 1.4, wordBreak: 'keep-all', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
   listValue:   { fontSize: 15, fontWeight: 600, color: '#fff' },
   listChange:  { fontSize: 11, marginTop: 2 },
   listRight:   { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
@@ -307,5 +307,5 @@ const S = {
     border: '0.5px solid', overflow: 'hidden',
   },
   msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1 },
-  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+  msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.4, wordBreak: 'keep-all', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
 };
