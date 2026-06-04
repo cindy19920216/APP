@@ -25,10 +25,14 @@ async function fetchGoogleNews(query: string): Promise<string[]> {
     const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
     if (!res.ok) return [];
     const xml = await res.text();
-    return [...xml.matchAll(/<title>(.*?)<\/title>/gs)]
-      .map(m => m[1].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'"))
-      .filter(t => t.length > 15 && !t.includes('Google News'))
-      .slice(0, 5);
+    const titles: string[] = [];
+    const re = /<title>([^<]*)<\/title>/g;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(xml)) !== null && titles.length < 7) {
+      const t = m[1].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'").trim();
+      if (t.length > 15 && !t.includes('Google News')) titles.push(t);
+    }
+    return titles.slice(0, 5);
   } catch { return []; }
 }
 
