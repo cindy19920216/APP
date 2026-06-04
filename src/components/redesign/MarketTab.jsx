@@ -1,48 +1,54 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PanicBoomScreen from './PanicBoomScreen';
 import InstrumentChartScreen from './InstrumentChartScreen';
 
-const FEAR_GREED = { score: 62, prev: 58 };
-
-const INDICES = [
-  { name: 'KOSPI',   value: '2,748.32',  change: '+0.84%', up: true  },
-  { name: 'KOSDAQ',  value: '854.17',    change: '-0.23%', up: false },
-  { name: 'S&P500',  value: '5,304.72',  change: '+0.51%', up: true  },
-  { name: 'NASDAQ',  value: '16,920.80', change: '+0.73%', up: true  },
+const FALLBACK_INDICES = [
+  { name: 'S&P500',    value: '—', change: '—', up: true },
+  { name: 'NASDAQ',    value: '—', change: '—', up: true },
+  { name: 'KOSPI',     value: '—', change: '—', up: true },
+  { name: 'KOSDAQ',    value: '—', change: '—', up: true },
+  { name: '니케이225', value: '—', change: '—', up: true },
+  { name: 'DAX',       value: '—', change: '—', up: true },
+  { name: '항셍',      value: '—', change: '—', up: true },
 ];
-
-const FX = [
-  { pair: 'USD / KRW', value: '1,378.50', change: '-2.30', up: false, flag: '🇺🇸' },
-  { pair: 'JPY / KRW', value: '9.14',     change: '+0.08', up: true,  flag: '🇯🇵' },
-  { pair: 'CNY / KRW', value: '189.72',   change: '-0.45', up: false, flag: '🇨🇳' },
+const FALLBACK_FX = [
+  { pair: 'USD / KRW', value: '—', change: '—', up: true, flag: '🇺🇸' },
+  { pair: 'EUR / KRW', value: '—', change: '—', up: true, flag: '🇪🇺' },
+  { pair: 'JPY / KRW', value: '—', change: '—', up: true, flag: '🇯🇵' },
+  { pair: 'GBP / KRW', value: '—', change: '—', up: true, flag: '🇬🇧' },
+  { pair: 'CNY / KRW', value: '—', change: '—', up: true, flag: '🇨🇳' },
+  { pair: 'AUD / KRW', value: '—', change: '—', up: true, flag: '🇦🇺' },
+  { pair: 'CAD / KRW', value: '—', change: '—', up: true, flag: '🇨🇦' },
+  { pair: 'CHF / KRW', value: '—', change: '—', up: true, flag: '🇨🇭' },
+  { pair: 'HKD / KRW', value: '—', change: '—', up: true, flag: '🇭🇰' },
+  { pair: 'SGD / KRW', value: '—', change: '—', up: true, flag: '🇸🇬' },
 ];
-
-const COMMODITIES = [
-  { name: '금',       value: '$2,338', change: '+0.42%', up: true,  icon: 'ti-coin',             bg: '#2a2010', ic: '#EF9F27' },
-  { name: '원유(WTI)', value: '$78.24', change: '-1.12%', up: false, icon: 'ti-droplet-filled',   bg: '#1a1a2a', ic: '#7F77DD' },
-  { name: '은',       value: '$29.87', change: '+0.88%', up: true,  icon: 'ti-medal',            bg: '#1e2626', ic: '#5DCAA5' },
-  { name: 'BTC',      value: '$68,420',change: '+2.34%', up: true,  icon: 'ti-currency-bitcoin', bg: '#251a10', ic: '#EF9F27' },
+const FALLBACK_COMMODITIES = [
+  { name: '금',        value: '—', change: '—', up: true, icon: 'ti-coin',             bg: '#2a2010', ic: '#EF9F27' },
+  { name: '원유(WTI)', value: '—', change: '—', up: true, icon: 'ti-droplet-filled',   bg: '#1a1a2a', ic: '#7F77DD' },
+  { name: '은',        value: '—', change: '—', up: true, icon: 'ti-medal',            bg: '#1e2626', ic: '#5DCAA5' },
+  { name: 'BTC',       value: '—', change: '—', up: true, icon: 'ti-currency-bitcoin', bg: '#251a10', ic: '#EF9F27' },
 ];
 
 const SEG_COLORS = ['#E24B4A', '#E2844A', '#EF9F27', '#7FBF9A', '#1D9E75'];
 const SEGS = [[0, 20], [20, 40], [40, 60], [60, 80], [80, 100]];
 
 function getLevel(score) {
-  if (score <= 20) return { label: '극단적 공포', color: '#E24B4A' };
-  if (score <= 40) return { label: '공포',        color: '#E2844A' };
-  if (score <= 60) return { label: '중립',        color: '#EF9F27' };
-  if (score <= 80) return { label: '탐욕',        color: '#1D9E75' };
-  return               { label: '극단적 탐욕',   color: '#0f7a5c' };
+  if (score <= 20) return { label: 'PANIC', color: '#E24B4A' };
+  if (score <= 40) return { label: 'COLD',  color: '#E2844A' };
+  if (score <= 60) return { label: 'MILD',  color: '#EF9F27' };
+  if (score <= 80) return { label: 'WARM',  color: '#1D9E75' };
+  return               { label: 'BOOM',  color: '#0f7a5c' };
 }
 
 function getSummaryMsg(score) {
-  if (score <= 20) return { emoji: '😱', text: '극단적 공포 구간이에요. 지금은 시장을 멀리하고 현금을 지키세요.' };
-  if (score <= 40) return { emoji: '😨', text: '공포 구간이에요. 오늘은 주식을 하면 위험한 날이에요.' };
-  if (score <= 60) return { emoji: '😐', text: '중립 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
-  if (score <= 80) return { emoji: '🤑', text: '탐욕 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
-  return               { emoji: '🚀', text: '극단적 탐욕이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
+  if (score <= 20) return { emoji: '😱', text: 'PANIC 구간이에요. 지금은 시장을 멀리하고 현금을 지키세요.' };
+  if (score <= 40) return { emoji: '😨', text: 'COLD 구간이에요. 오늘은 주식을 하면 위험한 날이에요.' };
+  if (score <= 60) return { emoji: '😐', text: 'MILD 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
+  if (score <= 80) return { emoji: '🤑', text: 'WARM 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
+  return               { emoji: '🚀', text: 'BOOM 구간이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
 }
 
 function arcD(cx, cy, r, from, to) {
@@ -72,8 +78,23 @@ function MiniGauge({ score }) {
 }
 
 export default function MarketTab() {
-  const [showPanicBoom,     setShowPanicBoom]     = useState(false);
-  const [selectedInstrument, setSelectedInstrument] = useState(null); // { key, value, change }
+  const [showPanicBoom,      setShowPanicBoom]      = useState(false);
+  const [selectedInstrument, setSelectedInstrument] = useState(null);
+  const [bbScore,            setBbScore]            = useState(null);
+  const [marketData,         setMarketData]         = useState(null);
+  const [marketLoading,      setMarketLoading]      = useState(true);
+
+  useEffect(() => {
+    fetch('/api/boom-burst')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setBbScore(d.compositeScore); })
+      .catch(() => {});
+    fetch('/api/market')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d && !d.error) setMarketData(d); })
+      .catch(() => {})
+      .finally(() => setMarketLoading(false));
+  }, []);
 
   if (showPanicBoom) return <PanicBoomScreen onBack={() => setShowPanicBoom(false)} />;
 
@@ -88,9 +109,12 @@ export default function MarketTab() {
     );
   }
 
-  const { label, color } = getLevel(FEAR_GREED.score);
-  const diff = FEAR_GREED.score - FEAR_GREED.prev;
-  const msg  = getSummaryMsg(FEAR_GREED.score);
+  const score   = bbScore ?? 50;
+  const { label, color } = getLevel(score);
+  const msg     = getSummaryMsg(score);
+  const indices = marketData?.indices     ?? FALLBACK_INDICES;
+  const fx      = marketData?.fx          ?? FALLBACK_FX;
+  const commod  = marketData?.commodities ?? FALLBACK_COMMODITIES;
 
   return (
     <div className="tab-wrap">
@@ -99,44 +123,51 @@ export default function MarketTab() {
       <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
         <div style={S.fgLeft}>
           <div style={S.fgTopRow}>
-            <span style={S.fgTag}>공포 · 탐욕 지수</span>
+            <span style={S.fgTag}>BOOM-BURST 지수</span>
             <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
-            <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{FEAR_GREED.score}</span>
-            <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
+            {bbScore === null
+              ? <span style={{ fontSize: 22, color: '#444' }}>로딩 중…</span>
+              : <>
+                  <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{score}</span>
+                  <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
+                </>
+            }
           </div>
-          <div style={S.fgSub}>
-            전일 대비 <span style={{ color: diff >= 0 ? '#1D9E75' : '#E24B4A' }}>{diff >= 0 ? '+' : ''}{diff}pt</span>
-            &nbsp;· 탭해서 상세보기
-          </div>
+          <div style={S.fgSub}>실시간 FRED 데이터 · 탭해서 상세보기</div>
         </div>
-        <MiniGauge score={FEAR_GREED.score} />
+        <MiniGauge score={score} />
       </button>
 
-      {/* 오늘의 한 줄 요약 */}
-      <div style={{ ...S.msgCard, borderColor: color + '44' }}>
-        <span style={S.msgEmoji}>{msg.emoji}</span>
-        <span style={S.msgText}>{msg.text}</span>
-      </div>
+      {/* 한 줄 요약 */}
+      {bbScore !== null && (
+        <div style={{ ...S.msgCard, borderColor: color + '44' }}>
+          <span style={S.msgEmoji}>{msg.emoji}</span>
+          <span style={S.msgText}>{msg.text}</span>
+        </div>
+      )}
 
-      {/* ② 주요 지수 (클릭 → 차트) — 세로 리스트 */}
+      {/* ② 주요 지수 */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>주요 지수</span>
-          <span style={S.cardSub}>15분 지연 · 탭해서 차트 보기</span>
+          <span style={S.cardSub}>{marketLoading ? '로딩 중…' : '15분 지연 · 탭해서 차트 보기'}</span>
         </div>
-        {INDICES.map((idx, i) => (
+        {indices.map((idx, i) => (
           <button
             key={i}
-            style={{ ...S.listRow, borderBottom: i < INDICES.length - 1 ? '0.5px solid #151520' : 'none' }}
+            style={{ ...S.listRow, borderBottom: i < indices.length - 1 ? '0.5px solid #151520' : 'none' }}
             onClick={() => setSelectedInstrument({ key: idx.name, value: idx.value, change: idx.change })}
           >
-            <span style={S.listName}>{idx.name}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={S.listName}>{idx.name}</div>
+              <div style={S.summary}>{idx.summary || '데이터 로딩 중…'}</div>
+            </div>
             <div style={S.listRight}>
               <span style={S.listValue}>{idx.value}</span>
               <span style={{ ...S.listChange, color: idx.up ? '#1D9E75' : '#E24B4A' }}>
-                {idx.up ? '▲' : '▼'} {idx.change}
+                {idx.value !== '—' ? (idx.up ? '▲' : '▼') : ''} {idx.change}
               </span>
             </div>
             <i className="ti ti-chevron-right" style={S.rowChevron} />
@@ -144,27 +175,27 @@ export default function MarketTab() {
         ))}
       </div>
 
-      {/* ② 환율 (클릭 → 차트) */}
+      {/* ③ 환율 */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>환율</span>
           <span style={S.cardSub}>KRW 기준 · 탭해서 차트 보기</span>
         </div>
-        {FX.map((f, i) => (
+        {fx.map((f, i) => (
           <button
             key={i}
-            style={{
-              ...S.fxRow,
-              borderBottom: i < FX.length - 1 ? '0.5px solid #151520' : 'none',
-            }}
-            onClick={() => setSelectedInstrument({ key: f.pair, value: f.value, change: (f.up ? '+' : '') + f.change })}
+            style={{ ...S.fxRow, borderBottom: i < fx.length - 1 ? '0.5px solid #151520' : 'none' }}
+            onClick={() => setSelectedInstrument({ key: f.pair, value: f.value, change: f.change })}
           >
             <span style={S.fxFlag}>{f.flag}</span>
-            <span style={S.fxPair}>{f.pair}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={S.fxPair}>{f.pair}</div>
+              {f.country && <div style={S.fxCountry}>{f.country}</div>}
+            </div>
             <div style={S.fxRight}>
               <span style={S.fxValue}>{f.value}</span>
               <span style={{ ...S.fxChange, color: f.up ? '#1D9E75' : '#E24B4A' }}>
-                {f.up ? '▲' : '▼'} {f.change}
+                {f.value !== '—' ? (f.up ? '▲' : '▼') : ''} {f.change}
               </span>
             </div>
             <i className="ti ti-chart-line" style={{ fontSize: 11, color: '#333', marginLeft: 6 }} />
@@ -172,26 +203,29 @@ export default function MarketTab() {
         ))}
       </div>
 
-      {/* ③ 원자재 (클릭 → 차트) — 세로 리스트 */}
+      {/* ④ 원자재 */}
       <div style={S.card}>
         <div style={S.cardHeader}>
           <span style={S.cardTitle}>원자재</span>
           <span style={S.cardSub}>USD 기준 · 탭해서 차트 보기</span>
         </div>
-        {COMMODITIES.map((c, i) => (
+        {commod.map((c, i) => (
           <button
             key={i}
-            style={{ ...S.listRow, borderBottom: i < COMMODITIES.length - 1 ? '0.5px solid #151520' : 'none' }}
+            style={{ ...S.listRow, borderBottom: i < commod.length - 1 ? '0.5px solid #151520' : 'none' }}
             onClick={() => setSelectedInstrument({ key: c.name, value: c.value, change: c.change })}
           >
             <div style={{ ...S.commodIc, background: c.bg, marginRight: 10, flexShrink: 0 }}>
               <i className={`ti ${c.icon}`} style={{ color: c.ic, fontSize: 14 }} />
             </div>
-            <span style={{ ...S.listName, flex: 1 }}>{c.name}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={S.listName}>{c.name}</div>
+              <div style={S.summary}>{c.summary || '데이터 로딩 중…'}</div>
+            </div>
             <div style={S.listRight}>
               <span style={S.listValue}>{c.value}</span>
               <span style={{ ...S.listChange, color: c.up ? '#1D9E75' : '#E24B4A' }}>
-                {c.up ? '▲' : '▼'} {c.change}
+                {c.value !== '—' ? (c.up ? '▲' : '▼') : ''} {c.change}
               </span>
             </div>
             <i className="ti ti-chevron-right" style={S.rowChevron} />
@@ -213,11 +247,12 @@ const S = {
   // ── 세로 리스트 공통 행 ──
   listRow: {
     display: 'flex', alignItems: 'center',
-    padding: '12px 14px', gap: 8,
+    padding: '10px 14px', gap: 8,
     width: '100%', background: 'transparent', border: 'none',
     textAlign: 'left', cursor: 'pointer',
   },
-  listName:    { fontSize: 13, fontWeight: 500, color: '#ccc', minWidth: 70 },
+  listName:    { fontSize: 13, fontWeight: 500, color: '#ccc', display: 'block' },
+  summary:     { fontSize: 10, color: '#888', marginTop: 3, lineHeight: 1.4 },
   listValue:   { fontSize: 15, fontWeight: 600, color: '#fff' },
   listChange:  { fontSize: 11, marginTop: 2 },
   listRight:   { flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
@@ -225,7 +260,8 @@ const S = {
 
   fxRow: { display: 'flex', alignItems: 'center', padding: '11px 14px', gap: 10, width: '100%', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left' },
   fxFlag: { fontSize: 18, flexShrink: 0 },
-  fxPair: { flex: 1, fontSize: 12, color: '#ccc' },
+  fxPair:    { fontSize: 12, color: '#ccc', display: 'block' },
+  fxCountry: { fontSize: 9,  color: '#555', marginTop: 2 },
   fxRight: { display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 },
   fxValue: { fontSize: 14, fontWeight: 500, color: '#fff' },
   fxChange: { fontSize: 10 },

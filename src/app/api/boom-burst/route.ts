@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
+import { unstable_cache } from 'next/cache';
 
-// 1시간 캐시 (Vercel Edge Cache)
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 const API_KEY  = process.env.FRED_API_KEY;
 const BASE_URL = 'https://api.stlouisfed.org/fred/series/observations';
@@ -9,7 +9,7 @@ const BASE_URL = 'https://api.stlouisfed.org/fred/series/observations';
 // ── 시리즈 정의 ──────────────────────────────────────────
 const SERIES: Record<string, string> = {
   '미국 주식 불확실성 지수':     'WLEMUINDXD',
-  '미국 고위험채권 유효이자율':  'BAMLH0A0HYM2EY',
+  '미국 고위험채권 유효이자율':  'BAMLH0A0HYM2',
   '미국 기업여신 증가율':        'BUSLOANS',
   '미국 금융시장 경색 지수':     'NFCI',
   '미국 장단기 금리차':          'T10Y2Y',
@@ -18,10 +18,8 @@ const SERIES: Record<string, string> = {
   '미국 주간 실물경기 지수':     'WEI',
   '미국 실물경기 경기침체 확률': 'RECPROUSM156N',
   '샴 규칙 경기침체 지표':       'SAHMREALTIME',
-  '미국 국가활동 지수':          'CFNAI',
   '미국 트럭판매 현황':          'TRUCKD11',
   '미국 화물운송 현황':          'RAILFRTCARLOADSD11',
-  '금 가격':                     'GOLDAMGBD228NLBM',
   '원유 가격 WTI':               'DCOILWTICO',
   '미국 통화유동속도':           'M2V',
   '미국 실업률':                 'UNRATE',
@@ -39,7 +37,6 @@ const PANIC_UP: Record<string, boolean> = {
   '미국 주간 실물경기 지수':     false,
   '미국 실물경기 경기침체 확률': true,
   '샴 규칙 경기침체 지표':       true,
-  '미국 국가활동 지수':          false,
   '미국 트럭판매 현황':          false,
   '미국 화물운송 현황':          false,
   '금/석유 가격 비율':           true,
@@ -51,14 +48,13 @@ const PANIC_UP: Record<string, boolean> = {
 const NOTES: Record<string, string> = {
   '미국 주식 불확실성 지수':     '높을수록 시장 불안↑',
   '미국 고위험채권 유효이자율':  '높을수록 신용위험↑',
-  '미국 기업여신 증가율':        '낮을수록 신용위축',
+  '미국 기업여신 증가율':        '전년대비(YoY%) · 음수·감소 = 신용위축',
   '미국 금융시장 경색 지수':     '높을수록 금융경색↑',
   '미국 장단기 금리차':          '음수 = 경기침체 신호',
   '캐나다 달러/일본 엔화':       '낮을수록 위험회피↑',
   '미국 주간 실물경기 지수':     '낮을수록 경기 둔화',
   '미국 실물경기 경기침체 확률': '높을수록 침체 확률↑',
   '샴 규칙 경기침체 지표':       '0.5 초과 = 경기침체',
-  '미국 국가활동 지수':          '낮을수록 경기 침체',
   '미국 트럭판매 현황':          '낮을수록 수요 감소',
   '미국 화물운송 현황':          '낮을수록 물류경기↓',
   '금/석유 가격 비율':           '높을수록 안전자산 선호',
@@ -76,7 +72,7 @@ const CATEGORIES: Record<string, { icon: string; items: string[] }> = {
   '경기 지표': {
     icon: 'ti-building-factory',
     items: ['미국 주간 실물경기 지수', '미국 실물경기 경기침체 확률', '샴 규칙 경기침체 지표',
-            '미국 국가활동 지수', '미국 트럭판매 현황', '미국 화물운송 현황'],
+            '미국 트럭판매 현황', '미국 화물운송 현황'],
   },
   '특별 사이클': {
     icon: 'ti-refresh',
@@ -84,32 +80,133 @@ const CATEGORIES: Record<string, { icon: string; items: string[] }> = {
   },
 };
 
-// ── FRED API 호출 ─────────────────────────────────────────
-async function fetchFred(seriesId: string): Promise<{ date: string; value: number }[]> {
+// ── FRED 단건 호출 ────────────────────────────────────────
+async function fetchOne(seriesId: string, apiKey: string): Promise<{ date: string; value: number }[]> {
   try {
     const url = new URL(BASE_URL);
     url.searchParams.set('series_id',  seriesId);
-    url.searchParams.set('api_key',    API_KEY ?? '');
+    url.searchParams.set('api_key',    apiKey);
     url.searchParams.set('file_type',  'json');
     url.searchParams.set('sort_order', 'asc');
     url.searchParams.set('limit',      '100000');
 
-    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
-    if (!res.ok) return [];
-
+    const res = await fetch(url.toString());
+    if (!res.ok) {
+      console.error(`FRED ${seriesId}: HTTP ${res.status}`);
+      return [];
+    }
     const json = await res.json();
+    if (json.error_message) {
+      console.error(`FRED ${seriesId}: ${json.error_message}`);
+      return [];
+    }
     return (json.observations ?? [])
       .filter((o: { value: string }) => o.value !== '.')
       .map((o: { date: string; value: string }) => ({
         date:  o.date,
         value: parseFloat(o.value),
       }));
-  } catch {
+  } catch (e) {
+    console.error(`FRED ${seriesId}: ${e}`);
     return [];
   }
 }
 
+// ── Yahoo Finance 월봉 fetch (금 가격용) ─────────────────
+async function fetchYahooMonthly(symbol: string): Promise<{ date: string; value: number }[]> {
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1mo&range=50y`;
+    const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+    if (!res.ok) { console.error(`Yahoo ${symbol}: HTTP ${res.status}`); return []; }
+    const json = await res.json();
+    const result = json?.chart?.result?.[0];
+    if (!result) return [];
+    const timestamps: number[] = result.timestamp ?? [];
+    const closes: number[]     = result.indicators?.quote?.[0]?.close ?? [];
+    return timestamps
+      .map((ts, i) => ({ date: new Date(ts * 1000).toISOString().slice(0, 10), value: closes[i] }))
+      .filter(r => r.value != null && !isNaN(r.value));
+  } catch (e) {
+    console.error(`Yahoo ${symbol}: ${e}`);
+    return [];
+  }
+}
+
+// ── FRED 전체 데이터 (1시간 캐시) ────────────────────────
+// unstable_cache로 FRED 응답을 캐싱 → 초당 2건 속도 제한 대응
+const getFredRaw = unstable_cache(
+  async (apiKey: string): Promise<Record<string, { date: string; value: number }[]>> => {
+    const raw: Record<string, { date: string; value: number }[]> = {};
+
+    for (const [name, sid] of Object.entries(SERIES)) {
+      const data = await fetchOne(sid, apiKey);
+      if (data.length > 0) raw[name] = data;
+      await new Promise(r => setTimeout(r, 700)); // FRED 속도 제한: 초당 2건 이하
+    }
+
+    // 금 가격: Yahoo Finance (GC=F, COMEX 선물) — FRED GOLD 시리즈 비활성화 대응
+    const goldData = await fetchYahooMonthly('GC=F');
+    if (goldData.length > 0) raw['금 가격'] = goldData;
+
+    // 파생 지표
+    if (raw['CAD/USD'] && raw['JPY/USD']) {
+      const cadMap = Object.fromEntries(raw['CAD/USD'].map(r => [r.date, r.value]));
+      const jpyMap = Object.fromEntries(raw['JPY/USD'].map(r => [r.date, r.value]));
+      raw['캐나다 달러/일본 엔화'] = raw['CAD/USD']
+        .filter(r => jpyMap[r.date])
+        .map(r => ({ date: r.date, value: (1 / cadMap[r.date]) / (1 / jpyMap[r.date]) }));
+    }
+
+    if (raw['금 가격'] && raw['원유 가격 WTI']) {
+      const goldMap = Object.fromEntries(raw['금 가격'].map(r => [r.date, r.value]));
+      const oilMap  = Object.fromEntries(raw['원유 가격 WTI'].map(r => [r.date, r.value]));
+      raw['금/석유 가격 비율'] = raw['금 가격']
+        .filter(r => oilMap[r.date] && oilMap[r.date] !== 0)
+        .map(r => ({ date: r.date, value: goldMap[r.date] / oilMap[r.date] }));
+    }
+
+    if (raw['미국 실업률'] && raw['미국 자연실업률']) {
+      const uMap  = Object.fromEntries(raw['미국 실업률'].map(r => [r.date, r.value]));
+      const nuMap = Object.fromEntries(raw['미국 자연실업률'].map(r => [r.date, r.value]));
+      raw['미국 실업률/자연실업률 차이'] = raw['미국 실업률']
+        .filter(r => nuMap[r.date] !== undefined)
+        .map(r => ({ date: r.date, value: uMap[r.date] - nuMap[r.date] }));
+    }
+
+    // 일별→월별 다운샘플 (2MB 캐시 한도 대응), 전체 기간 유지
+    // 600개월(50년)이면 대부분 시리즈의 전체 역사를 커버하면서 캐시는 ~400KB
+    for (const name of Object.keys(raw)) {
+      raw[name] = toMonthly(raw[name], 600);
+    }
+
+    // 기업여신: 절대값(십억달러) → 전년 동월 대비 증가율(YoY%)
+    if (raw['미국 기업여신 증가율']) {
+      const data  = raw['미국 기업여신 증가율'];
+      const byYM  = Object.fromEntries(data.map(r => [r.date.slice(0, 7), r.value]));
+      const yoy   = data.map(r => {
+        const [y, m] = r.date.slice(0, 7).split('-').map(Number);
+        const prevYM = `${y - 1}-${String(m).padStart(2, '0')}`;
+        const prev   = byYM[prevYM];
+        if (prev == null || prev === 0) return null;
+        return { date: r.date, value: Math.round(((r.value - prev) / Math.abs(prev)) * 1000) / 10 };
+      }).filter((r): r is { date: string; value: number } => r !== null);
+      if (yoy.length > 0) raw['미국 기업여신 증가율'] = yoy;
+    }
+
+    return raw;
+  },
+  ['fred-boom-burst-v5'],
+  { revalidate: 3600 }
+);
+
 // ── 유틸 ─────────────────────────────────────────────────
+function toMonthly(data: { date: string; value: number }[], maxMonths = 120): { date: string; value: number }[] {
+  const byMonth: Record<string, { date: string; value: number }> = {};
+  for (const r of data) byMonth[r.date.slice(0, 7)] = r;
+  const months = Object.keys(byMonth).sort();
+  return months.slice(-maxMonths).map(ym => byMonth[ym]);
+}
+
 function percentileOf(val: number, arr: number[], panicUp: boolean): number {
   if (arr.length === 0) return 50;
   return panicUp
@@ -143,46 +240,13 @@ export async function GET() {
     return NextResponse.json({ error: 'FRED_API_KEY 환경변수가 설정되지 않았습니다.' }, { status: 500 });
   }
 
-  // 1. 전체 시리즈 병렬 호출
-  const entries = Object.entries(SERIES);
-  const results = await Promise.all(
-    entries.map(([, sid]) => fetchFred(sid))
-  );
+  // 캐시에서 raw 데이터 가져오기 (없으면 FRED 호출, 이후 1시간 캐시)
+  const raw = await getFredRaw(API_KEY);
 
-  const raw: Record<string, { date: string; value: number }[]> = {};
-  entries.forEach(([name], i) => {
-    if (results[i].length > 0) raw[name] = results[i];
-  });
-
-  // 2. 파생 지표 계산
-  if (raw['CAD/USD'] && raw['JPY/USD']) {
-    const cadMap = Object.fromEntries(raw['CAD/USD'].map(r => [r.date, r.value]));
-    const jpyMap = Object.fromEntries(raw['JPY/USD'].map(r => [r.date, r.value]));
-    const dates  = raw['CAD/USD'].map(r => r.date).filter(d => jpyMap[d]);
-    raw['캐나다 달러/일본 엔화'] = dates.map(d => ({
-      date:  d,
-      value: (1 / cadMap[d]) / (1 / jpyMap[d]),
-    }));
-  }
-
-  if (raw['금 가격'] && raw['원유 가격 WTI']) {
-    const goldMap = Object.fromEntries(raw['금 가격'].map(r => [r.date, r.value]));
-    const oilMap  = Object.fromEntries(raw['원유 가격 WTI'].map(r => [r.date, r.value]));
-    const dates   = raw['금 가격'].map(r => r.date).filter(d => oilMap[d] && oilMap[d] !== 0);
-    raw['금/석유 가격 비율'] = dates.map(d => ({ date: d, value: goldMap[d] / oilMap[d] }));
-  }
-
-  if (raw['미국 실업률'] && raw['미국 자연실업률']) {
-    const uMap  = Object.fromEntries(raw['미국 실업률'].map(r => [r.date, r.value]));
-    const nuMap = Object.fromEntries(raw['미국 자연실업률'].map(r => [r.date, r.value]));
-    const dates = raw['미국 실업률'].map(r => r.date).filter(d => nuMap[d] !== undefined);
-    raw['미국 실업률/자연실업률 차이'] = dates.map(d => ({ date: d, value: uMap[d] - nuMap[d] }));
-  }
-
-  // 3. 각 지표 상태 계산
+  // 각 지표 상태 계산
   const indicators: {
     category: string; icon: string;
-    items: { name: string; value: string; note: string; level: string; status: string; percentile: number }[];
+    items: { name: string; value: string; note: string; level: string; status: string; percentile: number; history: { date: string; value: number }[] }[];
   }[] = [];
 
   const allPercentiles: number[] = [];
@@ -204,25 +268,27 @@ export async function GET() {
         level:      statusToLevel(status),
         status,
         percentile: Math.round(pct * 10) / 10,
+        history:    raw[name],
+        panicUp:    pu,
       });
     }
     if (catItems.length > 0) indicators.push({ category: cat, icon, items: catItems });
   }
 
-  // 4. 종합 점수 (100 - avg_percentile → 높을수록 탐욕)
+  // 종합 점수 (100 - avg_percentile → 높을수록 탐욕)
   const avgPct = allPercentiles.length > 0
     ? allPercentiles.reduce((a, b) => a + b, 0) / allPercentiles.length
     : 50;
   const compositeScore = Math.round(100 - avgPct);
 
-  // 5. 히스토리컬 차트 (NFCI 기반, 월별 샘플링, 최근 5년)
+  // 히스토리컬 차트 (NFCI 기반, 월별 샘플링, 최근 5년)
   const chartData: { label: string; value: number }[] = [];
   if (raw['미국 금융시장 경색 지수']) {
     const nfci    = raw['미국 금융시장 경색 지수'];
     const allVals = nfci.map(r => r.value);
     const byMonth: Record<string, number> = {};
     for (const r of nfci) byMonth[r.date.slice(0, 7)] = r.value;
-    const months = Object.keys(byMonth).sort().slice(-60); // 최근 5년
+    const months = Object.keys(byMonth).sort();
     for (const ym of months) {
       const val = byMonth[ym];
       const pct = percentileOf(val, allVals, true);
