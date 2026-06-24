@@ -1,234 +1,119 @@
 import { NextResponse } from 'next/server';
-import { unstable_cache } from 'next/cache';
+import * as fs   from 'fs';
+import * as path from 'path';
 
 export const dynamic = 'force-dynamic';
 
-const API_KEY  = process.env.FRED_API_KEY;
-const BASE_URL = 'https://api.stlouisfed.org/fred/series/observations';
+// ── 경로 설정 ─────────────────────────────────────────────
+const DATA_DIR = process.env.INDEX_PYTHON_DATA_DIR
+  ?? path.join(process.cwd(), 'index-data');
+const WEIGHTS_FILE = process.env.INDEX_PYTHON_WEIGHTS_FILE
+  ?? path.join(process.cwd(), 'index-data', 'regression_weights.json');
 
-// ── 시리즈 정의 ──────────────────────────────────────────
-const SERIES: Record<string, string> = {
-  '미국 주식 불확실성 지수':     'WLEMUINDXD',
-  '미국 고위험채권 유효이자율':  'BAMLH0A0HYM2',
-  '미국 기업여신 증가율':        'BUSLOANS',
-  '미국 금융시장 경색 지수':     'NFCI',
-  '미국 장단기 금리차':          'T10Y2Y',
-  'CAD/USD':                     'DEXCAUS',
-  'JPY/USD':                     'DEXJPUS',
-  '미국 주간 실물경기 지수':     'WEI',
-  '미국 실물경기 경기침체 확률': 'RECPROUSM156N',
-  '샴 규칙 경기침체 지표':       'SAHMREALTIME',
-  '미국 트럭판매 현황':          'TRUCKD11',
-  '미국 화물운송 현황':          'RAILFRTCARLOADSD11',
-  '원유 가격 WTI':               'DCOILWTICO',
-  '미국 통화유동속도':           'M2V',
-  '미국 실업률':                 'UNRATE',
-  '미국 자연실업률':             'NROU',
-  '미국 기대 인플레이션':        'T10YIE',
+// ── 지표 설정 ─────────────────────────────────────────────
+const SERIES_CONFIG: Record<string, {
+  name: string; panicUp: boolean; yoy: boolean;
+  category: string; note: string;
+}> = {
+  UMCSENT:  { name: '소비자신뢰지수',        panicUp: false, yoy: false, category: '실물 지표',   note: '낮을수록 위기' },
+  NEWORDER: { name: '기업 설비투자',          panicUp: false, yoy: true,  category: '실물 지표',   note: 'YoY% · 낮을수록 위기' },
+  ICSA:     { name: '주간 실업수당 청구',     panicUp: true,  yoy: false, category: '실물 지표',   note: '높을수록 위기' },
+  T10Y2Y:   { name: '10Y-2Y 국채 스프레드',  panicUp: false, yoy: false, category: '금융 지표',   note: '음수 = 경기침체 신호' },
+  VIXCLS:   { name: 'VIX',                   panicUp: true,  yoy: false, category: '금융 지표',   note: '높을수록 불안↑' },
+  M2SL:     { name: 'M2 통화량',             panicUp: false, yoy: true,  category: '유동성·물가', note: 'YoY% · 낮을수록 위기' },
+  MICH:     { name: '1년 기대 인플레이션',   panicUp: false, yoy: false, category: '유동성·물가', note: '낮을수록 위기' },
 };
 
-const PANIC_UP: Record<string, boolean> = {
-  '미국 주식 불확실성 지수':     true,
-  '미국 고위험채권 유효이자율':  true,
-  '미국 기업여신 증가율':        false,
-  '미국 금융시장 경색 지수':     true,
-  '미국 장단기 금리차':          false,
-  '캐나다 달러/일본 엔화':       false,
-  '미국 주간 실물경기 지수':     false,
-  '미국 실물경기 경기침체 확률': true,
-  '샴 규칙 경기침체 지표':       true,
-  '미국 트럭판매 현황':          false,
-  '미국 화물운송 현황':          false,
-  '금/석유 가격 비율':           true,
-  '미국 통화유동속도':           false,
-  '미국 실업률/자연실업률 차이': true,
-  '미국 기대 인플레이션':        true,
+const CATEGORIES: Record<string, { icon: string; keys: string[] }> = {
+  '실물 지표':   { icon: 'ti-building-factory', keys: ['UMCSENT', 'NEWORDER', 'ICSA'] },
+  '금융 지표':   { icon: 'ti-chart-line',        keys: ['T10Y2Y', 'VIXCLS'] },
+  '유동성·물가': { icon: 'ti-coins',             keys: ['M2SL', 'MICH'] },
 };
 
-const NOTES: Record<string, string> = {
-  '미국 주식 불확실성 지수':     '높을수록 시장 불안↑',
-  '미국 고위험채권 유효이자율':  '높을수록 신용위험↑',
-  '미국 기업여신 증가율':        '전년대비(YoY%) · 음수·감소 = 신용위축',
-  '미국 금융시장 경색 지수':     '높을수록 금융경색↑',
-  '미국 장단기 금리차':          '음수 = 경기침체 신호',
-  '캐나다 달러/일본 엔화':       '낮을수록 위험회피↑',
-  '미국 주간 실물경기 지수':     '낮을수록 경기 둔화',
-  '미국 실물경기 경기침체 확률': '높을수록 침체 확률↑',
-  '샴 규칙 경기침체 지표':       '0.5 초과 = 경기침체',
-  '미국 트럭판매 현황':          '낮을수록 수요 감소',
-  '미국 화물운송 현황':          '낮을수록 물류경기↓',
-  '금/석유 가격 비율':           '높을수록 안전자산 선호',
-  '미국 통화유동속도':           '낮을수록 경기침체 신호',
-  '미국 실업률/자연실업률 차이': '양수 = 고용 악화',
-  '미국 기대 인플레이션':        '높을수록 인플레 우려',
-};
-
-const CATEGORIES: Record<string, { icon: string; items: string[] }> = {
-  '금융 지표': {
-    icon: 'ti-chart-line',
-    items: ['미국 주식 불확실성 지수', '미국 고위험채권 유효이자율', '미국 기업여신 증가율',
-            '미국 금융시장 경색 지수', '미국 장단기 금리차', '캐나다 달러/일본 엔화'],
-  },
-  '경기 지표': {
-    icon: 'ti-building-factory',
-    items: ['미국 주간 실물경기 지수', '미국 실물경기 경기침체 확률', '샴 규칙 경기침체 지표',
-            '미국 트럭판매 현황', '미국 화물운송 현황'],
-  },
-  '특별 사이클': {
-    icon: 'ti-refresh',
-    items: ['금/석유 가격 비율', '미국 통화유동속도', '미국 실업률/자연실업률 차이', '미국 기대 인플레이션'],
-  },
-};
-
-// ── FRED 단건 호출 ────────────────────────────────────────
-async function fetchOne(seriesId: string, apiKey: string): Promise<{ date: string; value: number }[]> {
-  try {
-    const url = new URL(BASE_URL);
-    url.searchParams.set('series_id',  seriesId);
-    url.searchParams.set('api_key',    apiKey);
-    url.searchParams.set('file_type',  'json');
-    url.searchParams.set('sort_order', 'asc');
-    url.searchParams.set('limit',      '100000');
-
-    const res = await fetch(url.toString());
-    if (!res.ok) {
-      console.error(`FRED ${seriesId}: HTTP ${res.status}`);
-      return [];
-    }
-    const json = await res.json();
-    if (json.error_message) {
-      console.error(`FRED ${seriesId}: ${json.error_message}`);
-      return [];
-    }
-    return (json.observations ?? [])
-      .filter((o: { value: string }) => o.value !== '.')
-      .map((o: { date: string; value: string }) => ({
-        date:  o.date,
-        value: parseFloat(o.value),
-      }));
-  } catch (e) {
-    console.error(`FRED ${seriesId}: ${e}`);
-    return [];
-  }
-}
-
-// ── Yahoo Finance 월봉 fetch (금 가격용) ─────────────────
-async function fetchYahooMonthly(symbol: string): Promise<{ date: string; value: number }[]> {
-  try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1mo&range=50y`;
-    const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-    if (!res.ok) { console.error(`Yahoo ${symbol}: HTTP ${res.status}`); return []; }
-    const json = await res.json();
-    const result = json?.chart?.result?.[0];
-    if (!result) return [];
-    const timestamps: number[] = result.timestamp ?? [];
-    const closes: number[]     = result.indicators?.quote?.[0]?.close ?? [];
-    return timestamps
-      .map((ts, i) => ({ date: new Date(ts * 1000).toISOString().slice(0, 10), value: closes[i] }))
-      .filter(r => r.value != null && !isNaN(r.value));
-  } catch (e) {
-    console.error(`Yahoo ${symbol}: ${e}`);
-    return [];
-  }
-}
-
-// ── FRED 전체 데이터 (1시간 캐시) ────────────────────────
-// unstable_cache로 FRED 응답을 캐싱 → 초당 2건 속도 제한 대응
-const getFredRaw = unstable_cache(
-  async (apiKey: string): Promise<Record<string, { date: string; value: number }[]>> => {
-    const raw: Record<string, { date: string; value: number }[]> = {};
-
-    for (const [name, sid] of Object.entries(SERIES)) {
-      const data = await fetchOne(sid, apiKey);
-      if (data.length > 0) raw[name] = data;
-      await new Promise(r => setTimeout(r, 700)); // FRED 속도 제한: 초당 2건 이하
-    }
-
-    // 금 가격: Yahoo Finance (GC=F, COMEX 선물) — FRED GOLD 시리즈 비활성화 대응
-    const goldData = await fetchYahooMonthly('GC=F');
-    if (goldData.length > 0) raw['금 가격'] = goldData;
-
-    // 파생 지표
-    if (raw['CAD/USD'] && raw['JPY/USD']) {
-      const cadMap = Object.fromEntries(raw['CAD/USD'].map(r => [r.date, r.value]));
-      const jpyMap = Object.fromEntries(raw['JPY/USD'].map(r => [r.date, r.value]));
-      raw['캐나다 달러/일본 엔화'] = raw['CAD/USD']
-        .filter(r => jpyMap[r.date])
-        .map(r => ({ date: r.date, value: (1 / cadMap[r.date]) / (1 / jpyMap[r.date]) }));
-    }
-
-    if (raw['금 가격'] && raw['원유 가격 WTI']) {
-      const goldMap = Object.fromEntries(raw['금 가격'].map(r => [r.date, r.value]));
-      const oilMap  = Object.fromEntries(raw['원유 가격 WTI'].map(r => [r.date, r.value]));
-      raw['금/석유 가격 비율'] = raw['금 가격']
-        .filter(r => oilMap[r.date] && oilMap[r.date] !== 0)
-        .map(r => ({ date: r.date, value: goldMap[r.date] / oilMap[r.date] }));
-    }
-
-    if (raw['미국 실업률'] && raw['미국 자연실업률']) {
-      const uMap  = Object.fromEntries(raw['미국 실업률'].map(r => [r.date, r.value]));
-      const nuMap = Object.fromEntries(raw['미국 자연실업률'].map(r => [r.date, r.value]));
-      raw['미국 실업률/자연실업률 차이'] = raw['미국 실업률']
-        .filter(r => nuMap[r.date] !== undefined)
-        .map(r => ({ date: r.date, value: uMap[r.date] - nuMap[r.date] }));
-    }
-
-    // 일별→월별 다운샘플 (2MB 캐시 한도 대응), 전체 기간 유지
-    // 600개월(50년)이면 대부분 시리즈의 전체 역사를 커버하면서 캐시는 ~400KB
-    for (const name of Object.keys(raw)) {
-      raw[name] = toMonthly(raw[name], 600);
-    }
-
-    // 기업여신: 절대값(십억달러) → 전년 동월 대비 증가율(YoY%)
-    if (raw['미국 기업여신 증가율']) {
-      const data  = raw['미국 기업여신 증가율'];
-      const byYM  = Object.fromEntries(data.map(r => [r.date.slice(0, 7), r.value]));
-      const yoy   = data.map(r => {
-        const [y, m] = r.date.slice(0, 7).split('-').map(Number);
-        const prevYM = `${y - 1}-${String(m).padStart(2, '0')}`;
-        const prev   = byYM[prevYM];
-        if (prev == null || prev === 0) return null;
-        return { date: r.date, value: Math.round(((r.value - prev) / Math.abs(prev)) * 1000) / 10 };
-      }).filter((r): r is { date: string; value: number } => r !== null);
-      if (yoy.length > 0) raw['미국 기업여신 증가율'] = yoy;
-    }
-
-    return raw;
-  },
-  ['fred-boom-burst-v5'],
-  { revalidate: 3600 }
-);
+const COMPOSITE_BOUNDS = [31, 47, 59, 68];
+const ROLLING_MONTHS   = 20 * 12; // 240개월
+const MIN_PERIODS      = 12;
+const BASE_YEAR        = '1996-01-01';
 
 // ── 유틸 ─────────────────────────────────────────────────
-function toMonthly(data: { date: string; value: number }[], maxMonths = 120): { date: string; value: number }[] {
-  const byMonth: Record<string, { date: string; value: number }> = {};
-  for (const r of data) byMonth[r.date.slice(0, 7)] = r;
-  const months = Object.keys(byMonth).sort();
-  return months.slice(-maxMonths).map(ym => byMonth[ym]);
+function readCsv(filepath: string): { date: string; value: number }[] {
+  if (!fs.existsSync(filepath)) return [];
+  const lines  = fs.readFileSync(filepath, 'utf-8').replace(/^﻿/, '').trim().split(/\r?\n/);
+  const header = lines[0].split(',').map(h => h.trim());
+  const dIdx   = header.indexOf('date');
+  const vIdx   = header.indexOf('value');
+  if (dIdx < 0 || vIdx < 0) return [];
+  return lines.slice(1).flatMap(line => {
+    const cols = line.split(',');
+    const val  = parseFloat(cols[vIdx]);
+    if (!cols[dIdx] || isNaN(val)) return [];
+    return [{ date: cols[dIdx].trim(), value: val }];
+  });
 }
 
-function percentileOf(val: number, arr: number[], panicUp: boolean): number {
-  if (arr.length === 0) return 50;
-  return panicUp
-    ? (arr.filter(v => v < val).length / arr.length) * 100
-    : (arr.filter(v => v > val).length / arr.length) * 100;
+function readCompositeCsv(filepath: string): { date: string; value: number }[] {
+  if (!fs.existsSync(filepath)) return [];
+  const lines  = fs.readFileSync(filepath, 'utf-8').replace(/^﻿/, '').trim().split(/\r?\n/);
+  const header = lines[0].split(',').map(h => h.trim());
+  const dIdx   = header.indexOf('date');
+  const cIdx   = header.indexOf('composite');
+  if (dIdx < 0 || cIdx < 0) return [];
+  return lines.slice(1).flatMap(line => {
+    const cols = line.split(',');
+    const val  = parseFloat(cols[cIdx]);
+    if (!cols[dIdx] || isNaN(val)) return [];
+    return [{ date: cols[dIdx].trim(), value: val }];
+  });
+}
+
+function applyYoy(data: { date: string; value: number }[]): { date: string; value: number }[] {
+  const byYM: Record<string, number> = {};
+  for (const r of data) byYM[r.date.slice(0, 7)] = r.value;
+  return data.flatMap(r => {
+    const [y, m] = r.date.slice(0, 7).split('-').map(Number);
+    const prevYM = `${y - 1}-${String(m).padStart(2, '0')}`;
+    const prev   = byYM[prevYM];
+    if (prev == null || prev === 0) return [];
+    return [{ date: r.date, value: ((r.value - prev) / Math.abs(prev)) * 100 }];
+  });
+}
+
+// pandas rank(pct=True) 근사 — rolling window 내 현재값의 백분위
+function rollingPercentile(values: number[]): (number | null)[] {
+  return values.map((val, i) => {
+    const start = Math.max(0, i - ROLLING_MONTHS + 1);
+    const win   = values.slice(start, i + 1);
+    if (win.length < MIN_PERIODS) return null;
+    const less  = win.filter(v => v < val).length;
+    const equal = win.filter(v => v === val).length;
+    return ((less + (equal + 1) / 2) / win.length) * 100;
+  });
 }
 
 function getStatus(pct: number): string {
-  if (pct >= 90) return 'PANIC';
-  if (pct >= 70) return 'COLD';
-  if (pct >= 30) return 'MILD';
-  if (pct >= 10) return 'WARM';
-  return 'BOOM';
+  if (pct >= 90) return '위기';
+  if (pct >= 70) return '둔화';
+  if (pct >= 30) return '중립';
+  if (pct >= 10) return '호조';
+  return '과열';
+}
+
+function getCompositeStatus(val: number): string {
+  if (val <= COMPOSITE_BOUNDS[0]) return '위기';
+  if (val <= COMPOSITE_BOUNDS[1]) return '둔화';
+  if (val <= COMPOSITE_BOUNDS[2]) return '중립';
+  if (val <= COMPOSITE_BOUNDS[3]) return '호조';
+  return '과열';
 }
 
 function statusToLevel(status: string): string {
-  if (status === 'PANIC' || status === 'COLD') return 'fear';
-  if (status === 'MILD') return 'neutral';
+  if (status === '위기' || status === '둔화') return 'fear';
+  if (status === '중립') return 'neutral';
   return 'greed';
 }
 
-function fmtVal(v: number): string {
+function fmtVal(v: number, sid: string): string {
+  if (sid === 'ICSA') return Math.round(v).toLocaleString('ko-KR');
   if (Math.abs(v) >= 1000) return v.toLocaleString('ko-KR', { maximumFractionDigits: 0 });
   if (Math.abs(v) >= 10)   return v.toFixed(1);
   return v.toFixed(2);
@@ -236,70 +121,99 @@ function fmtVal(v: number): string {
 
 // ── 메인 ─────────────────────────────────────────────────
 export async function GET() {
-  if (!API_KEY) {
-    return NextResponse.json({ error: 'FRED_API_KEY 환경변수가 설정되지 않았습니다.' }, { status: 500 });
-  }
-
-  // 캐시에서 raw 데이터 가져오기 (없으면 FRED 호출, 이후 1시간 캐시)
-  const raw = await getFredRaw(API_KEY);
-
-  // 각 지표 상태 계산
-  const indicators: {
-    category: string; icon: string;
-    items: { name: string; value: string; note: string; level: string; status: string; percentile: number; history: { date: string; value: number }[] }[];
-  }[] = [];
-
-  const allPercentiles: number[] = [];
-
-  for (const [cat, { icon, items }] of Object.entries(CATEGORIES)) {
-    const catItems = [];
-    for (const name of items) {
-      if (!raw[name]) continue;
-      const vals   = raw[name].map(r => r.value);
-      const latest = vals[vals.length - 1];
-      const pu     = PANIC_UP[name] ?? true;
-      const pct    = percentileOf(latest, vals, pu);
-      const status = getStatus(pct);
-      allPercentiles.push(pct);
-      catItems.push({
-        name,
-        value:      fmtVal(latest),
-        note:       NOTES[name] ?? '',
-        level:      statusToLevel(status),
-        status,
-        percentile: Math.round(pct * 10) / 10,
-        history:    raw[name],
-        panicUp:    pu,
+  try {
+    // 1. 회귀 가중치 로드
+    const weights: Record<string, number> = {};
+    if (fs.existsSync(WEIGHTS_FILE)) {
+      const wj = JSON.parse(fs.readFileSync(WEIGHTS_FILE, 'utf-8'));
+      Object.assign(weights, wj.weights ?? {});
+    } else {
+      // DEFAULT_WEIGHTS fallback
+      Object.assign(weights, {
+        UMCSENT: 7, NEWORDER: 25.2, ICSA: 28.6,
+        T10Y2Y: 6.4, VIXCLS: 5, M2SL: 15.8, MICH: 12,
       });
     }
-    if (catItems.length > 0) indicators.push({ category: cat, icon, items: catItems });
-  }
 
-  // 종합 점수 (100 - avg_percentile → 높을수록 탐욕)
-  const avgPct = allPercentiles.length > 0
-    ? allPercentiles.reduce((a, b) => a + b, 0) / allPercentiles.length
-    : 50;
-  const compositeScore = Math.round(100 - avgPct);
+    // 2. 종합지수 시계열 (composite_index.csv — step3_plot.py 출력)
+    const compositeHistory = readCompositeCsv(path.join(DATA_DIR, 'composite_index.csv'));
+    const latestComposite  = compositeHistory.length > 0
+      ? compositeHistory[compositeHistory.length - 1].value
+      : 50;
+    const compositeScore   = Math.round(latestComposite * 10) / 10;
 
-  // 히스토리컬 차트 (NFCI 기반, 월별 샘플링, 최근 5년)
-  const chartData: { label: string; value: number }[] = [];
-  if (raw['미국 금융시장 경색 지수']) {
-    const nfci    = raw['미국 금융시장 경색 지수'];
-    const allVals = nfci.map(r => r.value);
-    const byMonth: Record<string, number> = {};
-    for (const r of nfci) byMonth[r.date.slice(0, 7)] = r.value;
-    const months = Object.keys(byMonth).sort();
-    for (const ym of months) {
-      const val = byMonth[ym];
-      const pct = percentileOf(val, allVals, true);
-      chartData.push({ label: ym, value: Math.round((100 - pct) * 10) / 10 });
+    // 히스토리컬 차트용 (label + value)
+    const chartData = compositeHistory
+      .filter(r => r.date >= BASE_YEAR)
+      .map(r => ({ label: r.date.slice(0, 7), value: Math.round(r.value * 10) / 10 }));
+
+    // 3. 개별 지표 로드 & 백분위 계산
+    const indicators: {
+      category: string; icon: string;
+      items: {
+        name: string; value: string; note: string; level: string;
+        status: string; percentile: number;
+        history: { date: string; value: number }[];
+        panicUp: boolean;
+      }[];
+    }[] = [];
+
+    for (const [cat, { icon, keys }] of Object.entries(CATEGORIES)) {
+      const items = [];
+      for (const sid of keys) {
+        const cfg  = SERIES_CONFIG[sid];
+        let   data = readCsv(path.join(DATA_DIR, `${sid}.csv`));
+        if (data.length === 0) continue;
+
+        // BASE_YEAR 필터
+        data = data.filter(r => r.date >= BASE_YEAR);
+
+        // YoY 변환
+        if (cfg.yoy) data = applyYoy(data);
+        if (data.length === 0) continue;
+
+        const values = data.map(r => r.value);
+        const pctArr = rollingPercentile(values);
+
+        // 최신 유효 백분위
+        let latestPct: number | null = null;
+        for (let i = pctArr.length - 1; i >= 0; i--) {
+          if (pctArr[i] !== null) { latestPct = pctArr[i]; break; }
+        }
+        if (latestPct === null) continue;
+
+        // panic 방향 반전
+        const panicPct = cfg.panicUp ? latestPct : 100 - latestPct;
+        const status   = getStatus(panicPct);
+        const latest   = values[values.length - 1];
+
+        items.push({
+          name:       cfg.name,
+          value:      fmtVal(latest, sid),
+          note:       cfg.note,
+          level:      statusToLevel(status),
+          status,
+          percentile: Math.round(panicPct * 10) / 10,
+          history:    data.slice(-120), // 최근 10년만 전송
+          panicUp:    cfg.panicUp,
+        });
+      }
+      if (items.length > 0) indicators.push({ category: cat, icon, items });
     }
-  }
 
-  return NextResponse.json({
-    compositeScore,
-    indicators,
-    chartData,
-    updatedAt: new Date().toISOString().slice(0, 10),
-  });
+    return NextResponse.json({
+      compositeScore,
+      compositeStatus: getCompositeStatus(compositeScore),
+      compositeBounds: COMPOSITE_BOUNDS,
+      indicators,
+      chartData,
+      updatedAt: compositeHistory.length > 0
+        ? compositeHistory[compositeHistory.length - 1].date.slice(0, 7)
+        : new Date().toISOString().slice(0, 7),
+    });
+
+  } catch (err) {
+    console.error('[boom-burst]', err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }

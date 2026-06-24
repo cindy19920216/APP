@@ -12,30 +12,31 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
 
 // ─── 상수 ────────────────────────────────────────────────
+// COMPOSITE_BOUNDS = [31, 47, 59, 68] (step4_check_dist 기준)
 const ZONE_COLORS = [
-  { from: 0,  to: 20,  color: '#E24B4A', label: 'PANIC' },
-  { from: 20, to: 40,  color: '#E2844A', label: 'COLD'  },
-  { from: 40, to: 60,  color: '#EF9F27', label: 'MILD'  },
-  { from: 60, to: 80,  color: '#1D9E75', label: 'WARM'  },
-  { from: 80, to: 100, color: '#0f7a5c', label: 'BOOM'  },
+  { from: 0,  to: 31, color: '#E24B4A', label: '위기' },
+  { from: 31, to: 47, color: '#E2844A', label: '둔화' },
+  { from: 47, to: 59, color: '#EF9F27', label: '중립' },
+  { from: 59, to: 68, color: '#1D9E75', label: '호조' },
+  { from: 68, to: 100, color: '#0f7a5c', label: '과열' },
 ];
 const SEG_COLORS = ZONE_COLORS.map(z => z.color);
 const SEGS       = ZONE_COLORS.map(z => [z.from, z.to]);
 const PERIODS    = ['1년', '3년', '5년', '전체'];
 
 const STATUS_COLORS = {
-  BOOM:  '#22c55e',
-  WARM:  '#84cc16',
-  MILD:  '#eab308',
-  COLD:  '#f97316',
-  PANIC: '#ef4444',
+  '과열': '#22c55e',
+  '호조': '#84cc16',
+  '중립': '#eab308',
+  '둔화': '#f97316',
+  '위기': '#ef4444',
 };
 const STATUS_BG = {
-  BOOM:  '#0a2a10',
-  WARM:  '#1a2a05',
-  MILD:  '#2a2000',
-  COLD:  '#2a1500',
-  PANIC: '#2a0808',
+  '과열': '#0a2a10',
+  '호조': '#1a2a05',
+  '중립': '#2a2000',
+  '둔화': '#2a1500',
+  '위기': '#2a0808',
 };
 
 // ─── 유틸 ────────────────────────────────────────────────
@@ -45,11 +46,11 @@ function getZone(score) {
 
 
 function getSummaryMsg(score) {
-  if (score <= 20) return { emoji: '😱', text: 'PANIC 구간이에요. 시장을 멀리하고 현금을 지키세요.' };
-  if (score <= 40) return { emoji: '😨', text: 'COLD 구간이에요. 신중한 접근이 필요한 시점입니다.' };
-  if (score <= 60) return { emoji: '😐', text: 'MILD 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
-  if (score <= 80) return { emoji: '🤑', text: 'WARM 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
-  return               { emoji: '🚀', text: 'BOOM 구간이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
+  if (score <= 31) return { emoji: '😱', text: '위기 구간이에요. 시장을 멀리하고 현금을 지키세요.' };
+  if (score <= 47) return { emoji: '😨', text: '둔화 구간이에요. 신중한 접근이 필요한 시점입니다.' };
+  if (score <= 59) return { emoji: '😐', text: '중립 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
+  if (score <= 68) return { emoji: '🤑', text: '호조 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
+  return               { emoji: '🚀', text: '과열 구간이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
 }
 
 function arcD(cx, cy, r, from, to) {
@@ -85,8 +86,8 @@ function Gauge({ score }) {
       <circle cx={cx} cy={cy} r={3}   fill="#0f1117" />
       <text x={cx} y={cy - 24} textAnchor="middle" fill="#fff"  fontSize="30" fontWeight="500" letterSpacing="-1">{score}</text>
       <text x={cx} y={cy - 7}  textAnchor="middle" fill={color} fontSize="11">{getZone(score).label}</text>
-      <text x={8}   y={cy + 13} textAnchor="start" fill={SEG_COLORS[0]} fontSize="9" fontWeight="700">PANIC</text>
-      <text x={252} y={cy + 13} textAnchor="end"   fill={SEG_COLORS[4]} fontSize="9" fontWeight="700">BOOM</text>
+      <text x={8}   y={cy + 13} textAnchor="start" fill={SEG_COLORS[0]} fontSize="9" fontWeight="700">위기</text>
+      <text x={252} y={cy + 13} textAnchor="end"   fill={SEG_COLORS[4]} fontSize="9" fontWeight="700">과열</text>
     </svg>
   );
 }
@@ -122,12 +123,12 @@ function HistoryChart({ chartData, period }) {
   const labels = sliced.map((d, i) => i % step === 0 ? d.label.slice(0, 7) : '');
   const values = sliced.map(d => d.value);
 
-  // BOOM-BURST 구간 임계선 (점수 기준 고정값)
+  // 패닉-붐 구간 임계선 (COMPOSITE_BOUNDS 기준)
   const threshLines = [
-    { y: 20, label: 'COLD',  color: SEG_COLORS[1] },
-    { y: 40, label: 'MILD',  color: SEG_COLORS[2] },
-    { y: 60, label: 'WARM',  color: SEG_COLORS[3] },
-    { y: 80, label: 'BOOM',  color: SEG_COLORS[4] },
+    { y: 31, label: '둔화', color: SEG_COLORS[1] },
+    { y: 47, label: '중립', color: SEG_COLORS[2] },
+    { y: 59, label: '호조', color: SEG_COLORS[3] },
+    { y: 68, label: '과열', color: SEG_COLORS[4] },
   ];
 
   const data = {
@@ -172,7 +173,7 @@ function HistoryChart({ chartData, period }) {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: ctx => ctx.datasetIndex > 0 ? null : `BOOM-BURST: ${ctx.parsed.y.toFixed(1)}`,
+          label: ctx => ctx.datasetIndex > 0 ? null : `패닉-붐 지수: ${ctx.parsed.y.toFixed(1)}`,
         },
       },
     },
@@ -238,7 +239,7 @@ export default function PanicBoomScreen({ onBack }) {
         <button style={S.backBtn} onClick={onBack}>
           <i className="ti ti-chevron-left" /> 시장지표
         </button>
-        <span style={S.headerTitle}>BOOM-BURST 지수</span>
+        <span style={S.headerTitle}>패닉-붐 경기 사이클 지수</span>
         <div style={{ width: 64 }} />
       </div>
 
@@ -313,7 +314,7 @@ export default function PanicBoomScreen({ onBack }) {
             <div style={S.chartHeader}>
               <span style={S.indTitle}>히스토리컬 차트</span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <span style={{ fontSize: 9, color: '#3a3a4a' }}>NFCI 기반</span>
+                <span style={{ fontSize: 9, color: '#3a3a4a' }}>7개 지표 가중 합성</span>
                 <div style={S.periodRow}>
                   {PERIODS.map(p => (
                     <button key={p} style={{ ...S.pBtn, ...(period === p ? S.pBtnActive : {}) }} onClick={() => setPeriod(p)}>

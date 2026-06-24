@@ -54,23 +54,24 @@ const FALLBACK_COMMODITIES = [
   { name: 'BTC',       value: '—', change: '—', up: true, icon: 'ti-currency-bitcoin', bg: '#251a10', ic: '#EF9F27' },
 ];
 
-const SEG_COLORS = ['#E24B4A', '#E2844A', '#EF9F27', '#7FBF9A', '#1D9E75'];
-const SEGS = [[0, 20], [20, 40], [40, 60], [60, 80], [80, 100]];
+// COMPOSITE_BOUNDS = [31, 47, 59, 68]
+const SEG_COLORS = ['#E24B4A', '#E2844A', '#EF9F27', '#1D9E75', '#0f7a5c'];
+const SEGS = [[0, 31], [31, 47], [47, 59], [59, 68], [68, 100]];
 
 function getLevel(score) {
-  if (score <= 20) return { label: 'PANIC', color: '#E24B4A' };
-  if (score <= 40) return { label: 'COLD',  color: '#E2844A' };
-  if (score <= 60) return { label: 'MILD',  color: '#EF9F27' };
-  if (score <= 80) return { label: 'WARM',  color: '#1D9E75' };
-  return               { label: 'BOOM',  color: '#0f7a5c' };
+  if (score <= 31) return { label: '위기', color: '#E24B4A' };
+  if (score <= 47) return { label: '둔화', color: '#E2844A' };
+  if (score <= 59) return { label: '중립', color: '#EF9F27' };
+  if (score <= 68) return { label: '호조', color: '#1D9E75' };
+  return               { label: '과열', color: '#0f7a5c' };
 }
 
 function getSummaryMsg(score) {
-  if (score <= 20) return { emoji: '😱', text: 'PANIC 구간이에요. 지금은 시장을 멀리하고 현금을 지키세요.' };
-  if (score <= 40) return { emoji: '😨', text: 'COLD 구간이에요. 오늘은 주식을 하면 위험한 날이에요.' };
-  if (score <= 60) return { emoji: '😐', text: 'MILD 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
-  if (score <= 80) return { emoji: '🤑', text: 'WARM 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
-  return               { emoji: '🚀', text: 'BOOM 구간이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
+  if (score <= 31) return { emoji: '😱', text: '위기 구간이에요. 지금은 시장을 멀리하고 현금을 지키세요.' };
+  if (score <= 47) return { emoji: '😨', text: '둔화 구간이에요. 신중한 접근이 필요한 시점입니다.' };
+  if (score <= 59) return { emoji: '😐', text: '중립 구간이에요. 신중하게 분할 매수 전략을 고려해보세요.' };
+  if (score <= 68) return { emoji: '🤑', text: '호조 구간이에요. 시장이 달아오르고 있어요. 과열에 주의하세요.' };
+  return               { emoji: '🚀', text: '과열 구간이에요. 고점 신호일 수 있으니 분할 매도를 고려하세요.' };
 }
 
 function arcD(cx, cy, r, from, to) {
@@ -145,7 +146,7 @@ export default function MarketTab() {
       <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
         <div style={S.fgLeft}>
           <div style={S.fgTopRow}>
-            <span style={S.fgTag}>BOOM-BURST 지수</span>
+            <span style={S.fgTag}>패닉-붐 지수</span>
             <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>

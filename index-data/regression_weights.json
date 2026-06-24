@@ -1,0 +1,15 @@
+{
+  "weights": {
+    "UMCSENT": 7.01,
+    "NEWORDER": 25.17,
+    "ICSA": 28.65,
+    "T10Y2Y": 6.37,
+    "VIXCLS": 5.02,
+    "M2SL": 15.77,
+    "MICH": 12.01
+  },
+  "method": "Full-sample OLS + COVID dummy (표준화 β계수)",
+  "updated": "2026-06-23",
+  "r_squared": 0.6685,
+  "n_obs": 132
+}
