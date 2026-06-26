@@ -14,14 +14,18 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip,
 const PERIODS = ['1년', '3년', '5년', '전체'];
 
 const ZONE = {
-  PANIC: { color: '#ef4444', bg: '#2a0808' },
-  COLD:  { color: '#f97316', bg: '#2a1500' },
-  MILD:  { color: '#eab308', bg: '#2a2000' },
-  WARM:  { color: '#84cc16', bg: '#1a2a05' },
-  BOOM:  { color: '#22c55e', bg: '#0a2a10' },
+  '위기': { color: '#ef4444', bg: '#2a0808' },
+  '둔화': { color: '#f97316', bg: '#2a1500' },
+  '중립': { color: '#eab308', bg: '#2a2000' },
+  '호조': { color: '#84cc16', bg: '#1a2a05' },
+  '과열': { color: '#22c55e', bg: '#0a2a10' },
 };
 
-// 개별 지표 게이지: BOOM(좌) → PANIC(우) 방향
+// 구간 순서 (호황 방향 → 위기 방향)
+const ZONE_ORDER = ['과열', '호조', '중립', '둔화', '위기'];
+const ZONE_KO    = { '과열': '호황', '호조': '온기', '중립': '중립', '둔화': '냉각', '위기': '위기' };
+
+// 개별 지표 게이지: 호황(좌) → 위기(우) 방향
 const IND_SEG_COLORS = ['#0f7a5c', '#1D9E75', '#EF9F27', '#E2844A', '#E24B4A'];
 const SEGS = [[0,20],[20,40],[40,60],[60,80],[80,100]];
 
@@ -134,8 +138,7 @@ function buildSentence(item) {
     ? Math.abs(change).toFixed(1)
     : Math.abs(change).toFixed(2);
 
-  // 월간 변동 중앙값 (역사적 변동 기준)
-  const diffs  = h.slice(1).map((r, i) => Math.abs(r.value - h[i].value)).sort((a, b) => a - b);
+  const diffs   = h.slice(1).map((r, i) => Math.abs(r.value - h[i].value)).sort((a, b) => a - b);
   const medDiff = diffs[Math.floor(diffs.length / 2)] || 1;
 
   const ratio = Math.abs(change) / medDiff;
@@ -145,31 +148,28 @@ function buildSentence(item) {
   else if (ratio < 3)   changeCtx = '평균보다 큰 변화 수준';
   else                   changeCtx = '역사적으로 드문 큰 변화';
 
-  // 3개월 추세로 다음 구간 방향 판단
   const trend3 = h.length >= 4
     ? h[h.length - 1].value - h[h.length - 4].value
     : change;
   const movingToPanic = item.panicUp ? trend3 > 0 : trend3 < 0;
 
-  const zoneOrder = ['BOOM', 'WARM', 'MILD', 'COLD', 'PANIC'];
-  const curIdx    = zoneOrder.indexOf(item.status);
+  const curIdx  = ZONE_ORDER.indexOf(item.status);
+  const curKo   = ZONE_KO[item.status] ?? item.status;
   let zoneText;
   if (Math.abs(trend3) < medDiff * 0.5) {
-    zoneText = `현재 ${item.status} 구간에서 안정적인 흐름을 보이고 있습니다.`;
-  } else if (movingToPanic && curIdx < 4) {
-    zoneText = `현재 ${item.status} 구간에서 ${zoneOrder[curIdx + 1]} 구간을 향해 이동 중입니다.`;
+    zoneText = `그래프는 현재 ${curKo} 구간에서 안정적인 흐름을 보이고 있습니다.`;
+  } else if (movingToPanic && curIdx < ZONE_ORDER.length - 1) {
+    const nextKo = ZONE_KO[ZONE_ORDER[curIdx + 1]] ?? ZONE_ORDER[curIdx + 1];
+    zoneText = `그래프는 현재 ${curKo} 구간에서 ${nextKo} 구간을 향해 이동 중입니다.`;
   } else if (!movingToPanic && curIdx > 0) {
-    zoneText = `현재 ${item.status} 구간에서 ${zoneOrder[curIdx - 1]} 구간을 향해 이동 중입니다.`;
+    const prevKo = ZONE_KO[ZONE_ORDER[curIdx - 1]] ?? ZONE_ORDER[curIdx - 1];
+    zoneText = `그래프는 현재 ${curKo} 구간에서 ${prevKo} 구간을 향해 이동 중입니다.`;
   } else {
-    zoneText = `현재 ${item.status} 구간에 위치해 있습니다.`;
+    zoneText = `그래프는 현재 ${curKo} 구간에 위치해 있습니다.`;
   }
 
-  // 지표별 경제적 의미 (첫 문장만)
-  const desc    = DESCRIPTIONS[item.name];
-  const econText = desc ? desc.why.split('.')[0] + '.' : item.note;
-
   const dir = change >= 0 ? '상승' : '하락';
-  return `${econText} 현재 ${item.name}은 ${item.value}이며, 1개월 전 대비 ${fmtChange}만큼 ${dir}했습니다. 이는 ${changeCtx}입니다. ${zoneText}`;
+  return `현재 ${item.name}은 ${item.value}이며, 1개월 전 대비 ${fmtChange}만큼 ${dir}했습니다. 이는 ${changeCtx}입니다. ${zoneText}`;
 }
 
 // ─── 퍼센타일 게이지 (BOOM 좌 ↔ PANIC 우) ──────────────
@@ -223,7 +223,7 @@ const zoneLabelPlugin = {
 
 // ─── 메인 ────────────────────────────────────────────────
 export default function IndicatorDetailScreen({ item, onBack }) {
-  const [period, setPeriod] = useState('1년');
+  const [period, setPeriod] = useState('전체');
 
   const history    = item.history ?? [];
   const panicUp    = item.panicUp ?? true;
@@ -232,7 +232,7 @@ export default function IndicatorDetailScreen({ item, onBack }) {
   const thresholds = calcThresholds(history, panicUp);
   const sentence   = buildSentence(item);
   const desc       = DESCRIPTIONS[item.name] ?? null;
-  const zone       = ZONE[item.status] ?? ZONE.MILD;
+  const zone       = ZONE[item.status] ?? ZONE['중립'];
 
   const step   = Math.ceil(sliced.length / 7);
   const labels = sliced.map((d, i) => i % step === 0 ? d.date.slice(0, 7) : '');
@@ -344,17 +344,20 @@ export default function IndicatorDetailScreen({ item, onBack }) {
               <div style={{ ...S.statusBadge, background: zone.bg, color: zone.color }}>
                 {item.status}
               </div>
-              <div style={S.gaugeValue}>{item.value}</div>
+              <div style={S.gaugeValue}>
+                {item.value}
+                {item.unit && <span style={{ fontSize: 13, color: '#555', fontWeight: 400, marginLeft: 4 }}>{item.unit}</span>}
+              </div>
               {allVals.length > 0 && (
                 <div style={S.statsRow}>
                   <div style={S.statsCell}>
                     <div style={S.statsLabel}>최저</div>
-                    <div style={S.statsValue}>{minVal?.toFixed(2)}</div>
+                    <div style={S.statsValue}>{minVal?.toFixed(2)}{item.unit && <span style={{ fontSize: 9, color: '#444', marginLeft: 2 }}>{item.unit}</span>}</div>
                   </div>
                   <div style={S.statsDivider} />
                   <div style={S.statsCell}>
                     <div style={S.statsLabel}>최고</div>
-                    <div style={S.statsValue}>{maxVal?.toFixed(2)}</div>
+                    <div style={S.statsValue}>{maxVal?.toFixed(2)}{item.unit && <span style={{ fontSize: 9, color: '#444', marginLeft: 2 }}>{item.unit}</span>}</div>
                   </div>
                 </div>
               )}

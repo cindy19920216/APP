@@ -13,15 +13,15 @@ const WEIGHTS_FILE = process.env.INDEX_PYTHON_WEIGHTS_FILE
 // ── 지표 설정 ─────────────────────────────────────────────
 const SERIES_CONFIG: Record<string, {
   name: string; panicUp: boolean; yoy: boolean;
-  category: string; note: string;
+  category: string; note: string; unit: string;
 }> = {
-  UMCSENT:  { name: '소비자신뢰지수',        panicUp: false, yoy: false, category: '실물 지표',   note: '낮을수록 위기' },
-  NEWORDER: { name: '기업 설비투자',          panicUp: false, yoy: true,  category: '실물 지표',   note: 'YoY% · 낮을수록 위기' },
-  ICSA:     { name: '주간 실업수당 청구',     panicUp: true,  yoy: false, category: '실물 지표',   note: '높을수록 위기' },
-  T10Y2Y:   { name: '10Y-2Y 국채 스프레드',  panicUp: false, yoy: false, category: '금융 지표',   note: '음수 = 경기침체 신호' },
-  VIXCLS:   { name: 'VIX',                   panicUp: true,  yoy: false, category: '금융 지표',   note: '높을수록 불안↑' },
-  M2SL:     { name: 'M2 통화량',             panicUp: false, yoy: true,  category: '유동성·물가', note: 'YoY% · 낮을수록 위기' },
-  MICH:     { name: '1년 기대 인플레이션',   panicUp: false, yoy: false, category: '유동성·물가', note: '낮을수록 위기' },
+  UMCSENT:  { name: '소비자신뢰지수',        panicUp: false, yoy: false, category: '실물 지표',   note: '낮을수록 위기',         unit: 'pt'  },
+  NEWORDER: { name: '기업 설비투자',          panicUp: false, yoy: true,  category: '실물 지표',   note: 'YoY% · 낮을수록 위기', unit: '%'   },
+  ICSA:     { name: '주간 실업수당 청구',     panicUp: true,  yoy: false, category: '실물 지표',   note: '높을수록 위기',         unit: '천건' },
+  T10Y2Y:   { name: '10Y-2Y 국채 스프레드',  panicUp: false, yoy: false, category: '금융 지표',   note: '음수 = 경기침체 신호', unit: '%p'  },
+  VIXCLS:   { name: 'VIX',                   panicUp: true,  yoy: false, category: '금융 지표',   note: '높을수록 불안↑',       unit: 'pt'  },
+  M2SL:     { name: 'M2 통화량',             panicUp: false, yoy: true,  category: '유동성·물가', note: 'YoY% · 낮을수록 위기', unit: '%'   },
+  MICH:     { name: '1년 기대 인플레이션',   panicUp: false, yoy: false, category: '유동성·물가', note: '낮을수록 위기',         unit: '%'   },
 };
 
 const CATEGORIES: Record<string, { icon: string; keys: string[] }> = {
@@ -152,7 +152,7 @@ export async function GET() {
       category: string; icon: string;
       items: {
         name: string; value: string; note: string; level: string;
-        status: string; percentile: number;
+        status: string; percentile: number; unit: string;
         history: { date: string; value: number }[];
         panicUp: boolean;
       }[];
@@ -194,7 +194,8 @@ export async function GET() {
           level:      statusToLevel(status),
           status,
           percentile: Math.round(panicPct * 10) / 10,
-          history:    data.slice(-120), // 최근 10년만 전송
+          unit:       cfg.unit,
+          history:    data,
           panicUp:    cfg.panicUp,
         });
       }

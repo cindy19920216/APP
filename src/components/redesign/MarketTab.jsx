@@ -100,12 +100,21 @@ function MiniGauge({ score }) {
   );
 }
 
+const COMPANY_COLORS = ['#4C9BE8','#E87C4C','#4CE87C','#E84C9B','#9B4CE8','#E8C84C','#4CE8E8'];
+function companyColor(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) & 0xffff;
+  return COMPANY_COLORS[h % COMPANY_COLORS.length];
+}
+
 export default function MarketTab() {
   const [showPanicBoom,      setShowPanicBoom]      = useState(false);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
   const [bbScore,            setBbScore]            = useState(null);
   const [marketData,         setMarketData]         = useState(null);
   const [marketLoading,      setMarketLoading]      = useState(true);
+  const [newsData,           setNewsData]           = useState([]);
+  const [expandedNews,       setExpandedNews]       = useState(null);
 
   useEffect(() => {
     fetch('/api/boom-burst')
@@ -117,6 +126,10 @@ export default function MarketTab() {
       .then(d => { if (d && !d.error) setMarketData(d); })
       .catch(() => {})
       .finally(() => setMarketLoading(false));
+    fetch('/api/news')
+      .then(r => r.ok ? r.json() : [])
+      .then(d => setNewsData(d))
+      .catch(() => {});
   }, []);
 
   if (showPanicBoom) return <PanicBoomScreen onBack={() => setShowPanicBoom(false)} />;
@@ -146,7 +159,7 @@ export default function MarketTab() {
       <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
         <div style={S.fgLeft}>
           <div style={S.fgTopRow}>
-            <span style={S.fgTag}>패닉-붐 지수</span>
+            <span style={S.fgTag}>JS Economic Cycle Index</span>
             <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
@@ -185,7 +198,6 @@ export default function MarketTab() {
           >
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={S.listName}>{idx.name}</div>
-              <div style={S.summary}>{idx.summary || '데이터 로딩 중…'}</div>
             </div>
             <div style={S.listRight}>
               <span style={S.listValue}>{idx.value}</span>
@@ -243,7 +255,6 @@ export default function MarketTab() {
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={S.listName}>{c.name}</div>
-              <div style={S.summary}>{c.summary || '데이터 로딩 중…'}</div>
             </div>
             <div style={S.listRight}>
               <span style={S.listValue}>{c.value}</span>
@@ -255,6 +266,39 @@ export default function MarketTab() {
           </button>
         ))}
       </div>
+
+      {/* ⑤ 빅테크 뉴스 */}
+      {newsData.length > 0 && (
+        <div style={S.card}>
+          <div style={S.cardHeader}>
+            <span style={S.cardTitle}>빅테크 뉴스</span>
+            <span style={S.cardSub}>{newsData[0]?.date} 기준</span>
+          </div>
+          {newsData.map((item, i) => {
+            const expanded = expandedNews === i;
+            const color = companyColor(item.company);
+            return (
+              <div key={i} style={{ borderBottom: i < newsData.length - 1 ? '0.5px solid #151520' : 'none' }}>
+                <button
+                  style={{ ...S.listRow, flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}
+                  onClick={() => setExpandedNews(expanded ? null : i)}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 7, width: '100%' }}>
+                    <span style={{ ...S.newsBadge, background: color + '22', color }}>{item.company}</span>
+                    <span style={{ fontSize: 9, color: '#555', marginLeft: 'auto', flexShrink: 0 }}>{item.media}</span>
+                    <span style={{ fontSize: 9, color: '#444', flexShrink: 0 }}>{item.date}</span>
+                    <i className={`ti ti-chevron-${expanded ? 'up' : 'down'}`} style={{ fontSize: 10, color: '#444', flexShrink: 0 }} />
+                  </div>
+                  <span style={S.newsTitle}>{item.title}</span>
+                </button>
+                {expanded && item.summary && (
+                  <div style={S.newsSummary}>{item.summary}</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <div style={{ height: 20 }} />
     </div>
@@ -290,6 +334,10 @@ const S = {
   fxChange: { fontSize: 10 },
 
   commodIc: { width: 28, height: 28, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+
+  newsBadge: { fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 6, flexShrink: 0 },
+  newsTitle: { fontSize: 12, color: '#ccc', lineHeight: 1.5, wordBreak: 'keep-all', textAlign: 'left' },
+  newsSummary: { fontSize: 11, color: '#999', lineHeight: 1.7, padding: '0 14px 14px', wordBreak: 'keep-all' },
 
   fgCard: {
     background: 'linear-gradient(135deg, #1c1c2e 0%, #181820 100%)',

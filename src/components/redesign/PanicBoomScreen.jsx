@@ -173,7 +173,7 @@ function HistoryChart({ chartData, period }) {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: ctx => ctx.datasetIndex > 0 ? null : `패닉-붐 지수: ${ctx.parsed.y.toFixed(1)}`,
+          label: ctx => ctx.datasetIndex > 0 ? null : `JS ECI: ${ctx.parsed.y.toFixed(1)}`,
         },
       },
     },
@@ -239,7 +239,7 @@ export default function PanicBoomScreen({ onBack }) {
         <button style={S.backBtn} onClick={onBack}>
           <i className="ti ti-chevron-left" /> 시장지표
         </button>
-        <span style={S.headerTitle}>패닉-붐 경기 사이클 지수</span>
+        <span style={S.headerTitle}>JS Economic Cycle Index</span>
         <div style={{ width: 64 }} />
       </div>
 
@@ -370,7 +370,10 @@ export default function PanicBoomScreen({ onBack }) {
                       <div style={S.indNote}>{item.note}</div>
                     </div>
                     <div style={S.indRight}>
-                      <div style={S.indValue}>{item.value}</div>
+                      <div style={S.indValue}>
+                        {item.value}
+                        {item.unit && <span style={{ fontSize: 10, color: '#555', fontWeight: 400, marginLeft: 3 }}>{item.unit}</span>}
+                      </div>
                       <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
                         <div style={{ ...S.indBadge, background: sBg, color: sColor, fontSize: 8 }}>
                           {item.status}
