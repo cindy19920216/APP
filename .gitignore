@@ -56,3 +56,7 @@ charts/
 *.png
 !public/**
 !shot_*.png
+!src/app/icon-192.png/
+!src/app/icon-192.png/route.tsx
+!src/app/icon-512.png/
+!src/app/icon-512.png/route.tsx
