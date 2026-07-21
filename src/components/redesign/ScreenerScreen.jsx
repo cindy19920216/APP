@@ -107,7 +107,7 @@ function StockRow({ stock, isOpen, onToggle, apiBase }) {
 }
 
 // ─── 메인 ─────────────────────────────────
-export default function ScreenerScreen({ onBack }) {
+export default function ScreenerScreen() {
   const [stocks, setStocks] = useState([]);
   const [apiBase, setApiBase] = useState('');
   const [loading, setLoading] = useState(true);
@@ -147,13 +147,13 @@ export default function ScreenerScreen({ onBack }) {
   }, [stocks, filter, query]);
 
   return (
-    <div style={S.wrap}>
-      <div style={S.header}>
-        <button style={S.backBtn} onClick={onBack}>
-          <i className="ti ti-chevron-left" /> 기업분석
-        </button>
-        <span style={S.headerTitle}>KOSPI200 스크리너</span>
-        <div style={{ width: 64 }} />
+    <div className="tab-wrap">
+      <div style={S.titleBlock}>
+        <div style={S.titleRow}>
+          <i className="ti ti-list-search" style={{ color: '#7F77DD', fontSize: 15 }} />
+          <span style={S.title}>KOSPI200 스크리너</span>
+        </div>
+        <div style={S.subtitle}>200종목 추세·모멘텀·진입의견</div>
       </div>
 
       <div style={S.searchWrap}>
@@ -178,56 +178,49 @@ export default function ScreenerScreen({ onBack }) {
         ))}
       </div>
 
-      <div style={S.scroll}>
-        <div style={S.scrollContent}>
-          {loading && <div style={S.msg}>불러오는 중...</div>}
-          {error && <div style={S.msg}>데이터를 불러오지 못했습니다: {error}</div>}
-          {!loading && !error && filtered.length === 0 && (
-            <div style={S.msg}>조건에 맞는 종목이 없습니다.</div>
-          )}
-          {!loading && !error && (
-            <div style={S.card}>
-              {filtered.map((s, i) => (
-                <div key={s.code} style={{ borderBottom: i === filtered.length - 1 ? 'none' : '0.5px solid #151520' }}>
-                  <StockRow
-                    stock={s}
-                    apiBase={apiBase}
-                    isOpen={openCode === s.code}
-                    onToggle={() => setOpenCode(prev => prev === s.code ? null : s.code)}
-                  />
-                </div>
-              ))}
+      {loading && <div style={S.msg}>불러오는 중...</div>}
+      {error && <div style={S.msg}>데이터를 불러오지 못했습니다: {error}</div>}
+      {!loading && !error && filtered.length === 0 && (
+        <div style={S.msg}>조건에 맞는 종목이 없습니다.</div>
+      )}
+      {!loading && !error && (
+        <div style={S.card}>
+          {filtered.map((s, i) => (
+            <div key={s.code} style={{ borderBottom: i === filtered.length - 1 ? 'none' : '0.5px solid #151520' }}>
+              <StockRow
+                stock={s}
+                apiBase={apiBase}
+                isOpen={openCode === s.code}
+                onToggle={() => setOpenCode(prev => prev === s.code ? null : s.code)}
+              />
             </div>
-          )}
-          <div style={{ height: 20 }} />
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 // ─── 스타일 ────────────────────────────────
 const S = {
-  wrap: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', background: '#0f1117', overflow: 'hidden' },
-  header: { padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '0.5px solid #1e1e28', flexShrink: 0 },
-  backBtn: { background: 'none', border: 'none', color: '#7F77DD', fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 3 },
-  headerTitle: { fontSize: 15, fontWeight: 500, color: '#fff' },
+  titleBlock: { padding: '2px 2px 0' },
+  titleRow: { display: 'flex', alignItems: 'center', gap: 6 },
+  title: { fontSize: 16, fontWeight: 600, color: '#fff' },
+  subtitle: { fontSize: 10, color: '#555', marginTop: 3 },
 
   searchWrap: {
-    margin: '10px 14px 0', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8,
+    padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8,
     background: '#181820', borderRadius: 10, flexShrink: 0,
   },
   searchInput: { flex: 1, background: 'transparent', border: 'none', outline: 'none', color: '#ddd', fontSize: 12 },
 
-  filterRow: { display: 'flex', gap: 6, padding: '10px 14px 0', flexShrink: 0, overflowX: 'auto' },
+  filterRow: { display: 'flex', gap: 6, flexShrink: 0, overflowX: 'auto' },
   filterChip: {
     padding: '6px 10px', borderRadius: 999, border: '0.5px solid #2a2a3a', background: 'transparent',
     color: '#888', fontSize: 10.5, whiteSpace: 'nowrap', cursor: 'pointer', flexShrink: 0,
   },
   filterChipActive: { background: '#7F77DD20', borderColor: '#7F77DD', color: '#a29dff' },
 
-  scroll: { flex: 1, overflowY: 'auto', minHeight: 0, WebkitOverflowScrolling: 'touch' },
-  scrollContent: { padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 10 },
   msg: { padding: '24px 8px', textAlign: 'center', color: '#555', fontSize: 12 },
 
   card: { background: '#181820', borderRadius: 14, overflow: 'hidden' },

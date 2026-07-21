@@ -2,18 +2,20 @@
 
 import React, { useState } from 'react';
 import { FAMILY_MEMBERS } from '@/data/familyData';
-import AssetsTab from '@/components/redesign/AssetsTab';
 import PinScreen from '@/components/redesign/PinScreen';
 import DetailScreen from '@/components/redesign/DetailScreen';
 import MarketTab from '@/components/redesign/MarketTab';
 import PortfolioTab from '@/components/redesign/PortfolioTab';
 import CompanyTab from '@/components/redesign/CompanyTab';
+import ScreenerScreen from '@/components/redesign/ScreenerScreen';
+// 자산현황 탭(AssetsTab)은 잠시 빼둠 — 나중에 다시 쓸 수 있어서 파일은 그대로 둠.
+// import AssetsTab from '@/components/redesign/AssetsTab';
 
 const TABS = [
-  { key: 'market',    label: '시장지표' },
-  { key: 'assets',    label: '자산현황' },
-  { key: 'portfolio', label: '포트폴리오' },
-  { key: 'company',   label: '기업분석' },
+  { key: 'market',     label: '시장지표' },
+  { key: 'technical',  label: '기술적 지표' },
+  { key: 'portfolio',  label: '포트폴리오' },
+  { key: 'company',    label: '기업분석' },
 ];
 
 type Phase = 0 | 1 | 2; // 0=스플래시, 1=퇴장중, 2=메인
@@ -104,7 +106,7 @@ export default function App() {
   const [screen, setScreen]             = useState('main');
   const [selectedMember, setSelectedMember] = useState<any>(null);
   // 탭을 다시 누를 때 컴포넌트를 리셋하기 위한 버전 카운터
-  const [tabKeys, setTabKeys] = useState<Record<string, number>>({ market: 0, assets: 0, portfolio: 0, company: 0 });
+  const [tabKeys, setTabKeys] = useState<Record<string, number>>({ market: 0, technical: 0, portfolio: 0, company: 0 });
 
   const handleEnter = () => {
     setPhase(1);
@@ -128,7 +130,7 @@ export default function App() {
     if (screen === 'detail' && selectedMember)
       return <DetailScreen member={selectedMember} onBack={handleBack} />;
     switch (activeTab) {
-      case 'assets':    return <AssetsTab    key={`assets-${tabKeys.assets}`}       members={FAMILY_MEMBERS} onNodeTap={handleNodeTap} />;
+      case 'technical': return <ScreenerScreen key={`technical-${tabKeys.technical}`} />;
       case 'portfolio': return <PortfolioTab key={`portfolio-${tabKeys.portfolio}`} />;
       case 'market':    return <MarketTab    key={`market-${tabKeys.market}`}       />;
       case 'company':   return <CompanyTab   key={`company-${tabKeys.company}`}     />;
