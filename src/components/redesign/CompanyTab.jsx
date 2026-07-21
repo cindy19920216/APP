@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { THEMES } from '@/data/companyData';
 import CompanyDetailScreen from './CompanyDetailScreen';
+import ScreenerScreen from './ScreenerScreen';
 
 // ─── 유틸 ─────────────────────────────────
 function fmt(v) { return (v > 0 ? '+' : '') + v.toFixed(1) + '%'; }
@@ -69,6 +70,11 @@ export default function CompanyTab() {
   const [selectedTheme,   setSelectedTheme]   = useState(null);
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedThemeName, setSelectedThemeName] = useState('');
+  const [showScreener, setShowScreener] = useState(false);
+
+  if (showScreener) {
+    return <ScreenerScreen onBack={() => setShowScreener(false)} />;
+  }
 
   if (selectedCompany) {
     return (
@@ -93,6 +99,18 @@ export default function CompanyTab() {
 
   return (
     <div className="tab-wrap">
+
+      {/* KOSPI200 스크리너 진입 배너 */}
+      <button style={S.screenerBanner} onClick={() => setShowScreener(true)}>
+        <div style={S.screenerIcon}>
+          <i className="ti ti-list-search" style={{ color: '#7F77DD', fontSize: 16 }} />
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={S.screenerTitle}>KOSPI200 스크리너</div>
+          <div style={S.screenerDesc}>200종목 추세·모멘텀·진입의견 한눈에 보기</div>
+        </div>
+        <i className="ti ti-chevron-right" style={{ fontSize: 14, color: '#444' }} />
+      </button>
 
       {/* 상단 배너: 주목 테마 */}
       <div style={S.banner}>
@@ -169,6 +187,18 @@ export default function CompanyTab() {
 
 // ─── 스타일 ────────────────────────────────
 const S = {
+  screenerBanner: {
+    width: '100%', display: 'flex', alignItems: 'center', gap: 10,
+    background: '#181820', border: '0.5px solid #2a2a45', borderRadius: 14,
+    padding: '12px 14px', cursor: 'pointer', textAlign: 'left',
+  },
+  screenerIcon: {
+    width: 32, height: 32, borderRadius: 10, background: '#7F77DD20',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+  },
+  screenerTitle: { fontSize: 12.5, fontWeight: 500, color: '#fff' },
+  screenerDesc: { fontSize: 9.5, color: '#555', marginTop: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+
   banner: {
     background: 'linear-gradient(135deg, #1c1c30 0%, #181820 100%)',
     border: '0.5px solid #2a2a45',
