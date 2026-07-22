@@ -149,11 +149,13 @@ export default function StockChart({ history, height = 300 }) {
     s.bbLower.setData(lineData(sliced, 'bb_lower'));
     s.vwap.setData(lineData(sliced, 'vwap'));
     s.volume.setData(sliced.map(h => ({ time: h.date, value: h.volume, color: h.close >= h.open ? UP + '80' : DOWN + '80' })));
-    s.rsi.setData(lineData(sliced, 'rsi'));
-    s.macd.setData(sliced.filter(h => h.macd_hist != null).map(h => ({ time: h.date, value: h.macd_hist, color: h.macd_hist >= 0 ? UP : DOWN })));
+    // RSI/MACD는 scaleMargins로 눌러 숨기는 것만으로는 맨 아래에 얇은 조각이
+    // 남아 보였다 — 패널이 꺼져 있을 땐 데이터 자체를 비워서 완전히 안 그려지게 한다.
+    s.rsi.setData(showPanes ? lineData(sliced, 'rsi') : []);
+    s.macd.setData(showPanes ? sliced.filter(h => h.macd_hist != null).map(h => ({ time: h.date, value: h.macd_hist, color: h.macd_hist >= 0 ? UP : DOWN })) : []);
 
     chartRef.current?.timeScale().fitContent();
-  }, [history, period]);
+  }, [history, period, showPanes]);
 
   if (!history?.length) {
     return <div style={S.empty}>차트 데이터가 없습니다.</div>;

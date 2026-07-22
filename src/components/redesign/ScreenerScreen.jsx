@@ -663,10 +663,10 @@ const S = {
     background: '#181820', borderRadius: 10, flexShrink: 0,
   },
 
-  deskSplit: { display: 'flex', gap: 16, alignItems: 'flex-start' },
+  deskSplit: { display: 'flex', gap: 16, alignItems: 'stretch' },
   deskList: {
     width: 460, flexShrink: 0, background: '#181820', borderRadius: 14,
-    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 250px)',
+    border: '0.5px solid #1e1e28', height: 'calc(100vh - 200px)',
     display: 'flex', flexDirection: 'column', overflow: 'hidden',
   },
   deskTableHead: {
@@ -687,7 +687,7 @@ const S = {
 
   deskDetail: {
     flex: 1, minWidth: 0, background: '#181820', borderRadius: 14,
-    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', padding: 18,
+    border: '0.5px solid #1e1e28', height: 'calc(100vh - 200px)', overflowY: 'auto', padding: 18,
   },
   deskEmpty: { padding: '60px 20px', textAlign: 'center', color: '#444', fontSize: 12.5 },
 };
