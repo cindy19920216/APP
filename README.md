@@ -2,7 +2,10 @@
 
 > 가족의 자산, 하나의 미래
 
-모바일 앱 UI 형태로 구현된 Next.js 기반 가족 자산 관리 대시보드. 자산 현황·수익률 추적부터 FRED 실시간 데이터를 이용한 시장 공황·탐욕 지수까지 통합 제공한다.
+모바일 앱 UI 형태로 구현된 Next.js 기반 가족 자산 관리 대시보드. 자산 현황·수익률 추적부터 FRED 실시간 데이터를 이용한 시장 공황·탐욕 지수, KOSPI200 기술적 지표 스크리너까지 통합 제공한다.
+
+**반응형**: 모바일(1024px 미만)에서는 풀스크린 폰 프레임 앱, 데스크톱(1024px 이상)에서는
+좌측 사이드바 + 마스터-디테일 레이아웃의 웹 대시보드로 자동 전환된다(`src/hooks/useIsDesktop.js`).
 
 ---
 
@@ -15,6 +18,7 @@
 | Prisma (Better-SQLite3) | 7.8.0 |
 | Chart.js / react-chartjs-2 | 4.x / 5.x |
 | Recharts | 3.x |
+| lightweight-charts (TradingView OSS) | 4.x |
 | Zustand | 5.x |
 | TanStack Query | 5.x |
 
@@ -47,17 +51,30 @@ FRED API 키는 https://fred.stlouisfed.org/docs/api/api_key.html 에서 무료 
 
 ```
 PinScreen (잠금 화면)
-└─ 메인 탭 네비게이션
-   ├─ 포트폴리오 탭    (PortfolioTab)
-   ├─ 자산 탭          (AssetsTab)
+└─ 메인 탭 네비게이션 (모바일: 하단/상단 탭바, 데스크톱: 좌측 사이드바)
    ├─ 시장지표 탭      (MarketTab)
-   │   ├─ BOOM-BURST 지수 카드 → PanicBoomScreen
+   │   ├─ BOOM-BURST(JS Economic Cycle) 지수 카드 → PanicBoomScreen
    │   │   └─ 각 세부 지표 → IndicatorDetailScreen (히스토리컬 차트)
    │   ├─ 주요 지수 (KOSPI, KOSDAQ, S&P500, NASDAQ) → InstrumentChartScreen
    │   ├─ 환율 (USD/KRW, JPY/KRW, CNY/KRW) → InstrumentChartScreen
    │   └─ 원자재 (금, WTI, 은, BTC) → InstrumentChartScreen
-   └─ 기업 탭          (CompanyTab)
+   │   (데스크톱: 지수/환율/원자재 3컬럼 그리드, 클릭 시 모달로 상세 표시)
+   ├─ 기술적 지표 탭   (ScreenerScreen) — KOSPI200 200종목 스크리너
+   │   ├─ 검색/필터(전체·매수관심·매도관심·관망), 시가총액 내림차순 정렬
+   │   ├─ "기술적 지표 알아보기" → IndicatorGuideScreen (지표 카테고리별 설명)
+   │   └─ 종목 상세(StockDetail) — herencia-ta API(`/api/stocks/{code}`,
+   │       `/api/stocks/{code}/history`)에서 데이터를 받아:
+   │       가격 헤더 → StockChart(인터랙티브 캔들차트: MA/BB/VWAP 오버레이,
+   │       거래량, RSI·MACD 토글, 기간 선택) → 핵심 지표 요약 → 자동 생성
+   │       한글 요약 문단 → "상세 지표"(접이식, raw 지표 전체)
+   │       (데스크톱: 차트 좌측 크게 + 요약 사이드바 우측 2단 레이아웃)
+   ├─ 포트폴리오 탭    (PortfolioTab)
+   │   (데스크톱: 스타일 랭킹 좌측 + 선택 스타일 종목 리스트 우측)
+   └─ 기업분석 탭      (CompanyTab)
        └─ 기업 상세 → CompanyDetailScreen
+           (데스크톱: 테마/종목 리스트 좌측 + 상세 우측)
+
+자산현황 탭(AssetsTab)은 라우팅에서만 빠져 있고 파일은 보존 중 (나중에 재사용 가능).
 ```
 
 ---
@@ -140,6 +157,16 @@ API 응답은 1시간 캐시 (FRED 속도 제한 대응, 초당 2건 이하).
 | GET | `/api/chart/[ticker]` | 종목 차트 데이터 |
 | GET | `/api/prices` | 가격 데이터 |
 | GET | `/api/transactions` | 거래 내역 |
+| GET | `/api/screener` | KOSPI200 스크리너 목록 프록시(30분 캐시) — 아래 herencia-ta 참고 |
+
+### 기술적 지표 탭 — herencia-ta 외부 API 연동
+
+`ScreenerScreen`/`StockDetail`은 별도 저장소(`herencia-ta`, Python/FastAPI, Render 배포:
+`https://herencia-ta.onrender.com`)의 API를 호출한다. 목록은 `/api/screener` 프록시를
+거치지만, 종목 상세(`/api/stocks/{code}`)와 히스토리(`/api/stocks/{code}/history`)는
+브라우저에서 herencia-ta API를 직접 호출한다(CORS 전체 허용). herencia-ta 쪽은 매일
+GitHub Actions로 KOSPI200 200종목 지표를 자동 갱신하므로, 이 앱은 데이터 계산 로직을
+따로 구현하지 않고 그대로 fetch해서 보여주기만 한다.
 
 ---
 
@@ -164,17 +191,24 @@ src/
 │   └── page.tsx
 ├── components/
 │   └── redesign/
+│       ├── DesktopShell.jsx        # 데스크톱 셸 (좌측 사이드바 + 메인 영역)
+│       ├── DesktopModal.jsx        # 데스크톱 전용 중앙 모달(보조 화면용)
 │       ├── MarketTab.jsx           # 시장지표 탭 (환율·지수·원자재)
 │       ├── PanicBoomScreen.jsx     # BOOM-BURST 상세 화면
 │       ├── IndicatorDetailScreen.jsx # 개별 지표 히스토리컬 차트
 │       ├── InstrumentChartScreen.jsx # 주가·환율·원자재 차트
+│       ├── ScreenerScreen.jsx      # 기술적 지표 탭 — KOSPI200 스크리너 + 종목 상세
+│       ├── StockChart.jsx          # 인터랙티브 캔들차트 (lightweight-charts)
+│       ├── IndicatorGuideScreen.jsx # 기술적 지표 설명 화면
 │       ├── PortfolioTab.jsx
-│       ├── AssetsTab.jsx
+│       ├── AssetsTab.jsx           # 라우팅에서 빠짐(파일은 보존)
 │       ├── CompanyTab.jsx
 │       ├── CompanyDetailScreen.jsx
 │       ├── FamilyTree.jsx
 │       ├── PinScreen.jsx
 │       └── ...
+├── hooks/
+│   └── useIsDesktop.js             # matchMedia(min-width:1024px) 기반 반응형 훅
 ├── data/
 │   ├── companyData.js
 │   └── familyData.js
