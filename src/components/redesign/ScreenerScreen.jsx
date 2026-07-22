@@ -143,8 +143,70 @@ function IndicatorSection({ title, cells }) {
   );
 }
 
-// ─── 종목 상세 (아코디언 인라인) ────────────
+function SideStat({ label, value, valueColor }) {
+  return (
+    <div style={S.sideStatRow}>
+      <span style={S.sideStatLabel}>{label}</span>
+      <span style={{ ...S.sideStatValue, ...(valueColor ? { color: valueColor } : {}) }}>{value}</span>
+    </div>
+  );
+}
+
+function RawIndicatorSections({ ind }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <IndicatorSection
+        title="추세"
+        cells={[
+          { label: 'MA5', value: fmtPrice(ind.ma5) },
+          { label: 'MA20', value: fmtPrice(ind.ma20) },
+          { label: 'MA60', value: fmtPrice(ind.ma60) },
+          { label: 'MACD Hist', value: fmtNum(ind.macd_hist) },
+        ]}
+      />
+      <IndicatorSection
+        title="모멘텀"
+        cells={[
+          { label: 'RSI', value: fmtNum(ind.rsi) },
+          { label: 'Stoch %K', value: fmtNum(ind.stoch_k) },
+          { label: 'Stoch %D', value: fmtNum(ind.stoch_d) },
+          { label: '매수우위비율', value: fmtNum(ind.buy_volume_ratio) + '%' },
+        ]}
+      />
+      <IndicatorSection
+        title="변동성"
+        cells={[
+          { label: 'BB 상단', value: fmtPrice(ind.bb_upper) },
+          { label: 'BB 하단', value: fmtPrice(ind.bb_lower) },
+          { label: 'ATR', value: fmtPrice(ind.atr) },
+          { label: '스퀴즈', value: ind.sqz_on ? 'ON' : 'OFF' },
+        ]}
+      />
+      <IndicatorSection
+        title="구조 · SMC"
+        cells={[
+          { label: '스윙 고점', value: fmtPrice(ind.swing_high) },
+          { label: '스윙 저점', value: fmtPrice(ind.swing_low) },
+          { label: 'Equilibrium', value: fmtPrice(ind.equilibrium) },
+          { label: 'CHoCH', value: chochLabel(ind.choch) },
+        ]}
+      />
+      <IndicatorSection
+        title="거래량 · 기타"
+        cells={[
+          { label: 'VWAP', value: fmtPrice(ind.vwap) },
+          { label: '돈치안 상단', value: fmtPrice(ind.donchian_upper) },
+          { label: '돈치안 하단', value: fmtPrice(ind.donchian_lower) },
+          { label: 'POC', value: fmtPrice(ind.poc) },
+        ]}
+      />
+    </div>
+  );
+}
+
+// ─── 종목 상세 (아코디언 인라인 / 데스크톱 우측 패널) ─
 function StockDetail({ code, apiBase }) {
+  const isDesktop = useIsDesktop();
   const [detail, setDetail] = useState(null);
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -172,20 +234,56 @@ function StockDetail({ code, apiBase }) {
   const vsLow = pctVsLow(close, ind.low_52w);
   const summary = buildStockSummary(detail, history);
 
+  const priceHeader = (
+    <div style={S.priceHeader}>
+      <span style={S.priceValue}>{fmtPrice(close)}원</span>
+      {change != null && (
+        <span style={{ ...S.priceChange, color: pclr(change) }}>
+          {change >= 0 ? '+' : ''}{fmtPrice(Math.round(change))}원 ({pct >= 0 ? '+' : ''}{pct.toFixed(2)}%)
+        </span>
+      )}
+    </div>
+  );
+
+  // ── 데스크톱: siglens 스타일 2단(차트 크게/좌 + 요약 사이드바/우) ──
+  if (isDesktop) {
+    return (
+      <div style={S.detailDeskWrap}>
+        <div style={S.detailOpinion}>{detail.entry_opinion}</div>
+        <div style={S.detailDeskSplit}>
+          <div style={S.detailChartCol}>
+            {priceHeader}
+            <StockChart history={history} height={440} />
+          </div>
+          <div style={S.detailSideCol}>
+            <div style={S.sideStatsList}>
+              <SideStat label="RSI" value={`${fmtNum(ind.rsi)} · ${rsiLabel(ind.rsi)}`} />
+              <SideStat label="MACD" value={macdMomentumText(ind.macd_hist)} />
+              <SideStat label="52주 저점 대비" value={vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'} />
+              <SideStat
+                label="엘더 임펄스"
+                value={elderLabel(ind.elder_impulse)}
+                valueColor={elderColor(ind.elder_impulse)}
+              />
+            </div>
+            {summary && <div style={S.summaryText}>{summary}</div>}
+            <button style={S.rawToggle} onClick={() => setShowRaw(v => !v)}>
+              <span>상세 지표</span>
+              <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
+            </button>
+            {showRaw && <RawIndicatorSections ind={ind} />}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── 모바일: 세로 스택 ──
   return (
     <div style={S.detailWrap}>
       <div style={S.detailOpinion}>{detail.entry_opinion}</div>
-
-      <div style={S.priceHeader}>
-        <span style={S.priceValue}>{fmtPrice(close)}원</span>
-        {change != null && (
-          <span style={{ ...S.priceChange, color: pclr(change) }}>
-            {change >= 0 ? '+' : ''}{fmtPrice(Math.round(change))}원 ({pct >= 0 ? '+' : ''}{pct.toFixed(2)}%)
-          </span>
-        )}
-      </div>
-
-      <StockChart history={history} />
+      {priceHeader}
+      <StockChart history={history} height={320} />
 
       <div style={S.keyStatsRow}>
         <div style={S.keyStat}>
@@ -216,55 +314,7 @@ function StockDetail({ code, apiBase }) {
         <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
       </button>
 
-      {showRaw && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <IndicatorSection
-            title="추세"
-            cells={[
-              { label: 'MA5', value: fmtPrice(ind.ma5) },
-              { label: 'MA20', value: fmtPrice(ind.ma20) },
-              { label: 'MA60', value: fmtPrice(ind.ma60) },
-              { label: 'MACD Hist', value: fmtNum(ind.macd_hist) },
-            ]}
-          />
-          <IndicatorSection
-            title="모멘텀"
-            cells={[
-              { label: 'RSI', value: fmtNum(ind.rsi) },
-              { label: 'Stoch %K', value: fmtNum(ind.stoch_k) },
-              { label: 'Stoch %D', value: fmtNum(ind.stoch_d) },
-              { label: '매수우위비율', value: fmtNum(ind.buy_volume_ratio) + '%' },
-            ]}
-          />
-          <IndicatorSection
-            title="변동성"
-            cells={[
-              { label: 'BB 상단', value: fmtPrice(ind.bb_upper) },
-              { label: 'BB 하단', value: fmtPrice(ind.bb_lower) },
-              { label: 'ATR', value: fmtPrice(ind.atr) },
-              { label: '스퀴즈', value: ind.sqz_on ? 'ON' : 'OFF' },
-            ]}
-          />
-          <IndicatorSection
-            title="구조 · SMC"
-            cells={[
-              { label: '스윙 고점', value: fmtPrice(ind.swing_high) },
-              { label: '스윙 저점', value: fmtPrice(ind.swing_low) },
-              { label: 'Equilibrium', value: fmtPrice(ind.equilibrium) },
-              { label: 'CHoCH', value: chochLabel(ind.choch) },
-            ]}
-          />
-          <IndicatorSection
-            title="거래량 · 기타"
-            cells={[
-              { label: 'VWAP', value: fmtPrice(ind.vwap) },
-              { label: '돈치안 상단', value: fmtPrice(ind.donchian_upper) },
-              { label: '돈치안 하단', value: fmtPrice(ind.donchian_lower) },
-              { label: 'POC', value: fmtPrice(ind.poc) },
-            ]}
-          />
-        </div>
-      )}
+      {showRaw && <RawIndicatorSections ind={ind} />}
     </div>
   );
 }
@@ -582,6 +632,21 @@ const S = {
     borderTop: '0.5px solid #1e1e28', color: '#666', fontSize: 11, fontWeight: 500, cursor: 'pointer',
   },
 
+  // ── 종목 상세: 데스크톱 2단(siglens 스타일) ──
+  detailDeskWrap: { display: 'flex', flexDirection: 'column', gap: 12 },
+  detailDeskSplit: { display: 'flex', gap: 20, alignItems: 'flex-start' },
+  detailChartCol: { flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 10 },
+  detailSideCol: {
+    width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12,
+  },
+  sideStatsList: { background: '#181820', borderRadius: 10, padding: '4px 12px' },
+  sideStatRow: {
+    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+    padding: '9px 0', borderBottom: '0.5px solid #1e1e28',
+  },
+  sideStatLabel: { fontSize: 10.5, color: '#666' },
+  sideStatValue: { fontSize: 11.5, color: '#ddd', fontWeight: 600 },
+
   // ── 데스크톱 전용 ──
   deskWrap: { display: 'flex', flexDirection: 'column', gap: 16 },
   deskHeader: { display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 },
@@ -622,7 +687,7 @@ const S = {
 
   deskDetail: {
     flex: 1, minWidth: 0, background: '#181820', borderRadius: 14,
-    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 250px)', overflowY: 'auto', padding: 18,
+    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto', padding: 18,
   },
   deskEmpty: { padding: '60px 20px', textAlign: 'center', color: '#444', fontSize: 12.5 },
 };

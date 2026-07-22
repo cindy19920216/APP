@@ -25,7 +25,28 @@ function lineData(sliced, key) {
   return sliced.filter(h => h[key] != null).map(h => ({ time: h.date, value: h[key] }));
 }
 
-export default function StockChart({ history }) {
+// 가격축 자동 스케일이 볼린저밴드 폭(변동성 확대 구간)에 끌려가면 캔들이
+// 눌리고 거래량 패널과 시각적으로 붙어 보인다 — BB는 그려지되 자동 스케일
+// 범위 계산에는 기여하지 않도록(autoscaleInfoProvider: () => null) 해서
+// 캔들+이평선 기준으로 스케일을 고정한다.
+const BB_LINE_OPTS = {
+  color: BB_COLOR, lineWidth: 1, lineStyle: 2,
+  priceLineVisible: false, lastValueVisible: false,
+  autoscaleInfoProvider: () => null,
+};
+
+const MARGINS_COMPACT = {
+  price: { top: 0.05, bottom: 0.32 },
+  volume: { top: 0.75, bottom: 0.05 },
+};
+const MARGINS_WITH_PANES = {
+  price: { top: 0.03, bottom: 0.55 },
+  volume: { top: 0.48, bottom: 0.36 },
+  rsi: { top: 0.67, bottom: 0.17 },
+  macd: { top: 0.85, bottom: 0 },
+};
+
+export default function StockChart({ history, height = 300 }) {
   const containerRef = useRef(null);
   const chartRef = useRef(null);
   const seriesRef = useRef({});
@@ -40,7 +61,7 @@ export default function StockChart({ history }) {
       layout: { background: { color: 'transparent' }, textColor: '#666', fontSize: 10 },
       grid: { vertLines: { color: '#1a1a24' }, horzLines: { color: '#1a1a24' } },
       width: containerRef.current.clientWidth,
-      height: 280,
+      height,
       rightPriceScale: { borderColor: '#2a2a35' },
       timeScale: { borderColor: '#2a2a35' },
       crosshair: { mode: 1 },
@@ -53,18 +74,21 @@ export default function StockChart({ history }) {
     });
     const ma5 = chart.addLineSeries({ color: MA5_COLOR, lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
     const ma20 = chart.addLineSeries({ color: MA20_COLOR, lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
-    const bbUpper = chart.addLineSeries({ color: BB_COLOR, lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
-    const bbLower = chart.addLineSeries({ color: BB_COLOR, lineWidth: 1, lineStyle: 2, priceLineVisible: false, lastValueVisible: false });
+    const bbUpper = chart.addLineSeries(BB_LINE_OPTS);
+    const bbLower = chart.addLineSeries(BB_LINE_OPTS);
     const vwap = chart.addLineSeries({ color: VWAP_COLOR, lineWidth: 1, priceLineVisible: false, lastValueVisible: false });
 
     const volume = chart.addHistogramSeries({ priceScaleId: 'volume', priceLineVisible: false, lastValueVisible: false });
     const rsi = chart.addLineSeries({ color: '#7F77DD', lineWidth: 1, priceScaleId: 'rsi', priceLineVisible: false, lastValueVisible: false });
     const macd = chart.addHistogramSeries({ priceScaleId: 'macd', priceLineVisible: false, lastValueVisible: false });
 
-    chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.05, bottom: 0.25 } });
-    chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } });
-    chart.priceScale('rsi').applyOptions({ visible: false });
-    chart.priceScale('macd').applyOptions({ visible: false });
+    chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
+    chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_COMPACT.volume });
+    // visible:false는 축 라벨만 숨길 뿐 시리즈 자체는 기본 scaleMargins(꽤 큰 영역)로
+    // 계속 그려져서 캔들/거래량과 겹쳐 보이는 원인이 됐다 — 패널이 꺼져 있을 때는
+    // margin 자체를 거의 0 높이로 눌러서 실제로도 안 보이게 만든다.
+    chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
+    chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
 
     seriesRef.current = { candle, ma5, ma20, bbUpper, bbLower, vwap, volume, rsi, macd };
 
@@ -96,17 +120,22 @@ export default function StockChart({ history }) {
     const chart = chartRef.current;
     if (!chart) return;
     if (showPanes) {
-      chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.03, bottom: 0.45 } });
-      chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.58, bottom: 0.30 } });
-      chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.68, bottom: 0.15 }, visible: true });
-      chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.85, bottom: 0 }, visible: true });
+      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_WITH_PANES.price });
+      chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_WITH_PANES.volume });
+      chart.priceScale('rsi').applyOptions({ scaleMargins: MARGINS_WITH_PANES.rsi, visible: true });
+      chart.priceScale('macd').applyOptions({ scaleMargins: MARGINS_WITH_PANES.macd, visible: true });
     } else {
-      chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.05, bottom: 0.25 } });
-      chart.priceScale('volume').applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } });
-      chart.priceScale('rsi').applyOptions({ visible: false });
-      chart.priceScale('macd').applyOptions({ visible: false });
+      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
+      chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_COMPACT.volume });
+      chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
+      chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
     }
   }, [showPanes]);
+
+  // 부모(모바일 스택형 vs 데스크톱 큰 차트)가 요구하는 높이가 바뀌면 반영.
+  useEffect(() => {
+    chartRef.current?.applyOptions({ height });
+  }, [height]);
 
   useEffect(() => {
     const s = seriesRef.current;
