@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import IndicatorGuideScreen from './IndicatorGuideScreen';
 import DesktopModal from './DesktopModal';
+import StockChart from './StockChart';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 // ─── 유틸 ─────────────────────────────────
@@ -45,6 +46,75 @@ function chochLabel(c) {
   if (c === 'bearish') return '하락 전환';
   return '미감지';
 }
+function pclr(v) {
+  if (v > 0) return '#1D9E75';
+  if (v < 0) return '#E24B4A';
+  return '#888';
+}
+function rsiLabel(v) {
+  if (v == null) return '-';
+  if (v >= 70) return '과매수';
+  if (v <= 30) return '과매도';
+  return '중립';
+}
+function macdMomentumText(v) {
+  if (v == null) return '-';
+  return v >= 0 ? '상승 모멘텀' : '하락 모멘텀';
+}
+function pctVsLow(close, low) {
+  if (close == null || low == null || low === 0) return null;
+  return ((close - low) / low) * 100;
+}
+function eunNeun(word) {
+  if (!word) return '는';
+  const code = word.charCodeAt(word.length - 1);
+  if (code < 0xAC00 || code > 0xD7A3) return '는';
+  return (code - 0xAC00) % 28 !== 0 ? '은' : '는';
+}
+
+// ─── 종목 상세 요약 문단 (자동 생성) ─────────
+function buildStockSummary(detail, history) {
+  const ind = detail.indicators ?? {};
+  const close = ind.close, prev = ind.prev_close;
+  if (close == null) return '';
+
+  const change = prev != null ? close - prev : null;
+
+  let changeCtx = '';
+  if (history?.length > 5 && change != null) {
+    const closes = history.map(h => h.close).filter(v => typeof v === 'number');
+    const diffs = closes.slice(1).map((c, i) => Math.abs(c - closes[i]));
+    const sorted = [...diffs].sort((a, b) => a - b);
+    const medDiff = sorted[Math.floor(sorted.length / 2)] || 1;
+    const ratio = Math.abs(change) / medDiff;
+    if (ratio < 0.5) changeCtx = '소폭의';
+    else if (ratio < 1.5) changeCtx = '일반적인';
+    else if (ratio < 3) changeCtx = '평균보다 큰';
+    else changeCtx = '역사적으로 드문';
+  }
+
+  const dir = change != null && change >= 0 ? '상승' : '하락';
+  const topic = eunNeun(detail.name);
+  const sentence1 = change != null
+    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원이며, 전일 대비 ${fmtPrice(Math.abs(change))}원(${changeCtx} 변화 수준) ${dir}했습니다.`
+    : `현재 ${detail.name}${topic} ${fmtPrice(close)}원입니다.`;
+
+  const parts2 = [];
+  if (ind.rsi != null) parts2.push(`RSI는 ${fmtNum(ind.rsi)}로 ${rsiLabel(ind.rsi)} 구간`);
+  if (ind.ma5 != null && ind.ma20 != null) {
+    parts2.push(ind.ma5 >= ind.ma20 ? 'MA5가 MA20 위에 위치해 단기 상승 추세' : 'MA5가 MA20 아래에 위치해 단기 하락 추세');
+  }
+  const sentence2 = parts2.length ? parts2.join(', ') + '입니다.' : '';
+
+  let sentence3 = '';
+  if (ind.equilibrium != null && close != null) {
+    sentence3 = close < ind.equilibrium
+      ? '스윙 구조상 Discount(매수 관심) 구간에 위치해 있습니다.'
+      : '스윙 구조상 Premium(매도/차익실현) 구간에 위치해 있습니다.';
+  }
+
+  return [sentence1, sentence2, sentence3].filter(Boolean).join(' ');
+}
 
 const FILTERS = [
   { key: 'all',  label: '전체' },
@@ -76,14 +146,18 @@ function IndicatorSection({ title, cells }) {
 // ─── 종목 상세 (아코디언 인라인) ────────────
 function StockDetail({ code, apiBase }) {
   const [detail, setDetail] = useState(null);
+  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [imgError, setImgError] = useState(false);
+  const [showRaw, setShowRaw] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${apiBase}/api/stocks/${code}`)
-      .then(r => r.ok ? r.json() : null)
-      .then(d => setDetail(d))
+    setShowRaw(false);
+    Promise.all([
+      fetch(`${apiBase}/api/stocks/${code}`).then(r => r.ok ? r.json() : null),
+      fetch(`${apiBase}/api/stocks/${code}/history`).then(r => r.ok ? r.json() : []),
+    ])
+      .then(([d, h]) => { setDetail(d); setHistory(Array.isArray(h) ? h : []); })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [code, apiBase]);
@@ -92,73 +166,104 @@ function StockDetail({ code, apiBase }) {
   if (!detail) return <div style={S.detailLoading}>상세 정보를 불러오지 못했습니다.</div>;
 
   const ind = detail.indicators ?? {};
-  const chartUrl = detail.chart_path ? `${apiBase}/${detail.chart_path}` : null;
+  const close = ind.close, prev = ind.prev_close;
+  const change = (close != null && prev != null) ? close - prev : null;
+  const pct = (change != null && prev) ? (change / prev) * 100 : null;
+  const vsLow = pctVsLow(close, ind.low_52w);
+  const summary = buildStockSummary(detail, history);
 
   return (
     <div style={S.detailWrap}>
       <div style={S.detailOpinion}>{detail.entry_opinion}</div>
 
-      <IndicatorSection
-        title="추세"
-        cells={[
-          { label: 'MA5', value: fmtPrice(ind.ma5) },
-          { label: 'MA20', value: fmtPrice(ind.ma20) },
-          { label: 'MA60', value: fmtPrice(ind.ma60) },
-          { label: 'MACD Hist', value: fmtNum(ind.macd_hist) },
-        ]}
-      />
-      <IndicatorSection
-        title="모멘텀"
-        cells={[
-          { label: 'RSI', value: fmtNum(ind.rsi) },
-          { label: 'Stoch %K', value: fmtNum(ind.stoch_k) },
-          { label: 'Stoch %D', value: fmtNum(ind.stoch_d) },
-          { label: '매수우위비율', value: fmtNum(ind.buy_volume_ratio) + '%' },
-        ]}
-      />
-      <IndicatorSection
-        title="변동성"
-        cells={[
-          { label: 'BB 상단', value: fmtPrice(ind.bb_upper) },
-          { label: 'BB 하단', value: fmtPrice(ind.bb_lower) },
-          { label: 'ATR', value: fmtPrice(ind.atr) },
-          { label: '스퀴즈', value: ind.sqz_on ? 'ON' : 'OFF' },
-        ]}
-      />
-      <IndicatorSection
-        title="구조 · SMC"
-        cells={[
-          { label: '스윙 고점', value: fmtPrice(ind.swing_high) },
-          { label: '스윙 저점', value: fmtPrice(ind.swing_low) },
-          { label: 'Equilibrium', value: fmtPrice(ind.equilibrium) },
-          { label: 'CHoCH', value: chochLabel(ind.choch) },
-        ]}
-      />
-      <IndicatorSection
-        title="거래량 · 기타"
-        cells={[
-          { label: 'VWAP', value: fmtPrice(ind.vwap) },
-          { label: '돈치안 상단', value: fmtPrice(ind.donchian_upper) },
-          { label: '돈치안 하단', value: fmtPrice(ind.donchian_lower) },
-          { label: 'POC', value: fmtPrice(ind.poc) },
-        ]}
-      />
-
-      <div style={S.elderRow}>
-        <span style={S.elderLabelText}>엘더 임펄스</span>
-        <span style={{ ...S.elderBadge, color: elderColor(ind.elder_impulse), background: elderColor(ind.elder_impulse) + '18' }}>
-          {elderLabel(ind.elder_impulse)}
-        </span>
+      <div style={S.priceHeader}>
+        <span style={S.priceValue}>{fmtPrice(close)}원</span>
+        {change != null && (
+          <span style={{ ...S.priceChange, color: pclr(change) }}>
+            {change >= 0 ? '+' : ''}{fmtPrice(Math.round(change))}원 ({pct >= 0 ? '+' : ''}{pct.toFixed(2)}%)
+          </span>
+        )}
       </div>
 
-      {chartUrl && !imgError && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={chartUrl}
-          alt={`${detail.name} 차트`}
-          style={S.chartImg}
-          onError={() => setImgError(true)}
-        />
+      <StockChart history={history} />
+
+      <div style={S.keyStatsRow}>
+        <div style={S.keyStat}>
+          <div style={S.keyStatLabel}>RSI</div>
+          <div style={S.keyStatValue}>{fmtNum(ind.rsi)}</div>
+          <div style={S.keyStatSub}>{rsiLabel(ind.rsi)}</div>
+        </div>
+        <div style={S.keyStat}>
+          <div style={S.keyStatLabel}>MACD</div>
+          <div style={{ ...S.keyStatValue, fontSize: 10.5 }}>{macdMomentumText(ind.macd_hist)}</div>
+        </div>
+        <div style={S.keyStat}>
+          <div style={S.keyStatLabel}>52주 저점 대비</div>
+          <div style={S.keyStatValue}>{vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'}</div>
+        </div>
+        <div style={S.keyStat}>
+          <div style={S.keyStatLabel}>엘더 임펄스</div>
+          <div style={{ ...S.keyStatValue, color: elderColor(ind.elder_impulse), fontSize: 10.5 }}>
+            {elderLabel(ind.elder_impulse)}
+          </div>
+        </div>
+      </div>
+
+      {summary && <div style={S.summaryText}>{summary}</div>}
+
+      <button style={S.rawToggle} onClick={() => setShowRaw(v => !v)}>
+        <span>상세 지표</span>
+        <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
+      </button>
+
+      {showRaw && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <IndicatorSection
+            title="추세"
+            cells={[
+              { label: 'MA5', value: fmtPrice(ind.ma5) },
+              { label: 'MA20', value: fmtPrice(ind.ma20) },
+              { label: 'MA60', value: fmtPrice(ind.ma60) },
+              { label: 'MACD Hist', value: fmtNum(ind.macd_hist) },
+            ]}
+          />
+          <IndicatorSection
+            title="모멘텀"
+            cells={[
+              { label: 'RSI', value: fmtNum(ind.rsi) },
+              { label: 'Stoch %K', value: fmtNum(ind.stoch_k) },
+              { label: 'Stoch %D', value: fmtNum(ind.stoch_d) },
+              { label: '매수우위비율', value: fmtNum(ind.buy_volume_ratio) + '%' },
+            ]}
+          />
+          <IndicatorSection
+            title="변동성"
+            cells={[
+              { label: 'BB 상단', value: fmtPrice(ind.bb_upper) },
+              { label: 'BB 하단', value: fmtPrice(ind.bb_lower) },
+              { label: 'ATR', value: fmtPrice(ind.atr) },
+              { label: '스퀴즈', value: ind.sqz_on ? 'ON' : 'OFF' },
+            ]}
+          />
+          <IndicatorSection
+            title="구조 · SMC"
+            cells={[
+              { label: '스윙 고점', value: fmtPrice(ind.swing_high) },
+              { label: '스윙 저점', value: fmtPrice(ind.swing_low) },
+              { label: 'Equilibrium', value: fmtPrice(ind.equilibrium) },
+              { label: 'CHoCH', value: chochLabel(ind.choch) },
+            ]}
+          />
+          <IndicatorSection
+            title="거래량 · 기타"
+            cells={[
+              { label: 'VWAP', value: fmtPrice(ind.vwap) },
+              { label: '돈치안 상단', value: fmtPrice(ind.donchian_upper) },
+              { label: '돈치안 하단', value: fmtPrice(ind.donchian_lower) },
+              { label: 'POC', value: fmtPrice(ind.poc) },
+            ]}
+          />
+        </div>
       )}
     </div>
   );
@@ -458,6 +563,24 @@ const S = {
   elderBadge: { fontSize: 10, padding: '3px 9px', borderRadius: 6, fontWeight: 500 },
 
   chartImg: { width: '100%', borderRadius: 8, display: 'block' },
+
+  priceHeader: { display: 'flex', alignItems: 'baseline', gap: 10 },
+  priceValue: { fontSize: 20, fontWeight: 600, color: '#fff' },
+  priceChange: { fontSize: 12.5, fontWeight: 500 },
+
+  keyStatsRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 },
+  keyStat: { background: '#181820', borderRadius: 8, padding: '8px 6px', textAlign: 'center' },
+  keyStatLabel: { fontSize: 8, color: '#444', marginBottom: 4 },
+  keyStatValue: { fontSize: 12, color: '#ddd', fontWeight: 600 },
+  keyStatSub: { fontSize: 8.5, color: '#666', marginTop: 2 },
+
+  summaryText: { fontSize: 11.5, color: '#999', lineHeight: 1.7, background: '#181820', borderRadius: 10, padding: '10px 12px' },
+
+  rawToggle: {
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+    width: '100%', padding: '8px 4px', background: 'transparent', border: 'none',
+    borderTop: '0.5px solid #1e1e28', color: '#666', fontSize: 11, fontWeight: 500, cursor: 'pointer',
+  },
 
   // ── 데스크톱 전용 ──
   deskWrap: { display: 'flex', flexDirection: 'column', gap: 16 },
