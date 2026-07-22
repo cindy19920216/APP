@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 // ─── 스타일별 데이터 ───────────────────────────
 const STYLES = [
@@ -94,144 +95,172 @@ function pctColor(v) {
   return '#555';
 }
 
+// ─── 이번 주 요약 배너 ─────────────────────────
+function WeekBanner() {
+  const top = STYLES[0];
+  return (
+    <div style={S.banner}>
+      <div style={S.bannerLeft}>
+        <div style={S.bannerLabel}>이번 주 강세 전략</div>
+        <div style={S.bannerRow}>
+          <i className={`ti ${top.icon}`} style={{ color: top.color, fontSize: 16 }} />
+          <span style={{ ...S.bannerStyle, color: top.color }}>{top.name}</span>
+          <span style={S.bannerReturn}>+{top.weekReturn}%</span>
+        </div>
+        <div style={S.bannerSub}>{top.desc}</div>
+      </div>
+      <div style={S.trophyWrap}>
+        <i className="ti ti-trophy" style={{ fontSize: 32, color: '#EF9F2755' }} />
+        <span style={{ fontSize: 24 }}>🏆</span>
+      </div>
+    </div>
+  );
+}
+
+// ─── 스타일 랭킹 카드 ──────────────────────────
+function StyleRankingCard({ selected, onSelect }) {
+  return (
+    <div style={S.card}>
+      <div style={S.cardHeader}>
+        <span style={S.cardTitle}>시장 스타일 랭킹</span>
+        <span style={S.cardSub}>주간 누적 수익률 · 05.28</span>
+      </div>
+
+      {STYLES.map((s, i) => {
+        const isPos = s.weekReturn >= 0;
+        const barW = (Math.abs(s.weekReturn) / MAX_ABS) * 100;
+        const isActive = selected === s.key;
+
+        return (
+          <button
+            key={s.key}
+            style={{
+              ...S.styleRow,
+              background: isActive ? s.color + '12' : 'transparent',
+              borderLeft: isActive ? `2.5px solid ${s.color}` : '2.5px solid transparent',
+              borderBottom: i < STYLES.length - 1 ? '0.5px solid #151520' : 'none',
+            }}
+            onClick={() => onSelect(isActive ? null : s.key)}
+          >
+            {/* 순위 */}
+            <div style={{ ...S.rank, color: i === 0 ? '#EF9F27' : '#333' }}>{i + 1}</div>
+
+            {/* 아이콘 + 이름 */}
+            <div style={S.styleInfo}>
+              <div style={{ ...S.styleIcon, background: s.color + '20' }}>
+                <i className={`ti ${s.icon}`} style={{ color: s.color, fontSize: 12 }} />
+              </div>
+              <span style={S.styleName}>{s.name}</span>
+            </div>
+
+            {/* 수익률 + 바 */}
+            <div style={S.styleRight}>
+              <span style={{ ...S.styleReturn, color: isPos ? '#1D9E75' : '#E24B4A' }}>
+                {fmt(s.weekReturn)}
+              </span>
+              <div style={S.barTrack}>
+                <div
+                  style={{
+                    ...S.barFill,
+                    width: `${barW}%`,
+                    background: isPos ? s.color : '#E24B4A',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* 토글 화살표 */}
+            <i
+              className={`ti ${isActive ? 'ti-chevron-up' : 'ti-chevron-down'}`}
+              style={{ fontSize: 11, color: '#444', marginLeft: 6, flexShrink: 0 }}
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── 선택된 스타일 종목 리스트 ─────────────────
+function StyleDetailCard({ style }) {
+  return (
+    <div style={S.card}>
+      {/* 종목 카드 헤더 */}
+      <div style={{ ...S.cardHeader, borderLeft: `3px solid ${style.color}`, paddingLeft: 11 }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <i className={`ti ${style.icon}`} style={{ color: style.color, fontSize: 13 }} />
+            <span style={S.cardTitle}>{style.name} 포트폴리오</span>
+          </div>
+          <div style={S.stockSubDesc}>{style.desc} · 시총 1조↑ Top 5</div>
+        </div>
+      </div>
+
+      {/* 테이블 헤더 */}
+      <div style={S.tableHead}>
+        <span style={{ ...S.th, flex: 1.8 }}>기업명</span>
+        <span style={S.th}>일간</span>
+        <span style={S.th}>주간</span>
+        <span style={S.th}>월간</span>
+      </div>
+
+      {/* 종목 행 */}
+      {style.stocks.map((st, i) => (
+        <div
+          key={i}
+          style={{
+            ...S.stockRow,
+            borderBottom: i < style.stocks.length - 1 ? '0.5px solid #151520' : 'none',
+          }}
+        >
+          <div style={{ ...S.stockName, flex: 1.8 }}>
+            <div style={S.stockNameText}>{st.name}</div>
+            <div style={S.stockTicker}>{st.ticker}</div>
+          </div>
+          <span style={{ ...S.td, color: pctColor(st.d) }}>{fmt(st.d)}</span>
+          <span style={{ ...S.td, color: pctColor(st.w), fontWeight: 600 }}>{fmt(st.w)}</span>
+          <span style={{ ...S.td, color: pctColor(st.m) }}>{fmt(st.m)}</span>
+        </div>
+      ))}
+
+      {/* 스타일 요약 */}
+      <div style={S.summaryRow}>
+        <span style={S.summaryLabel}>포트폴리오 평균 주간 수익률</span>
+        <span style={{ ...S.summaryValue, color: style.weekReturn >= 0 ? '#1D9E75' : '#E24B4A' }}>
+          {fmt(style.weekReturn)}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 // ─── 메인 ─────────────────────────────────────
 export default function PortfolioTab() {
+  const isDesktop = useIsDesktop();
   const [selected, setSelected] = useState(null);
-
-  const top = STYLES[0];
   const selectedStyle = STYLES.find((s) => s.key === selected);
+
+  if (isDesktop) {
+    return (
+      <div style={S.deskSplit}>
+        <div style={S.deskList}>
+          <WeekBanner />
+          <StyleRankingCard selected={selected} onSelect={setSelected} />
+        </div>
+        <div style={S.deskDetail}>
+          {selectedStyle
+            ? <StyleDetailCard style={selectedStyle} />
+            : <div style={S.deskEmpty}>왼쪽 스타일 랭킹에서 항목을 선택하면 여기에 종목 리스트가 표시됩니다.</div>}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="tab-wrap">
-
-      {/* 이번 주 요약 배너 */}
-      <div style={S.banner}>
-        <div style={S.bannerLeft}>
-          <div style={S.bannerLabel}>이번 주 강세 전략</div>
-          <div style={S.bannerRow}>
-            <i className={`ti ${top.icon}`} style={{ color: top.color, fontSize: 16 }} />
-            <span style={{ ...S.bannerStyle, color: top.color }}>{top.name}</span>
-            <span style={S.bannerReturn}>+{top.weekReturn}%</span>
-          </div>
-          <div style={S.bannerSub}>{top.desc}</div>
-        </div>
-        <div style={S.trophyWrap}>
-          <i className="ti ti-trophy" style={{ fontSize: 32, color: '#EF9F2755' }} />
-          <span style={{ fontSize: 24 }}>🏆</span>
-        </div>
-      </div>
-
-      {/* 스타일 랭킹 */}
-      <div style={S.card}>
-        <div style={S.cardHeader}>
-          <span style={S.cardTitle}>시장 스타일 랭킹</span>
-          <span style={S.cardSub}>주간 누적 수익률 · 05.28</span>
-        </div>
-
-        {STYLES.map((s, i) => {
-          const isPos = s.weekReturn >= 0;
-          const barW = (Math.abs(s.weekReturn) / MAX_ABS) * 100;
-          const isActive = selected === s.key;
-
-          return (
-            <button
-              key={s.key}
-              style={{
-                ...S.styleRow,
-                background: isActive ? s.color + '12' : 'transparent',
-                borderLeft: isActive ? `2.5px solid ${s.color}` : '2.5px solid transparent',
-                borderBottom: i < STYLES.length - 1 ? '0.5px solid #151520' : 'none',
-              }}
-              onClick={() => setSelected(isActive ? null : s.key)}
-            >
-              {/* 순위 */}
-              <div style={{ ...S.rank, color: i === 0 ? '#EF9F27' : '#333' }}>{i + 1}</div>
-
-              {/* 아이콘 + 이름 */}
-              <div style={S.styleInfo}>
-                <div style={{ ...S.styleIcon, background: s.color + '20' }}>
-                  <i className={`ti ${s.icon}`} style={{ color: s.color, fontSize: 12 }} />
-                </div>
-                <span style={S.styleName}>{s.name}</span>
-              </div>
-
-              {/* 수익률 + 바 */}
-              <div style={S.styleRight}>
-                <span style={{ ...S.styleReturn, color: isPos ? '#1D9E75' : '#E24B4A' }}>
-                  {fmt(s.weekReturn)}
-                </span>
-                <div style={S.barTrack}>
-                  <div
-                    style={{
-                      ...S.barFill,
-                      width: `${barW}%`,
-                      background: isPos ? s.color : '#E24B4A',
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* 토글 화살표 */}
-              <i
-                className={`ti ${isActive ? 'ti-chevron-up' : 'ti-chevron-down'}`}
-                style={{ fontSize: 11, color: '#444', marginLeft: 6, flexShrink: 0 }}
-              />
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 종목 리스트 */}
-      {selectedStyle && (
-        <div style={S.card}>
-          {/* 종목 카드 헤더 */}
-          <div style={{ ...S.cardHeader, borderLeft: `3px solid ${selectedStyle.color}`, paddingLeft: 11 }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <i className={`ti ${selectedStyle.icon}`} style={{ color: selectedStyle.color, fontSize: 13 }} />
-                <span style={S.cardTitle}>{selectedStyle.name} 포트폴리오</span>
-              </div>
-              <div style={S.stockSubDesc}>{selectedStyle.desc} · 시총 1조↑ Top 5</div>
-            </div>
-          </div>
-
-          {/* 테이블 헤더 */}
-          <div style={S.tableHead}>
-            <span style={{ ...S.th, flex: 1.8 }}>기업명</span>
-            <span style={S.th}>일간</span>
-            <span style={S.th}>주간</span>
-            <span style={S.th}>월간</span>
-          </div>
-
-          {/* 종목 행 */}
-          {selectedStyle.stocks.map((st, i) => (
-            <div
-              key={i}
-              style={{
-                ...S.stockRow,
-                borderBottom: i < selectedStyle.stocks.length - 1 ? '0.5px solid #151520' : 'none',
-              }}
-            >
-              <div style={{ ...S.stockName, flex: 1.8 }}>
-                <div style={S.stockNameText}>{st.name}</div>
-                <div style={S.stockTicker}>{st.ticker}</div>
-              </div>
-              <span style={{ ...S.td, color: pctColor(st.d) }}>{fmt(st.d)}</span>
-              <span style={{ ...S.td, color: pctColor(st.w), fontWeight: 600 }}>{fmt(st.w)}</span>
-              <span style={{ ...S.td, color: pctColor(st.m) }}>{fmt(st.m)}</span>
-            </div>
-          ))}
-
-          {/* 스타일 요약 */}
-          <div style={S.summaryRow}>
-            <span style={S.summaryLabel}>포트폴리오 평균 주간 수익률</span>
-            <span style={{ ...S.summaryValue, color: selectedStyle.weekReturn >= 0 ? '#1D9E75' : '#E24B4A' }}>
-              {fmt(selectedStyle.weekReturn)}
-            </span>
-          </div>
-        </div>
-      )}
-
+      <WeekBanner />
+      <StyleRankingCard selected={selected} onSelect={setSelected} />
+      {selectedStyle && <StyleDetailCard style={selectedStyle} />}
       <div style={{ height: 20 }} />
     </div>
   );
@@ -299,4 +328,16 @@ const S = {
   },
   summaryLabel: { fontSize: 10, color: '#444' },
   summaryValue: { fontSize: 13, fontWeight: 600 },
+
+  // ── 데스크톱 전용 ──
+  deskSplit: { display: 'flex', gap: 16, alignItems: 'flex-start' },
+  deskList: {
+    width: 460, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16,
+    maxHeight: 'calc(100vh - 200px)', overflowY: 'auto',
+  },
+  deskDetail: { flex: 1, minWidth: 0 },
+  deskEmpty: {
+    padding: '60px 20px', textAlign: 'center', color: '#444', fontSize: 12.5,
+    background: '#181820', borderRadius: 14, border: '0.5px solid #1e1e28',
+  },
 };

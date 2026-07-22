@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import IndicatorGuideScreen from './IndicatorGuideScreen';
+import DesktopModal from './DesktopModal';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 // ─── 유틸 ─────────────────────────────────
 function trendColor(t) {
@@ -195,6 +197,7 @@ function StockRow({ stock, isOpen, onToggle, apiBase }) {
 
 // ─── 메인 ─────────────────────────────────
 export default function ScreenerScreen() {
+  const isDesktop = useIsDesktop();
   const [stocks, setStocks] = useState([]);
   const [apiBase, setApiBase] = useState('');
   const [loading, setLoading] = useState(true);
@@ -236,8 +239,104 @@ export default function ScreenerScreen() {
       .sort((a, b) => (b.market_cap_100m ?? 0) - (a.market_cap_100m ?? 0));
   }, [stocks, filter, query]);
 
-  if (showGuide) {
+  if (showGuide && !isDesktop) {
     return <IndicatorGuideScreen onBack={() => setShowGuide(false)} />;
+  }
+
+  if (isDesktop) {
+    const selected = filtered.find(s => s.code === openCode) ?? null;
+    return (
+      <div style={S.deskWrap}>
+        <div style={S.deskHeader}>
+          <div>
+            <div style={S.titleRow}>
+              <i className="ti ti-list-search" style={{ color: '#7F77DD', fontSize: 17 }} />
+              <span style={S.deskTitle}>KOSPI200 스크리너</span>
+            </div>
+            <div style={S.subtitle}>200종목 추세·모멘텀·진입의견</div>
+          </div>
+          <button style={S.guideEntryDesk} onClick={() => setShowGuide(true)}>
+            <i className="ti ti-info-circle" style={{ fontSize: 13, color: '#7F77DD' }} />
+            기술적 지표 알아보기
+          </button>
+        </div>
+
+        <div style={S.deskToolbar}>
+          <div style={S.searchWrapDesk}>
+            <i className="ti ti-search" style={{ fontSize: 13, color: '#444' }} />
+            <input
+              style={S.searchInput}
+              placeholder="종목명 또는 코드 검색"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
+          <div style={S.filterRow}>
+            {FILTERS.map(f => (
+              <button
+                key={f.key}
+                style={{ ...S.filterChip, ...(filter === f.key ? S.filterChipActive : {}) }}
+                onClick={() => setFilter(f.key)}
+              >
+                {f.label} {counts[f.key] ?? 0}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {loading && <div style={S.msg}>불러오는 중...</div>}
+        {error && <div style={S.msg}>데이터를 불러오지 못했습니다: {error}</div>}
+
+        {!loading && !error && (
+          <div style={S.deskSplit}>
+            <div style={S.deskList}>
+              <div style={S.deskTableHead}>
+                <span style={{ flex: 2 }}>종목명</span>
+                <span style={{ width: 76, textAlign: 'right' }}>시총</span>
+                <span style={{ width: 52, textAlign: 'center' }}>추세</span>
+                <span style={{ width: 92, textAlign: 'center' }}>진입의견</span>
+              </div>
+              <div style={S.deskTableBody}>
+                {filtered.length === 0 && <div style={S.msg}>조건에 맞는 종목이 없습니다.</div>}
+                {filtered.map(s => (
+                  <button
+                    key={s.code}
+                    style={{ ...S.deskRow, ...(openCode === s.code ? S.deskRowActive : {}) }}
+                    onClick={() => setOpenCode(s.code)}
+                  >
+                    <span style={S.deskRowName}>
+                      <span style={S.deskRowNameText}>{s.name}</span>
+                      <span style={S.deskRowCode}>{s.code}</span>
+                    </span>
+                    <span style={S.deskRowCap}>{formatMarketCap(s.market_cap_100m)}</span>
+                    <span style={{ ...S.trendBadge, color: trendColor(s.trend), borderColor: trendColor(s.trend) + '40', width: 52, textAlign: 'center' }}>
+                      {s.trend}
+                    </span>
+                    <span style={{ ...S.opinionBadge, color: opinionColor(s.entry_opinion), background: opinionColor(s.entry_opinion) + '15', width: 92, textAlign: 'center' }}>
+                      {opinionLabel(s.entry_opinion)}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={S.deskDetail}>
+              {selected
+                ? <StockDetail key={selected.code} code={selected.code} apiBase={apiBase} />
+                : <div style={S.deskEmpty}>왼쪽 목록에서 종목을 선택하면 여기에 상세 지표가 표시됩니다.</div>}
+            </div>
+          </div>
+        )}
+
+        {showGuide && (
+          <DesktopModal onClose={() => setShowGuide(false)} maxWidth={720}>
+            <div style={{ position: 'relative', height: '80vh' }}>
+              <IndicatorGuideScreen onBack={() => setShowGuide(false)} />
+            </div>
+          </DesktopModal>
+        )}
+      </div>
+    );
   }
 
   return (
@@ -359,4 +458,48 @@ const S = {
   elderBadge: { fontSize: 10, padding: '3px 9px', borderRadius: 6, fontWeight: 500 },
 
   chartImg: { width: '100%', borderRadius: 8, display: 'block' },
+
+  // ── 데스크톱 전용 ──
+  deskWrap: { display: 'flex', flexDirection: 'column', gap: 16 },
+  deskHeader: { display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 },
+  deskTitle: { fontSize: 20, fontWeight: 600, color: '#fff' },
+  guideEntryDesk: {
+    display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap',
+    padding: '9px 16px', background: '#181820', borderRadius: 10,
+    border: '0.5px solid #23232f', cursor: 'pointer', fontSize: 12.5, color: '#ccc', fontWeight: 500,
+  },
+
+  deskToolbar: { display: 'flex', alignItems: 'center', gap: 10 },
+  searchWrapDesk: {
+    width: 280, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8,
+    background: '#181820', borderRadius: 10, flexShrink: 0,
+  },
+
+  deskSplit: { display: 'flex', gap: 16, alignItems: 'flex-start' },
+  deskList: {
+    width: 460, flexShrink: 0, background: '#181820', borderRadius: 14,
+    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 250px)',
+    display: 'flex', flexDirection: 'column', overflow: 'hidden',
+  },
+  deskTableHead: {
+    display: 'flex', gap: 8, padding: '10px 14px', borderBottom: '0.5px solid #1e1e28',
+    fontSize: 9.5, color: '#444', fontWeight: 600, flexShrink: 0, background: '#13131e',
+  },
+  deskTableBody: { overflowY: 'auto', flex: 1, minHeight: 0 },
+  deskRow: {
+    width: '100%', display: 'flex', alignItems: 'center', gap: 8,
+    padding: '10px 14px', border: 'none', background: 'transparent', cursor: 'pointer',
+    textAlign: 'left', borderBottom: '0.5px solid #151520',
+  },
+  deskRowActive: { background: '#7F77DD14' },
+  deskRowName: { flex: 2, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 },
+  deskRowNameText: { fontSize: 12, color: '#ddd', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
+  deskRowCode: { fontSize: 8.5, color: '#3a3a4a' },
+  deskRowCap: { width: 76, textAlign: 'right', fontSize: 11, color: '#888', flexShrink: 0 },
+
+  deskDetail: {
+    flex: 1, minWidth: 0, background: '#181820', borderRadius: 14,
+    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 250px)', overflowY: 'auto', padding: 18,
+  },
+  deskEmpty: { padding: '60px 20px', textAlign: 'center', color: '#444', fontSize: 12.5 },
 };

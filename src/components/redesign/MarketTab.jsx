@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import PanicBoomScreen from './PanicBoomScreen';
 import InstrumentChartScreen from './InstrumentChartScreen';
+import DesktopModal from './DesktopModal';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 const FALLBACK_INDICES = [
   { name: 'S&P500',    value: '—', change: '—', up: true },
@@ -107,7 +109,173 @@ function companyColor(name) {
   return COMPANY_COLORS[h % COMPANY_COLORS.length];
 }
 
+// ─── 공포·탐욕(경기 사이클) 게이지 카드 ────────
+function GaugeCard({ bbScore, score, label, color, msg, onOpen }) {
+  return (
+    <>
+      <button style={S.fgCard} onClick={onOpen}>
+        <div style={S.fgLeft}>
+          <div style={S.fgTopRow}>
+            <span style={S.fgTag}>JS Economic Cycle Index</span>
+            <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
+            {bbScore === null
+              ? <span style={{ fontSize: 22, color: '#444' }}>로딩 중…</span>
+              : <>
+                  <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{score}</span>
+                  <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
+                </>
+            }
+          </div>
+          <div style={S.fgSub}>실시간 FRED 데이터 · 탭해서 상세보기</div>
+        </div>
+        <MiniGauge score={score} />
+      </button>
+
+      {bbScore !== null && (
+        <div style={{ ...S.msgCard, borderColor: color + '44' }}>
+          <span style={S.msgEmoji}>{msg.emoji}</span>
+          <span style={S.msgText}>{msg.text}</span>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─── 주요 지수 카드 ────────────────────────────
+function IndicesCard({ indices, marketLoading, onSelect }) {
+  return (
+    <div style={S.card}>
+      <div style={S.cardHeader}>
+        <span style={S.cardTitle}>주요 지수</span>
+        <span style={S.cardSub}>{marketLoading ? '로딩 중…' : '15분 지연 · 탭해서 차트 보기'}</span>
+      </div>
+      {indices.map((idx, i) => (
+        <button
+          key={i}
+          style={{ ...S.listRow, borderBottom: i < indices.length - 1 ? '0.5px solid #151520' : 'none' }}
+          onClick={() => onSelect({ key: idx.name, value: idx.value, change: idx.change })}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={S.listName}>{idx.name}</div>
+          </div>
+          <div style={S.listRight}>
+            <span style={S.listValue}>{idx.value}</span>
+            <span style={{ ...S.listChange, color: idx.up ? '#1D9E75' : '#E24B4A' }}>
+              {idx.value !== '—' ? (idx.up ? '▲' : '▼') : ''} {idx.change}
+            </span>
+          </div>
+          <i className="ti ti-chevron-right" style={S.rowChevron} />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── 환율 카드 ─────────────────────────────────
+function FxCard({ fx, onSelect }) {
+  return (
+    <div style={S.card}>
+      <div style={S.cardHeader}>
+        <span style={S.cardTitle}>환율</span>
+        <span style={S.cardSub}>KRW 기준 · 탭해서 차트 보기</span>
+      </div>
+      {fx.map((f, i) => (
+        <button
+          key={i}
+          style={{ ...S.fxRow, borderBottom: i < fx.length - 1 ? '0.5px solid #151520' : 'none' }}
+          onClick={() => onSelect({ key: f.pair, value: f.value, change: f.change })}
+        >
+          <span style={S.fxFlag}><FxFlag pair={f.pair} emoji={f.flag} /></span>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={S.fxPair}>{f.pair}</div>
+            {f.country && <div style={S.fxCountry}>{f.country}</div>}
+          </div>
+          <div style={S.fxRight}>
+            <span style={S.fxValue}>{f.value}</span>
+            <span style={{ ...S.fxChange, color: f.up ? '#1D9E75' : '#E24B4A' }}>
+              {f.value !== '—' ? (f.up ? '▲' : '▼') : ''} {f.change}
+            </span>
+          </div>
+          <i className="ti ti-chart-line" style={{ fontSize: 11, color: '#333', marginLeft: 6 }} />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── 원자재 카드 ───────────────────────────────
+function CommoditiesCard({ commod, onSelect }) {
+  return (
+    <div style={S.card}>
+      <div style={S.cardHeader}>
+        <span style={S.cardTitle}>원자재</span>
+        <span style={S.cardSub}>USD 기준 · 탭해서 차트 보기</span>
+      </div>
+      {commod.map((c, i) => (
+        <button
+          key={i}
+          style={{ ...S.listRow, borderBottom: i < commod.length - 1 ? '0.5px solid #151520' : 'none' }}
+          onClick={() => onSelect({ key: c.name, value: c.value, change: c.change })}
+        >
+          <div style={{ ...S.commodIc, background: c.bg, marginRight: 10, flexShrink: 0 }}>
+            <i className={`ti ${c.icon}`} style={{ color: c.ic, fontSize: 14 }} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={S.listName}>{c.name}</div>
+          </div>
+          <div style={S.listRight}>
+            <span style={S.listValue}>{c.value}</span>
+            <span style={{ ...S.listChange, color: c.up ? '#1D9E75' : '#E24B4A' }}>
+              {c.value !== '—' ? (c.up ? '▲' : '▼') : ''} {c.change}
+            </span>
+          </div>
+          <i className="ti ti-chevron-right" style={S.rowChevron} />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── 빅테크 뉴스 카드 ──────────────────────────
+function NewsCard({ newsData, expandedNews, setExpandedNews }) {
+  if (newsData.length === 0) return null;
+  return (
+    <div style={S.card}>
+      <div style={S.cardHeader}>
+        <span style={S.cardTitle}>빅테크 뉴스</span>
+        <span style={S.cardSub}>{newsData[0]?.date} 기준</span>
+      </div>
+      {newsData.map((item, i) => {
+        const expanded = expandedNews === i;
+        const color = companyColor(item.company);
+        return (
+          <div key={i} style={{ borderBottom: i < newsData.length - 1 ? '0.5px solid #151520' : 'none' }}>
+            <button
+              style={{ ...S.listRow, flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}
+              onClick={() => setExpandedNews(expanded ? null : i)}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, width: '100%' }}>
+                <span style={{ ...S.newsBadge, background: color + '22', color }}>{item.company}</span>
+                <span style={{ fontSize: 9, color: '#555', marginLeft: 'auto', flexShrink: 0 }}>{item.media}</span>
+                <span style={{ fontSize: 9, color: '#444', flexShrink: 0 }}>{item.date}</span>
+                <i className={`ti ti-chevron-${expanded ? 'up' : 'down'}`} style={{ fontSize: 10, color: '#444', flexShrink: 0 }} />
+              </div>
+              <span style={S.newsTitle}>{item.title}</span>
+            </button>
+            {expanded && item.summary && (
+              <div style={S.newsSummary}>{item.summary}</div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function MarketTab() {
+  const isDesktop = useIsDesktop();
   const [showPanicBoom,      setShowPanicBoom]      = useState(false);
   const [selectedInstrument, setSelectedInstrument] = useState(null);
   const [bbScore,            setBbScore]            = useState(null);
@@ -132,6 +300,49 @@ export default function MarketTab() {
       .catch(() => {});
   }, []);
 
+  const score   = bbScore ?? 50;
+  const { label, color } = getLevel(score);
+  const msg     = getSummaryMsg(score);
+  const indices = marketData?.indices     ?? FALLBACK_INDICES;
+  const fx      = marketData?.fx          ?? FALLBACK_FX;
+  const commod  = marketData?.commodities ?? FALLBACK_COMMODITIES;
+
+  if (isDesktop) {
+    return (
+      <div style={S.deskWrap}>
+        <GaugeCard bbScore={bbScore} score={score} label={label} color={color} msg={msg} onOpen={() => setShowPanicBoom(true)} />
+
+        <div style={S.deskGrid}>
+          <IndicesCard indices={indices} marketLoading={marketLoading} onSelect={setSelectedInstrument} />
+          <FxCard fx={fx} onSelect={setSelectedInstrument} />
+          <CommoditiesCard commod={commod} onSelect={setSelectedInstrument} />
+        </div>
+
+        <NewsCard newsData={newsData} expandedNews={expandedNews} setExpandedNews={setExpandedNews} />
+
+        {showPanicBoom && (
+          <DesktopModal onClose={() => setShowPanicBoom(false)} maxWidth={720}>
+            <div style={{ position: 'relative', height: '80vh' }}>
+              <PanicBoomScreen onBack={() => setShowPanicBoom(false)} />
+            </div>
+          </DesktopModal>
+        )}
+        {selectedInstrument && (
+          <DesktopModal onClose={() => setSelectedInstrument(null)} maxWidth={720}>
+            <div style={{ position: 'relative', height: '80vh' }}>
+              <InstrumentChartScreen
+                instrumentKey={selectedInstrument.key}
+                currentValue={selectedInstrument.value}
+                currentChange={selectedInstrument.change}
+                onBack={() => setSelectedInstrument(null)}
+              />
+            </div>
+          </DesktopModal>
+        )}
+      </div>
+    );
+  }
+
   if (showPanicBoom) return <PanicBoomScreen onBack={() => setShowPanicBoom(false)} />;
 
   if (selectedInstrument) {
@@ -145,161 +356,13 @@ export default function MarketTab() {
     );
   }
 
-  const score   = bbScore ?? 50;
-  const { label, color } = getLevel(score);
-  const msg     = getSummaryMsg(score);
-  const indices = marketData?.indices     ?? FALLBACK_INDICES;
-  const fx      = marketData?.fx          ?? FALLBACK_FX;
-  const commod  = marketData?.commodities ?? FALLBACK_COMMODITIES;
-
   return (
     <div className="tab-wrap">
-
-      {/* ① 공포·탐욕 지수 (최상단) */}
-      <button style={S.fgCard} onClick={() => setShowPanicBoom(true)}>
-        <div style={S.fgLeft}>
-          <div style={S.fgTopRow}>
-            <span style={S.fgTag}>JS Economic Cycle Index</span>
-            <i className="ti ti-chevron-right" style={{ color: '#444', fontSize: 13 }} />
-          </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7, marginTop: 8 }}>
-            {bbScore === null
-              ? <span style={{ fontSize: 22, color: '#444' }}>로딩 중…</span>
-              : <>
-                  <span style={{ fontSize: 38, fontWeight: 500, color, lineHeight: 1 }}>{score}</span>
-                  <span style={{ fontSize: 15, color, marginBottom: 3 }}>{label}</span>
-                </>
-            }
-          </div>
-          <div style={S.fgSub}>실시간 FRED 데이터 · 탭해서 상세보기</div>
-        </div>
-        <MiniGauge score={score} />
-      </button>
-
-      {/* 한 줄 요약 */}
-      {bbScore !== null && (
-        <div style={{ ...S.msgCard, borderColor: color + '44' }}>
-          <span style={S.msgEmoji}>{msg.emoji}</span>
-          <span style={S.msgText}>{msg.text}</span>
-        </div>
-      )}
-
-      {/* ② 주요 지수 */}
-      <div style={S.card}>
-        <div style={S.cardHeader}>
-          <span style={S.cardTitle}>주요 지수</span>
-          <span style={S.cardSub}>{marketLoading ? '로딩 중…' : '15분 지연 · 탭해서 차트 보기'}</span>
-        </div>
-        {indices.map((idx, i) => (
-          <button
-            key={i}
-            style={{ ...S.listRow, borderBottom: i < indices.length - 1 ? '0.5px solid #151520' : 'none' }}
-            onClick={() => setSelectedInstrument({ key: idx.name, value: idx.value, change: idx.change })}
-          >
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={S.listName}>{idx.name}</div>
-            </div>
-            <div style={S.listRight}>
-              <span style={S.listValue}>{idx.value}</span>
-              <span style={{ ...S.listChange, color: idx.up ? '#1D9E75' : '#E24B4A' }}>
-                {idx.value !== '—' ? (idx.up ? '▲' : '▼') : ''} {idx.change}
-              </span>
-            </div>
-            <i className="ti ti-chevron-right" style={S.rowChevron} />
-          </button>
-        ))}
-      </div>
-
-      {/* ③ 환율 */}
-      <div style={S.card}>
-        <div style={S.cardHeader}>
-          <span style={S.cardTitle}>환율</span>
-          <span style={S.cardSub}>KRW 기준 · 탭해서 차트 보기</span>
-        </div>
-        {fx.map((f, i) => (
-          <button
-            key={i}
-            style={{ ...S.fxRow, borderBottom: i < fx.length - 1 ? '0.5px solid #151520' : 'none' }}
-            onClick={() => setSelectedInstrument({ key: f.pair, value: f.value, change: f.change })}
-          >
-            <span style={S.fxFlag}><FxFlag pair={f.pair} emoji={f.flag} /></span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={S.fxPair}>{f.pair}</div>
-              {f.country && <div style={S.fxCountry}>{f.country}</div>}
-            </div>
-            <div style={S.fxRight}>
-              <span style={S.fxValue}>{f.value}</span>
-              <span style={{ ...S.fxChange, color: f.up ? '#1D9E75' : '#E24B4A' }}>
-                {f.value !== '—' ? (f.up ? '▲' : '▼') : ''} {f.change}
-              </span>
-            </div>
-            <i className="ti ti-chart-line" style={{ fontSize: 11, color: '#333', marginLeft: 6 }} />
-          </button>
-        ))}
-      </div>
-
-      {/* ④ 원자재 */}
-      <div style={S.card}>
-        <div style={S.cardHeader}>
-          <span style={S.cardTitle}>원자재</span>
-          <span style={S.cardSub}>USD 기준 · 탭해서 차트 보기</span>
-        </div>
-        {commod.map((c, i) => (
-          <button
-            key={i}
-            style={{ ...S.listRow, borderBottom: i < commod.length - 1 ? '0.5px solid #151520' : 'none' }}
-            onClick={() => setSelectedInstrument({ key: c.name, value: c.value, change: c.change })}
-          >
-            <div style={{ ...S.commodIc, background: c.bg, marginRight: 10, flexShrink: 0 }}>
-              <i className={`ti ${c.icon}`} style={{ color: c.ic, fontSize: 14 }} />
-            </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={S.listName}>{c.name}</div>
-            </div>
-            <div style={S.listRight}>
-              <span style={S.listValue}>{c.value}</span>
-              <span style={{ ...S.listChange, color: c.up ? '#1D9E75' : '#E24B4A' }}>
-                {c.value !== '—' ? (c.up ? '▲' : '▼') : ''} {c.change}
-              </span>
-            </div>
-            <i className="ti ti-chevron-right" style={S.rowChevron} />
-          </button>
-        ))}
-      </div>
-
-      {/* ⑤ 빅테크 뉴스 */}
-      {newsData.length > 0 && (
-        <div style={S.card}>
-          <div style={S.cardHeader}>
-            <span style={S.cardTitle}>빅테크 뉴스</span>
-            <span style={S.cardSub}>{newsData[0]?.date} 기준</span>
-          </div>
-          {newsData.map((item, i) => {
-            const expanded = expandedNews === i;
-            const color = companyColor(item.company);
-            return (
-              <div key={i} style={{ borderBottom: i < newsData.length - 1 ? '0.5px solid #151520' : 'none' }}>
-                <button
-                  style={{ ...S.listRow, flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}
-                  onClick={() => setExpandedNews(expanded ? null : i)}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 7, width: '100%' }}>
-                    <span style={{ ...S.newsBadge, background: color + '22', color }}>{item.company}</span>
-                    <span style={{ fontSize: 9, color: '#555', marginLeft: 'auto', flexShrink: 0 }}>{item.media}</span>
-                    <span style={{ fontSize: 9, color: '#444', flexShrink: 0 }}>{item.date}</span>
-                    <i className={`ti ti-chevron-${expanded ? 'up' : 'down'}`} style={{ fontSize: 10, color: '#444', flexShrink: 0 }} />
-                  </div>
-                  <span style={S.newsTitle}>{item.title}</span>
-                </button>
-                {expanded && item.summary && (
-                  <div style={S.newsSummary}>{item.summary}</div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      )}
-
+      <GaugeCard bbScore={bbScore} score={score} label={label} color={color} msg={msg} onOpen={() => setShowPanicBoom(true)} />
+      <IndicesCard indices={indices} marketLoading={marketLoading} onSelect={setSelectedInstrument} />
+      <FxCard fx={fx} onSelect={setSelectedInstrument} />
+      <CommoditiesCard commod={commod} onSelect={setSelectedInstrument} />
+      <NewsCard newsData={newsData} expandedNews={expandedNews} setExpandedNews={setExpandedNews} />
       <div style={{ height: 20 }} />
     </div>
   );
@@ -357,4 +420,8 @@ const S = {
   },
   msgEmoji: { fontSize: 20, flexShrink: 0, lineHeight: 1.6 },
   msgText: { fontSize: 12, color: '#ccc', lineHeight: 1.8, wordBreak: 'keep-all', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' },
+
+  // ── 데스크톱 전용 ──
+  deskWrap: { display: 'flex', flexDirection: 'column', gap: 16 },
+  deskGrid: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, alignItems: 'start' },
 };

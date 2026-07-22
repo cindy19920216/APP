@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { THEMES } from '@/data/companyData';
 import CompanyDetailScreen from './CompanyDetailScreen';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 // ─── 유틸 ─────────────────────────────────
 function fmt(v) { return (v > 0 ? '+' : '') + v.toFixed(1) + '%'; }
@@ -64,36 +65,11 @@ function StockRow({ stock, onSelect, isLast }) {
   );
 }
 
-// ─── 메인 ─────────────────────────────────
-export default function CompanyTab() {
-  const [selectedTheme,   setSelectedTheme]   = useState(null);
-  const [selectedCompany, setSelectedCompany] = useState(null);
-  const [selectedThemeName, setSelectedThemeName] = useState('');
-
-  if (selectedCompany) {
-    return (
-      <CompanyDetailScreen
-        stock={selectedCompany}
-        themeName={selectedThemeName}
-        onBack={() => setSelectedCompany(null)}
-      />
-    );
-  }
-
-  const handleThemeToggle = (key) => {
-    setSelectedTheme(prev => prev === key ? null : key);
-  };
-
-  const handleStockSelect = (stock, themeName) => {
-    setSelectedThemeName(themeName);
-    setSelectedCompany(stock);
-  };
-
+// ─── 테마 랭킹 (배너 + 테이블, 모바일/데스크톱 공용) ────
+function ThemeRanking({ selectedTheme, onThemeToggle, onStockSelect }) {
   const topTheme = THEMES[0];
-
   return (
-    <div className="tab-wrap">
-
+    <>
       {/* 상단 배너: 주목 테마 */}
       <div style={S.banner}>
         <div>
@@ -133,7 +109,7 @@ export default function CompanyTab() {
               <ThemeRow
                 theme={theme}
                 isActive={isActive}
-                onToggle={() => handleThemeToggle(theme.key)}
+                onToggle={() => onThemeToggle(theme.key)}
               />
 
               {/* 종목 리스트 아코디언 */}
@@ -152,7 +128,7 @@ export default function CompanyTab() {
                       key={stock.ticker}
                       stock={stock}
                       isLast={j === theme.stocks.length - 1}
-                      onSelect={(s) => handleStockSelect(s, theme.name)}
+                      onSelect={(s) => onStockSelect(s, theme.name)}
                     />
                   ))}
                 </div>
@@ -161,7 +137,70 @@ export default function CompanyTab() {
           );
         })}
       </div>
+    </>
+  );
+}
 
+// ─── 메인 ─────────────────────────────────
+export default function CompanyTab() {
+  const isDesktop = useIsDesktop();
+  const [selectedTheme,   setSelectedTheme]   = useState(null);
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedThemeName, setSelectedThemeName] = useState('');
+
+  const handleThemeToggle = (key) => {
+    setSelectedTheme(prev => prev === key ? null : key);
+  };
+
+  const handleStockSelect = (stock, themeName) => {
+    setSelectedThemeName(themeName);
+    setSelectedCompany(stock);
+  };
+
+  if (isDesktop) {
+    return (
+      <div style={S.deskSplit}>
+        <div style={S.deskList}>
+          <ThemeRanking
+            selectedTheme={selectedTheme}
+            onThemeToggle={handleThemeToggle}
+            onStockSelect={handleStockSelect}
+          />
+        </div>
+        <div style={S.deskDetail}>
+          {selectedCompany ? (
+            <div style={S.deskDetailInner}>
+              <CompanyDetailScreen
+                stock={selectedCompany}
+                themeName={selectedThemeName}
+                onBack={() => setSelectedCompany(null)}
+              />
+            </div>
+          ) : (
+            <div style={S.deskEmpty}>왼쪽 테마에서 종목을 선택하면 여기에 상세 정보가 표시됩니다.</div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (selectedCompany) {
+    return (
+      <CompanyDetailScreen
+        stock={selectedCompany}
+        themeName={selectedThemeName}
+        onBack={() => setSelectedCompany(null)}
+      />
+    );
+  }
+
+  return (
+    <div className="tab-wrap">
+      <ThemeRanking
+        selectedTheme={selectedTheme}
+        onThemeToggle={handleThemeToggle}
+        onStockSelect={handleStockSelect}
+      />
       <div style={{ height: 20 }} />
     </div>
   );
@@ -233,4 +272,17 @@ const S = {
   stockMeta: { fontSize: 8.5, color: '#3a3a4a', marginTop: 2 },
   stockReturns: { display: 'flex' },
   stockRet: { width: 44, fontSize: 10, fontWeight: 500, textAlign: 'right', flexShrink: 0 },
+
+  // ── 데스크톱 전용 ──
+  deskSplit: { display: 'flex', gap: 16, alignItems: 'flex-start' },
+  deskList: {
+    width: 460, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16,
+    maxHeight: 'calc(100vh - 200px)', overflowY: 'auto',
+  },
+  deskDetail: {
+    flex: 1, minWidth: 0, background: '#181820', borderRadius: 14,
+    border: '0.5px solid #1e1e28', maxHeight: 'calc(100vh - 200px)', overflow: 'hidden',
+  },
+  deskDetailInner: { position: 'relative', height: 'calc(100vh - 200px)' },
+  deskEmpty: { padding: '60px 20px', textAlign: 'center', color: '#444', fontSize: 12.5 },
 };

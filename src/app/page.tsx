@@ -8,6 +8,8 @@ import MarketTab from '@/components/redesign/MarketTab';
 import PortfolioTab from '@/components/redesign/PortfolioTab';
 import CompanyTab from '@/components/redesign/CompanyTab';
 import ScreenerScreen from '@/components/redesign/ScreenerScreen';
+import DesktopShell from '@/components/redesign/DesktopShell';
+import useIsDesktop from '@/hooks/useIsDesktop';
 // 자산현황 탭(AssetsTab)은 잠시 빼둠 — 나중에 다시 쓸 수 있어서 파일은 그대로 둠.
 // import AssetsTab from '@/components/redesign/AssetsTab';
 
@@ -101,6 +103,7 @@ function TreeIllustration() {
 }
 
 export default function App() {
+  const isDesktop = useIsDesktop();
   const [phase, setPhase]               = useState<Phase>(0);
   const [activeTab, setActiveTab]       = useState('market');
   const [screen, setScreen]             = useState('main');
@@ -137,6 +140,15 @@ export default function App() {
       default:          return null;
     }
   };
+
+  // ── 데스크톱 웹 대시보드 (스플래시 없이 바로 진입) ──────────────────
+  if (isDesktop) {
+    return (
+      <DesktopShell tabs={TABS} activeTab={activeTab} onTabChange={handleTabChange}>
+        {renderContent()}
+      </DesktopShell>
+    );
+  }
 
   // ── 스플래시 ───────────────────────────────────────────────────────
   if (phase < 2) {
