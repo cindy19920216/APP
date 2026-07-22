@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
+import IndicatorGuideScreen from './IndicatorGuideScreen';
 
 // ─── 유틸 ─────────────────────────────────
 function trendColor(t) {
@@ -16,6 +17,32 @@ function opinionColor(op) {
 function opinionLabel(op) {
   return op.split('(')[0].trim();
 }
+function formatMarketCap(v) {
+  if (v == null) return '-';
+  if (v >= 10000) return (v / 10000).toFixed(1) + '조';
+  return v.toLocaleString() + '억';
+}
+function fmtNum(v, dec = 1) {
+  return typeof v === 'number' ? v.toFixed(dec) : '-';
+}
+function fmtPrice(v) {
+  return typeof v === 'number' ? v.toLocaleString() : '-';
+}
+function elderColor(c) {
+  if (c === 'green') return '#1D9E75';
+  if (c === 'red') return '#E24B4A';
+  return '#7F77DD';
+}
+function elderLabel(c) {
+  if (c === 'green') return '강세(매수 가능)';
+  if (c === 'red') return '약세(신규 매수 자제)';
+  return '중립';
+}
+function chochLabel(c) {
+  if (c === 'bullish') return '상승 전환';
+  if (c === 'bearish') return '하락 전환';
+  return '미감지';
+}
 
 const FILTERS = [
   { key: 'all',  label: '전체' },
@@ -28,6 +55,20 @@ function matchesFilter(stock, key) {
   if (key === 'buy') return stock.entry_opinion.startsWith('매수');
   if (key === 'sell') return stock.entry_opinion.startsWith('매도');
   return !stock.entry_opinion.startsWith('매수') && !stock.entry_opinion.startsWith('매도');
+}
+
+// ─── 지표 그룹 섹션 (종목 상세용) ────────────
+function IndicatorSection({ title, cells }) {
+  return (
+    <div style={S.indSection}>
+      <div style={S.indSectionTitle}>{title}</div>
+      <div style={S.indSectionGrid}>
+        {cells.map(({ label, value }) => (
+          <DetailStat key={label} label={label} value={value} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 // ─── 종목 상세 (아코디언 인라인) ────────────
@@ -55,11 +96,57 @@ function StockDetail({ code, apiBase }) {
     <div style={S.detailWrap}>
       <div style={S.detailOpinion}>{detail.entry_opinion}</div>
 
-      <div style={S.detailGrid}>
-        <DetailStat label="종가" value={ind.close?.toLocaleString?.() ?? '-'} />
-        <DetailStat label="RSI" value={ind.rsi?.toFixed?.(1) ?? '-'} />
-        <DetailStat label="MACD Hist" value={ind.macd_hist?.toFixed?.(1) ?? '-'} />
-        <DetailStat label="엘더 임펄스" value={ind.elder_impulse ?? '-'} />
+      <IndicatorSection
+        title="추세"
+        cells={[
+          { label: 'MA5', value: fmtPrice(ind.ma5) },
+          { label: 'MA20', value: fmtPrice(ind.ma20) },
+          { label: 'MA60', value: fmtPrice(ind.ma60) },
+          { label: 'MACD Hist', value: fmtNum(ind.macd_hist) },
+        ]}
+      />
+      <IndicatorSection
+        title="모멘텀"
+        cells={[
+          { label: 'RSI', value: fmtNum(ind.rsi) },
+          { label: 'Stoch %K', value: fmtNum(ind.stoch_k) },
+          { label: 'Stoch %D', value: fmtNum(ind.stoch_d) },
+          { label: '매수우위비율', value: fmtNum(ind.buy_volume_ratio) + '%' },
+        ]}
+      />
+      <IndicatorSection
+        title="변동성"
+        cells={[
+          { label: 'BB 상단', value: fmtPrice(ind.bb_upper) },
+          { label: 'BB 하단', value: fmtPrice(ind.bb_lower) },
+          { label: 'ATR', value: fmtPrice(ind.atr) },
+          { label: '스퀴즈', value: ind.sqz_on ? 'ON' : 'OFF' },
+        ]}
+      />
+      <IndicatorSection
+        title="구조 · SMC"
+        cells={[
+          { label: '스윙 고점', value: fmtPrice(ind.swing_high) },
+          { label: '스윙 저점', value: fmtPrice(ind.swing_low) },
+          { label: 'Equilibrium', value: fmtPrice(ind.equilibrium) },
+          { label: 'CHoCH', value: chochLabel(ind.choch) },
+        ]}
+      />
+      <IndicatorSection
+        title="거래량 · 기타"
+        cells={[
+          { label: 'VWAP', value: fmtPrice(ind.vwap) },
+          { label: '돈치안 상단', value: fmtPrice(ind.donchian_upper) },
+          { label: '돈치안 하단', value: fmtPrice(ind.donchian_lower) },
+          { label: 'POC', value: fmtPrice(ind.poc) },
+        ]}
+      />
+
+      <div style={S.elderRow}>
+        <span style={S.elderLabelText}>엘더 임펄스</span>
+        <span style={{ ...S.elderBadge, color: elderColor(ind.elder_impulse), background: elderColor(ind.elder_impulse) + '18' }}>
+          {elderLabel(ind.elder_impulse)}
+        </span>
       </div>
 
       {chartUrl && !imgError && (
@@ -91,7 +178,7 @@ function StockRow({ stock, isOpen, onToggle, apiBase }) {
       <button style={S.stockRow} onClick={onToggle}>
         <div style={S.stockLeft}>
           <div style={S.stockName}>{stock.name}</div>
-          <div style={S.stockMeta}>{stock.code} · {stock.market}</div>
+          <div style={S.stockMeta}>{stock.code} · {stock.market} · 시총 {formatMarketCap(stock.market_cap_100m)}</div>
         </div>
         <span style={{ ...S.trendBadge, color: trendColor(stock.trend), borderColor: trendColor(stock.trend) + '40' }}>
           {stock.trend}
@@ -115,6 +202,7 @@ export default function ScreenerScreen() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
   const [openCode, setOpenCode] = useState(null);
+  const [showGuide, setShowGuide] = useState(false);
 
   useEffect(() => {
     fetch('/api/screener')
@@ -140,11 +228,17 @@ export default function ScreenerScreen() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return stocks.filter(s =>
-      matchesFilter(s, filter) &&
-      (q === '' || s.name.toLowerCase().includes(q) || s.code.includes(q))
-    );
+    return stocks
+      .filter(s =>
+        matchesFilter(s, filter) &&
+        (q === '' || s.name.toLowerCase().includes(q) || s.code.includes(q))
+      )
+      .sort((a, b) => (b.market_cap_100m ?? 0) - (a.market_cap_100m ?? 0));
   }, [stocks, filter, query]);
+
+  if (showGuide) {
+    return <IndicatorGuideScreen onBack={() => setShowGuide(false)} />;
+  }
 
   return (
     <div className="tab-wrap">
@@ -155,6 +249,12 @@ export default function ScreenerScreen() {
         </div>
         <div style={S.subtitle}>200종목 추세·모멘텀·진입의견</div>
       </div>
+
+      <button style={S.guideEntry} onClick={() => setShowGuide(true)}>
+        <i className="ti ti-info-circle" style={{ fontSize: 13, color: '#7F77DD' }} />
+        <span style={S.guideEntryText}>기술적 지표 알아보기</span>
+        <i className="ti ti-chevron-right" style={{ fontSize: 12, color: '#444', marginLeft: 'auto' }} />
+      </button>
 
       <div style={S.searchWrap}>
         <i className="ti ti-search" style={{ fontSize: 13, color: '#444' }} />
@@ -208,6 +308,13 @@ const S = {
   title: { fontSize: 16, fontWeight: 600, color: '#fff' },
   subtitle: { fontSize: 10, color: '#555', marginTop: 3 },
 
+  guideEntry: {
+    display: 'flex', alignItems: 'center', gap: 8,
+    padding: '10px 12px', background: '#181820', borderRadius: 10,
+    border: '0.5px solid #23232f', cursor: 'pointer', flexShrink: 0, width: '100%',
+  },
+  guideEntryText: { fontSize: 12, color: '#ccc', fontWeight: 500 },
+
   searchWrap: {
     padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8,
     background: '#181820', borderRadius: 10, flexShrink: 0,
@@ -236,12 +343,20 @@ const S = {
   trendBadge: { fontSize: 9.5, padding: '3px 7px', borderRadius: 999, border: '0.5px solid', flexShrink: 0 },
   opinionBadge: { fontSize: 9.5, padding: '3px 7px', borderRadius: 6, flexShrink: 0, whiteSpace: 'nowrap' },
 
-  detailWrap: { background: '#13131e', padding: '12px 14px 16px', borderTop: '0.5px solid #1e1e28' },
+  detailWrap: { background: '#13131e', padding: '12px 14px 16px', borderTop: '0.5px solid #1e1e28', display: 'flex', flexDirection: 'column', gap: 10 },
   detailLoading: { background: '#13131e', padding: '14px', fontSize: 11, color: '#555', borderTop: '0.5px solid #1e1e28' },
-  detailOpinion: { fontSize: 11.5, color: '#bbb', lineHeight: 1.5, marginBottom: 10 },
-  detailGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 10 },
+  detailOpinion: { fontSize: 11.5, color: '#bbb', lineHeight: 1.5 },
+
+  indSection: { display: 'flex', flexDirection: 'column', gap: 6 },
+  indSectionTitle: { fontSize: 9.5, color: '#444', fontWeight: 600, letterSpacing: '0.3px' },
+  indSectionGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 },
   statCell: { background: '#181820', borderRadius: 8, padding: '7px 6px', textAlign: 'center' },
   statLabel: { fontSize: 8, color: '#444', marginBottom: 3 },
   statValue: { fontSize: 11, color: '#ddd', fontWeight: 500 },
+
+  elderRow: { display: 'flex', alignItems: 'center', gap: 8, padding: '2px 0' },
+  elderLabelText: { fontSize: 9.5, color: '#444', fontWeight: 600 },
+  elderBadge: { fontSize: 10, padding: '3px 9px', borderRadius: 6, fontWeight: 500 },
+
   chartImg: { width: '100%', borderRadius: 8, display: 'block' },
 };
