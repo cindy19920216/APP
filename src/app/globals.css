@@ -145,6 +145,13 @@ body {
   gap: 10px;
   min-height: 0; /* Flexbox scrolling fix */
 }
+/* flex column의 자식이 overflow:hidden(카드 모서리 클리핑 등)이면 flex 스펙상
+   automatic minimum size가 0이 되어, 내용이 넘쳐도 스크롤되는 대신 자식이 찌그러져
+   내용이 잘려버린다(예: 종목/포트폴리오 목록 카드). 자식이 찌그러지지 않고 자기
+   본연의 높이를 유지해야 tab-wrap이 실제로 넘쳐서 스크롤이 걸린다. */
+.tab-wrap > * {
+  flex-shrink: 0;
+}
 
 /* ── 공통 스크롤바 스타일 (얇고 세련되게) ── */
 ::-webkit-scrollbar {
