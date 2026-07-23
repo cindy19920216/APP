@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 import requests
 
-API_KEY = os.getenv('FRED_API_KEY')
+API_KEY = (os.getenv('FRED_API_KEY') or '').strip()
 BASE_URL = 'https://api.stlouisfed.org/fred/series/observations'
 
 INDEX_DATA_DIR = Path(__file__).resolve().parents[2] / 'index-data'
@@ -59,7 +59,8 @@ def fetch_series(series_id: str) -> pd.DataFrame:
         'sort_order': 'asc',
         'limit':      100000,
     }, timeout=30)
-    res.raise_for_status()
+    if not res.ok:
+        raise RuntimeError(f'{series_id}: FRED API {res.status_code} — {res.text[:300]}')
     obs = res.json().get('observations', [])
     if not obs:
         raise RuntimeError(f'{series_id}: FRED에서 관측치를 받지 못함')
