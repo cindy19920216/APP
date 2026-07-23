@@ -142,6 +142,28 @@ API 응답은 1시간 캐시 (FRED 속도 제한 대응, 초당 2건 이하).
 
 > 파생 지표: 두 시리즈를 가공해 생성. 금 가격은 FRED 시리즈(GOLDAMGBD228NLBM) 비활성화로 인해 Yahoo Finance `GC=F`(COMEX 금 선물)로 대체.
 
+> **현재 구현 참고**: 위 설명은 초기 설계(`data_handler.py`, 14개 지표 실시간 조회) 기준이고,
+> 실제 `/api/boom-burst`는 `index-data/*.csv`(7개 핵심 지표 + `composite_index.csv`)를 읽어
+> 서빙한다. 계산 로직은 별도 저장소 `INDEX_PYTHON`(회귀 가중치 산출·분기 갱신)에서 관리하며,
+> 그중 지표 재수집 + 종합지수 재계산 부분만 `scripts/economic_index/update_index.py`로 옮겨와
+> 아래처럼 월 1회 자동 실행한다.
+
+### 종합지수 자동 갱신 (2026-07-23 추가)
+
+`.github/workflows/monthly_economic_index_update.yml`이 매달 5일 07:00 KST(cron
+`0 22 5 * *`)에 GitHub Actions에서 `scripts/economic_index/update_index.py`를 실행해
+FRED에서 7개 지표를 다시 받고 종합지수(JS Economic Cycle Index)를 재계산, 변경이 있으면
+`index-data/*.csv`를 commit + push한다(push=배포이므로 Vercel이 자동 재배포).
+
+- 회귀 가중치(`index-data/regression_weights.json`)는 건드리지 않음 — 분기 단위로
+  `INDEX_PYTHON/step2_regression.py`를 로컬에서 돌려 수동 갱신하는 게 원칙.
+- `step3_plot.py`의 `PROVISIONAL_INJECTIONS`(미발표 지표 잠정치 수동 입력)는 자동화 대상에서
+  제외 — 대신 "M-1 원칙"(7개 지표가 모두 공식 발표된 가장 최근 월까지만 계산)은 유지하므로,
+  종합지수가 실시간 대비 1~2개월 늦게 채워질 수 있음.
+- GitHub 저장소 시크릿 `FRED_API_KEY` 필요 (herencia-ta의 `RENDER_DEPLOY_HOOK`과 같은 패턴).
+- 수동으로 즉시 갱신하고 싶으면 Actions 탭에서 `JS Economic Cycle Index 월간 자동 갱신`
+  워크플로를 `workflow_dispatch`로 실행.
+
 ---
 
 ## API 엔드포인트
