@@ -49,30 +49,49 @@ FRED API 키는 https://fred.stlouisfed.org/docs/api/api_key.html 에서 무료 
 
 ## 화면 구성
 
+**2026-07-23부터 최상위 네비게이션이 "공부하기 / 투자하기" 2단 구조로 바뀌었다.**
+모바일은 상단에 두 섹션을 고르는 큰 버튼 2개 + 그 아래 선택된 섹션의 하위 탭바,
+데스크톱은 사이드바에 섹션 헤더로 그룹핑된 리스트(`DesktopShell.jsx`)로 표시된다.
+
 ```
 PinScreen (잠금 화면)
-└─ 메인 탭 네비게이션 (모바일: 하단/상단 탭바, 데스크톱: 좌측 사이드바)
-   ├─ 시장지표 탭      (MarketTab)
-   │   ├─ BOOM-BURST(JS Economic Cycle) 지수 카드 → PanicBoomScreen
-   │   │   └─ 각 세부 지표 → IndicatorDetailScreen (히스토리컬 차트)
-   │   ├─ 주요 지수 (KOSPI, KOSDAQ, S&P500, NASDAQ) → InstrumentChartScreen
-   │   ├─ 환율 (USD/KRW, JPY/KRW, CNY/KRW) → InstrumentChartScreen
-   │   └─ 원자재 (금, WTI, 은, BTC) → InstrumentChartScreen
-   │   (데스크톱: 지수/환율/원자재 3컬럼 그리드, 클릭 시 모달로 상세 표시)
-   ├─ 기술적 지표 탭   (ScreenerScreen) — KOSPI200 200종목 스크리너
-   │   ├─ 검색/필터(전체·매수관심·매도관심·관망), 시가총액 내림차순 정렬
-   │   ├─ "기술적 지표 알아보기" → IndicatorGuideScreen (지표 카테고리별 설명)
-   │   └─ 종목 상세(StockDetail) — herencia-ta API(`/api/stocks/{code}`,
-   │       `/api/stocks/{code}/history`)에서 데이터를 받아:
-   │       가격 헤더 → StockChart(인터랙티브 캔들차트: MA/BB/VWAP 오버레이,
-   │       거래량, RSI·MACD 토글, 기간 선택) → 핵심 지표 요약 → 자동 생성
-   │       한글 요약 문단 → "상세 지표"(접이식, raw 지표 전체)
-   │       (데스크톱: 차트 좌측 크게 + 요약 사이드바 우측 2단 레이아웃)
-   ├─ 포트폴리오 탭    (PortfolioTab)
-   │   (데스크톱: 스타일 랭킹 좌측 + 선택 스타일 종목 리스트 우측)
-   └─ 기업분석 탭      (CompanyTab)
-       └─ 기업 상세 → CompanyDetailScreen
-           (데스크톱: 테마/종목 리스트 좌측 + 상세 우측)
+└─ 메인 탭 네비게이션
+   │
+   ├─ 공부하기 (아직 초기 단계 — 주린이 대상 학습 콘텐츠)
+   │   ├─ Econ Idea       — 준비 중 (ComingSoonScreen)
+   │   ├─ Technical Idea  — IndicatorGuideScreen 재사용 (지표 카테고리별 설명, 완성)
+   │   └─ Stock Idea      — 준비 중 (ComingSoonScreen)
+   │
+   └─ 투자하기 (기존 4개 실전 탭)
+      ├─ 시장지표 탭      (MarketTab)
+      │   ├─ BOOM-BURST(JS Economic Cycle) 지수 카드 → PanicBoomScreen
+      │   │   └─ 각 세부 지표 → IndicatorDetailScreen (히스토리컬 차트)
+      │   ├─ 주요 지수 10개(S&P500·NASDAQ·다우·KOSPI·KOSDAQ·니케이225·DAX·
+      │   │   유로스톡스50·항셍·상해종합, 국가 국기 표시) → InstrumentChartScreen
+      │   ├─ 환율 10개(USD~SGD/KRW, 국기 표시) → InstrumentChartScreen
+      │   └─ 원자재(금·WTI·은·BTC, 금속/오일 톤 아이콘) → InstrumentChartScreen
+      │   (데스크톱: 지수/환율/원자재 3컬럼 그리드, 클릭 시 모달로 상세 표시)
+      │
+      │   InstrumentChartScreen: lightweight-charts 기반 TradingView 스타일
+      │   캔들차트(MA5/MA20/볼린저밴드/VWAP 오버레이, 거래량, RSI·MACD 토글,
+      │   1개월~1년 기간 선택) + 차트 아래 "기술적 분석 의견" 카드
+      │   (RSI·이동평균·MACD·볼린저밴드 4개 신호 점수화 → 매수 관심/매도 관심/관망
+      │   판정 + 초보자도 이해할 수 있는 지표별 근거 설명 문단)
+      │
+      ├─ 기술적 지표 탭   (ScreenerScreen) — KOSPI200 200종목 스크리너
+      │   ├─ 검색/필터(전체·매수관심·매도관심·관망), 시가총액 내림차순 정렬
+      │   ├─ "기술적 지표 알아보기" → IndicatorGuideScreen (지표 카테고리별 설명)
+      │   └─ 종목 상세(StockDetail) — herencia-ta API(`/api/stocks/{code}`,
+      │       `/api/stocks/{code}/history`)에서 데이터를 받아:
+      │       가격 헤더 → StockChart(인터랙티브 캔들차트: MA/BB/VWAP 오버레이,
+      │       거래량, RSI·MACD 토글, 기간 선택) → 핵심 지표 요약 → 자동 생성
+      │       한글 요약 문단 → "상세 지표"(접이식, raw 지표 전체)
+      │       (데스크톱: 차트 좌측 크게 + 요약 사이드바 우측 2단 레이아웃)
+      ├─ 포트폴리오 탭    (PortfolioTab)
+      │   (데스크톱: 스타일 랭킹 좌측 + 선택 스타일 종목 리스트 우측)
+      └─ 기업분석 탭      (CompanyTab)
+          └─ 기업 상세 → CompanyDetailScreen
+              (데스크톱: 테마/종목 리스트 좌측 + 상세 우측)
 
 자산현황 탭(AssetsTab)은 라우팅에서만 빠져 있고 파일은 보존 중 (나중에 재사용 가능).
 ```
@@ -176,7 +195,7 @@ FRED에서 7개 지표를 다시 받고 종합지수(JS Economic Cycle Index)를
 | GET | `/api/assets/[id]` | 자산 상세 |
 | GET | `/api/members` | 가족 구성원 목록 |
 | GET | `/api/tickers` | 티커 목록 |
-| GET | `/api/chart/[ticker]` | 종목 차트 데이터 |
+| GET | `/api/chart/[ticker]` | Yahoo Finance OHLCV + MA5/MA20/볼린저밴드/rolling VWAP/RSI/MACD 히스토그램 계산 결과 (InstrumentChartScreen용) |
 | GET | `/api/prices` | 가격 데이터 |
 | GET | `/api/transactions` | 거래 내역 |
 | GET | `/api/screener` | KOSPI200 스크리너 목록 프록시(30분 캐시) — 아래 herencia-ta 참고 |
@@ -213,15 +232,17 @@ src/
 │   └── page.tsx
 ├── components/
 │   └── redesign/
-│       ├── DesktopShell.jsx        # 데스크톱 셸 (좌측 사이드바 + 메인 영역)
+│       ├── DesktopShell.jsx        # 데스크톱 셸 — 공부하기/투자하기 그룹 사이드바 + 메인 영역
 │       ├── DesktopModal.jsx        # 데스크톱 전용 중앙 모달(보조 화면용)
-│       ├── MarketTab.jsx           # 시장지표 탭 (환율·지수·원자재)
+│       ├── ComingSoonScreen.jsx    # "공부하기" 준비중 탭 공통 화면 (Econ/Stock Idea)
+│       ├── MarketTab.jsx           # 시장지표 탭 (환율·지수 10개·원자재, 국기 아이콘)
 │       ├── PanicBoomScreen.jsx     # BOOM-BURST 상세 화면
 │       ├── IndicatorDetailScreen.jsx # 개별 지표 히스토리컬 차트
-│       ├── InstrumentChartScreen.jsx # 주가·환율·원자재 차트
+│       ├── InstrumentChartScreen.jsx # 지수·환율·원자재 TradingView 스타일 캔들차트 +
+│       │                            # RSI/MA/MACD/BB 기반 매수·매도·관망 의견 카드
 │       ├── ScreenerScreen.jsx      # 기술적 지표 탭 — KOSPI200 스크리너 + 종목 상세
 │       ├── StockChart.jsx          # 인터랙티브 캔들차트 (lightweight-charts)
-│       ├── IndicatorGuideScreen.jsx # 기술적 지표 설명 화면
+│       ├── IndicatorGuideScreen.jsx # 기술적 지표 설명 화면 (onBack 없으면 "Technical Idea" 탭으로 단독 사용)
 │       ├── PortfolioTab.jsx
 │       ├── AssetsTab.jsx           # 라우팅에서 빠짐(파일은 보존)
 │       ├── CompanyTab.jsx
@@ -239,3 +260,52 @@ src/
     ├── price-fetcher.ts
     └── types.ts
 ```
+
+---
+
+## 변경 이력
+
+### 2026-07-23
+- **JS Economic Cycle Index 월간 자동 갱신 파이프라인 추가** — 자세한 내용은 위
+  "BOOM-BURST 지수 → 종합지수 자동 갱신" 참고. `INDEX_PYTHON` 저장소의 계산 로직 중
+  지표 재수집 + 종합지수 재계산 부분을 `scripts/economic_index/update_index.py`로 옮겨와
+  GitHub Actions 월간 워크플로(`monthly_economic_index_update.yml`)로 자동화.
+  첫 수동 실행에서 FRED_API_KEY 시크릿 값에 트레일링 공백이 섞여 400 에러가 났던 것도
+  스크립트에 `.strip()` 방어 코드를 추가해 해결.
+- **시장지표 탭 — 주요 지수에 국기 아이콘 추가**
+  `MarketTab.jsx`에 `INDEX_FLAG_MAP`(지수명 → flagcdn 국가코드) 추가, 환율 카드가 쓰던
+  `FxFlag`를 범용 `Flag` 컴포넌트로 일반화해서 지수 카드에도 재사용.
+- **환율 CNY/KRW 누락 버그 수정** — Yahoo Finance가 `CNYKRW=X`에 대해 한동안 차트
+  시계열을 1개만 반환해 "최소 2개 데이터 필요" 로직에 걸려 응답에서 통째로 빠지고
+  있었음. `/api/market`의 `fetchChart()`가 시계열이 부족하면 `meta.regularMarketPrice`/
+  `chartPreviousClose`로 폴백하도록 수정 + 캐시 키를 `market-v4`→`market-v5`로 올려서
+  기존에 박혀있던 빈 응답 캐시 무효화.
+- **원자재 아이콘 색상 정리** — 원유(보라색 물방울→갈색/동색), 은(초록 메달→은색 코인),
+  BTC(금과 겹치던 주황→비트코인 공식 오렌지 `#F7931A`)로 교체. 금은 그대로 유지.
+- **주요 지수 3개 추가** — 다우존스(`^DJI`), 유로스톡스50(`^STOXX50E`), 상해종합
+  (`000001.SS`). `MarketTab.jsx`/`api/market/route.ts`/`InstrumentChartScreen.jsx`
+  세 곳의 심볼·국기·단위 매핑에 동시 반영, 총 10개 지수로 미국·유럽·아시아 커버.
+- **지수·환율·원자재 상세 차트를 TradingView 스타일로 전면 교체**
+  기존엔 종가만 있는 Chart.js 라인차트 + 드래그 범위바였는데, 기술적 지표 탭
+  (`StockChart.jsx`)과 동일한 lightweight-charts 캔들차트로 바꿈. `/api/chart/[ticker]`가
+  Yahoo Finance에서 OHLCV를 받아 MA5/MA20/볼린저밴드(20,2)/rolling VWAP(20)/RSI(14)/
+  MACD(12,26,9)까지 서버에서 계산해 내려주도록 확장. 거래량이 없는 심볼(FX)은 VWAP·
+  거래량 패널을 자동으로 숨김. 작업 중 발견한 React 콘솔 에러(`border`/`borderColor`
+  속성 충돌)를 이 화면과 `StockChart.jsx` 양쪽에서 같이 수정.
+- **차트 아래 기술적 분석 의견(매수/매도/관망) 추가** — RSI·이동평균(MA5/MA20)·MACD
+  히스토그램·볼린저밴드 4개 신호를 +1/-1로 점수화해 합산 2 이상이면 매수 관심, -2
+  이하면 매도 관심, 그 사이는 관망으로 판정. 종목 상세(기업분석)의 SMC 지지/저항
+  기반 판단과는 다른 단순 룰이라 구분되도록 명시. 지표별로 "지표가 뭔지 → 지금 값이
+  뭘 뜻하는지 → 그래서 어떤 신호인지" 순서로 초보자도 읽을 수 있는 문장을 붙임
+  (`rsiExplain`/`maExplain`/`macdExplain`/`bbExplain`).
+- **최상위 네비게이션을 "공부하기 / 투자하기" 2단 구조로 재편** — 주린이도 쉽게
+  접근할 수 있는 앱을 목표로, 기존 4개 탭(시장지표·기술적 지표·포트폴리오·기업분석)을
+  "투자하기" 아래로 묶고, "공부하기"에 Econ Idea / Technical Idea / Stock Idea 3개
+  하위 탭 신설. Technical Idea는 기존 `IndicatorGuideScreen`을 그대로 재사용(`onBack`
+  prop을 옵셔널로 바꿔 단독 탭으로도 쓸 수 있게 함), Econ/Stock Idea는 콘텐츠 준비 전이라
+  `ComingSoonScreen` 공통 컴포넌트로 "준비 중" 화면만 배치. 데스크톱은 사이드바에
+  섹션 헤더로 그룹핑(`DesktopShell.jsx` 재작성), 모바일은 상단 섹션 스위치 버튼 2개 +
+  하위 탭바 2단 구성(`globals.css`에 `.section-bar` 추가).
+  → 작업 중 데스크톱에서 절대위치(`position:absolute`) 오버레이 화면을 사이드바 없이
+  단독 탭으로 재사용하면 포지셔닝 컨텍스트를 잃고 사이드바를 덮어버리는 버그를 발견 —
+  `DesktopShell.jsx`의 `main` 영역에 `position: relative`를 추가해 해결.

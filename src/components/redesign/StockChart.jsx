@@ -207,7 +207,7 @@ const S = {
   pBtn: { fontSize: 10, padding: '3px 9px', borderRadius: 6, border: '0.5px solid #2a2a35', background: 'transparent', color: '#555', cursor: 'pointer' },
   pBtnActive: { background: '#252535', color: '#ccc', border: '0.5px solid #444' },
   toggleBtn: { fontSize: 10, padding: '3px 9px', borderRadius: 6, border: '0.5px solid #2a2a35', background: 'transparent', color: '#555', cursor: 'pointer' },
-  toggleBtnActive: { background: '#7F77DD20', borderColor: '#7F77DD', color: '#a29dff' },
+  toggleBtnActive: { background: '#7F77DD20', border: '0.5px solid #7F77DD', color: '#a29dff' },
   empty: { padding: '40px 0', textAlign: 'center', color: '#444', fontSize: 11.5 },
 
   tooltip: {

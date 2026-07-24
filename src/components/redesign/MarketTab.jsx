@@ -7,22 +7,38 @@ import DesktopModal from './DesktopModal';
 import useIsDesktop from '@/hooks/useIsDesktop';
 
 const FALLBACK_INDICES = [
-  { name: 'S&P500',    value: '—', change: '—', up: true },
-  { name: 'NASDAQ',    value: '—', change: '—', up: true },
-  { name: 'KOSPI',     value: '—', change: '—', up: true },
-  { name: 'KOSDAQ',    value: '—', change: '—', up: true },
-  { name: '니케이225', value: '—', change: '—', up: true },
-  { name: 'DAX',       value: '—', change: '—', up: true },
-  { name: '항셍',      value: '—', change: '—', up: true },
+  { name: 'S&P500',      value: '—', change: '—', up: true },
+  { name: 'NASDAQ',      value: '—', change: '—', up: true },
+  { name: '다우',        value: '—', change: '—', up: true },
+  { name: 'KOSPI',       value: '—', change: '—', up: true },
+  { name: 'KOSDAQ',      value: '—', change: '—', up: true },
+  { name: '니케이225',   value: '—', change: '—', up: true },
+  { name: 'DAX',         value: '—', change: '—', up: true },
+  { name: '유로스톡스50', value: '—', change: '—', up: true },
+  { name: '항셍',        value: '—', change: '—', up: true },
+  { name: '상해종합',    value: '—', change: '—', up: true },
 ];
 const FLAG_MAP = {
   USD: 'us', EUR: 'eu', JPY: 'jp', GBP: 'gb', CNY: 'cn',
   AUD: 'au', CAD: 'ca', CHF: 'ch', HKD: 'hk', SGD: 'sg',
 };
 
-function FxFlag({ pair, emoji }) {
+// 주요 지수 → 국가 (flagcdn 코드 + 이모지 fallback)
+const INDEX_FLAG_MAP = {
+  'S&P500':      { code: 'us', emoji: '🇺🇸' },
+  'NASDAQ':      { code: 'us', emoji: '🇺🇸' },
+  '다우':        { code: 'us', emoji: '🇺🇸' },
+  'KOSPI':       { code: 'kr', emoji: '🇰🇷' },
+  'KOSDAQ':      { code: 'kr', emoji: '🇰🇷' },
+  '니케이225':   { code: 'jp', emoji: '🇯🇵' },
+  'DAX':         { code: 'de', emoji: '🇩🇪' },
+  '유로스톡스50': { code: 'eu', emoji: '🇪🇺' },
+  '항셍':        { code: 'hk', emoji: '🇭🇰' },
+  '상해종합':    { code: 'cn', emoji: '🇨🇳' },
+};
+
+function Flag({ code, emoji, alt }) {
   const [failed, setFailed] = React.useState(false);
-  const code = FLAG_MAP[pair?.slice(0, 3)];
   if (!code || failed) {
     return <span style={{ fontSize: 20, lineHeight: 1, flexShrink: 0 }}>{emoji}</span>;
   }
@@ -30,11 +46,16 @@ function FxFlag({ pair, emoji }) {
     <img
       src={`https://flagcdn.com/w40/${code}.png`}
       srcSet={`https://flagcdn.com/w80/${code}.png 2x`}
-      alt={pair?.slice(0, 3)}
+      alt={alt}
       style={{ width: 24, height: 16, objectFit: 'cover', borderRadius: 2, verticalAlign: 'middle', flexShrink: 0 }}
       onError={() => setFailed(true)}
     />
   );
+}
+
+function FxFlag({ pair, emoji }) {
+  const code = FLAG_MAP[pair?.slice(0, 3)];
+  return <Flag code={code} emoji={emoji} alt={pair?.slice(0, 3)} />;
 }
 
 const FALLBACK_FX = [
@@ -51,9 +72,9 @@ const FALLBACK_FX = [
 ];
 const FALLBACK_COMMODITIES = [
   { name: '금',        value: '—', change: '—', up: true, icon: 'ti-coin',             bg: '#2a2010', ic: '#EF9F27' },
-  { name: '원유(WTI)', value: '—', change: '—', up: true, icon: 'ti-droplet-filled',   bg: '#1a1a2a', ic: '#7F77DD' },
-  { name: '은',        value: '—', change: '—', up: true, icon: 'ti-medal',            bg: '#1e2626', ic: '#5DCAA5' },
-  { name: 'BTC',       value: '—', change: '—', up: true, icon: 'ti-currency-bitcoin', bg: '#251a10', ic: '#EF9F27' },
+  { name: '원유(WTI)', value: '—', change: '—', up: true, icon: 'ti-droplet-filled',   bg: '#241a10', ic: '#B87333' },
+  { name: '은',        value: '—', change: '—', up: true, icon: 'ti-coin',             bg: '#202024', ic: '#C0C0C0' },
+  { name: 'BTC',       value: '—', change: '—', up: true, icon: 'ti-currency-bitcoin', bg: '#2b1c0a', ic: '#F7931A' },
 ];
 
 // COMPOSITE_BOUNDS = [31, 47, 59, 68]
@@ -151,12 +172,17 @@ function IndicesCard({ indices, marketLoading, onSelect }) {
         <span style={S.cardTitle}>주요 지수</span>
         <span style={S.cardSub}>{marketLoading ? '로딩 중…' : '15분 지연 · 탭해서 차트 보기'}</span>
       </div>
-      {indices.map((idx, i) => (
+      {indices.map((idx, i) => {
+        const flag = INDEX_FLAG_MAP[idx.name];
+        return (
         <button
           key={i}
           style={{ ...S.listRow, borderBottom: i < indices.length - 1 ? '0.5px solid #151520' : 'none' }}
           onClick={() => onSelect({ key: idx.name, value: idx.value, change: idx.change })}
         >
+          {flag && (
+            <span style={S.fxFlag}><Flag code={flag.code} emoji={flag.emoji} alt={idx.name} /></span>
+          )}
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={S.listName}>{idx.name}</div>
           </div>
@@ -168,7 +194,8 @@ function IndicesCard({ indices, marketLoading, onSelect }) {
           </div>
           <i className="ti ti-chevron-right" style={S.rowChevron} />
         </button>
-      ))}
+        );
+      })}
     </div>
   );
 }

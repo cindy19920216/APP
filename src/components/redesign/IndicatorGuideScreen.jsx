@@ -104,9 +104,11 @@ export default function IndicatorGuideScreen({ onBack }) {
   return (
     <div style={S.wrap}>
       <div style={S.header}>
-        <button style={S.backBtn} onClick={onBack}>
-          <i className="ti ti-chevron-left" /> 스크리너
-        </button>
+        {onBack ? (
+          <button style={S.backBtn} onClick={onBack}>
+            <i className="ti ti-chevron-left" /> 스크리너
+          </button>
+        ) : <div style={{ width: 64 }} />}
         <span style={S.headerTitle}>기술적 지표 알아보기</span>
         <div style={{ width: 64 }} />
       </div>

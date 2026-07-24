@@ -121,6 +121,36 @@ body {
   border-bottom: 2px solid #534AB7;
 }
 
+/* ── 섹션 스위치 (공부하기 / 투자하기) ── */
+.section-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 14px 10px;
+  flex-shrink: 0;
+}
+.section-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #777;
+  background: #14141c;
+  border: 0.5px solid #22222e;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.section-btn i { font-size: 14px; }
+.section-btn.active {
+  background: linear-gradient(135deg, #4a41a8 0%, #7F77DD 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
 /* ── 콘텐츠 영역 ── */
 .content-area {
   flex: 1;

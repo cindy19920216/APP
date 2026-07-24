@@ -2,14 +2,7 @@
 
 import React from 'react';
 
-const NAV_ICONS = {
-  market: 'ti-chart-line',
-  technical: 'ti-list-search',
-  portfolio: 'ti-briefcase',
-  company: 'ti-building-skyscraper',
-};
-
-export default function DesktopShell({ tabs, activeTab, onTabChange, children }) {
+export default function DesktopShell({ sections, activeTab, onTabChange, children }) {
   return (
     <div style={S.wrap}>
       <aside style={S.sidebar}>
@@ -22,15 +15,23 @@ export default function DesktopShell({ tabs, activeTab, onTabChange, children })
         </div>
 
         <nav style={S.nav}>
-          {tabs.map(t => (
-            <button
-              key={t.key}
-              style={{ ...S.navBtn, ...(activeTab === t.key ? S.navBtnActive : {}) }}
-              onClick={() => onTabChange(t.key)}
-            >
-              <i className={`ti ${NAV_ICONS[t.key] ?? 'ti-circle'}`} style={{ fontSize: 15 }} />
-              {t.label}
-            </button>
+          {sections.map((section, si) => (
+            <div key={section.key} style={{ ...S.navGroup, marginTop: si === 0 ? 0 : 18 }}>
+              <div style={S.navGroupLabel}>
+                <i className={`ti ${section.icon}`} style={{ fontSize: 12 }} />
+                {section.label}
+              </div>
+              {section.tabs.map(t => (
+                <button
+                  key={t.key}
+                  style={{ ...S.navBtn, ...(activeTab === t.key ? S.navBtnActive : {}) }}
+                  onClick={() => onTabChange(t.key)}
+                >
+                  <i className={`ti ${t.icon}`} style={{ fontSize: 15 }} />
+                  {t.label}
+                </button>
+              ))}
+            </div>
           ))}
         </nav>
 
@@ -58,7 +59,13 @@ const S = {
   },
   liveDot: { width: 6, height: 6, borderRadius: '50%', background: '#1D9E75' },
 
-  nav: { display: 'flex', flexDirection: 'column', gap: 2, flex: 1 },
+  nav: { display: 'flex', flexDirection: 'column', flex: 1 },
+  navGroup: { display: 'flex', flexDirection: 'column', gap: 2 },
+  navGroupLabel: {
+    display: 'flex', alignItems: 'center', gap: 6,
+    fontSize: 10.5, fontWeight: 600, color: '#444', letterSpacing: '0.4px',
+    padding: '0 12px', marginBottom: 6, textTransform: 'uppercase',
+  },
   navBtn: {
     display: 'flex', alignItems: 'center', gap: 10,
     padding: '10px 12px', borderRadius: 9, border: 'none', background: 'transparent',
@@ -69,5 +76,5 @@ const S = {
 
   sidebarFooter: { fontSize: 10, color: '#2a2a35', padding: '0 6px' },
 
-  main: { flex: 1, minWidth: 0, padding: '28px 36px 60px', maxWidth: 1400, margin: '0 auto', width: '100%' },
+  main: { flex: 1, minWidth: 0, padding: '28px 36px 60px', maxWidth: 1400, margin: '0 auto', width: '100%', position: 'relative' },
 };
