@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 interface AiDoctorSectionProps {
   initialStockName?: string;
@@ -13,6 +14,7 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
   initialPrice = 75000,
   initialTechnicals = { alignment: '정배열', rsi: 58, support: 71000, resistance: 79000 },
 }) => {
+  const isDesktop = useIsDesktop();
   const [stockName, setStockName] = useState<string>(initialStockName);
   const [timeframe, setTimeframe] = useState<string>(initialTimeframe);
   const [currentPrice, setCurrentPrice] = useState<number>(initialPrice);
@@ -57,17 +59,19 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
 
   return (
     <div style={S.wrap}>
-      <div style={S.header}>
+      <div style={{ ...S.header, padding: isDesktop ? '18px 22px' : '14px 16px' }}>
         <div style={S.titleRow}>
-          <i className="ti ti-robot" style={{ color: '#7F77DD', fontSize: 17 }} />
-          <span style={S.title}>실시간 AI 차트 진단 &amp; 멘토링</span>
+          <i className="ti ti-robot" style={{ color: '#7F77DD', fontSize: isDesktop ? 17 : 15 }} />
+          <span style={{ ...S.title, fontSize: isDesktop ? 20 : 16 }}>실시간 AI 차트 진단 &amp; 멘토링</span>
         </div>
-        <div style={S.subtitle}>
-          관심 있는 종목이나 공부 중인 차트 시나리오의 지표 상태를 입력하고, AI 닥터에게 쉽고 정밀한 기술적 진단을 받아보세요.
-        </div>
+        {isDesktop && (
+          <div style={S.subtitle}>
+            관심 있는 종목이나 공부 중인 차트 시나리오의 지표 상태를 입력하고, AI 닥터에게 쉽고 정밀한 기술적 진단을 받아보세요.
+          </div>
+        )}
       </div>
 
-      <div style={S.card}>
+      <div style={{ ...S.card, padding: isDesktop ? 22 : 16 }}>
         <div style={S.cardHeadRow}>
           <i className="ti ti-message-2" style={{ fontSize: 15, color: '#eee' }} />
           <span style={S.cardHeadText}>진단받을 종목 및 지표 정보 입력</span>
@@ -103,16 +107,16 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
           </div>
         </div>
 
-        <div style={S.askRow}>
+        <div style={isDesktop ? S.askRow : S.askRowM}>
           <input
             type="text"
             value={userQuestion}
             onChange={(e) => setUserQuestion(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAskAi()}
             placeholder="예: 20일 이평선을 뚫고 올라왔는데 거래량이 적어서 불안합니다. 어떻게 판단해야 할까요?"
-            style={{ ...S.input, flex: 1 }}
+            style={isDesktop ? { ...S.input, flex: 1 } : S.input}
           />
-          <button style={S.ctaButton} onClick={() => handleAskAi()} disabled={loading || !userQuestion.trim()}>
+          <button style={isDesktop ? S.ctaButton : S.ctaButtonM} onClick={() => handleAskAi()} disabled={loading || !userQuestion.trim()}>
             <i className={`ti ${loading ? 'ti-loader-2' : 'ti-send'}`} style={{ fontSize: 14 }} />
             <span>분석 요청</span>
           </button>
@@ -127,7 +131,7 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
       )}
 
       {aiResponse && (
-        <div style={S.responseCard}>
+        <div style={{ ...S.responseCard, padding: isDesktop ? 22 : 16 }}>
           <div style={S.responseHead}>
             <i className="ti ti-sparkles" style={{ fontSize: 16, color: '#a29dff' }} />
             <span>AI 차트 닥터의 전문 기술적 진단 보고서</span>
@@ -162,7 +166,9 @@ const S: Record<string, React.CSSProperties> = {
   quickChip: { padding: '7px 12px', borderRadius: 999, background: '#13131e', border: '0.5px solid #23232f', color: '#ccc', fontSize: 11, cursor: 'pointer' },
 
   askRow: { display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 },
+  askRowM: { display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 },
   ctaButton: { display: 'flex', alignItems: 'center', gap: 6, padding: '10px 18px', borderRadius: 10, background: '#7F77DD', color: '#fff', fontSize: 12.5, fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' },
+  ctaButtonM: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, width: '100%', padding: '12px 0', borderRadius: 10, background: '#7F77DD', color: '#fff', fontSize: 13, fontWeight: 600, border: 'none', cursor: 'pointer' },
 
   errorBox: { display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', borderRadius: 10, background: '#E24B4A14', border: '0.5px solid #E24B4A40', color: '#E24B4A', fontSize: 12 },
 

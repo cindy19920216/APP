@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { OX_QUIZZES, PRACTICE_SCENARIOS } from './data/quizData';
 import { QuizItem, PracticeScenario, IndicatorSettings, StockDataPoint } from './types';
 import { ChartCanvas } from './ChartCanvas';
+import useIsDesktop from '@/hooks/useIsDesktop';
 
 const DIFFICULTIES: { id: 'ALL' | '초급' | '중급' | '고급'; label: string }[] = [
   { id: 'ALL', label: '전체' },
@@ -23,6 +24,7 @@ const QUIZ_CHART_SETTINGS: IndicatorSettings = {
 };
 
 export const QuizTrainingSection: React.FC = () => {
+  const isDesktop = useIsDesktop();
   const [activeTab, setActiveTab] = useState<'OX' | 'SIMULATION'>('OX');
 
   // OX Quiz State
@@ -119,10 +121,10 @@ export const QuizTrainingSection: React.FC = () => {
       <div style={S.header}>
         <div>
           <div style={S.titleRow}>
-            <i className="ti ti-target-arrow" style={{ color: '#7F77DD', fontSize: 17 }} />
-            <span style={S.title}>{activeTab === 'OX' ? '차트 지표 핵심 OX 퀴즈' : '실전 차트 시뮬레이터'}</span>
+            <i className="ti ti-target-arrow" style={{ color: '#7F77DD', fontSize: isDesktop ? 17 : 15 }} />
+            <span style={{ ...S.title, fontSize: isDesktop ? 20 : 16 }}>{activeTab === 'OX' ? '차트 지표 핵심 OX 퀴즈' : '실전 차트 시뮬레이터'}</span>
           </div>
-          <div style={S.subtitle}>배운 지표를 문제와 실전 시나리오로 바로 점검해보세요.</div>
+          {isDesktop && <div style={S.subtitle}>배운 지표를 문제와 실전 시나리오로 바로 점검해보세요.</div>}
         </div>
 
         <div style={S.segmented}>
@@ -156,7 +158,7 @@ export const QuizTrainingSection: React.FC = () => {
             ))}
           </div>
 
-        <div style={{ ...S.card, maxWidth: 720, margin: '0 auto', width: '100%' }}>
+        <div style={{ ...S.card, maxWidth: 720, margin: '0 auto', width: '100%', padding: isDesktop ? 22 : 16 }}>
           {!quizFinished ? (
             <>
               <div style={S.progressRow}>
@@ -179,8 +181,8 @@ export const QuizTrainingSection: React.FC = () => {
                       <ChartCanvas
                         data={quizChartData}
                         settings={QUIZ_CHART_SETTINGS}
-                        height={420}
-                        volumeHeight={36}
+                        height={isDesktop ? 420 : 320}
+                        volumeHeight={isDesktop ? 36 : 28}
                         currencyUnit={currentQuiz.chart.market === 'KOSPI' ? '원' : '$'}
                       />
                       <div style={S.chartCaption}>
@@ -283,11 +285,11 @@ export const QuizTrainingSection: React.FC = () => {
             ))}
           </div>
 
-          <div style={S.card}>
+          <div style={{ ...S.card, padding: isDesktop ? 22 : 16 }}>
             <div style={S.scenarioHead}>
               <div>
                 <span style={S.badge}>레벨 · {currentScenario.difficulty}</span>
-                <div style={{ ...S.detailTitle, marginTop: 8 }}>{currentScenario.title}</div>
+                <div style={{ ...S.detailTitle, fontSize: isDesktop ? 18 : 15, marginTop: 8 }}>{currentScenario.title}</div>
               </div>
               <span style={S.detailMeta}>
                 {!isRevealed ? `T일 시점까지 차트 공개 중 (${currentScenario.revealIndex}일)` : '전체 미래 결과 공개됨'}
@@ -298,7 +300,8 @@ export const QuizTrainingSection: React.FC = () => {
               <ChartCanvas
                 data={currentScenario.dataPoints}
                 settings={simulationSettings}
-                height={420}
+                height={isDesktop ? 420 : 320}
+                volumeHeight={isDesktop ? 75 : 40}
                 highlightIndex={!isRevealed ? currentScenario.revealIndex : undefined}
                 currencyUnit={currentScenario.ticker.includes('.K') ? '원' : '$'}
               />
