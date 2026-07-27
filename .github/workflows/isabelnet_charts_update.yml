@@ -22,17 +22,19 @@ jobs:
       - name: 의존성 설치
         run: pip install -r scripts/isabelnet_charts/requirements.txt
 
-      - name: ISABELNET 블로그 최신 차트 5개 수집
+      - name: ISABELNET 블로그 최신 차트 5개 수집 + 한글 번역
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/isabelnet_charts/fetch_charts.py
 
       - name: 변경사항 있으면 commit + push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/isabelnet-charts public/data/isabelnet_charts.json
+          git add public/isabelnet-charts public/data/isabelnet_charts_history.json
           if git diff --cached --quiet; then
-            echo "변경된 내용 없음, 커밋 생략"
+            echo "변경된 내용 없음(새 페이지 없음), 커밋 생략"
           else
-            git commit -m "isabelnet: 오늘의 차트 $(date +'%Y-%m-%d') (자동)"
+            git commit -m "isabelnet: 오늘의 차트 $(TZ=Asia/Seoul date +'%Y-%m-%d') (자동)"
             git push
           fi

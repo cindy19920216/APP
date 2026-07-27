@@ -293,6 +293,29 @@ src/
   ISABELNET 블로그에서 새 포스팅 5건(2026-07-24자)을 정상 수집해
   `isabelnet: 오늘의 차트 2026-07-27 (자동)` 커밋으로 push되는 것까지 확인.
   매일 06:30 KST 정기 실행도 이 워크플로가 그대로 수행함.
+- **Econ Idea 한글 자동번역 추가 (Gemini)**
+  `fetch_charts.py`에 `translate_posts()` 추가 — `GEMINI_API_KEY`가 있으면
+  5개 포스팅의 title/desc를 한 번의 호출로 일괄 번역해 titleKo/descKo를 채움
+  (앱에서 쓰던 것과 동일 모델 `gemini-3.1-flash-lite`). 키 미설정/호출 실패 시
+  예외를 잡아 null로 남기고 차트 수집 자체는 계속 진행 (프론트는 null이면 원문 폴백).
+  GitHub Actions Secrets에 `GEMINI_API_KEY` 등록 필요 (Vercel 환경변수와는 별개).
+- **잘린 설명(desc) 문제 수정 — 블로그 목록 페이지 요약이 워드프레스에 의해 중간에서 잘림**
+  `.post-excerpt`는 워드프레스가 자동으로 일정 길이에서 끊어(…) 문장이 중간에
+  끝나던 문제 발견. 개별 포스트 페이지를 확인해보니 실제 캡션은 원래 1~2문장으로
+  짧고 "Image: 출처" 문단 앞까지만 있음(그 이후 본문 없음 확인) — `fetch_full_desc()`를
+  추가해 목록 페이지 요약 대신 개별 포스트 페이지에서 캡션 전체를 가져오도록 변경.
+  포스트 본문 전체를 가져오지 않는다는 기존 라이선스 제약은 그대로 유지됨.
+- **하루 5개 차트를 페이지로 누적 보관 (기존: 매일 덮어쓰기 → 최신 1묶음만 존재)**
+  `public/data/isabelnet_charts.json`(단일 파일, 매일 덮어씀) 방식을
+  `public/data/isabelnet_charts_history.json`(하루치 페이지의 배열, 최신이 index 0)로
+  변경. 이미지도 `public/isabelnet-charts/{n}.png` 평면 구조 대신
+  `public/isabelnet-charts/{runDate}/{n}.png`로 날짜별 폴더에 저장.
+  ISABELNET 블로그가 매일 새 글을 올리진 않으므로, 오늘 수집한 5개가 직전 페이지와
+  sourceUrl 기준으로 완전히 같으면 새 페이지를 만들지 않고 조용히 종료(중복 페이지
+  방지). 페이지 수는 `MAX_HISTORY_ENTRIES=14`로 제한하고 초과분은 오래된 페이지부터
+  이미지 폴더째 삭제. `EconIdeaScreen.jsx`에 페이지네이션(◀/▶, `n / 총페이지`) 추가 —
+  1페이지가 최신이고 숫자가 커질수록 과거. 기존 `isabelnet_charts.json`과 평면 png
+  5장은 새 구조로 완전히 대체되어 삭제.
 
 ### 2026-07-23
 - **JS Economic Cycle Index 월간 자동 갱신 파이프라인 추가** — 자세한 내용은 위
