@@ -58,8 +58,10 @@ PinScreen (잠금 화면)
 └─ 메인 탭 네비게이션
    │
    ├─ 공부하기 (아직 초기 단계 — 주린이 대상 학습 콘텐츠)
-   │   ├─ Econ Idea       — 준비 중 (ComingSoonScreen)
-   │   ├─ Technical Idea  — IndicatorGuideScreen 재사용 (지표 카테고리별 설명, 완성)
+   │   ├─ Econ Idea       — EconIdeaScreen. ISABELNET 제휴 차트 5개를 매일 자동
+   │   │                    수집(06:30 KST GitHub Actions)해 "오늘의 차트"로 표시,
+   │   │                    데스크톱은 2열 그리드·모바일은 1열
+   │   ├─ Technical Idea  — TechnicalChartMaster (이론/퀴즈/구루/AI 닥터 섹션)
    │   └─ Stock Idea      — 준비 중 (ComingSoonScreen)
    │
    └─ 투자하기 (기존 4개 실전 탭)
@@ -264,6 +266,33 @@ src/
 ---
 
 ## 변경 이력
+
+### 2026-07-27
+- **Econ Idea ISABELNET 차트 자동갱신 — 실제로는 한 번도 커밋되지 않았던 문제 발견 및 해결**
+  지난주 금요일(2026-07-24)에 로컬에서 스크래퍼(`scripts/isabelnet_charts/fetch_charts.py`)·
+  일일 GitHub Actions 워크플로(`.github/workflows/isabelnet_charts_update.yml`)·
+  `EconIdeaScreen.jsx`·수집 데이터(`public/data/isabelnet_charts.json`,
+  `public/isabelnet-charts/*.png`)를 모두 만들어뒀지만, `git status`로 확인해보니 네
+  파일 전부 untracked 상태였음 — 즉 GitHub에 push된 적이 없어서 Actions에 워크플로
+  자체가 등록되지 않았고, 그래서 "자동갱신 설정했는데 왜 안 도나" 의문이 있었음.
+  → 커밋 대상을 검토하는 과정에서 `page.tsx`에 Econ Idea 라우팅과 함께 그동안 커밋
+  안 된 다른 로컬 작업(포트폴리오 탭 → Sentiment Indicator, Technical Idea →
+  Technical Chart Master/AI Doctor·Quiz·Guru 섹션, `/api/chart-ai` Gemini 연동)도
+  뒤엉켜 있는 걸 발견해 사용자 확인 후 함께 커밋.
+  → 커밋 준비 중 `.gitignore`의 `data/`, `charts/` 규칙에 루트 앵커(`/`)가 빠져 있어
+  `src/components/redesign/technical-idea/data/*.ts` 소스 파일 5개가 의도치 않게
+  전부 무시되고 있던 버그도 함께 발견 — `/data/`, `/charts/`로 고쳐서 해결
+  (안 고쳤으면 push는 되지만 Vercel 빌드가 import 에러로 깨졌을 것).
+  Telegram 봇 로그, 뉴스 스크래핑 xlsx 등 이번 작업과 무관한 미검토 항목은 커밋에서 제외.
+- **Econ Idea 차트 레이아웃을 세로 1열 → 2열 그리드(2x2)로 변경**
+  `EconIdeaScreen.jsx`가 `useIsDesktop()` 훅으로 데스크톱(1024px 이상)에서는
+  `display:grid; gridTemplateColumns: repeat(2,1fr)`, 모바일은 기존처럼 세로 1열을
+  쓰도록 분기.
+- **GitHub Actions 워크플로 수동 실행(`workflow_dispatch`)으로 end-to-end 검증**
+  push 직후 Actions 탭에서 `ISABELNET 오늘의 차트 일일 자동 갱신`을 수동 실행 —
+  ISABELNET 블로그에서 새 포스팅 5건(2026-07-24자)을 정상 수집해
+  `isabelnet: 오늘의 차트 2026-07-27 (자동)` 커밋으로 push되는 것까지 확인.
+  매일 06:30 KST 정기 실행도 이 워크플로가 그대로 수행함.
 
 ### 2026-07-23
 - **JS Economic Cycle Index 월간 자동 갱신 파이프라인 추가** — 자세한 내용은 위
