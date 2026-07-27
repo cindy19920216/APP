@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-07-28",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "The Greed and Fear Index fell to 69.05, and with the S&P 500 now below its 50-day moving average, near-term downside risk has increased.",
+        "descKo": "공포·탐욕 지수가 69.05로 하락한 가운데, S&P 500 지수가 50일 이동평균선을 하회하면서 단기적인 하방 리스크가 커지고 있다.",
+        "date": "2026-07-27",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-07-28/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Index Performance – S&P 500, Nasdaq 100, Russell 2000, Mag 7",
+        "titleKo": "지수 성과 – S&P 500, 나스닥 100, 러셀 2000, 매그니피센트 7",
+        "desc": "Investors are still rotating out of mega-cap tech. Since late October 2025, the Magnificent Seven have underperformed sharply, while the broader market has proved far more resilient.",
+        "descKo": "투자자들의 대형 기술주 이탈 흐름이 지속되고 있다. 2025년 10월 말 이후 매그니피센트 7의 성과는 크게 부진한 반면, 시장 전반은 훨씬 더 강한 회복력을 보이고 있다.",
+        "date": "2026-07-27",
+        "sourceUrl": "https://www.isabelnet.com/performance-fang-index-vs-sp-500-and-u-s-banks/",
+        "image": "/isabelnet-charts/2026-07-28/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders are turning more cautious as the Insider Transactions Ratio slips back into bearish territory, with little sign of buying interest.",
+        "descKo": "내부자 거래 비율이 약세 영역으로 다시 진입하고 매수세가 거의 포착되지 않으면서 기업 내부자들의 경계심이 높아지고 있다.",
+        "date": "2026-07-27",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-07-28/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 목표 주가",
+        "desc": "Goldman Sachs continues to see steady earnings growth as the driver behind a 17% climb in the S&P 500 to 8,000 in 2026, though volatility is likely to stick around.",
+        "descKo": "골드만삭스는 꾸준한 이익 성장이 2026년 S&P 500 지수를 8,000선까지 17% 상승시키는 원동력이 될 것으로 보고 있으나, 변동성은 여전할 것으로 전망된다.",
+        "date": "2026-07-27",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-07-28/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Oil Price Fair Value",
+        "titleKo": "국제 유가 적정 가치",
+        "desc": "Oil is trading more than 50% above its estimate of medium-term fair value. Outside the 2022 shock peak, the market has rarely looked this stretched, leaving plenty of room for a pullback if conditions normalize.",
+        "descKo": "현재 유가는 중기적 적정 가치 추정치보다 50% 이상 높은 수준에서 거래되고 있다. 2022년의 급등기를 제외하면 시장이 이처럼 과열된 경우는 드물었으며, 상황이 정상화될 경우 조정의 여지가 크다.",
+        "date": "2026-07-27",
+        "sourceUrl": "https://www.isabelnet.com/wti-crude-oil-price-and-fitted-oil-price/",
+        "image": "/isabelnet-charts/2026-07-28/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-07-27",
     "charts": [
       {
