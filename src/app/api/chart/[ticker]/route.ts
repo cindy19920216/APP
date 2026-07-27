@@ -12,8 +12,16 @@ const INTERVAL: Record<string, string> = {
 
 type Bar = { date: string; open: number; high: number; low: number; close: number; volume: number };
 
-async function fetchChart(symbol: string, range: string, interval: string) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=${interval}&range=${range}`;
+async function fetchChart(
+  symbol: string,
+  interval: string,
+  rangeOrPeriod: { range: string } | { period1: number; period2: number }
+) {
+  const query =
+    "range" in rangeOrPeriod
+      ? `range=${rangeOrPeriod.range}`
+      : `period1=${rangeOrPeriod.period1}&period2=${rangeOrPeriod.period2}`;
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=${interval}&${query}`;
   const res = await fetch(url, {
     headers: { "User-Agent": "Mozilla/5.0" },
     cache: "no-store",
@@ -114,7 +122,17 @@ export async function GET(
   const { ticker } = await params;
   const { searchParams } = new URL(req.url);
   const range = searchParams.get("range") ?? "1y";
-  const interval = INTERVAL[range] ?? "1d";
+  // start/end(YYYY-MM-DD)가 있으면 "오늘 기준 N개월/년" 대신 고정 캘린더 구간을 일봉으로 조회한다.
+  // 콘텐츠(퀴즈 예시 차트 등)에서 특정 과거 날짜를 시간이 지나도 그대로 재현하려면 range로는 불가능 —
+  // range는 항상 "오늘" 기준 상대 구간이라 시간이 지나면 그 날짜가 창 밖으로 밀려난다.
+  const startParam = searchParams.get("start");
+  const endParam = searchParams.get("end");
+  const usePeriod = !!startParam;
+  const interval = usePeriod ? "1d" : (INTERVAL[range] ?? "1d");
+  const period1 = startParam ? Math.floor(new Date(`${startParam}T00:00:00Z`).getTime() / 1000) : undefined;
+  const period2 = endParam
+    ? Math.floor(new Date(`${endParam}T23:59:59Z`).getTime() / 1000)
+    : Math.floor(Date.now() / 1000);
 
   // 한국 6자리 코드 → KOSPI 시도 후 KOSDAQ 폴백
   const isKr = /^\d{6}$/.test(ticker);
@@ -132,7 +150,9 @@ export async function GET(
   let result = null;
   let usedSymbol = "";
   for (const sym of finalSymbols) {
-    result = await fetchChart(sym, range, interval);
+    result = usePeriod
+      ? await fetchChart(sym, interval, { period1: period1!, period2 })
+      : await fetchChart(sym, interval, { range });
     if (result) { usedSymbol = sym; break; }
   }
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { GURU_DATA } from './data/guruData';
 import { GuruGuide } from './types';
-import { Crown, CheckCircle2, ChevronRight, Award } from 'lucide-react';
 
 interface GuruSectionProps {
   onApplyPreset: (presetId: string) => void;
@@ -11,134 +10,124 @@ export const GuruSection: React.FC<GuruSectionProps> = ({ onApplyPreset }) => {
   const [activeGuru, setActiveGuru] = useState<GuruGuide>(GURU_DATA[0]);
 
   return (
-    <div className="space-y-6">
-      {/* Banner Header */}
-      <div className="relative bg-[#181820] border border-[#23232f] p-6 sm:p-8">
-        <div className="relative z-10 max-w-3xl space-y-3">
-          <div className="inline-flex items-center space-x-2 px-2.5 py-1 bg-[#7F77DD] text-white text-[10px] font-black uppercase tracking-widest">
-            <Crown className="w-3.5 h-3.5 text-[#F1C40F]" />
-            <span>Wall Street Legends · Masterclass</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#eee] leading-tight">
-            전설적인 차트 구루들은 <span className="text-[#eee] border-b-2 border-[#7F77DD] pb-0.5">무엇을 가장 중요하게 보았나?</span>
-          </h2>
-          <p className="text-sm text-[#bbb] leading-relaxed">
-            마크 미네르비니, 제시 리버모어, 윌리엄 오닐 등 수천 %의 수익률을 기록한 명장들이 차트에서 필수로 검증했던 골든 룰을 살펴봅니다.
-          </p>
+    <div style={S.wrap}>
+      <div style={S.header}>
+        <div style={S.titleRow}>
+          <i className="ti ti-crown" style={{ color: '#7F77DD', fontSize: 17 }} />
+          <span style={S.title}>전설적인 차트 구루들의 골든 룰</span>
+        </div>
+        <div style={S.subtitle}>
+          마크 미네르비니, 제시 리버모어, 윌리엄 오닐 등 수천% 수익률을 기록한 명장들이 차트에서 필수로 검증했던 원칙을 살펴봅니다.
         </div>
       </div>
 
-      {/* Guru Selector Buttons */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <div style={S.guruGrid}>
         {GURU_DATA.map((guru) => {
           const isSelected = activeGuru.id === guru.id;
           return (
             <button
               key={guru.id}
               onClick={() => setActiveGuru(guru)}
-              className={`p-4 text-left transition-all ${
-                isSelected
-                  ? 'bg-[#7F77DD] text-white border border-[#7F77DD]'
-                  : 'bg-[#181820] text-[#eee] border border-[#23232f] hover:border-[#7F77DD]'
-              }`}
+              style={{ ...S.guruCard, ...(isSelected ? S.guruCardActive : {}) }}
             >
-              <div className="flex items-center space-x-2">
-                <Crown className={`w-3.5 h-3.5 ${isSelected ? 'text-[#F1C40F]' : 'text-[#999]'}`} />
-                <span className={`text-xs font-bold ${isSelected ? 'text-white' : 'text-[#eee]'}`}>
-                  {guru.name}
-                </span>
-              </div>
-              <p className={`text-[10px] uppercase tracking-wider mt-1 truncate ${isSelected ? 'text-slate-300' : 'text-[#999]'}`}>
-                {guru.englishName}
-              </p>
+              <div style={S.guruCardName}>{guru.name}</div>
+              <div style={S.guruCardEnglish}>{guru.englishName}</div>
             </button>
           );
         })}
       </div>
 
-      {/* Detailed Guru Card */}
-      <div className="bg-[#181820] border border-[#23232f] p-6 sm:p-8 space-y-6">
-        {/* Guru Header & Quote */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#23232f]">
+      <div style={S.detailCard}>
+        <div style={S.detailTopRow}>
           <div>
-            <div className="flex items-center space-x-2">
-              <span className="px-2.5 py-0.5 bg-[#7F77DD] text-white text-[10px] font-black uppercase tracking-widest">
-                {activeGuru.englishName}
-              </span>
-              <span className="text-xs text-[#999]">{activeGuru.title}</span>
+            <div style={S.badgeRow}>
+              <span style={S.badge}>{activeGuru.englishName}</span>
+              <span style={S.detailMeta}>{activeGuru.title}</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#eee] mt-2">
-              {activeGuru.name}의 핵심 차트 법칙
-            </h3>
+            <div style={S.detailTitle}>{activeGuru.name}의 핵심 차트 법칙</div>
           </div>
-
-          <button
-            onClick={() => onApplyPreset(activeGuru.presetId)}
-            className="px-5 py-3 bg-[#7F77DD] hover:bg-[#6b63c9] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all whitespace-nowrap"
-          >
-            <Award className="w-4 h-4 text-[#F1C40F]" />
+          <button style={S.ctaButton} onClick={() => onApplyPreset(activeGuru.presetId)}>
+            <i className="ti ti-award" style={{ fontSize: 14 }} />
             <span>구루의 차트 기본 세팅 적용하기</span>
-            <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Famous Quote Box */}
-        <div className="p-5 bg-[#7F77DD] text-white border-l-4 border-[#F1C40F]">
-          <span className="text-[10px] font-black uppercase tracking-widest text-[#F1C40F] block mb-1">Legendary Insight</span>
-          <blockquote className="text-sm sm:text-base leading-relaxed text-slate-100">
-            "{activeGuru.quote}"
-          </blockquote>
+        <div style={S.quoteBox}>
+          <span style={S.quoteLabel}>LEGENDARY INSIGHT</span>
+          <span style={S.quoteText}>&ldquo;{activeGuru.quote}&rdquo;</span>
         </div>
 
-        {/* Core Philosophy & Preferred Setup Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-5 bg-[#13131a] border border-[#23232f] space-y-2">
-            <h4 className="text-xs font-black uppercase tracking-widest text-[#eee]">
-              핵심 철학 (Core Philosophy)
-            </h4>
-            <p className="text-xs sm:text-sm text-[#bbb] leading-relaxed">
-              {activeGuru.corePhilosophy}
-            </p>
+        <div style={S.twoColGrid}>
+          <div style={S.subCard}>
+            <div style={S.sectionTitle}>핵심 철학</div>
+            <p style={S.subCardText}>{activeGuru.corePhilosophy}</p>
           </div>
-
-          <div className="p-5 bg-[#13131a] border border-[#23232f] space-y-2">
-            <h4 className="text-xs font-black uppercase tracking-widest text-[#eee]">
-              선호 지표 및 타점 세팅
-            </h4>
-            <p className="text-xs sm:text-sm text-[#eee] font-mono">
-              {activeGuru.preferredSetup}
-            </p>
+          <div style={S.subCard}>
+            <div style={S.sectionTitle}>선호 지표 및 타점 세팅</div>
+            <p style={{ ...S.subCardText, fontFamily: 'monospace' }}>{activeGuru.preferredSetup}</p>
           </div>
         </div>
 
-        {/* Must Check Rules Checklist */}
-        <div className="space-y-3">
-          <h4 className="text-xs font-black uppercase tracking-widest text-[#eee]">
-            {activeGuru.name}가 필수로 확인했던 차트 체크리스트
-          </h4>
-          <div className="space-y-2">
+        <div style={{ marginTop: 18 }}>
+          <div style={S.sectionTitle}>{activeGuru.name}가 필수로 확인했던 차트 체크리스트</div>
+          <div style={S.checklist}>
             {activeGuru.mustCheckRules.map((rule, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 bg-[#181820] border border-[#23232f] flex items-start space-x-3 text-xs sm:text-sm text-[#eee]"
-              >
-                <CheckCircle2 className="w-4 h-4 text-[#eee] shrink-0 mt-0.5" />
-                <span className="leading-snug">{rule}</span>
+              <div key={idx} style={S.checklistRow}>
+                <i className="ti ti-circle-check" style={{ fontSize: 15, color: '#7F77DD', flexShrink: 0, marginTop: 1 }} />
+                <span style={S.checklistText}>{rule}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Pattern Example Box */}
-        <div className="p-5 bg-[#13131a] border border-[#23232f] space-y-2">
-          <h4 className="text-xs font-black uppercase tracking-widest text-[#eee] flex items-center gap-1.5">
-            <span>📈 주력 패턴: {activeGuru.chartPatternTitle}</span>
-          </h4>
-          <p className="text-xs sm:text-sm text-[#bbb] leading-relaxed">
-            {activeGuru.chartPatternDescription}
-          </p>
+        <div style={{ marginTop: 18 }}>
+          <div style={S.subCard}>
+            <div style={S.sectionTitle}>주력 패턴 · {activeGuru.chartPatternTitle}</div>
+            <p style={S.subCardText}>{activeGuru.chartPatternDescription}</p>
+          </div>
         </div>
       </div>
     </div>
   );
+};
+
+const S: Record<string, React.CSSProperties> = {
+  wrap: { display: 'flex', flexDirection: 'column', gap: 16 },
+
+  header: {},
+  titleRow: { display: 'flex', alignItems: 'center', gap: 6 },
+  title: { fontSize: 20, fontWeight: 600, color: '#fff' },
+  subtitle: { fontSize: 11.5, color: '#666', marginTop: 5, lineHeight: 1.6, maxWidth: 720 },
+
+  guruGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: 8 },
+  guruCard: {
+    padding: '12px 14px', borderRadius: 12, border: '0.5px solid #23232f', background: '#181820',
+    cursor: 'pointer', textAlign: 'left',
+  },
+  guruCardActive: { background: '#7F77DD14', border: '0.5px solid #7F77DD' },
+  guruCardName: { fontSize: 12.5, fontWeight: 600, color: '#eee' },
+  guruCardEnglish: { fontSize: 9.5, color: '#666', marginTop: 3 },
+
+  detailCard: { background: '#181820', border: '0.5px solid #23232f', borderRadius: 16, padding: 22 },
+
+  detailTopRow: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 14, borderBottom: '0.5px solid #23232f', paddingBottom: 18, marginBottom: 18 },
+  badgeRow: { display: 'flex', alignItems: 'center', gap: 8 },
+  badge: { fontSize: 9.5, padding: '3px 8px', borderRadius: 6, background: '#7F77DD1a', color: '#a29dff', fontWeight: 600 },
+  detailMeta: { fontSize: 11, color: '#666' },
+  detailTitle: { fontSize: 20, fontWeight: 600, color: '#eee', marginTop: 8 },
+
+  ctaButton: { display: 'flex', alignItems: 'center', gap: 6, padding: '10px 16px', borderRadius: 10, background: '#7F77DD', color: '#fff', fontSize: 12.5, fontWeight: 500, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' },
+
+  quoteBox: { background: '#7F77DD14', border: '0.5px solid #7F77DD33', borderRadius: 10, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 18 },
+  quoteLabel: { fontSize: 9.5, color: '#a29dff', fontWeight: 600, letterSpacing: '0.3px' },
+  quoteText: { fontSize: 13, color: '#ddd', lineHeight: 1.7 },
+
+  twoColGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 12 },
+  subCard: { background: '#13131e', borderRadius: 10, padding: '14px 16px' },
+  sectionTitle: { fontSize: 9.5, color: '#444', fontWeight: 600, letterSpacing: '0.3px', marginBottom: 10 },
+  subCardText: { fontSize: 12, color: '#999', lineHeight: 1.7 },
+
+  checklist: { display: 'flex', flexDirection: 'column', gap: 8 },
+  checklistRow: { display: 'flex', alignItems: 'flex-start', gap: 10, background: '#13131e', borderRadius: 10, padding: '11px 14px' },
+  checklistText: { fontSize: 12, color: '#ccc', lineHeight: 1.6 },
 };

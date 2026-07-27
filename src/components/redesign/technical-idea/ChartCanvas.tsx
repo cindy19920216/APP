@@ -8,6 +8,8 @@ interface ChartCanvasProps {
   height?: number;
   highlightIndex?: number; // Optional index cut-off for training mode
   onHoverPoint?: (point: EnrichedDataPoint | null) => void;
+  currencyUnit?: string; // 가격 표시 단위 — KOSPI 종목은 '원', 미국 종목은 '$' (접두사)
+  volumeHeight?: number; // 거래량 서브차트 높이(px) — 작게 줄이면 그만큼 캔들 영역이 커진다
 }
 
 interface CustomLine {
@@ -23,8 +25,12 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
   height = 540,
   highlightIndex,
   onHoverPoint,
+  currencyUnit = '원',
+  volumeHeight: volumeHeightProp = 75,
 }) => {
+  const fmtPrice = (v: number) => (currencyUnit === '원' ? `${v.toLocaleString()}원` : `${currencyUnit}${v.toLocaleString()}`);
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(800);
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
   const [customLines, setCustomLines] = useState<CustomLine[]>([]);
@@ -46,13 +52,18 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
 
   const subChartCount = (settings.rsiEnabled ? 1 : 0) + (settings.macdEnabled ? 1 : 0);
   const subChartHeight = subChartCount > 0 ? 90 : 0;
-  const volumeHeight = settings.volumeEnabled ? 75 : 0;
+  const volumeHeight = settings.volumeEnabled ? volumeHeightProp : 0;
   const mainChartHeight = height - (subChartCount * subChartHeight) - volumeHeight - 40;
 
   const paddingLeft = 10;
   const paddingRight = 65;
   const paddingTop = 25;
-  const chartWidth = Math.max(100, containerWidth - paddingLeft - paddingRight);
+  const MIN_CANDLE_STEP = 8; // 봉 하나당 최소 폭(px) — 이보다 촘촘해지면 스크롤 영역이 넓어진다
+  const n = activeData.length;
+  const fitWidth = Math.max(100, containerWidth - paddingLeft - paddingRight);
+  const chartWidth = Math.max(fitWidth, n * MIN_CANDLE_STEP);
+  const svgWidth = chartWidth + paddingLeft + paddingRight;
+  const isScrollable = chartWidth > fitWidth;
 
   const allLows = enrichedData.map((d) => d.low);
   const allHighs = enrichedData.map((d) => d.high);
@@ -70,7 +81,6 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
 
   const { support, resistance } = findSupportAndResistance(activeData);
 
-  const n = enrichedData.length;
   const candleWidth = Math.max(2, (chartWidth / Math.max(1, n)) * 0.68);
   const stepX = chartWidth / Math.max(1, n);
 
@@ -99,7 +109,7 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
           id: Date.now().toString(),
           type: 'horizontal',
           yValue: priceVal,
-          label: `나의 지지/저항선: ${priceVal.toLocaleString()}원`,
+          label: `나의 지지/저항선: ${fmtPrice(priceVal)}`,
         },
       ]);
     }
@@ -107,31 +117,58 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
 
   const currentHoverData = hoverIdx !== null && enrichedData[hoverIdx] ? enrichedData[hoverIdx] : null;
 
+  // 종목/기간이 바뀌면 최신 봉이 보이도록 스크롤을 맨 오른쪽으로 이동
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [data, highlightIndex]);
+
+  // 마우스 휠(세로 스크롤)을 차트 좌우 이동으로 변환.
+  // React의 합성 onWheel은 passive 리스너라 preventDefault가 안 먹어서 네이티브로 직접 붙인다.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el || !isScrollable) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      el.scrollLeft += e.deltaY !== 0 ? e.deltaY : e.deltaX;
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [isScrollable]);
+
   return (
-    <div className="relative w-full bg-[#181820] border border-[#23232f] p-4 select-none overflow-hidden" ref={containerRef}>
+    <div style={{ position: 'relative', width: '100%', background: '#181820', border: '0.5px solid #23232f', borderRadius: 14, padding: 16, userSelect: 'none', overflow: 'hidden' }} ref={containerRef}>
       {/* Chart Top Bar & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-3 border-b border-[#23232f] text-xs text-[#bbb]">
-        <div className="flex items-center space-x-3">
-          <span className="font-bold text-[#eee] flex items-center gap-1.5 uppercase tracking-wider text-[11px]">
-            <span className="w-2 h-2 rounded-full bg-[#7F77DD] animate-pulse"></span>
-            Real-Time Analysis Practice
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 12, paddingBottom: 12, borderBottom: '0.5px solid #23232f' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, fontWeight: 600, color: '#eee' }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#7F77DD' }} />
+            실시간 분석 연습
           </span>
-          <span className="text-[#999] text-[11px]">데이터 {n}봉</span>
+          <span style={{ fontSize: 11, color: '#666' }}>데이터 {n}봉</span>
+          {isScrollable && (
+            <span style={{ fontSize: 10.5, color: '#7F77DD' }}>
+              <i className="ti ti-arrows-horizontal" style={{ fontSize: 11, marginRight: 3 }} />
+              스크롤해서 과거 차트 보기
+            </span>
+          )}
           {settings.showSupportResistance && (
-            <span className="hidden sm:inline-block bg-[#13131a] border border-[#23232f] px-2.5 py-0.5 text-[#eee] font-medium text-[11px]">
-              지지선 {support.toLocaleString()}원 / 저항선 {resistance.toLocaleString()}원
+            <span style={{ fontSize: 10.5, padding: '3px 8px', borderRadius: 6, background: '#13131e', border: '0.5px solid #23232f', color: '#ccc' }}>
+              지지선 {fmtPrice(support)} / 저항선 {fmtPrice(resistance)}
             </span>
           )}
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <button
             onClick={() => setDrawingMode(!drawingMode)}
-            className={`px-3 py-1 text-[11px] font-bold uppercase tracking-wider transition-colors ${
-              drawingMode
-                ? 'bg-[#F1C40F] text-[#1A1A1A]'
-                : 'bg-[#181820] border border-[#23232f] hover:border-[#7F77DD] text-[#eee]'
-            }`}
+            style={{
+              padding: '6px 12px', borderRadius: 8, fontSize: 11, fontWeight: 600, cursor: 'pointer',
+              ...(drawingMode
+                ? { background: '#EF9F27', color: '#1A1A1A', border: 'none' }
+                : { background: '#13131e', border: '0.5px solid #23232f', color: '#eee' }),
+            }}
             title="차트를 클릭하여 나만의 지지/저항 라인을 직접 그립니다"
           >
             {drawingMode ? '✏️ 선 그리기 클릭 중...' : '➕ 나만의 지지선 그리기'}
@@ -140,7 +177,7 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
           {customLines.length > 0 && (
             <button
               onClick={() => setCustomLines([])}
-              className="px-2.5 py-1 bg-[#E74C3C] text-white text-[11px] font-bold uppercase tracking-wider"
+              style={{ padding: '6px 10px', borderRadius: 8, background: '#E24B4A', color: '#fff', fontSize: 11, fontWeight: 600, border: 'none', cursor: 'pointer' }}
             >
               선 초기화 ({customLines.length})
             </button>
@@ -148,11 +185,12 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
         </div>
       </div>
 
-      {/* SVG Interactive Chart Area */}
+      {/* SVG Interactive Chart Area — 봉이 촘촘해지면 가로 스크롤 영역으로 전환 */}
+      <div ref={scrollRef} style={{ width: '100%', overflowX: isScrollable ? 'auto' : 'hidden', borderRadius: 8 }}>
       <svg
-        width={containerWidth}
+        width={svgWidth}
         height={height}
-        className="w-full cursor-crosshair block bg-[#0e0e14]"
+        style={{ display: 'block', background: '#0e0e14', borderRadius: 8 }}
         onClick={handleChartClick}
         onMouseMove={(e) => {
           const rect = e.currentTarget.getBoundingClientRect();
@@ -258,7 +296,7 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
               strokeDasharray="4,4"
             />
             <text x={paddingLeft + 10} y={getY(resistance) - 4} fill="#E74C3C" fontSize="10" fontWeight="bold">
-              저항선 {resistance.toLocaleString()}원
+              저항선 {fmtPrice(resistance)}
             </text>
 
             <line
@@ -271,7 +309,7 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
               strokeDasharray="4,4"
             />
             <text x={paddingLeft + 10} y={getY(support) + 12} fill="#27AE60" fontSize="10" fontWeight="bold">
-              지지선 {support.toLocaleString()}원
+              지지선 {fmtPrice(support)}
             </text>
           </g>
         )}
@@ -483,38 +521,35 @@ export const ChartCanvas: React.FC<ChartCanvasProps> = ({
           </g>
         )}
       </svg>
+      </div>
 
       {/* Hover Info Tooltip Bar */}
       {currentHoverData && (
-        <div className="mt-3 p-3 bg-[#13131a] border border-[#23232f] text-white flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center space-x-3">
-            <span className="text-[#F1C40F] font-bold font-sans">{currentHoverData.date}</span>
+        <div style={{ marginTop: 12, padding: '10px 14px', borderRadius: 10, background: '#13131e', border: '0.5px solid #23232f', color: '#eee', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12, fontSize: 11.5 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ color: '#EF9F27', fontWeight: 600 }}>{currentHoverData.date}</span>
             <span>시가: {currentHoverData.open.toLocaleString()}</span>
             <span>고가: {currentHoverData.high.toLocaleString()}</span>
             <span>저가: {currentHoverData.low.toLocaleString()}</span>
-            <span
-              className={`font-bold font-sans ${
-                currentHoverData.close >= currentHoverData.open ? 'text-[#E74C3C]' : 'text-[#3498DB]'
-              }`}
-            >
-              종가: {currentHoverData.close.toLocaleString()}원
+            <span style={{ fontWeight: 600, color: currentHoverData.close >= currentHoverData.open ? '#E24B4A' : '#3B82F6' }}>
+              종가: {fmtPrice(currentHoverData.close)}
             </span>
           </div>
 
-          <div className="flex items-center space-x-3 text-[11px] font-sans">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 11 }}>
             {settings.showMA5 && currentHoverData.indicators.ma5 && (
-              <span className="text-[#F1C40F]">5MA: {currentHoverData.indicators.ma5.toLocaleString()}</span>
+              <span style={{ color: '#EF9F27' }}>5MA: {currentHoverData.indicators.ma5.toLocaleString()}</span>
             )}
             {settings.showMA20 && currentHoverData.indicators.ma20 && (
-              <span className="text-[#E67E22]">20MA: {currentHoverData.indicators.ma20.toLocaleString()}</span>
+              <span style={{ color: '#E67E22' }}>20MA: {currentHoverData.indicators.ma20.toLocaleString()}</span>
             )}
             {settings.showMA60 && currentHoverData.indicators.ma60 && (
-              <span className="text-[#9B59B6]">60MA: {currentHoverData.indicators.ma60.toLocaleString()}</span>
+              <span style={{ color: '#9B59B6' }}>60MA: {currentHoverData.indicators.ma60.toLocaleString()}</span>
             )}
             {settings.rsiEnabled && currentHoverData.indicators.rsi !== undefined && (
-              <span className="text-white font-bold">RSI: {currentHoverData.indicators.rsi}</span>
+              <span style={{ color: '#fff', fontWeight: 600 }}>RSI: {currentHoverData.indicators.rsi}</span>
             )}
-            <span className="bg-[#7F77DD] text-white px-1.5 py-0.5 font-bold uppercase text-[10px]">
+            <span style={{ background: '#7F77DD1a', color: '#a29dff', padding: '2px 7px', borderRadius: 6, fontWeight: 600, fontSize: 10 }}>
               {currentHoverData.indicators.alignment}
             </span>
           </div>

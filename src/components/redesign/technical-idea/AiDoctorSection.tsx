@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Bot, Send, Sparkles, Loader2, MessageSquare, AlertTriangle } from 'lucide-react';
 
 interface AiDoctorSectionProps {
   initialStockName?: string;
@@ -41,15 +40,8 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
       const res = await fetch('/api/chart-ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          stockName,
-          timeframe,
-          currentPrice,
-          technicals: initialTechnicals,
-          userQuestion: q,
-        }),
+        body: JSON.stringify({ stockName, timeframe, currentPrice, technicals: initialTechnicals, userQuestion: q }),
       });
-
       const data = await res.json();
       if (data.success) {
         setAiResponse(data.answer);
@@ -64,129 +56,118 @@ export const AiDoctorSection: React.FC<AiDoctorSectionProps> = ({
   };
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
-      {/* Header Banner */}
-      <div className="bg-[#181820] p-6 border border-[#23232f] space-y-2">
-        <div className="inline-flex items-center space-x-2 px-2.5 py-1 bg-[#7F77DD] text-white text-[10px] font-black uppercase tracking-widest">
-          <Bot className="w-4 h-4 text-[#F1C40F]" />
-          <span>Gemini 3.6 Flash · AI Chart Doctor</span>
+    <div style={S.wrap}>
+      <div style={S.header}>
+        <div style={S.titleRow}>
+          <i className="ti ti-robot" style={{ color: '#7F77DD', fontSize: 17 }} />
+          <span style={S.title}>실시간 AI 차트 진단 &amp; 멘토링</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#eee] pt-1">
-          실시간 <span className="underline decoration-[#F1C40F] decoration-2">AI 차트 진단 & 멘토링</span>
-        </h2>
-        <p className="text-xs sm:text-sm text-[#bbb] leading-relaxed">
+        <div style={S.subtitle}>
           관심 있는 종목이나 공부 중인 차트 시나리오의 지표 상태를 입력하고, AI 닥터에게 쉽고 정밀한 기술적 진단을 받아보세요.
-        </p>
+        </div>
       </div>
 
-      {/* Input Parameters Box */}
-      <div className="bg-[#181820] border border-[#23232f] p-6 space-y-5">
-        <h3 className="text-sm font-bold text-[#eee] flex items-center gap-1.5 uppercase tracking-wider">
-          <MessageSquare className="w-4 h-4 text-[#eee]" />
-          진단받을 종목 및 지표 정보 입력
-        </h3>
+      <div style={S.card}>
+        <div style={S.cardHeadRow}>
+          <i className="ti ti-message-2" style={{ fontSize: 15, color: '#eee' }} />
+          <span style={S.cardHeadText}>진단받을 종목 및 지표 정보 입력</span>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div style={S.inputGrid}>
           <div>
-            <label className="text-[#999] block mb-1 font-bold">종목명</label>
-            <input
-              type="text"
-              value={stockName}
-              onChange={(e) => setStockName(e.target.value)}
-              className="w-full bg-[#13131a] border border-[#23232f] px-3.5 py-2.5 text-[#eee] font-bold focus:outline-none focus:border-[#7F77DD]"
-              placeholder="예: 삼성전자, 테슬라"
-            />
+            <label style={S.inputLabel}>종목명</label>
+            <input type="text" value={stockName} onChange={(e) => setStockName(e.target.value)} style={S.input} placeholder="예: 삼성전자, 테슬라" />
           </div>
-
           <div>
-            <label className="text-[#999] block mb-1 font-bold">타임프레임</label>
-            <select
-              value={timeframe}
-              onChange={(e) => setTimeframe(e.target.value)}
-              className="w-full bg-[#13131a] border border-[#23232f] px-3.5 py-2.5 text-[#eee] font-bold focus:outline-none focus:border-[#7F77DD]"
-            >
+            <label style={S.inputLabel}>타임프레임</label>
+            <select value={timeframe} onChange={(e) => setTimeframe(e.target.value)} style={S.input}>
               <option value="일봉">일봉 (스윙/단기)</option>
               <option value="5분봉">5분봉 (스캘핑/단타)</option>
               <option value="주봉">주봉 (중장기 추세)</option>
             </select>
           </div>
-
           <div>
-            <label className="text-[#999] block mb-1 font-bold">현재가 (원/$)</label>
-            <input
-              type="number"
-              value={currentPrice}
-              onChange={(e) => setCurrentPrice(Number(e.target.value))}
-              className="w-full bg-[#13131a] border border-[#23232f] px-3.5 py-2.5 text-[#eee] font-bold focus:outline-none focus:border-[#7F77DD]"
-            />
+            <label style={S.inputLabel}>현재가 (원/$)</label>
+            <input type="number" value={currentPrice} onChange={(e) => setCurrentPrice(Number(e.target.value))} style={S.input} />
           </div>
         </div>
 
-        {/* Quick Question Chips */}
-        <div className="space-y-2">
-          <label className="text-xs font-bold text-[#eee]">자주 묻는 분석 질문 추천:</label>
-          <div className="flex flex-wrap gap-2">
+        <div style={{ marginTop: 16 }}>
+          <label style={S.inputLabel}>자주 묻는 분석 질문 추천</label>
+          <div style={S.tagRow}>
             {quickQuestions.map((q, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setUserQuestion(q);
-                  handleAskAi(q);
-                }}
-                className="px-3 py-1.5 bg-[#13131a] hover:bg-[#7F77DD] hover:text-white text-[#eee] border border-[#23232f] text-xs font-medium transition-all"
-              >
+              <button key={idx} style={S.quickChip} onClick={() => { setUserQuestion(q); handleAskAi(q); }}>
                 {q}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Custom Question Textarea */}
-        <div className="flex items-center space-x-2 pt-2">
+        <div style={S.askRow}>
           <input
             type="text"
             value={userQuestion}
             onChange={(e) => setUserQuestion(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAskAi()}
             placeholder="예: 20일 이평선을 뚫고 올라왔는데 거래량이 적어서 불안합니다. 어떻게 판단해야 할까요?"
-            className="flex-1 bg-[#13131a] border border-[#23232f] px-4 py-3 text-xs sm:text-sm text-[#eee] focus:outline-none focus:border-[#7F77DD]"
+            style={{ ...S.input, flex: 1 }}
           />
-          <button
-            onClick={() => handleAskAi()}
-            disabled={loading || !userQuestion.trim()}
-            className="px-6 py-3 bg-[#7F77DD] hover:bg-[#6b63c9] disabled:opacity-50 text-white font-bold text-xs uppercase tracking-wider flex items-center space-x-2 transition-all whitespace-nowrap"
-          >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin text-[#F1C40F]" /> : <Send className="w-4 h-4 text-[#F1C40F]" />}
+          <button style={S.ctaButton} onClick={() => handleAskAi()} disabled={loading || !userQuestion.trim()}>
+            <i className={`ti ${loading ? 'ti-loader-2' : 'ti-send'}`} style={{ fontSize: 14 }} />
             <span>분석 요청</span>
           </button>
         </div>
       </div>
 
-      {/* Error Message */}
       {errorMsg && (
-        <div className="p-4 bg-[#E74C3C]/10 border border-[#E74C3C] text-[#E74C3C] text-xs flex items-center space-x-2">
-          <AlertTriangle className="w-4 h-4 text-[#E74C3C] shrink-0" />
+        <div style={S.errorBox}>
+          <i className="ti ti-alert-triangle" style={{ fontSize: 15, flexShrink: 0 }} />
           <span>{errorMsg}</span>
         </div>
       )}
 
-      {/* AI Response Display Card */}
       {aiResponse && (
-        <div className="bg-[#7F77DD] text-white border border-[#7F77DD] p-6 space-y-4 animate-fade-in">
-          <div className="flex items-center space-x-2 pb-3 border-b border-white/20 text-[#F1C40F] font-bold text-base">
-            <Sparkles className="w-5 h-5 text-[#F1C40F]" />
+        <div style={S.responseCard}>
+          <div style={S.responseHead}>
+            <i className="ti ti-sparkles" style={{ fontSize: 16, color: '#a29dff' }} />
             <span>AI 차트 닥터의 전문 기술적 진단 보고서</span>
           </div>
-
-          <div className="text-xs sm:text-sm text-slate-200 leading-relaxed whitespace-pre-line space-y-3 font-sans">
-            {aiResponse}
-          </div>
-
-          <div className="pt-3 border-t border-white/20 text-[11px] text-slate-400">
+          <div style={S.responseText}>{aiResponse}</div>
+          <div style={S.responseFooter}>
             * 본 AI 분석은 학습 및 기술적 지표 연습 목적의 참고용 자료이며, 투자 결과에 대한 법적 책임이 없으므로 항상 위험 관리를 우선하세요.
           </div>
         </div>
       )}
     </div>
   );
+};
+
+const S: Record<string, React.CSSProperties> = {
+  wrap: { display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 880, margin: '0 auto', width: '100%' },
+
+  header: { background: '#181820', border: '0.5px solid #23232f', borderRadius: 16, padding: '18px 22px' },
+  titleRow: { display: 'flex', alignItems: 'center', gap: 6 },
+  title: { fontSize: 20, fontWeight: 600, color: '#fff' },
+  subtitle: { fontSize: 11.5, color: '#666', marginTop: 6, lineHeight: 1.6 },
+
+  card: { background: '#181820', border: '0.5px solid #23232f', borderRadius: 16, padding: 22 },
+  cardHeadRow: { display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 },
+  cardHeadText: { fontSize: 13, fontWeight: 600, color: '#eee' },
+
+  inputGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 },
+  inputLabel: { fontSize: 10.5, color: '#666', fontWeight: 600, display: 'block', marginBottom: 6 },
+  input: { width: '100%', background: '#13131e', border: '0.5px solid #23232f', borderRadius: 10, color: '#eee', fontSize: 12.5, padding: '10px 14px', outline: 'none' },
+
+  tagRow: { display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 },
+  quickChip: { padding: '7px 12px', borderRadius: 999, background: '#13131e', border: '0.5px solid #23232f', color: '#ccc', fontSize: 11, cursor: 'pointer' },
+
+  askRow: { display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 },
+  ctaButton: { display: 'flex', alignItems: 'center', gap: 6, padding: '10px 18px', borderRadius: 10, background: '#7F77DD', color: '#fff', fontSize: 12.5, fontWeight: 600, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' },
+
+  errorBox: { display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', borderRadius: 10, background: '#E24B4A14', border: '0.5px solid #E24B4A40', color: '#E24B4A', fontSize: 12 },
+
+  responseCard: { background: '#7F77DD14', border: '0.5px solid #7F77DD33', borderRadius: 16, padding: 22, display: 'flex', flexDirection: 'column', gap: 14 },
+  responseHead: { display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, fontWeight: 600, color: '#eee', borderBottom: '0.5px solid #7F77DD33', paddingBottom: 12 },
+  responseText: { fontSize: 12.5, color: '#ddd', lineHeight: 1.8, whiteSpace: 'pre-line' },
+  responseFooter: { fontSize: 10.5, color: '#888', borderTop: '0.5px solid #7F77DD33', paddingTop: 12 },
 };

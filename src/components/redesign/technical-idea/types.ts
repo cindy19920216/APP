@@ -72,13 +72,22 @@ export interface GuruGuide {
   chartPatternDescription: string;
 }
 
+export interface QuizChartRef {
+  ticker: string; // 야후 파이낸스 심볼 (예: '005930.KS', 'AAPL')
+  market: 'KOSPI' | 'S&P500';
+  name: string; // 표시용 종목명
+  asOfDate: string; // 이 날짜까지의 실제 데이터로 차트를 자른다 (YYYY-MM-DD)
+}
+
 export interface QuizItem {
   id: string;
   category: string;
+  difficulty: '초급' | '중급' | '고급';
   question: string;
   isCorrectOX: boolean; // true = O, false = X
   explanation: string;
   indicatorTag: string;
+  chart?: QuizChartRef; // 실제 종목·날짜 기반 차트 예시 (없으면 텍스트 개념 문제)
 }
 
 export interface PracticeScenario {

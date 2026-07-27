@@ -41,10 +41,10 @@ export function TechnicalChartMaster() {
   };
 
   return (
-    <div className="font-sans">
+    <div>
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="mt-4">
+      <div style={{ marginTop: 18 }}>
         {activeTab === 'theory' && (
           <TheorySection onSelectTopicInWorkbench={() => setActiveTab('workbench')} />
         )}
