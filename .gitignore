@@ -49,8 +49,8 @@ next-env.d.ts
 # Python / Streamlit
 __pycache__/
 *.pyc
-data/
-charts/
+/data/
+/charts/
 *.jpg
 *.jpeg
 *.png

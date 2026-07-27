@@ -1,0 +1,702 @@
+{
+  "generatedAt": "2026-07-24T04:54:18.531Z",
+  "analysisRange": "2025-06 ~ 2026-05",
+  "model": "XGBoost (TimeSeriesSplit 5-fold) + Gemini LLM 뉴스 감성분석 + 텔레그램 10개 채널 언급량",
+  "themes": {
+    "화장품": [
+      {
+        "rank": 1,
+        "stock": "아모레퍼시픽홀딩스",
+        "upProb": 0.4921878,
+        "sentimentCorr": 0.2268,
+        "totalScore": 0.6793943353088535
+      },
+      {
+        "rank": 2,
+        "stock": "LG생활건강",
+        "upProb": 0.49857405,
+        "sentimentCorr": 0.2184,
+        "totalScore": 0.6775117937885986
+      },
+      {
+        "rank": 3,
+        "stock": "클래시스",
+        "upProb": 0.48735005,
+        "sentimentCorr": 0.2234,
+        "totalScore": 0.6741787533451911
+      },
+      {
+        "rank": 4,
+        "stock": "케어젠",
+        "upProb": 0.50778466,
+        "sentimentCorr": 0.1906,
+        "totalScore": 0.6641265930123881
+      },
+      {
+        "rank": 5,
+        "stock": "엘앤씨바이오",
+        "upProb": 0.47384015,
+        "sentimentCorr": 0.2063,
+        "totalScore": 0.6544401666177374
+      },
+      {
+        "rank": 8,
+        "stock": "아모레퍼시픽",
+        "upProb": 0.47291166,
+        "sentimentCorr": 0.177,
+        "totalScore": 0.6339510990162285
+      },
+      {
+        "rank": 15,
+        "stock": "에이피알",
+        "upProb": 0.49195418,
+        "sentimentCorr": 0.0979,
+        "totalScore": 0.5915670703544098
+      },
+      {
+        "rank": 18,
+        "stock": "달바글로벌",
+        "upProb": 0.49949074,
+        "sentimentCorr": 0.0677,
+        "totalScore": 0.5755447888455423
+      },
+      {
+        "rank": 20,
+        "stock": "한국콜마",
+        "upProb": 0.49602333,
+        "sentimentCorr": 0.0637,
+        "totalScore": 0.5707432598889279
+      },
+      {
+        "rank": 21,
+        "stock": "실리콘투",
+        "upProb": 0.47909456,
+        "sentimentCorr": 0.0732,
+        "totalScore": 0.5670485876044449
+      },
+      {
+        "rank": 26,
+        "stock": "코스맥스",
+        "upProb": 0.5139208,
+        "sentimentCorr": 0.0329,
+        "totalScore": 0.5605293411462486
+      },
+      {
+        "rank": 38,
+        "stock": "코웨이",
+        "upProb": 0.48719507,
+        "sentimentCorr": 0.0077,
+        "totalScore": 0.5273510762217904
+      },
+      {
+        "rank": 48,
+        "stock": "네이처셀",
+        "upProb": 0.4745919,
+        "sentimentCorr": -0.0178,
+        "totalScore": 0.5024422451752384
+      },
+      {
+        "rank": 51,
+        "stock": "파마리서치",
+        "upProb": 0.48462048,
+        "sentimentCorr": -0.0288,
+        "totalScore": 0.5009763706703575
+      }
+    ],
+    "MLCC": [
+      {
+        "rank": 6,
+        "stock": "대주전자재료",
+        "upProb": 0.40122727,
+        "sentimentCorr": 0.2502,
+        "totalScore": 0.6407363653182984
+      },
+      {
+        "rank": 76,
+        "stock": "삼성전기",
+        "upProb": 0.5811036,
+        "sentimentCorr": -0.2976,
+        "totalScore": 0.37600913636538447
+      },
+      {
+        "rank": 79,
+        "stock": "코스모신소재",
+        "upProb": 0.45927924,
+        "sentimentCorr": -0.3378,
+        "totalScore": 0.27556756138801575
+      }
+    ],
+    "스테이블코인": [
+      {
+        "rank": 7,
+        "stock": "카카오페이",
+        "upProb": 0.47226027,
+        "sentimentCorr": 0.1867,
+        "totalScore": 0.6401588810138963
+      },
+      {
+        "rank": 14,
+        "stock": "NAVER",
+        "upProb": 0.483302,
+        "sentimentCorr": 0.1083,
+        "totalScore": 0.5934506039473475
+      },
+      {
+        "rank": 34,
+        "stock": "LG씨엔에스",
+        "upProb": 0.473335,
+        "sentimentCorr": 0.0375,
+        "totalScore": 0.5393071450262654
+      }
+    ],
+    "HBM": [
+      {
+        "rank": 9,
+        "stock": "SK하이닉스",
+        "upProb": 0.52055174,
+        "sentimentCorr": 0.0986,
+        "totalScore": 0.609201798933704
+      },
+      {
+        "rank": 17,
+        "stock": "한미반도체",
+        "upProb": 0.4966127,
+        "sentimentCorr": 0.0766,
+        "totalScore": 0.579872404450462
+      },
+      {
+        "rank": 23,
+        "stock": "한화비전",
+        "upProb": 0.5090004,
+        "sentimentCorr": 0.0445,
+        "totalScore": 0.5654682795531085
+      },
+      {
+        "rank": 24,
+        "stock": "이오테크닉스",
+        "upProb": 0.50050336,
+        "sentimentCorr": 0.0485,
+        "totalScore": 0.5630911443022644
+      },
+      {
+        "rank": 27,
+        "stock": "삼성전자",
+        "upProb": 0.5457187,
+        "sentimentCorr": 0.002,
+        "totalScore": 0.5585877241244932
+      },
+      {
+        "rank": 29,
+        "stock": "케이씨텍",
+        "upProb": 0.50244206,
+        "sentimentCorr": 0.0207,
+        "totalScore": 0.5453427941215282
+      },
+      {
+        "rank": 60,
+        "stock": "고영",
+        "upProb": 0.48449326,
+        "sentimentCorr": -0.0652,
+        "totalScore": 0.4761381421608179
+      },
+      {
+        "rank": 61,
+        "stock": "테크윙",
+        "upProb": 0.49303162,
+        "sentimentCorr": -0.0929,
+        "totalScore": 0.46241762396429675
+      },
+      {
+        "rank": 64,
+        "stock": "피에스케이홀딩스",
+        "upProb": 0.49085736,
+        "sentimentCorr": -0.1077,
+        "totalScore": 0.4510450298932134
+      },
+      {
+        "rank": 71,
+        "stock": "ISC",
+        "upProb": 0.5060364,
+        "sentimentCorr": -0.1692,
+        "totalScore": 0.4183157359094036
+      }
+    ],
+    "게임": [
+      {
+        "rank": 10,
+        "stock": "NC",
+        "upProb": 0.48060486,
+        "sentimentCorr": 0.1267,
+        "totalScore": 0.6043493148420944
+      },
+      {
+        "rank": 11,
+        "stock": "NAVER",
+        "upProb": 0.49172536,
+        "sentimentCorr": 0.1083,
+        "totalScore": 0.5985046009871424
+      },
+      {
+        "rank": 22,
+        "stock": "넷마블",
+        "upProb": 0.47102964,
+        "sentimentCorr": 0.0791,
+        "totalScore": 0.5662232495651764
+      },
+      {
+        "rank": 53,
+        "stock": "NHN",
+        "upProb": 0.47327447,
+        "sentimentCorr": -0.0298,
+        "totalScore": 0.4934885030701047
+      },
+      {
+        "rank": 55,
+        "stock": "시프트업",
+        "upProb": 0.4765407,
+        "sentimentCorr": -0.0365,
+        "totalScore": 0.4908904210564231
+      },
+      {
+        "rank": 65,
+        "stock": "펄어비스",
+        "upProb": 0.5006495,
+        "sentimentCorr": -0.123,
+        "totalScore": 0.44651215606806227
+      },
+      {
+        "rank": 66,
+        "stock": "더블유게임즈",
+        "upProb": 0.47686648,
+        "sentimentCorr": -0.1048,
+        "totalScore": 0.4446233094549503
+      },
+      {
+        "rank": 70,
+        "stock": "크래프톤",
+        "upProb": 0.47165412,
+        "sentimentCorr": -0.1376,
+        "totalScore": 0.41918295837583996
+      }
+    ],
+    "로봇": [
+      {
+        "rank": 12,
+        "stock": "삼현",
+        "upProb": 0.49182186,
+        "sentimentCorr": 0.1066,
+        "totalScore": 0.5974060443145077
+      },
+      {
+        "rank": 19,
+        "stock": "로보티즈",
+        "upProb": 0.48949656,
+        "sentimentCorr": 0.0708,
+        "totalScore": 0.5716571368976515
+      },
+      {
+        "rank": 30,
+        "stock": "에스엘",
+        "upProb": 0.484996,
+        "sentimentCorr": 0.0342,
+        "totalScore": 0.5440588190847514
+      },
+      {
+        "rank": 33,
+        "stock": "원익홀딩스",
+        "upProb": 0.4892386,
+        "sentimentCorr": 0.0244,
+        "totalScore": 0.5399377177848297
+      },
+      {
+        "rank": 35,
+        "stock": "현대무벡스",
+        "upProb": 0.48312747,
+        "sentimentCorr": 0.028,
+        "totalScore": 0.5387200282463411
+      },
+      {
+        "rank": 39,
+        "stock": "로보스타",
+        "upProb": 0.49697894,
+        "sentimentCorr": -0.0037,
+        "totalScore": 0.5254662866332904
+      },
+      {
+        "rank": 41,
+        "stock": "HL만도",
+        "upProb": 0.48106006,
+        "sentimentCorr": -0.0052,
+        "totalScore": 0.514894561970315
+      },
+      {
+        "rank": 42,
+        "stock": "에스피지",
+        "upProb": 0.48051086,
+        "sentimentCorr": -0.0061,
+        "totalScore": 0.5139527927937151
+      },
+      {
+        "rank": 50,
+        "stock": "두산로보틱스",
+        "upProb": 0.4853491,
+        "sentimentCorr": -0.0292,
+        "totalScore": 0.5011414320939253
+      },
+      {
+        "rank": 57,
+        "stock": "LIG디펜스앤에어로스페이스",
+        "upProb": 0.48629466,
+        "sentimentCorr": -0.0506,
+        "totalScore": 0.4871509557759681
+      },
+      {
+        "rank": 68,
+        "stock": "두산",
+        "upProb": 0.48750773,
+        "sentimentCorr": -0.1395,
+        "totalScore": 0.4274025976171299
+      },
+      {
+        "rank": 72,
+        "stock": "레인보우로보틱스",
+        "upProb": 0.48159474,
+        "sentimentCorr": -0.1617,
+        "totalScore": 0.40875276913448255
+      }
+    ],
+    "LNG": [
+      {
+        "rank": 13,
+        "stock": "한화엔진",
+        "upProb": 0.48951623,
+        "sentimentCorr": 0.1077,
+        "totalScore": 0.5967709794336435
+      },
+      {
+        "rank": 36,
+        "stock": "HJ중공업",
+        "upProb": 0.5192891,
+        "sentimentCorr": -0.0113,
+        "totalScore": 0.5336822893343816
+      },
+      {
+        "rank": 37,
+        "stock": "POSCO홀딩스",
+        "upProb": 0.5210061,
+        "sentimentCorr": -0.0191,
+        "totalScore": 0.5294064033680221
+      },
+      {
+        "rank": 40,
+        "stock": "삼성중공업",
+        "upProb": 0.49441332,
+        "sentimentCorr": -0.0031,
+        "totalScore": 0.5243350705403049
+      },
+      {
+        "rank": 44,
+        "stock": "비에이치아이",
+        "upProb": 0.45260206,
+        "sentimentCorr": 0.0148,
+        "totalScore": 0.5114251807676692
+      },
+      {
+        "rank": 45,
+        "stock": "HD현대중공업",
+        "upProb": 0.48925018,
+        "sentimentCorr": -0.0261,
+        "totalScore": 0.5055909500316698
+      },
+      {
+        "rank": 46,
+        "stock": "HD한국조선해양",
+        "upProb": 0.4918336,
+        "sentimentCorr": -0.029,
+        "totalScore": 0.5051682095057299
+      },
+      {
+        "rank": 47,
+        "stock": "한국전력",
+        "upProb": 0.5371364,
+        "sentimentCorr": -0.0691,
+        "totalScore": 0.5050709531096375
+      },
+      {
+        "rank": 58,
+        "stock": "한국카본",
+        "upProb": 0.46253347,
+        "sentimentCorr": -0.0406,
+        "totalScore": 0.47969696108986737
+      },
+      {
+        "rank": 59,
+        "stock": "SK",
+        "upProb": 0.50995487,
+        "sentimentCorr": -0.0842,
+        "totalScore": 0.47848994057194716
+      },
+      {
+        "rank": 62,
+        "stock": "GS",
+        "upProb": 0.48678553,
+        "sentimentCorr": -0.0884,
+        "totalScore": 0.46173120641383997
+      },
+      {
+        "rank": 67,
+        "stock": "SK가스",
+        "upProb": 0.46710113,
+        "sentimentCorr": -0.114,
+        "totalScore": 0.4325055800652018
+      },
+      {
+        "rank": 69,
+        "stock": "한국가스공사",
+        "upProb": 0.50832844,
+        "sentimentCorr": -0.1585,
+        "totalScore": 0.4269698756406096
+      },
+      {
+        "rank": 75,
+        "stock": "팬오션",
+        "upProb": 0.51284873,
+        "sentimentCorr": -0.22,
+        "totalScore": 0.3878453012956243
+      }
+    ],
+    "스페이스X": [
+      {
+        "rank": 16,
+        "stock": "한화시스템",
+        "upProb": 0.47169995,
+        "sentimentCorr": 0.1147,
+        "totalScore": 0.5908431189806284
+      },
+      {
+        "rank": 25,
+        "stock": "LG에너지솔루션",
+        "upProb": 0.46770078,
+        "sentimentCorr": 0.0757,
+        "totalScore": 0.5619130025510075
+      },
+      {
+        "rank": 28,
+        "stock": "한화에어로스페이스",
+        "upProb": 0.45650196,
+        "sentimentCorr": 0.0794,
+        "totalScore": 0.557710718143554
+      },
+      {
+        "rank": 31,
+        "stock": "세아베스틸지주",
+        "upProb": 0.44346634,
+        "sentimentCorr": 0.0685,
+        "totalScore": 0.5424743710650879
+      },
+      {
+        "rank": 32,
+        "stock": "미래에셋벤처투자",
+        "upProb": 0.42405525,
+        "sentimentCorr": 0.0827,
+        "totalScore": 0.540487576828522
+      },
+      {
+        "rank": 77,
+        "stock": "미래에셋증권",
+        "upProb": 0.47391203,
+        "sentimentCorr": -0.241,
+        "totalScore": 0.350197576292518
+      }
+    ],
+    "조선": [
+      {
+        "rank": 43,
+        "stock": "삼성중공업",
+        "upProb": 0.4765811,
+        "sentimentCorr": -0.0031,
+        "totalScore": 0.5136357387798984
+      },
+      {
+        "rank": 49,
+        "stock": "HJ중공업",
+        "upProb": 0.46529323,
+        "sentimentCorr": -0.0113,
+        "totalScore": 0.5012847807131657
+      },
+      {
+        "rank": 52,
+        "stock": "HD한국조선해양",
+        "upProb": 0.48118743,
+        "sentimentCorr": -0.029,
+        "totalScore": 0.4987804989344409
+      },
+      {
+        "rank": 54,
+        "stock": "한화오션",
+        "upProb": 0.47876513,
+        "sentimentCorr": -0.038,
+        "totalScore": 0.49120468009896834
+      },
+      {
+        "rank": 56,
+        "stock": "HD현대중공업",
+        "upProb": 0.46362475,
+        "sentimentCorr": -0.0261,
+        "totalScore": 0.49021566369095626
+      },
+      {
+        "rank": 63,
+        "stock": "대한조선",
+        "upProb": 0.4612521,
+        "sentimentCorr": -0.0756,
+        "totalScore": 0.45511862676970816
+      }
+    ],
+    "통신": [
+      {
+        "rank": 73,
+        "stock": "KT",
+        "upProb": 0.48570576,
+        "sentimentCorr": -0.1762,
+        "totalScore": 0.40135544257099126
+      },
+      {
+        "rank": 74,
+        "stock": "SK텔레콤",
+        "upProb": 0.5069515,
+        "sentimentCorr": -0.2143,
+        "totalScore": 0.3881845119859086
+      },
+      {
+        "rank": 78,
+        "stock": "LG유플러스",
+        "upProb": 0.48523617,
+        "sentimentCorr": -0.3076,
+        "totalScore": 0.31168593631309716
+      }
+    ]
+  },
+  "monthly": [
+    {
+      "month": "2025-06",
+      "top": [
+        "로봇",
+        "스테이블코인",
+        "화장품",
+        "게임",
+        "HBM"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "top": [
+        "화장품",
+        "스테이블코인",
+        "HBM",
+        "LNG",
+        "로봇"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "top": [
+        "로봇",
+        "게임",
+        "화장품",
+        "HBM",
+        "LNG"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "top": [
+        "로봇",
+        "HBM",
+        "게임",
+        "화장품",
+        "LNG"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "top": [
+        "HBM",
+        "조선",
+        "로봇",
+        "LNG",
+        "화장품"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "top": [
+        "로봇",
+        "HBM",
+        "화장품",
+        "LNG",
+        "게임"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "top": [
+        "HBM",
+        "스페이스X",
+        "로봇",
+        "화장품",
+        "LNG"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "top": [
+        "스페이스X",
+        "HBM",
+        "로봇",
+        "조선",
+        "LNG"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "top": [
+        "HBM",
+        "로봇",
+        "화장품",
+        "스페이스X",
+        "LNG"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "top": [
+        "HBM",
+        "LNG",
+        "로봇",
+        "스페이스X",
+        "스테이블코인"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "top": [
+        "HBM",
+        "조선",
+        "로봇",
+        "LNG",
+        "화장품"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "top": [
+        "HBM",
+        "MLCC",
+        "로봇",
+        "스페이스X",
+        "조선"
+      ]
+    }
+  ]
+}

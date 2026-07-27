@@ -1,0 +1,166 @@
+import { QuizItem, PracticeScenario } from '../types';
+import { STOCK_DATASETS } from './stockDatasets';
+
+export const OX_QUIZZES: QuizItem[] = [
+  {
+    id: 'ox_1',
+    category: '이평선 & 정배열',
+    question: '주가가 5일, 20일, 60일, 120일 이동평균선 아래에 있는 역배열 상태는 최고의 저가 매수 찬스이다.',
+    isCorrectOX: false,
+    explanation: 'X! 역배열 상태는 위에 매물 저항대가 두껍게 쌓여 있어 주가 상승이 어렵습니다. 고수들은 반드시 이평선이 정배열로 전환되는 상승 추세(2단계)에서 매수합니다.',
+    indicatorTag: '이동평균선 역배열',
+  },
+  {
+    id: 'ox_2',
+    category: 'RSI 지표',
+    question: 'RSI 수치가 70 이상으로 상승했을 때는 주가가 과매수 상태에 진입했으므로 추격 매수에 신중해야 한다.',
+    isCorrectOX: true,
+    explanation: 'O! RSI 70 이상은 매수세가 단기간에 과열된 영역입니다. 이 구간에서는 눌림목 조정을 기다리거나 익절을 준비하는 것이 좋습니다.',
+    indicatorTag: 'RSI 70 과매수',
+  },
+  {
+    id: 'ox_3',
+    category: '거래량 분석',
+    question: '전고점 저항선을 뚫고 상승 돌파할 때 거래량이 이전 평균보다 크게 줄어드는 것이 가장 신뢰도가 높다.',
+    isCorrectOX: false,
+    explanation: 'X! 돌파 시 거래량이 줄어들면 가짜 돌파(False Breakout)일 확률이 매우 높습니다. 진성 돌파는 반드시 이전 대비 150~300% 이상의 대량 거래량이 수반되어야 합니다.',
+    indicatorTag: '거래량 돌파',
+  },
+  {
+    id: 'ox_4',
+    category: '볼린저 밴드',
+    question: '볼린저 밴드의 폭이 극도로 좁아지는 스퀴즈(Squeeze) 현상은 에너지 축적 상태로, 곧 강한 변동성 폭발이 임박했음을 의미한다.',
+    isCorrectOX: true,
+    explanation: 'O! 존 볼린저에 따르면 밴드가 좁아진 스퀴즈 이후 상한선이나 하한선을 뚫어낼 때 가장 강력한 시세 변동이 발생합니다.',
+    indicatorTag: '볼린저 밴드 스퀴즈',
+  },
+  {
+    id: 'ox_5',
+    category: '구루의 법칙 (미네르비니)',
+    question: '마크 미네르비니의 VCP(변동성 수축) 패턴에서는 우상향할수록 주가의 좌우 수축 폭이 점점 커지는 특징을 보인다.',
+    isCorrectOX: false,
+    explanation: 'X! VCP는 변동성이 오른쪽으로 갈수록 줄어드는(Contraction) 패턴입니다. (예: 25% -> 12% -> 5%) 수축 폭이 좁아질 때 매수하는 것입니다.',
+    indicatorTag: 'VCP 패턴',
+  },
+  {
+    id: 'ox_6',
+    category: 'ADR 시장지표',
+    question: 'ADR 지수가 75% 이하로 떨어지면 시장 전체가 비이성적인 공포 투매에 질린 상태로, 지수 바닥권 접근 신호로 활용할 수 있다.',
+    isCorrectOX: true,
+    explanation: 'O! ADR 75% 이하 구간은 상승 종목 대비 하락 종목이 압도적으로 많았던 공포 구간으로, 우량주 분할 매수의 우호적 환경이 조성됩니다.',
+    indicatorTag: 'ADR 75% 공포',
+  },
+  {
+    id: 'ox_7',
+    category: '펀더멘털 기초',
+    question: 'PER(주가수익비율)이 낮고 ROE(자기자본이익률)가 높은 기업은 가치 대비 실적이 우수한 우량 기업일 확률이 높다.',
+    isCorrectOX: true,
+    explanation: 'O! PER은 버는 돈 대비 주가 수준을, ROE는 내 자본으로 얼마나 벌었는지를 보여줍니다. ROE가 높고 PER이 적정한 기업이 정배열 차트를 만들 때 최적의 승률을 보입니다.',
+    indicatorTag: 'PER / ROE',
+  },
+  {
+    id: 'ox_8',
+    category: 'MACD 지표',
+    question: 'MACD 선이 시그널 선을 위에서 아래로 뚫고 내려가는 데드크로스는 단기 매수 상승 신호이다.',
+    isCorrectOX: false,
+    explanation: 'X! MACD 선이 시그널 선을 아래로 이탈하는 데드크로스는 매도 또는 조정 경고 신호입니다. 매수 신호는 골든크로스입니다.',
+    indicatorTag: 'MACD 데드크로스',
+  },
+];
+
+// Interactive Chart Scenario Trainer Data
+export const PRACTICE_SCENARIOS: PracticeScenario[] = [
+  {
+    id: 'scen_samsung',
+    title: '시나리오 1: 삼성전자 5일/20일선 정배열 골든크로스 직후',
+    stockName: '삼성전자',
+    ticker: '005930.KS',
+    timeframe: '일봉',
+    difficulty: '쉬움',
+    description: '30일간의 저점 횡보 후, 5일 이동평균선이 20일 이동평균선을 강하게 뚫고 올라왔습니다. 거래량도 전일 대비 180% 증가했습니다. 지금 당신의 대응은?',
+    dataPoints: STOCK_DATASETS[0].data,
+    revealIndex: 32,
+    scenarioQuestion: '현재 차트는 5일선이 20일선 위에 안착하며 거래량이 실린 정배열 초기입니다. 여기서 매수하시겠습니까?',
+    choices: [
+      {
+        id: 'BUY',
+        label: '매수 (BUY) - 정배열 초기 및 거래량 증가로 추가 상승 기대',
+        isCorrect: true,
+        explanation: '정답입니다! 정배열 초입에 거래량이 실린 양봉은 상승 2단계 진입의 신호입니다. 이후 주가는 60일선까지 시원하게 뚫으며 상승했습니다.',
+      },
+      {
+        id: 'PASS',
+        label: '관망 / 매도 (PASS) - 이미 상승했으므로 눌림목을 기다린다',
+        isCorrect: false,
+        explanation: '아쉽습니다. 정배열 초기 거래량이 동반된 추세 전환 지점에서는 관망보다 1차 매수로 추세에 올라타는 것이 정석입니다.',
+      },
+    ],
+    keyTechnicalPoints: [
+      '5일선 / 20일선 골든크로스 완성',
+      '거래량 이전 대비 180% 폭발',
+      'MACD 0선 돌파 시그널',
+    ],
+  },
+  {
+    id: 'scen_nvidia',
+    title: '시나리오 2: 엔비디아 VCP 3차 수축 피봇 지점',
+    stockName: 'NVIDIA',
+    ticker: 'NVDA',
+    timeframe: '일봉',
+    difficulty: '보통',
+    description: '1차 25% 수축, 2차 12% 수축에 이어 3차 4% 극소 수축 구간에 진입했습니다. 거래량은 최근 3개월 중 가장 적게 말라붙은 상태입니다.',
+    dataPoints: STOCK_DATASETS[1].data,
+    revealIndex: 54,
+    scenarioQuestion: '변동성과 거래량이 극도로 줄어든 VCP 피봇 스퀴즈 상태입니다. 돌파 매수를 준비하시겠습니까?',
+    choices: [
+      {
+        id: 'BUY',
+        label: '매수 (BUY) - VCP 피봇 라인 돌파 시 강력한 신고가 시세 예상',
+        isCorrect: true,
+        explanation: '훌륭합니다! 마크 미네르비니의 세파(SEPA) 패턴 핵심으로, 거래량이 말라붙은 VCP 피봇을 뚫을 때 52주 신고가 폭발 시세가 펼쳐졌습니다.',
+      },
+      {
+        id: 'PASS',
+        label: '관망 (PASS) - 거래량이 너무 적어서 하락 위험이 크다',
+        isCorrect: false,
+        explanation: 'VCP 패턴에서 돌파 직전 거래량이 말라붙는 것은 매도 물량이 고갈되었다는 긍정적 징후입니다. 피봇 라인에서 대량 수급이 터집니다.',
+      },
+    ],
+    keyTechnicalPoints: [
+      'VCP 3단계 변동성 수축 완료',
+      '거래량 고갈 (매도물량 소화 완료)',
+      '150일/200일 이평선 정배열 우상향',
+    ],
+  },
+  {
+    id: 'scen_tesla',
+    title: '시나리오 3: 테슬라 RSI 28 과매도 & 주요 지지선 도착',
+    stockName: '테슬라',
+    ticker: 'TSLA',
+    timeframe: '일봉',
+    difficulty: '보통',
+    description: '주가가 수개월 전 강하게 반등했던 180달러 지지선에 다다랐으며, RSI 지표는 28로 과매도 구간에 들어왔습니다.',
+    dataPoints: STOCK_DATASETS[2].data,
+    revealIndex: 40,
+    scenarioQuestion: 'RSI 28 과매도 및 강력한 전고점/전저점 지지선에 도달했습니다. 반등을 노리고 분할 매수하시겠습니까?',
+    choices: [
+      {
+        id: 'BUY',
+        label: '분할 매수 (BUY) - RSI 과매도 및 전저점 지지 반등 기대',
+        isCorrect: true,
+        explanation: '정답입니다! RSI 30 이하와 강력한 주봉 지지선이 겹치는 구간에서는 강한 기술적 반등이 일어납니다.',
+      },
+      {
+        id: 'SELL',
+        label: '손절 / 매도 (SELL) - 추세가 역배열이므로 추가 하락에 건다',
+        isCorrect: false,
+        explanation: '과매도 구간 + 강력한 바닥 지지선이 중첩되는 자리는 매도보다는 기술적 반등 롱(Long) 타점으로 활용하는 것이 유리합니다.',
+      },
+    ],
+    keyTechnicalPoints: [
+      'RSI 28 과매도 영역 진입',
+      '전저점 주요 지지선 라인 매수세 유입',
+      '아래꼬리 도지(Doji) 양봉 출현',
+    ],
+  },
+];

@@ -23,6 +23,7 @@ SERIES = {
     '미국 국가활동 지수':          'CFNAI',
     '미국 트럭판매 현황':          'TRUCKD11',
     '미국 화물운송 현황':          'RAILFRTCARLOADSD11',
+    '금 가격':                      'GOLDAMGBD228NLBM',
     '원유 가격 WTI':               'DCOILWTICO',
     '미국 통화유동속도':           'M2V',
     '미국 실업률':                 'UNRATE',

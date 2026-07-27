@@ -5,11 +5,14 @@ import { FAMILY_MEMBERS } from '@/data/familyData';
 import PinScreen from '@/components/redesign/PinScreen';
 import DetailScreen from '@/components/redesign/DetailScreen';
 import MarketTab from '@/components/redesign/MarketTab';
-import PortfolioTab from '@/components/redesign/PortfolioTab';
 import CompanyTab from '@/components/redesign/CompanyTab';
+// 포트폴리오 탭은 잠시 빼둠(Sentiment Indicator로 교체) — 나중에 다시 쓸 수 있어서 파일은 그대로 둠.
+// import PortfolioTab from '@/components/redesign/PortfolioTab';
 import ScreenerScreen from '@/components/redesign/ScreenerScreen';
-import IndicatorGuideScreen from '@/components/redesign/IndicatorGuideScreen';
 import ComingSoonScreen from '@/components/redesign/ComingSoonScreen';
+import SentimentIndicatorScreen from '@/components/redesign/SentimentIndicatorScreen';
+import EconIdeaScreen from '@/components/redesign/EconIdeaScreen';
+import TechnicalChartMaster from '@/components/redesign/technical-idea/TechnicalChartMaster';
 import DesktopShell from '@/components/redesign/DesktopShell';
 import useIsDesktop from '@/hooks/useIsDesktop';
 // 자산현황 탭(AssetsTab)은 잠시 빼둠 — 나중에 다시 쓸 수 있어서 파일은 그대로 둠.
@@ -28,10 +31,10 @@ const SECTIONS = [
   {
     key: 'invest', label: '투자하기', icon: 'ti-rocket',
     tabs: [
-      { key: 'market',     label: '시장지표' ,    icon: 'ti-chart-line' },
-      { key: 'technical',  label: '기술적 지표', icon: 'ti-list-search' },
-      { key: 'portfolio',  label: '포트폴리오',   icon: 'ti-briefcase' },
-      { key: 'company',    label: '기업분석',     icon: 'ti-building-skyscraper' },
+      { key: 'market',     label: 'Stock Market',        icon: 'ti-chart-line' },
+      { key: 'technical',  label: 'Technical Indicator',  icon: 'ti-list-search' },
+      { key: 'sentiment',  label: 'Sentiment Indicator',  icon: 'ti-brain' },
+      { key: 'company',    label: 'Stock Analysis',       icon: 'ti-building-skyscraper' },
     ],
   },
 ];
@@ -132,7 +135,7 @@ export default function App() {
   // 탭을 다시 누를 때 컴포넌트를 리셋하기 위한 버전 카운터
   const [tabKeys, setTabKeys] = useState<Record<string, number>>({
     'econ-idea': 0, 'technical-idea': 0, 'stock-idea': 0,
-    market: 0, technical: 0, portfolio: 0, company: 0,
+    market: 0, technical: 0, sentiment: 0, company: 0,
   });
 
   const handleEnter = () => {
@@ -162,11 +165,11 @@ export default function App() {
     if (screen === 'detail' && selectedMember)
       return <DetailScreen member={selectedMember} onBack={handleBack} />;
     switch (activeTab) {
-      case 'econ-idea':      return <ComingSoonScreen key={`econ-idea-${tabKeys['econ-idea']}`} icon="ti-world" title="Econ Idea" subtitle="거시경제 지표와 JS Economic Cycle Index를 이해하기 쉽게 풀어드릴 예정이에요." points={['금리·물가·고용 같은 거시 지표가 시장에 미치는 영향', 'JS Economic Cycle Index 7개 구성 지표 해설', '경기 사이클 국면별 투자 전략']} />;
-      case 'technical-idea': return <IndicatorGuideScreen key={`technical-idea-${tabKeys['technical-idea']}`} />;
+      case 'econ-idea':      return <EconIdeaScreen key={`econ-idea-${tabKeys['econ-idea']}`} />;
+      case 'technical-idea': return <TechnicalChartMaster key={`technical-idea-${tabKeys['technical-idea']}`} />;
       case 'stock-idea':     return <ComingSoonScreen key={`stock-idea-${tabKeys['stock-idea']}`} icon="ti-bulb" title="Stock Idea" subtitle="기업분석 탭의 숫자들을 어떻게 읽어야 하는지, 종목을 고르는 관점을 다룰 예정이에요." points={['PER·PBR·ROE 등 기본 밸류에이션 지표 해설', '재무제표 핵심만 빠르게 읽는 법', '좋은 기업을 고르는 체크리스트']} />;
       case 'technical': return <ScreenerScreen key={`technical-${tabKeys.technical}`} />;
-      case 'portfolio': return <PortfolioTab key={`portfolio-${tabKeys.portfolio}`} />;
+      case 'sentiment': return <SentimentIndicatorScreen key={`sentiment-${tabKeys.sentiment}`} />;
       case 'market':    return <MarketTab    key={`market-${tabKeys.market}`}       />;
       case 'company':   return <CompanyTab   key={`company-${tabKeys.company}`}     />;
       default:          return null;
