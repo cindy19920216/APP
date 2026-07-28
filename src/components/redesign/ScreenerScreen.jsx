@@ -108,9 +108,12 @@ function buildStockSummary(detail, history) {
 
   let sentence3 = '';
   if (ind.equilibrium != null && close != null) {
-    sentence3 = close < ind.equilibrium
-      ? '스윙 구조상 Discount(매수 관심) 구간에 위치해 있습니다.'
-      : '스윙 구조상 Premium(매도/차익실현) 구간에 위치해 있습니다.';
+    const isDiscount = close < ind.equilibrium;
+    const zoneLabel = isDiscount ? 'Discount(매수 관심)' : 'Premium(매도/차익실현)';
+    const rangeText = (ind.swing_high != null && ind.swing_low != null)
+      ? ` 최근 60거래일 고점 ${fmtPrice(ind.swing_high)}원과 저점 ${fmtPrice(ind.swing_low)}원의 중간값(${fmtPrice(ind.equilibrium)}원)보다 ${isDiscount ? '낮아' : '높아'} 상대적으로 ${isDiscount ? '저렴한' : '비싼'} 구간이라는 뜻이에요.`
+      : '';
+    sentence3 = `스윙 구조상 ${zoneLabel} 구간에 위치해 있습니다.${rangeText}`;
   }
 
   return [sentence1, sentence2, sentence3].filter(Boolean).join(' ');
