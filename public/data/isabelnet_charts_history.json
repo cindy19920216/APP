@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-07-29",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "With a reading of 65.38, the S&P 500 has eased back from last week’s selloff, slipping out of overbought territory but still far from oversold.",
+        "descKo": "65.38을 기록한 S&P 500 지수는 지난주 매도세에서 다소 회복하며 과매수 구간을 벗어났으나, 여전히 과매도 수준과는 거리가 있다.",
+        "date": "2026-07-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-07-29/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Quarterly EPS SA vs. S&P 500",
+        "titleKo": "S&P 500 분기 주당순이익(EPS) 계절 조정치 vs. S&P 500 지수",
+        "desc": "Despite a strong second quarter of earnings, U.S. stocks have mostly gone nowhere. If the Fed turns more hawkish or rates stay elevated for longer, valuation multiples could still face pressure even as profits keep rising.",
+        "descKo": "견조한 2분기 실적에도 불구하고 미국 증시는 뚜렷한 방향성을 보이지 못했다. 연준이 매파적 태도를 강화하거나 고금리 기조가 장기화될 경우, 기업 이익 증가세와 별개로 밸류에이션 멀티플은 압박을 받을 수 있다.",
+        "date": "2026-07-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-quarterly-yoy-eps-growth/",
+        "image": "/isabelnet-charts/2026-07-29/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance Since 2025",
+        "titleKo": "2025년 이후 S&P 500 수익률",
+        "desc": "The S&P 500 has been trapped in a narrow range for two months, with rotations playing out underneath the surface, reminiscent of the November-to-February period.",
+        "descKo": "S&P 500은 두 달째 좁은 박스권에 갇혀 있다. 시장 내부에서는 지난해 11월부터 올해 2월까지와 유사한 순환매 장세가 나타나고 있다.",
+        "date": "2026-07-28",
+        "sourceUrl": "https://www.isabelnet.com/median-quarterly-sp-500-performance/",
+        "image": "/isabelnet-charts/2026-07-29/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning sits in the 36th percentile, a touch below neutral and far from crowded, leaving some room for upside.",
+        "descKo": "현재 통합 주식 포지셔닝은 36퍼센타일로 중립 수준을 소폭 하회하고 있으며, 과열 상태와 거리가 있어 추가 상승 여력이 존재한다.",
+        "date": "2026-07-28",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-07-29/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Cap-Weighted Index vs. S&P 500 Equally-Weighted Index",
+        "titleKo": "S&P 500 시가총액 가중 지수 vs. S&P 500 동일 가중 지수",
+        "desc": "Investors looking to trim exposure to AI-fueled volatility may want to consider the equal-weight S&P 500. It beat the cap-weighted index during the dot-com bust and has often held up better when leadership gets narrow.",
+        "descKo": "AI발 변동성에 대한 노출도를 줄이려는 투자자라면 S&P 500 동일 가중 지수를 고려해 볼 만하다. 해당 지수는 닷컴 버블 당시 시가총액 가중 지수보다 우수한 성과를 보였으며, 시장 주도주가 좁혀질 때 상대적으로 견고한 방어력을 보였다.",
+        "date": "2026-07-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cap-weighted-index-vs-sp-500-equally-weighted-index/",
+        "image": "/isabelnet-charts/2026-07-29/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-07-28",
     "charts": [
       {
