@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { genai, GEMINI_MODEL } from '@/lib/gemini';
+import { getGenAI, GEMINI_MODEL } from '@/lib/gemini';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 ${userQuestion || '이 차트의 핵심 기술적 포인트와 지지/저항선, RSI 및 이평선 상태를 쉽게 분석해주세요.'}
 `;
 
-    const response = await genai.models.generateContent({
+    const response = await getGenAI().models.generateContent({
       model: GEMINI_MODEL,
       contents: prompt,
       config: {
