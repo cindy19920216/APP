@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-07-30",
+    "charts": [
+      {
+        "title": "Foreign Holdings of U.S. Treasury Securities",
+        "titleKo": "미 국채의 외국인 보유 현황",
+        "desc": "U.S. Treasuries continue to draw strong foreign demand. Holdings rose to a record $9.37 trillion in May, but the buying power has passed from foreign central banks to private balance sheets. That marks a structural shift.",
+        "descKo": "미 국채에 대한 외국인 투자 수요가 지속되고 있다. 5월 보유액은 9조 3,700억 달러로 사상 최고치를 기록했으나, 매수 주체는 외국 중앙은행에서 민간 대차대조표로 이동했다. 이는 구조적 변화를 의미한다.",
+        "date": "2026-07-29",
+        "sourceUrl": "https://www.isabelnet.com/monthly-foreign-net-purchases-of-long-term-u-s-securities/",
+        "image": "/isabelnet-charts/2026-07-30/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 기반 EPS 성장 전망",
+        "desc": "Wall Street sees a strong earnings tailwind ahead, with S&P 500 profits forecast to rise 28% in 2026 and 14% in 2027. Small caps could outperform, with earnings growth of 38% this year and 43% next year.",
+        "descKo": "월가는 향후 기업 실적이 강력한 순풍을 맞을 것으로 보고 있다. S&P 500 기업의 이익은 2026년 28%, 2027년 14% 증가할 것으로 전망된다. 중소형주는 올해 38%, 내년 43%의 이익 성장을 기록하며 시장 수익률을 상회할 가능성이 있다.",
+        "date": "2026-07-29",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-07-30/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Positioning",
+        "titleKo": "주식 포지셔닝",
+        "desc": "At the 36th percentile, overall equity positioning sits just below neutral and well short of crowded, while large-cap tech at the 56th percentile is near neutral after easing from more elevated levels.",
+        "descKo": "전반적인 주식 포지셔닝은 36퍼센타일로 중립 수준을 소폭 밑돌며 과밀 상태와는 거리가 멀다. 대형 기술주는 56퍼센타일을 기록하며 높은 수준에서 조정된 후 중립 영역에 머물러 있다.",
+        "date": "2026-07-29",
+        "sourceUrl": "https://www.isabelnet.com/large-cap-equity-positioning/",
+        "image": "/isabelnet-charts/2026-07-30/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sector Fund Flows",
+        "titleKo": "섹터별 펀드 자금 흐름",
+        "desc": "Tech funds enjoyed strong inflows over the past year, driven by AI hype, but those flows are reversing as investors reassess valuations, rates and market risk. The tech story isn’t over; it’s just a crowded trade losing momentum.",
+        "descKo": "기술주 펀드는 AI 열풍에 힘입어 지난 1년간 강한 자금 유입을 보였으나, 투자자들이 밸류에이션, 금리, 시장 위험을 재평가함에 따라 자금 흐름이 반전되고 있다. 기술주 테마가 끝난 것은 아니며, 다만 과밀했던 거래의 모멘텀이 약화되고 있다.",
+        "date": "2026-07-29",
+        "sourceUrl": "https://www.isabelnet.com/annual-equity-flows/",
+        "image": "/isabelnet-charts/2026-07-30/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
+        "titleKo": "수익률 곡선으로 본 미국 경기 침체 확률",
+        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 13.6%, leaving the expansion narrative in place. This cycle still has room to run.",
+        "descKo": "수익률 곡선으로 산출한 향후 12개월 내 미국 경기 침체 확률은 13.6%로, 경기 확장 국면은 여전히 유효하다. 이번 사이클은 아직 상승 여력이 남아 있다.",
+        "date": "2026-07-29",
+        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
+        "image": "/isabelnet-charts/2026-07-30/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-07-29",
     "charts": [
       {
