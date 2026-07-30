@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-07-31",
+    "charts": [
+      {
+        "title": "Equal-Weight S&P 500 (RSP) Relative to Cap-Weight S&P 500 (SPY)",
+        "titleKo": "시가총액 가중 S&P 500(SPY) 대비 동일 가중 S&P 500(RSP)의 상대적 성과",
+        "desc": "As megacap leadership fades, market breadth is improving. This isn’t an outflow from equities. It’s just a rotation out of concentration.",
+        "descKo": "메가캡 주도의 장세가 약화되면서 시장의 폭이 개선되고 있다. 이는 주식 시장에서의 자금 이탈이 아니라, 특정 종목 쏠림 현상에서 벗어나는 순환매 과정이다.",
+        "date": "2026-07-30",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-equalweight-sp-500-market-cap-weighted/",
+        "image": "/isabelnet-charts/2026-07-31/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "The Performance of the S&P 500 Before and After Midterm Elections",
+        "titleKo": "중간선거 전후 S&P 500의 성과",
+        "desc": "History has been kind to investors after midterms. In all 20 midterm elections since World War II, the S&P 500 has been higher nine months later every time.",
+        "descKo": "역사적으로 중간선거 이후 증시는 투자자들에게 우호적이었다. 제2차 세계대전 이후 치러진 20번의 중간선거에서 S&P 500 지수는 9개월 뒤 예외 없이 상승했다.",
+        "date": "2026-07-30",
+        "sourceUrl": "https://www.isabelnet.com/the-performance-of-the-sp-500-before-and-after-midterm-elections/",
+        "image": "/isabelnet-charts/2026-07-31/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장의 집중도: S&P 500 시가총액 상위 10개 종목 비중",
+        "desc": "What once mirrored the market now drives it. The top 10 S&P 500 stocks make up 38% of the index and generate 38% of its earnings, pushing valuations higher and amplifying daily moves.",
+        "descKo": "과거 시장을 반영하던 지수는 이제 상위 10개 종목에 의해 좌우된다. S&P 500 내 상위 10개 종목은 지수의 38%를 차지하며 전체 이익의 38%를 창출해 밸류에이션을 높이고 일일 변동성을 확대하고 있다.",
+        "date": "2026-07-30",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-07-31/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Median Monthly Realized Volatility – Midterm Election Years vs. All Years",
+        "titleKo": "S&P 500 월간 실현 변동성 중앙값: 중간선거 해와 전체 기간 비교",
+        "desc": "Midterm years often bring a bump in S&P 500 volatility, as investors wait to see who controls Congress and what that means for taxes, regulation and spending before making bigger moves.",
+        "descKo": "중간선거가 있는 해에는 S&P 500의 변동성이 커지는 경향이 있다. 투자자들이 의회 권력 구도와 이에 따른 세금, 규제, 지출 정책의 향방을 확인한 뒤 본격적인 투자에 나서기 때문이다.",
+        "date": "2026-07-30",
+        "sourceUrl": "https://www.isabelnet.com/implied-volatility-vix-and-realized-sp-500-volatility-1-month/",
+        "image": "/isabelnet-charts/2026-07-31/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – Shiller Cyclically-Adjusted S&P 500 Price-to-Earnings Ratio",
+        "titleKo": "밸류에이션: 쉴러 경기조정 주가수익비율(CAPE)",
+        "desc": "On the Shiller CAPE, U.S. stocks are back in the stratosphere, the kind that thrills investors on the way up and has a habit of burning them on the way down. Levels like this have a track record of slimmer returns and higher risk.",
+        "descKo": "쉴러 CAPE 기준으로 미국 증시는 다시 고공행진을 이어가고 있다. 이는 상승기에는 투자자를 열광시키지만 하락기에는 큰 손실을 입히는 수준이다. 현재와 같은 수준은 향후 수익률 저하와 리스크 증대로 이어질 가능성이 높다.",
+        "date": "2026-07-30",
+        "sourceUrl": "https://www.isabelnet.com/valuation-u-s-market-capitalization-to-gdp-and-cyclically-adjusted-p-e-shiller-cape/",
+        "image": "/isabelnet-charts/2026-07-31/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-07-30",
     "charts": [
       {
