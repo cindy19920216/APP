@@ -12,6 +12,7 @@ import ScreenerScreen from '@/components/redesign/ScreenerScreen';
 import ComingSoonScreen from '@/components/redesign/ComingSoonScreen';
 import SentimentIndicatorScreen from '@/components/redesign/SentimentIndicatorScreen';
 import EconIdeaScreen from '@/components/redesign/EconIdeaScreen';
+import StockIdeaScreen from '@/components/redesign/StockIdeaScreen';
 import TechnicalChartMaster from '@/components/redesign/technical-idea/TechnicalChartMaster';
 import DesktopShell from '@/components/redesign/DesktopShell';
 import useIsDesktop from '@/hooks/useIsDesktop';
@@ -167,7 +168,7 @@ export default function App() {
     switch (activeTab) {
       case 'econ-idea':      return <EconIdeaScreen key={`econ-idea-${tabKeys['econ-idea']}`} />;
       case 'technical-idea': return <TechnicalChartMaster key={`technical-idea-${tabKeys['technical-idea']}`} />;
-      case 'stock-idea':     return <ComingSoonScreen key={`stock-idea-${tabKeys['stock-idea']}`} icon="ti-bulb" title="Stock Idea" subtitle="기업분석 탭의 숫자들을 어떻게 읽어야 하는지, 종목을 고르는 관점을 다룰 예정이에요." points={['PER·PBR·ROE 등 기본 밸류에이션 지표 해설', '재무제표 핵심만 빠르게 읽는 법', '좋은 기업을 고르는 체크리스트']} />;
+      case 'stock-idea':     return <StockIdeaScreen key={`stock-idea-${tabKeys['stock-idea']}`} />;
       case 'technical': return <ScreenerScreen key={`technical-${tabKeys.technical}`} />;
       case 'sentiment': return <SentimentIndicatorScreen key={`sentiment-${tabKeys.sentiment}`} />;
       case 'market':    return <MarketTab    key={`market-${tabKeys.market}`}       />;
