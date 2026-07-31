@@ -5,6 +5,10 @@ import IndicatorGuideScreen from './IndicatorGuideScreen';
 import DesktopModal from './DesktopModal';
 import StockChart from './StockChart';
 import useIsDesktop from '@/hooks/useIsDesktop';
+import {
+  computeADX, detectCandlePatterns, detectSignalFlips, computeWeeklyTrend, computeStockSentiment,
+  buildLiveBars, computeApproxSignal,
+} from '@/lib/stockAnalysis';
 
 // ─── 유틸 ─────────────────────────────────
 function trendColor(t) {
@@ -19,6 +23,14 @@ function opinionColor(op) {
 }
 function opinionLabel(op) {
   return op.split('(')[0].trim();
+}
+// 목록의 실시간 근사 진입의견 배지 — /api/screener-live가 종목코드별로 내려주는
+// buy/sell/neutral 신호를 표시용 라벨/색으로 변환.
+const LIVE_SIGNAL_LABEL = { buy: '실시간 매수', sell: '실시간 매도', neutral: '실시간 관망' };
+function liveSignalColor(signal) {
+  if (signal === 'buy') return '#1D9E75';
+  if (signal === 'sell') return '#E24B4A';
+  return '#555';
 }
 function formatMarketCap(v) {
   if (v == null) return '-';
@@ -40,6 +52,15 @@ function elderLabel(c) {
   if (c === 'green') return '강세(매수 가능)';
   if (c === 'red') return '약세(신규 매수 자제)';
   return '중립';
+}
+// 엘더 임펄스 시스템: 13일 이평선 추세 + MACD 히스토그램 모멘텀이 둘 다 상승이면
+// 초록(매수 가능), 둘 다 하락이면 빨강(신규 매수 자제), 방향이 엇갈리면 중립(파랑)으로
+// 분류하는 알렉산더 엘더의 지표. buildStockSummary에 풀어 써서 요약문 톤이 이 판정과
+// 어긋나지 않게(예: 가격은 급등했는데 문단은 계속 긍정적으로만 읽히는 일이 없게) 한다.
+function elderImpulseExplain(c) {
+  if (c === 'green') return '최근 이동평균 추세와 MACD 모멘텀이 둘 다 상승 방향일 때만 켜지는 신호인데, 지금이 그 구간이라 신규 매수 진입을 비교적 안전하게 보는 시점이에요.';
+  if (c === 'red') return '이동평균 추세와 MACD 모멘텀이 둘 다 하락 방향일 때 켜지는 신호인데, 지금이 그 구간이라 신규 매수보다는 관망하거나 보유분 정리를 고려하는 시점으로 봐요.';
+  return '이동평균 추세와 MACD 모멘텀의 방향이 서로 엇갈려 있어서, 매수도 매도도 강하게 권하기 어려운 구간이에요.';
 }
 function chochLabel(c) {
   if (c === 'bullish') return '상승 전환';
@@ -73,9 +94,13 @@ function eunNeun(word) {
 }
 
 // ─── 종목 상세 요약 문단 (자동 생성) ─────────
-function buildStockSummary(detail, history) {
+// live가 있으면(오늘 합성봉 반영됨) 가격/RSI/이평선은 실시간 값을 우선 쓴다 —
+// herencia-ta의 daily ind 값만 쓰면 장중 급등락일 때 문단 내용이 헤더(실시간)와
+// 어긋나 보인다.
+function buildStockSummary(detail, history, live) {
   const ind = detail.indicators ?? {};
-  const close = ind.close, prev = ind.prev_close;
+  const close = live?.close ?? ind.close;
+  const prev = live?.prevClose ?? ind.prev_close;
   if (close == null) return '';
 
   const change = prev != null ? close - prev : null;
@@ -96,13 +121,16 @@ function buildStockSummary(detail, history) {
   const dir = change != null && change >= 0 ? '상승' : '하락';
   const topic = eunNeun(detail.name);
   const sentence1 = change != null
-    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원이며, 전일 대비 ${fmtPrice(Math.abs(change))}원(${changeCtx} 변화 수준) ${dir}했습니다.`
+    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원이며, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원(${changeCtx} 변화 수준) ${dir}했습니다.`
     : `현재 ${detail.name}${topic} ${fmtPrice(close)}원입니다.`;
 
+  const rsiVal = live?.rsi ?? ind.rsi;
+  const ma5Val = live?.ma5 ?? ind.ma5;
+  const ma20Val = live?.ma20 ?? ind.ma20;
   const parts2 = [];
-  if (ind.rsi != null) parts2.push(`RSI는 ${fmtNum(ind.rsi)}로 ${rsiLabel(ind.rsi)} 구간`);
-  if (ind.ma5 != null && ind.ma20 != null) {
-    parts2.push(ind.ma5 >= ind.ma20 ? 'MA5가 MA20 위에 위치해 단기 상승 추세' : 'MA5가 MA20 아래에 위치해 단기 하락 추세');
+  if (rsiVal != null) parts2.push(`RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간`);
+  if (ma5Val != null && ma20Val != null) {
+    parts2.push(ma5Val >= ma20Val ? 'MA5가 MA20 위에 위치해 단기 상승 추세' : 'MA5가 MA20 아래에 위치해 단기 하락 추세');
   }
   const sentence2 = parts2.length ? parts2.join(', ') + '입니다.' : '';
 
@@ -116,7 +144,16 @@ function buildStockSummary(detail, history) {
     sentence3 = `스윙 구조상 ${zoneLabel} 구간에 위치해 있습니다.${rangeText}`;
   }
 
-  return [sentence1, sentence2, sentence3].filter(Boolean).join(' ');
+  // 앞 문장들(가격 상승폭, Discount 구간 등)이 낙관적으로 읽혀도, 추세+모멘텀을 함께 보는
+  // 엘더 임펄스가 약세면 "다만"으로 이어서 톤을 맞춘다 — 배지(약세)와 문단이 서로 다른
+  // 얘기를 하는 것처럼 보이지 않게.
+  let sentence4 = '';
+  if (ind.elder_impulse != null) {
+    const connector = ind.elder_impulse === 'red' ? '다만' : ind.elder_impulse === 'green' ? '실제로' : '참고로';
+    sentence4 = `${connector} 추세와 모멘텀을 함께 보는 엘더 임펄스 지표는 ${elderLabel(ind.elder_impulse)}로 나와 있는데, ${elderImpulseExplain(ind.elder_impulse)}`;
+  }
+
+  return [sentence1, sentence2, sentence3, sentence4].filter(Boolean).join(' ');
 }
 
 const FILTERS = [
@@ -125,11 +162,21 @@ const FILTERS = [
   { key: 'sell', label: '매도 관심' },
   { key: 'hold', label: '관망' },
 ];
+// 실시간 신호(stock.liveSignal, ScreenerScreen에서 병합)가 있으면 그걸 기준으로,
+// 없으면(아직 계산 전/그 종목만 실패) 공식 entry_opinion으로 폴백 — 필터 칩/카운트/
+// 목록 배지가 항상 같은 값을 기준으로 삼도록 이 함수 하나로 통일한다.
+function effectiveSignal(stock) {
+  if (stock.liveSignal) return stock.liveSignal;
+  if (stock.entry_opinion.startsWith('매수')) return 'buy';
+  if (stock.entry_opinion.startsWith('매도')) return 'sell';
+  return 'neutral';
+}
 function matchesFilter(stock, key) {
   if (key === 'all') return true;
-  if (key === 'buy') return stock.entry_opinion.startsWith('매수');
-  if (key === 'sell') return stock.entry_opinion.startsWith('매도');
-  return !stock.entry_opinion.startsWith('매수') && !stock.entry_opinion.startsWith('매도');
+  const sig = effectiveSignal(stock);
+  if (key === 'buy') return sig === 'buy';
+  if (key === 'sell') return sig === 'sell';
+  return sig === 'neutral';
 }
 
 // ─── 지표 그룹 섹션 (종목 상세용) ────────────
@@ -207,6 +254,155 @@ function RawIndicatorSections({ ind }) {
   );
 }
 
+// ─── 종목 상세 탭바 ───────────────────────
+const DETAIL_TABS = [
+  { key: 'chart', label: '차트' },
+  { key: 'news', label: '뉴스' },
+  { key: 'ai', label: 'AI 분석' },
+  { key: 'sentiment', label: '공포탐욕지수' },
+];
+function DetailTabBar({ active, onChange }) {
+  return (
+    <div style={S.detailTabBar}>
+      {DETAIL_TABS.map(t => (
+        <button
+          key={t.key}
+          style={{ ...S.detailTabBtn, ...(active === t.key ? S.detailTabBtnActive : {}) }}
+          onClick={() => onChange(t.key)}
+        >
+          {t.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+// ─── 뉴스 탭 ──────────────────────────────
+function NewsPanel({ loading, headlines, source }) {
+  if (loading) return <div style={S.detailLoading}>뉴스를 불러오는 중...</div>;
+  if (!headlines || headlines.length === 0) {
+    return <div style={S.summaryText}>관련 뉴스를 찾지 못했습니다.</div>;
+  }
+  return (
+    <div style={S.newsList}>
+      {headlines.map((h, i) => {
+        const meta = [h.media, h.date].filter(Boolean).join(' · ');
+        const body = (
+          <div style={S.newsItem}>
+            <i className="ti ti-news" style={{ fontSize: 12, color: '#7F77DD', flexShrink: 0, marginTop: 2 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0 }}>
+              <span style={S.newsItemText}>{h.title}</span>
+              {meta && <span style={S.newsItemMeta}>{meta}</span>}
+              {h.summary && <span style={S.newsItemSummary}>{h.summary}</span>}
+            </div>
+          </div>
+        );
+        return h.url ? (
+          <a key={i} href={h.url} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+            {body}
+          </a>
+        ) : (
+          <div key={i}>{body}</div>
+        );
+      })}
+      <div style={S.opinionCaveat}>
+        {source === 'batch'
+          ? '매일 자동 수집·번역된 외신 위주 뉴스입니다.'
+          : 'Google 뉴스 검색 결과이며, 이 앱이 직접 검증한 내용이 아닙니다.'}
+      </div>
+    </div>
+  );
+}
+
+// ─── AI 분석 탭 ───────────────────────────
+const VERDICT_COLOR = { 상승: '#1D9E75', 하락: '#E24B4A', 보합: '#888' };
+function AiPanel({ state, loading, error, stale, onRerun }) {
+  if (loading && !state) return <div style={S.detailLoading}>AI가 지표를 분석하는 중...</div>;
+  if (error && !state) return <div style={S.summaryText}>AI 분석에 실패했습니다: {error}</div>;
+  if (!state) return <div style={S.summaryText}>분석 결과가 없습니다.</div>;
+
+  return (
+    <div style={S.aiPanel}>
+      {stale && (
+        <div style={S.aiStaleBanner}>
+          <span>AI 분석 결과가 오래됐어요. 지금 시장 가격을 반영하려면 재분석해 주세요.</span>
+          <button style={S.aiRerunBtn} onClick={onRerun} disabled={loading}>
+            {loading ? '분석 중...' : '재분석'}
+          </button>
+        </div>
+      )}
+      <div style={S.aiHeadRow}>
+        <span style={{ ...S.opinionBadge, color: VERDICT_COLOR[state.verdict] ?? '#888', background: (VERDICT_COLOR[state.verdict] ?? '#888') + '15' }}>
+          {state.verdict}
+        </span>
+        <span style={S.aiIndicatorTag}>{state.indicatorCount}종 지표 적용</span>
+        <span style={S.aiTimestamp}>{new Date(state.generatedAt).toLocaleString('ko-KR')}</span>
+      </div>
+      <div style={S.aiText}>{state.text}</div>
+    </div>
+  );
+}
+
+// ─── 공포탐욕지수 탭 (반원 게이지) ─────────
+function sentimentArcD(cx, cy, r, from, to) {
+  const a1 = Math.PI * (1 - from / 100);
+  const a2 = Math.PI * (1 - to / 100);
+  const x1 = (cx + r * Math.cos(a1)).toFixed(2);
+  const y1 = (cy - r * Math.sin(a1)).toFixed(2);
+  const x2 = (cx + r * Math.cos(a2)).toFixed(2);
+  const y2 = (cy - r * Math.sin(a2)).toFixed(2);
+  return `M ${x1} ${y1} A ${r} ${r} 0 ${(to - from) > 50 ? 1 : 0} 0 ${x2} ${y2}`;
+}
+const SENTIMENT_SEGS = [
+  { from: 0, to: 20, color: '#ef4444' },
+  { from: 20, to: 40, color: '#f97316' },
+  { from: 40, to: 60, color: '#eab308' },
+  { from: 60, to: 80, color: '#84cc16' },
+  { from: 80, to: 100, color: '#22c55e' },
+];
+function SentimentGauge({ score }) {
+  const cx = 130, cy = 104, r = 76, sw = 11;
+  const angle = Math.PI * (1 - score / 100);
+  const nx = (cx + (r - 13) * Math.cos(angle)).toFixed(2);
+  const ny = (cy - (r - 13) * Math.sin(angle)).toFixed(2);
+  return (
+    <svg viewBox="0 0 260 120" style={{ width: '100%' }}>
+      {SENTIMENT_SEGS.map((z, i) => (
+        <path key={i} d={sentimentArcD(cx, cy, r, z.from, z.to)} fill="none" stroke={z.color + '2a'} strokeWidth={sw} />
+      ))}
+      {SENTIMENT_SEGS.map((z, i) => {
+        if (score <= z.from) return null;
+        return <path key={i} d={sentimentArcD(cx, cy, r, z.from, Math.min(score, z.to))} fill="none" stroke={z.color} strokeWidth={sw} strokeLinecap="round" />;
+      })}
+      <line x1={cx} y1={cy} x2={nx} y2={ny} stroke="#fff" strokeWidth={2} strokeLinecap="round" opacity={0.9} />
+      <circle cx={cx} cy={cy} r={5} fill="#fff" opacity={0.9} />
+      <circle cx={cx} cy={cy} r={3} fill="#0f1117" />
+      <text x={cx} y={cy - 24} textAnchor="middle" fill="#fff" fontSize="30" fontWeight="500" letterSpacing="-1">{score}</text>
+      <text x={8} y={cy + 13} textAnchor="start" fill={SENTIMENT_SEGS[0].color} fontSize="9" fontWeight="700">공포</text>
+      <text x={252} y={cy + 13} textAnchor="end" fill={SENTIMENT_SEGS[4].color} fontSize="9" fontWeight="700">탐욕</text>
+    </svg>
+  );
+}
+function SentimentPanel({ sentiment }) {
+  return (
+    <div style={S.sentimentPanel}>
+      <div style={S.gaugeCard}>
+        <SentimentGauge score={sentiment.score} />
+        <div style={{ textAlign: 'center', color: sentiment.color, fontSize: 13, fontWeight: 600 }}>{sentiment.label}</div>
+      </div>
+      <div style={S.sideStatsList}>
+        {sentiment.breakdown.map(b => (
+          <SideStat key={b.label} label={b.label} value={Math.round(b.score)} />
+        ))}
+      </div>
+      <div style={S.opinionCaveat}>
+        RSI·볼린저밴드 위치·MA20 이격도·52주 레인지 위치·MACD 부호를 가중 합산한 이 종목 전용
+        근사 지수입니다. 시장지표 탭의 BOOM-BURST 종합지수와는 별개의 방법론입니다.
+      </div>
+    </div>
+  );
+}
+
 // ─── 종목 상세 (아코디언 인라인 / 데스크톱 우측 패널) ─
 function StockDetail({ code, apiBase }) {
   const isDesktop = useIsDesktop();
@@ -214,10 +410,29 @@ function StockDetail({ code, apiBase }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showRaw, setShowRaw] = useState(false);
+  const [activeTab, setActiveTab] = useState('chart');
+  const [newsData, setNewsData] = useState(null);
+  const [newsSource, setNewsSource] = useState('live');
+  const [newsLoading, setNewsLoading] = useState(false);
+  const [aiState, setAiState] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(null);
+  const [aiAttempted, setAiAttempted] = useState(false);
+  const [currentLivePrice, setCurrentLivePrice] = useState(null);
+  const [livePrevClose, setLivePrevClose] = useState(null);
+  const [hourlyPoints, setHourlyPoints] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     setShowRaw(false);
+    setActiveTab('chart');
+    setNewsData(null);
+    setAiState(null);
+    setAiAttempted(false);
+    setAiError(null);
+    setCurrentLivePrice(null);
+    setLivePrevClose(null);
+    setHourlyPoints(null);
     Promise.all([
       fetch(`${apiBase}/api/stocks/${code}`).then(r => r.ok ? r.json() : null),
       fetch(`${apiBase}/api/stocks/${code}/history`).then(r => r.ok ? r.json() : []),
@@ -227,56 +442,260 @@ function StockDetail({ code, apiBase }) {
       .finally(() => setLoading(false));
   }, [code, apiBase]);
 
+  // AI 분석은 Gemini 호출 비용 때문에 세션 내에서는 종목당 결과를 재사용한다.
+  useEffect(() => {
+    try {
+      const cached = sessionStorage.getItem(`ai-report-${code}`);
+      if (cached) setAiState(JSON.parse(cached));
+    } catch { /* noop */ }
+  }, [code]);
+
+  const liveBars = useMemo(() => buildLiveBars(history, hourlyPoints), [history, hourlyPoints]);
+  const patterns = useMemo(() => detectCandlePatterns(liveBars), [liveBars]);
+  const signalFlips = useMemo(() => detectSignalFlips(liveBars), [liveBars]);
+  const adx = useMemo(() => computeADX(liveBars), [liveBars]);
+  const weeklyTrend = useMemo(() => computeWeeklyTrend(liveBars), [liveBars]);
+  const sentiment = useMemo(() => computeStockSentiment(liveBars), [liveBars]);
+
+  const runAiAnalysis = () => {
+    if (!detail) return;
+    const di = detail.indicators ?? {};
+    setAiAttempted(true);
+    setAiLoading(true);
+    setAiError(null);
+
+    // herencia-ta의 close는 최근 확정 일봉(전일 종가 기준)이라, AI 분석 시점의 실제
+    // 현재가(지연 포함)는 시장지표 탭과 같은 Yahoo Finance 경로에서 따로 받아온다.
+    fetch(`/api/chart/${code}?range=1d&interval=5m`)
+      .then(r => r.ok ? r.json() : null)
+      .then(chartData => chartData?.meta?.regularMarketPrice ?? di.close)
+      .catch(() => di.close)
+      .then(livePrice => fetch('/api/stock-ai-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: detail.name,
+          code,
+          price: di.close,
+          livePrice,
+          indicators: {
+            close: di.close, prev_close: di.prev_close, rsi: di.rsi, ma5: di.ma5, ma20: di.ma20, ma60: di.ma60,
+            macd_hist: di.macd_hist, bb_upper: di.bb_upper, bb_lower: di.bb_lower, atr: di.atr, vwap: di.vwap,
+            donchian_upper: di.donchian_upper, donchian_lower: di.donchian_lower, poc: di.poc,
+            swing_high: di.swing_high, swing_low: di.swing_low, equilibrium: di.equilibrium, entry_opinion: detail.entry_opinion,
+            elder_impulse: di.elder_impulse,
+          },
+          extra: {
+            adx: adx.adx, plusDI: adx.plusDI, minusDI: adx.minusDI,
+            patterns: patterns.slice(-3), signalFlips: signalFlips.slice(-5), weeklyTrend,
+          },
+        }),
+      }))
+      .then(r => r.json())
+      .then(d => {
+        if (!d.success) { setAiError(d.error || 'AI 분석에 실패했습니다.'); return; }
+        const next = { text: d.text, verdict: d.verdict, indicatorCount: d.indicatorCount, generatedAt: d.generatedAt, priceAtAnalysis: d.livePrice ?? di.close };
+        setAiState(next);
+        try { sessionStorage.setItem(`ai-report-${code}`, JSON.stringify(next)); } catch { /* noop */ }
+      })
+      .catch(e => setAiError(String(e)))
+      .finally(() => setAiLoading(false));
+  };
+
+  // AI 분석 탭에 처음 들어왔고 캐시된 결과가 없을 때만 자동 호출(온디맨드).
+  useEffect(() => {
+    if (activeTab === 'ai' && detail && !aiState && !aiAttempted && !aiLoading) {
+      runAiAnalysis();
+    }
+  }, [activeTab, detail, aiState, aiAttempted, aiLoading]);
+
+  useEffect(() => {
+    if (activeTab !== 'news' || newsData || !detail?.name) return;
+    setNewsLoading(true);
+    fetch(`/api/stock-news?name=${encodeURIComponent(detail.name)}&code=${code}`)
+      .then(r => r.ok ? r.json() : { headlines: [] })
+      .then(d => { setNewsData(d.headlines ?? []); setNewsSource(d.source ?? 'live'); })
+      .catch(() => setNewsData([]))
+      .finally(() => setNewsLoading(false));
+  }, [activeTab, detail, newsData]);
+
+  // 차트/AI 분석 탭이 열려 있는 동안 실시간(지연 포함) 현재가를 따로 추적 — herencia-ta의
+  // 일봉 지표(RSI/MACD/진입의견 등)는 전일 종가 기준이라 장중 급등락이 반영되지 않는다.
+  // 가격 헤더는 이 값으로 보여주고, "재분석 필요" 배너의 가격 변동 판단에도 이 값을 쓴다.
+  useEffect(() => {
+    if ((activeTab !== 'ai' && activeTab !== 'chart') || !code) return;
+    let cancelled = false;
+    const load = () => {
+      fetch(`/api/chart/${code}?range=1d&interval=5m`)
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          if (cancelled || !d?.meta) return;
+          if (d.meta.regularMarketPrice != null) setCurrentLivePrice(d.meta.regularMarketPrice);
+          if (d.meta.previousClose != null) setLivePrevClose(d.meta.previousClose);
+        })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') load();
+    }, 60_000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [activeTab, code]);
+
+  // 오늘자 시간봉(StockChart.jsx의 "1시간" 옵션과 동일 데이터) — ADX/캔들패턴/매매신호/
+  // 공포탐욕지수/AI판정 같은 "근사치" 계산에 당일 급등락을 반영하기 위해 buildLiveBars로
+  // 일봉 히스토리 뒤에 합성해 붙인다. 시간봉 단위 데이터라 자연스럽게 매시 갱신된다.
+  useEffect(() => {
+    if ((activeTab !== 'ai' && activeTab !== 'chart') || !code) return;
+    let cancelled = false;
+    const load = () => {
+      fetch(`/api/chart/${code}?range=1mo&interval=60m`)
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (!cancelled && Array.isArray(d?.points)) setHourlyPoints(d.points); })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') load();
+    }, 10 * 60_000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [activeTab, code]);
+
   if (loading) return <div style={S.detailLoading}>불러오는 중...</div>;
   if (!detail) return <div style={S.detailLoading}>상세 정보를 불러오지 못했습니다.</div>;
 
   const ind = detail.indicators ?? {};
   const close = ind.close, prev = ind.prev_close;
-  const change = (close != null && prev != null) ? close - prev : null;
-  const pct = (change != null && prev) ? (change / prev) * 100 : null;
   const vsLow = pctVsLow(close, ind.low_52w);
-  const summary = buildStockSummary(detail, history);
+  // AI 분석 시점의 가격(livePrice 기준)과 비교해야 하므로, herencia-ta 일봉 종가(close)가
+  // 아니라 AI 탭에서 폴링 중인 currentLivePrice(없으면 close로 폴백)를 기준으로 삼는다.
+  const referencePrice = currentLivePrice ?? close;
+  const isStale = !!aiState && (
+    (referencePrice != null && aiState.priceAtAnalysis && Math.abs((referencePrice - aiState.priceAtAnalysis) / aiState.priceAtAnalysis) > 0.01) ||
+    (Date.now() - new Date(aiState.generatedAt).getTime() > 30 * 60 * 1000)
+  );
+
+  // 가격 헤더는 herencia-ta의 전일 종가(close)가 아니라 실시간(지연 포함) 시세를 우선
+  // 보여준다 — RSI/MACD/진입의견 같은 지표는 여전히 일봉(전일 종가) 기준이라 급등락
+  // 당일에는 헤더 가격과 아래 지표 설명이 다른 기준일 수 있다는 걸 캡션으로 알려준다.
+  const displayPrice = currentLivePrice ?? close;
+  const displayPrevClose = currentLivePrice != null ? (livePrevClose ?? prev) : prev;
+  const change = (displayPrice != null && displayPrevClose != null) ? displayPrice - displayPrevClose : null;
+  const pct = (change != null && displayPrevClose) ? (change / displayPrevClose) * 100 : null;
+  const showsLive = currentLivePrice != null && close != null && Math.abs(currentLivePrice - close) / close > 0.001;
+
+  // liveBars가 history보다 길면 오늘자 합성봉이 실제로 반영된 것 — ADX/패턴/신호/
+  // 공포탐욕지수가 "몇 시 기준"인지 hourlyPoints의 마지막 시간봉에서 뽑아 보여준다.
+  const liveBarsActive = liveBars.length > history.length;
+  const lastHourKst = liveBarsActive && hourlyPoints?.length
+    ? new Date((hourlyPoints.at(-1).date + 9 * 3600) * 1000).getUTCHours()
+    : null;
+
+  // 요약 문단도 herencia-ta의 daily RSI/MA가 아니라 오늘 합성봉 반영값을 우선 쓴다.
+  const liveBarsLatest = liveBars.at(-1);
+  const summary = buildStockSummary(detail, history, {
+    close: displayPrice,
+    prevClose: displayPrevClose,
+    rsi: liveBarsLatest?.rsi,
+    ma5: liveBarsLatest?.ma5,
+    ma20: liveBarsLatest?.ma20,
+  });
+
+  // 진입의견(매수 관심/매도 관심/관망)도 실시간 근사치로 별도 표시 — 공식
+  // entry_opinion(헤더의 detail.entry_opinion)은 herencia-ta 전일 기준 그대로 둔다.
+  const LIVE_OPINION_LABEL = { buy: '매수 관심', sell: '매도 관심', neutral: '관망' };
+  const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#555' };
+  const liveOpinionSignal = computeApproxSignal(liveBarsLatest ?? {});
+  const liveOpinionLabel = LIVE_OPINION_LABEL[liveOpinionSignal];
+  const liveOpinionColor = LIVE_OPINION_COLOR[liveOpinionSignal];
 
   const priceHeader = (
-    <div style={S.priceHeader}>
-      <span style={S.priceValue}>{fmtPrice(close)}원</span>
-      {change != null && (
-        <span style={{ ...S.priceChange, color: pclr(change) }}>
-          {change >= 0 ? '+' : ''}{fmtPrice(Math.round(change))}원 ({pct >= 0 ? '+' : ''}{pct.toFixed(2)}%)
-        </span>
+    <div style={S.priceHeaderBlock}>
+      <div style={S.priceHeader}>
+        <span style={S.priceValue}>{fmtPrice(displayPrice)}원</span>
+        {change != null && (
+          <span style={{ ...S.priceChange, color: pclr(change) }}>
+            {change >= 0 ? '+' : ''}{fmtPrice(Math.round(change))}원 ({pct >= 0 ? '+' : ''}{pct.toFixed(2)}%)
+          </span>
+        )}
+        {currentLivePrice != null && <span style={S.livePriceTag}>실시간</span>}
+      </div>
+      {showsLive && (
+        <div style={S.livePriceCaption}>
+          RSI·MACD·진입의견(공식) 등 아래 지표는 전일 종가 {fmtPrice(close)}원 기준입니다(하루 1회 갱신).
+          {liveBarsActive && ` ADX·캔들패턴·매매신호·공포탐욕지수·AI 판정(근사치)은 ${lastHourKst}시 기준으로 갱신됩니다(매 정시).`}
+        </div>
       )}
     </div>
   );
+
+  const sentimentBadge = (
+    <span style={{ ...S.sentimentBadge, color: sentiment.color, background: sentiment.color + '18' }}>
+      {sentiment.label} {sentiment.score}
+    </span>
+  );
+
+  const headerRow = (
+    <div style={S.detailHeaderRow}>
+      <div style={S.detailOpinion}>{detail.entry_opinion}</div>
+      <div style={S.detailHeaderBadges}>
+        {liveBarsActive && (
+          <span style={{ ...S.sentimentBadge, color: liveOpinionColor, background: liveOpinionColor + '18' }}>
+            실시간 {liveOpinionLabel}
+          </span>
+        )}
+        {sentimentBadge}
+      </div>
+    </div>
+  );
+
+  const rawToggleBtn = (
+    <button style={S.rawToggle} onClick={() => setShowRaw(v => !v)}>
+      <span>상세 지표</span>
+      <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
+    </button>
+  );
+
+  const adxValue = adx.adx != null
+    ? `${adx.adx.toFixed(1)} (+DI ${adx.plusDI.toFixed(1)} / -DI ${adx.minusDI.toFixed(1)})`
+    : '데이터 부족';
 
   // ── 데스크톱: siglens 스타일 2단(차트 크게/좌 + 요약 사이드바/우) ──
   if (isDesktop) {
     return (
       <div style={S.detailDeskWrap}>
-        <div style={S.detailOpinion}>{detail.entry_opinion}</div>
-        <div style={S.detailDeskSplit}>
-          <div style={S.detailChartCol}>
-            {priceHeader}
-            <StockChart history={history} height={440} />
-          </div>
-          <div style={S.detailSideCol}>
-            <div style={S.sideStatsList}>
-              <SideStat label="RSI" value={`${fmtNum(ind.rsi)} · ${rsiLabel(ind.rsi)}`} />
-              <SideStat label="MACD" value={macdMomentumText(ind.macd_hist)} />
-              <SideStat label="52주 저점 대비" value={vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'} />
-              <SideStat
-                label="엘더 임펄스"
-                value={elderLabel(ind.elder_impulse)}
-                valueColor={elderColor(ind.elder_impulse)}
-              />
+        {headerRow}
+        <DetailTabBar active={activeTab} onChange={setActiveTab} />
+
+        {activeTab === 'chart' && (
+          <div style={S.detailDeskSplit}>
+            <div style={S.detailChartCol}>
+              {priceHeader}
+              <StockChart history={liveBars} height={440} patternMarkers={patterns} signalMarkers={signalFlips} code={code} />
             </div>
-            {summary && <div style={S.summaryText}>{summary}</div>}
-            <button style={S.rawToggle} onClick={() => setShowRaw(v => !v)}>
-              <span>상세 지표</span>
-              <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
-            </button>
-            {showRaw && <RawIndicatorSections ind={ind} />}
+            <div style={S.detailSideCol}>
+              <div style={S.sideStatsList}>
+                <SideStat label="RSI" value={`${fmtNum(ind.rsi)} · ${rsiLabel(ind.rsi)}`} />
+                <SideStat label="MACD" value={macdMomentumText(ind.macd_hist)} />
+                <SideStat label="ADX" value={adxValue} />
+                <SideStat label="52주 저점 대비" value={vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'} />
+                <SideStat
+                  label="엘더 임펄스"
+                  value={elderLabel(ind.elder_impulse)}
+                  valueColor={elderColor(ind.elder_impulse)}
+                />
+              </div>
+              {summary && <div style={S.summaryText}>{summary}</div>}
+              {rawToggleBtn}
+              {showRaw && <RawIndicatorSections ind={ind} />}
+            </div>
           </div>
-        </div>
+        )}
+        {activeTab === 'news' && <NewsPanel loading={newsLoading} headlines={newsData} source={newsSource} />}
+        {activeTab === 'ai' && (
+          <AiPanel state={aiState} loading={aiLoading} error={aiError} stale={isStale} onRerun={runAiAnalysis} />
+        )}
+        {activeTab === 'sentiment' && <SentimentPanel sentiment={sentiment} />}
       </div>
     );
   }
@@ -284,40 +703,46 @@ function StockDetail({ code, apiBase }) {
   // ── 모바일: 세로 스택 ──
   return (
     <div style={S.detailWrap}>
-      <div style={S.detailOpinion}>{detail.entry_opinion}</div>
-      {priceHeader}
-      <StockChart history={history} height={320} />
+      {headerRow}
+      <DetailTabBar active={activeTab} onChange={setActiveTab} />
 
-      <div style={S.keyStatsRow}>
-        <div style={S.keyStat}>
-          <div style={S.keyStatLabel}>RSI</div>
-          <div style={S.keyStatValue}>{fmtNum(ind.rsi)}</div>
-          <div style={S.keyStatSub}>{rsiLabel(ind.rsi)}</div>
-        </div>
-        <div style={S.keyStat}>
-          <div style={S.keyStatLabel}>MACD</div>
-          <div style={{ ...S.keyStatValue, fontSize: 10.5 }}>{macdMomentumText(ind.macd_hist)}</div>
-        </div>
-        <div style={S.keyStat}>
-          <div style={S.keyStatLabel}>52주 저점 대비</div>
-          <div style={S.keyStatValue}>{vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'}</div>
-        </div>
-        <div style={S.keyStat}>
-          <div style={S.keyStatLabel}>엘더 임펄스</div>
-          <div style={{ ...S.keyStatValue, color: elderColor(ind.elder_impulse), fontSize: 10.5 }}>
-            {elderLabel(ind.elder_impulse)}
+      {activeTab === 'chart' && (
+        <>
+          {priceHeader}
+          <StockChart history={liveBars} height={320} patternMarkers={patterns} signalMarkers={signalFlips} code={code} />
+
+          <div style={S.keyStatsRow}>
+            <div style={S.keyStat}>
+              <div style={S.keyStatLabel}>RSI</div>
+              <div style={S.keyStatValue}>{fmtNum(ind.rsi)}</div>
+              <div style={S.keyStatSub}>{rsiLabel(ind.rsi)}</div>
+            </div>
+            <div style={S.keyStat}>
+              <div style={S.keyStatLabel}>MACD</div>
+              <div style={{ ...S.keyStatValue, fontSize: 10.5 }}>{macdMomentumText(ind.macd_hist)}</div>
+            </div>
+            <div style={S.keyStat}>
+              <div style={S.keyStatLabel}>52주 저점 대비</div>
+              <div style={S.keyStatValue}>{vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'}</div>
+            </div>
+            <div style={S.keyStat}>
+              <div style={S.keyStatLabel}>엘더 임펄스</div>
+              <div style={{ ...S.keyStatValue, color: elderColor(ind.elder_impulse), fontSize: 10.5 }}>
+                {elderLabel(ind.elder_impulse)}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {summary && <div style={S.summaryText}>{summary}</div>}
-
-      <button style={S.rawToggle} onClick={() => setShowRaw(v => !v)}>
-        <span>상세 지표</span>
-        <i className={`ti ${showRaw ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11 }} />
-      </button>
-
-      {showRaw && <RawIndicatorSections ind={ind} />}
+          {summary && <div style={S.summaryText}>{summary}</div>}
+          {rawToggleBtn}
+          {showRaw && <RawIndicatorSections ind={ind} />}
+        </>
+      )}
+      {activeTab === 'news' && <NewsPanel loading={newsLoading} headlines={newsData} source={newsSource} />}
+      {activeTab === 'ai' && (
+        <AiPanel state={aiState} loading={aiLoading} error={aiError} stale={isStale} onRerun={runAiAnalysis} />
+      )}
+      {activeTab === 'sentiment' && <SentimentPanel sentiment={sentiment} />}
     </div>
   );
 }
@@ -332,7 +757,11 @@ function DetailStat({ label, value }) {
 }
 
 // ─── 종목 행 ──────────────────────────────
-function StockRow({ stock, isOpen, onToggle, apiBase }) {
+// 진입의견 배지는 실시간 근사 신호가 있으면 그것만 보여주고(공식 배지는 뺌), 아직
+// 계산 전이거나 그 종목만 실패했으면 herencia-ta 공식 entry_opinion으로 폴백한다.
+function StockRow({ stock, isOpen, onToggle, apiBase, liveSignal }) {
+  const badgeColor = liveSignal ? liveSignalColor(liveSignal) : opinionColor(stock.entry_opinion);
+  const badgeLabel = liveSignal ? LIVE_SIGNAL_LABEL[liveSignal] : opinionLabel(stock.entry_opinion);
   return (
     <div>
       <button style={S.stockRow} onClick={onToggle}>
@@ -343,8 +772,8 @@ function StockRow({ stock, isOpen, onToggle, apiBase }) {
         <span style={{ ...S.trendBadge, color: trendColor(stock.trend), borderColor: trendColor(stock.trend) + '40' }}>
           {stock.trend}
         </span>
-        <span style={{ ...S.opinionBadge, color: opinionColor(stock.entry_opinion), background: opinionColor(stock.entry_opinion) + '15' }}>
-          {opinionLabel(stock.entry_opinion)}
+        <span style={{ ...S.opinionBadge, color: badgeColor, background: badgeColor + '15' }}>
+          {badgeLabel}
         </span>
         <i className={`ti ${isOpen ? 'ti-chevron-up' : 'ti-chevron-down'}`} style={{ fontSize: 11, color: '#444', flexShrink: 0 }} />
       </button>
@@ -364,6 +793,7 @@ export default function ScreenerScreen() {
   const [filter, setFilter] = useState('all');
   const [openCode, setOpenCode] = useState(null);
   const [showGuide, setShowGuide] = useState(false);
+  const [liveSignals, setLiveSignals] = useState({});
 
   useEffect(() => {
     fetch('/api/screener')
@@ -377,25 +807,53 @@ export default function ScreenerScreen() {
       .finally(() => setLoading(false));
   }, []);
 
+  // 200종목 전체의 실시간 근사 진입의견 — 서버가 15분에 한 번씩 계산해 전체 사용자가
+  // 공유하는 캐시라(src/app/api/screener-live/route.ts), 화면이 보이는 동안만 같은
+  // 주기로 재조회한다. 필터/카운트는 여전히 herencia-ta 공식 entry_opinion 기준이고,
+  // 이건 각 행에 곁들이는 보조 배지일 뿐이다.
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch('/api/screener-live')
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (!cancelled && d?.signals) setLiveSignals(d.signals); })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') load();
+    }, 15 * 60_000);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, []);
+
+  // 필터 칩/카운트/목록 배지가 서로 다른 기준(공식 vs 실시간)을 보여줘서 안 맞는다는
+  // 피드백 — liveSignal을 각 종목에 병합해 이후 counts/filtered/배지가 전부
+  // effectiveSignal() 하나로만 판단하게 통일한다.
+  const stocksWithLive = useMemo(
+    () => stocks.map(s => ({ ...s, liveSignal: liveSignals[s.code] ?? null })),
+    [stocks, liveSignals]
+  );
+
   const counts = useMemo(() => {
-    const c = { all: stocks.length, buy: 0, sell: 0, hold: 0 };
-    for (const s of stocks) {
-      if (s.entry_opinion.startsWith('매수')) c.buy++;
-      else if (s.entry_opinion.startsWith('매도')) c.sell++;
+    const c = { all: stocksWithLive.length, buy: 0, sell: 0, hold: 0 };
+    for (const s of stocksWithLive) {
+      const sig = effectiveSignal(s);
+      if (sig === 'buy') c.buy++;
+      else if (sig === 'sell') c.sell++;
       else c.hold++;
     }
     return c;
-  }, [stocks]);
+  }, [stocksWithLive]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return stocks
+    return stocksWithLive
       .filter(s =>
         matchesFilter(s, filter) &&
         (q === '' || s.name.toLowerCase().includes(q) || s.code.includes(q))
       )
       .sort((a, b) => (b.market_cap_100m ?? 0) - (a.market_cap_100m ?? 0));
-  }, [stocks, filter, query]);
+  }, [stocksWithLive, filter, query]);
 
   if (showGuide && !isDesktop) {
     return <IndicatorGuideScreen onBack={() => setShowGuide(false)} />;
@@ -470,8 +928,12 @@ export default function ScreenerScreen() {
                     <span style={{ ...S.trendBadge, color: trendColor(s.trend), borderColor: trendColor(s.trend) + '40', width: 52, textAlign: 'center' }}>
                       {s.trend}
                     </span>
-                    <span style={{ ...S.opinionBadge, color: opinionColor(s.entry_opinion), background: opinionColor(s.entry_opinion) + '15', width: 92, textAlign: 'center' }}>
-                      {opinionLabel(s.entry_opinion)}
+                    <span style={{
+                      ...S.opinionBadge, width: 92, textAlign: 'center',
+                      color: liveSignalColor(effectiveSignal(s)),
+                      background: liveSignalColor(effectiveSignal(s)) + '15',
+                    }}>
+                      {s.liveSignal ? LIVE_SIGNAL_LABEL[s.liveSignal] : opinionLabel(s.entry_opinion)}
                     </span>
                   </button>
                 ))}
@@ -549,6 +1011,7 @@ export default function ScreenerScreen() {
                 apiBase={apiBase}
                 isOpen={openCode === s.code}
                 onToggle={() => setOpenCode(prev => prev === s.code ? null : s.code)}
+                liveSignal={s.liveSignal}
               />
             </div>
           ))}
@@ -597,12 +1060,49 @@ const S = {
   stockLeft: { flex: 1, minWidth: 0 },
   stockName: { fontSize: 12.5, color: '#ddd', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
   stockMeta: { fontSize: 8.5, color: '#3a3a4a', marginTop: 2 },
-  trendBadge: { fontSize: 9.5, padding: '3px 7px', borderRadius: 999, border: '0.5px solid', flexShrink: 0 },
+  // border(shorthand)와 borderColor(개별 속성)를 같이 쓰면 리렌더 시 React가 스타일
+  // 충돌 경고를 낸다 — borderWidth/borderStyle로 나눠서 borderColor와 안 겹치게 함.
+  trendBadge: { fontSize: 9.5, padding: '3px 7px', borderRadius: 999, borderWidth: '0.5px', borderStyle: 'solid', flexShrink: 0 },
   opinionBadge: { fontSize: 9.5, padding: '3px 7px', borderRadius: 6, flexShrink: 0, whiteSpace: 'nowrap' },
 
   detailWrap: { background: '#13131e', padding: '12px 14px 16px', borderTop: '0.5px solid #1e1e28', display: 'flex', flexDirection: 'column', gap: 10 },
   detailLoading: { background: '#13131e', padding: '14px', fontSize: 11, color: '#555', borderTop: '0.5px solid #1e1e28' },
   detailOpinion: { fontSize: 11.5, color: '#bbb', lineHeight: 1.5 },
+  detailHeaderRow: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
+  detailHeaderBadges: { display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 },
+  sentimentBadge: { fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 7, whiteSpace: 'nowrap' },
+
+  detailTabBar: { display: 'flex', gap: 4, borderBottom: '0.5px solid #1e1e28', paddingBottom: 2 },
+  detailTabBtn: {
+    fontSize: 11, padding: '6px 10px', borderRadius: '7px 7px 0 0', border: 'none',
+    background: 'transparent', color: '#555', cursor: 'pointer', fontWeight: 500,
+  },
+  detailTabBtnActive: { background: '#181820', color: '#ddd' },
+
+  newsList: { display: 'flex', flexDirection: 'column', gap: 10 },
+  newsItem: { display: 'flex', gap: 7, alignItems: 'flex-start', background: '#181820', borderRadius: 10, padding: '9px 11px' },
+  newsItemText: { fontSize: 11.5, color: '#ccc', lineHeight: 1.5 },
+  newsItemMeta: { fontSize: 9.5, color: '#555' },
+  newsItemSummary: { fontSize: 10.5, color: '#888', lineHeight: 1.6, marginTop: 2 },
+  opinionCaveat: { fontSize: 9.5, color: '#444', lineHeight: 1.5, marginTop: 2 },
+
+  aiPanel: { display: 'flex', flexDirection: 'column', gap: 10 },
+  aiStaleBanner: {
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
+    background: '#2a2000', border: '0.5px solid #4a3a00', borderRadius: 10,
+    padding: '9px 12px', fontSize: 11, color: '#EF9F27',
+  },
+  aiRerunBtn: {
+    flexShrink: 0, fontSize: 10.5, fontWeight: 600, padding: '5px 11px', borderRadius: 7,
+    border: '0.5px solid #EF9F27', background: '#EF9F2718', color: '#EF9F27', cursor: 'pointer',
+  },
+  aiHeadRow: { display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' },
+  aiIndicatorTag: { fontSize: 9.5, color: '#666', background: '#181820', padding: '3px 8px', borderRadius: 6 },
+  aiTimestamp: { fontSize: 9.5, color: '#444', marginLeft: 'auto' },
+  aiText: { fontSize: 11.5, color: '#ccc', lineHeight: 1.8, whiteSpace: 'pre-wrap', background: '#181820', borderRadius: 10, padding: '12px 14px' },
+
+  sentimentPanel: { display: 'flex', flexDirection: 'column', gap: 12 },
+  gaugeCard: { background: '#181820', borderRadius: 14, padding: '14px 14px 16px' },
 
   indSection: { display: 'flex', flexDirection: 'column', gap: 6 },
   indSectionTitle: { fontSize: 9.5, color: '#444', fontWeight: 600, letterSpacing: '0.3px' },
@@ -617,9 +1117,15 @@ const S = {
 
   chartImg: { width: '100%', borderRadius: 8, display: 'block' },
 
+  priceHeaderBlock: { display: 'flex', flexDirection: 'column', gap: 4 },
   priceHeader: { display: 'flex', alignItems: 'baseline', gap: 10 },
   priceValue: { fontSize: 20, fontWeight: 600, color: '#fff' },
   priceChange: { fontSize: 12.5, fontWeight: 500 },
+  livePriceTag: {
+    fontSize: 9, fontWeight: 600, color: '#7F77DD', background: '#7F77DD18',
+    padding: '2px 7px', borderRadius: 999,
+  },
+  livePriceCaption: { fontSize: 9.5, color: '#555' },
 
   keyStatsRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 },
   keyStat: { background: '#181820', borderRadius: 8, padding: '8px 6px', textAlign: 'center' },

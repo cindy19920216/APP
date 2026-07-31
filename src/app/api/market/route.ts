@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { unstable_cache } from 'next/cache';
+import { fetchGoogleNews } from '@/lib/googleNews';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,24 +30,6 @@ async function fetchChart(symbol: string): Promise<{ price: number; changePct: n
     }
     return null;
   } catch { return null; }
-}
-
-// ── Google News RSS (무료, 키 불필요) ─────────────────────
-async function fetchGoogleNews(query: string): Promise<string[]> {
-  try {
-    const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
-    const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
-    if (!res.ok) return [];
-    const xml = await res.text();
-    const titles: string[] = [];
-    const re = /<title>([^<]*)<\/title>/g;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(xml)) !== null && titles.length < 7) {
-      const t = m[1].replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'").trim();
-      if (t.length > 15 && !t.includes('Google News')) titles.push(t);
-    }
-    return titles.slice(0, 5);
-  } catch { return []; }
 }
 
 // ── 헤드라인 키워드 → 한국어 (d: 'up'=상승만, 'dn'=하락만, 'any'=무관) ──
@@ -157,7 +140,7 @@ const NEWS_Q: Record<string, string> = {
   'BTC':          'Bitcoin BTC cryptocurrency price',
 };
 
-// ── 가격 캐시 (15분) ──────────────────────────────────────
+// ── 가격 캐시 (1분) ───────────────────────────────────────
 const getMarketData = unstable_cache(
   async () => {
     const SYMBOLS = [
@@ -169,8 +152,8 @@ const getMarketData = unstable_cache(
     const results = await Promise.all(SYMBOLS.map(fetchChart));
     return Object.fromEntries(SYMBOLS.map((s, i) => [s, results[i]]));
   },
-  ['market-v5'],
-  { revalidate: 900 }
+  ['market-v6'],
+  { revalidate: 60 }
 );
 
 // ── 뉴스 요약 캐시 (1시간) ───────────────────────────────

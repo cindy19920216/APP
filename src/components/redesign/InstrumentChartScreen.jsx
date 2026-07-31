@@ -140,6 +140,9 @@ function computeOpinion(latest) {
   const sellCount = items.filter(i => i.signal === 'sell').length;
   const score = buyCount - sellCount;
 
+  // ±3(4개 중 3개 이상 일치)을 시도해봤으나 RSI/BB는 극단치일 때만 투표하는 지표라
+  // 거의 항상 관망만 나와버려(200종목 실측 확인) 실효성이 없었다 — ±2로 되돌림
+  // (src/lib/stockAnalysis.ts의 computeApproxSignal과 동일 기준으로 맞춤).
   let opinion, color, verdict;
   if (score >= 2) {
     opinion = '매수 관심'; color = '#1D9E75';
@@ -371,14 +374,30 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
 
   useEffect(() => {
     if (!symbol) { setLoading(false); return; }
-    fetch(`/api/chart/${symbol}?range=1y`)
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(d => {
-        setHistory(d.points ?? []);
-        setHasVolume(!!d.hasVolume);
-      })
-      .catch(e => setError(String(e)))
-      .finally(() => setLoading(false));
+
+    let cancelled = false;
+
+    const load = (isFirst) => {
+      if (isFirst) setLoading(true);
+      fetch(`/api/chart/${symbol}?range=1y`)
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(d => {
+          if (cancelled) return;
+          setHistory(d.points ?? []);
+          setHasVolume(!!d.hasVolume);
+          setError(null);
+        })
+        .catch(e => { if (!cancelled) setError(String(e)); })
+        .finally(() => { if (isFirst && !cancelled) setLoading(false); });
+    };
+
+    load(true);
+    // 장중 자동 새로고침 — 탭이 화면에 보일 때만 60초 간격으로 재조회
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') load(false);
+    }, 60_000);
+
+    return () => { cancelled = true; clearInterval(timer); };
   }, [symbol]);
 
   const last3M = history.slice(-66);

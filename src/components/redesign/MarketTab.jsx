@@ -316,15 +316,26 @@ export default function MarketTab() {
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) setBbScore(d.compositeScore); })
       .catch(() => {});
-    fetch('/api/market')
-      .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d && !d.error) setMarketData(d); })
-      .catch(() => {})
-      .finally(() => setMarketLoading(false));
     fetch('/api/news')
       .then(r => r.ok ? r.json() : [])
       .then(d => setNewsData(d))
       .catch(() => {});
+
+    const loadMarket = (isFirst) => {
+      fetch('/api/market')
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (d && !d.error) setMarketData(d); })
+        .catch(() => {})
+        .finally(() => { if (isFirst) setMarketLoading(false); });
+    };
+
+    loadMarket(true);
+    // 장중 자동 새로고침 — 탭이 화면에 보일 때만 서버 캐시(1분) 주기로 재조회
+    const timer = setInterval(() => {
+      if (document.visibilityState === 'visible') loadMarket(false);
+    }, 60_000);
+
+    return () => clearInterval(timer);
   }, []);
 
   const score   = bbScore ?? 50;

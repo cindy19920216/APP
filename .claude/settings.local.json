@@ -32,7 +32,29 @@
       "Bash(npx playwright *)",
       "Bash('button:has-text\\(\\\\\"입장하기\\\\\"\\), a:has-text\\(\\\\\"입장하기\\\\\"\\), [href*=\\\\\"/\\\\\"]')",
       "PowerShell(git *)",
-      "Skill(claude-in-chrome)"
+      "Skill(claude-in-chrome)",
+      "Skill(run)",
+      "PowerShell(Start-Sleep -Seconds 5; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 10 -UseBasicParsing; Write-Host \"Status: $\\($r.StatusCode\\)\" } catch { Write-Host \"Not ready yet: $_\" })",
+      "PowerShell(Start-Sleep -Seconds 8; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 10 -UseBasicParsing; Write-Host \"Status: $\\($r.StatusCode\\)\" } catch { Write-Host \"Not ready: $_\" })",
+      "PowerShell(Start-Sleep -Seconds 10; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 15 -UseBasicParsing; Write-Host \"Status: $\\($r.StatusCode\\)\" } catch { Write-Host \"Not ready: $_\" })",
+      "PowerShell(cd \"C:\\\\Users\\\\Check\\\\Desktop\\\\APP\"; $env:NODE_ENV=\"development\"; Start-Process -FilePath \"npm\" -ArgumentList \"run\", \"dev\" -RedirectStandardOutput \"$env:TEMP\\\\next-out.txt\" -RedirectStandardError \"$env:TEMP\\\\next-err.txt\" -NoNewWindow -PassThru | Select-Object Id)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/api/news\" -UseBasicParsing; Write-Host \"Status: $\\($r.StatusCode\\)\"; Write-Host $r.Content } catch { Write-Host \"Error: $_\" })",
+      "PowerShell(notepad *)",
+      "Bash(grep -rln \"manifest.webmanifest\\\\|MANIFEST_FILENAME\\\\|manifest\\\\\\\\.json\" node_modules/next/dist/build)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Read(//tmp/**)",
+      "Bash(taskkill //F //IM node.exe //T)",
+      "Bash(git check-ignore *)",
+      "Bash(disown)",
+      "Bash(gh workflow *)",
+      "PowerShell(gh *)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:www.isabelnet.com)",
+      "Bash(grep -o '<div class=\"date-meta\">.\\\\{0,300\\\\}' /tmp/isabelnet_blog.html)",
+      "Bash(git fetch *)",
+      "WebFetch(domain:app-herencia92.vercel.app)",
+      "Bash(git pull *)"
     ]
   }
 }

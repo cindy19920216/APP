@@ -76,18 +76,30 @@ PinScreen (잠금 화면)
       │
       │   InstrumentChartScreen: lightweight-charts 기반 TradingView 스타일
       │   캔들차트(MA5/MA20/볼린저밴드/VWAP 오버레이, 거래량, RSI·MACD 토글,
-      │   1개월~1년 기간 선택) + 차트 아래 "기술적 분석 의견" 카드
-      │   (RSI·이동평균·MACD·볼린저밴드 4개 신호 점수화 → 매수 관심/매도 관심/관망
-      │   판정 + 초보자도 이해할 수 있는 지표별 근거 설명 문단)
+      │   1개월~1년 일봉 + 5분·15분·1시간 분봉 기간 선택) + 차트 아래
+      │   "기술적 분석 의견" 카드(RSI·이동평균·MACD·볼린저밴드 4개 신호 점수화 →
+      │   매수 관심/매도 관심/관망 판정 + 초보자도 이해할 수 있는 지표별 근거
+      │   설명 문단). 가격 헤더는 60초 간격으로 자동 갱신(화면이 보일 때만).
       │
       ├─ 기술적 지표 탭   (ScreenerScreen) — KOSPI200 200종목 스크리너
-      │   ├─ 검색/필터(전체·매수관심·매도관심·관망), 시가총액 내림차순 정렬
+      │   ├─ 검색/필터(전체·매수관심·매도관심·관망 — herencia-ta 공식 entry_opinion
+      │   │   기준, 시가총액 내림차순 정렬), 각 행에 실시간 근사 신호 배지도 표시
+      │   │   (있으면 그걸로 필터/카운트도 함께 판단, 없으면 공식값 폴백)
       │   ├─ "기술적 지표 알아보기" → IndicatorGuideScreen (지표 카테고리별 설명)
       │   └─ 종목 상세(StockDetail) — herencia-ta API(`/api/stocks/{code}`,
-      │       `/api/stocks/{code}/history`)에서 데이터를 받아:
-      │       가격 헤더 → StockChart(인터랙티브 캔들차트: MA/BB/VWAP 오버레이,
-      │       거래량, RSI·MACD 토글, 기간 선택) → 핵심 지표 요약 → 자동 생성
-      │       한글 요약 문단 → "상세 지표"(접이식, raw 지표 전체)
+      │       `/api/stocks/{code}/history`)에서 받은 일봉 데이터에, 오늘자
+      │       Yahoo Finance 시간봉을 합성한 "실시간 근사 지표"(ADX·캔들패턴·
+      │       매매신호·공포탐욕지수)를 얹어 4개 탭으로 표시:
+      │       ├─ 차트 — 가격 헤더(실시간 시세, 60초 갱신) → StockChart(MA/BB/
+      │       │   VWAP 오버레이, 거래량, RSI·MACD 토글, 일봉 기간+분봉 선택,
+      │       │   캔들패턴/매매신호 마커) → 핵심 지표 요약 → 자동 생성 한글
+      │       │   요약 문단(엘더 임펄스 설명 포함) → "상세 지표"(접이식)
+      │       ├─ 뉴스 — 대형주 5종목(삼성전자·SK하이닉스·현대차·LG에너지솔루션·
+      │       │   삼성바이오로직스)은 매일 자동 수집된 외신 위주 뉴스, 나머지는
+      │       │   실시간 조회
+      │       ├─ AI 분석 — Gemini 기반 리포트, 온디맨드 생성(세션 캐시 + 가격/
+      │       │   시간 기준 재분석 안내), 모든 종목이 동일한 문단 구조로 통일
+      │       └─ 공포탐욕지수 — 종목별 반원 게이지 + 구성 요소 breakdown
       │       (데스크톱: 차트 좌측 크게 + 요약 사이드바 우측 2단 레이아웃)
       ├─ 포트폴리오 탭    (PortfolioTab)
       │   (데스크톱: 스타일 랭킹 좌측 + 선택 스타일 종목 리스트 우측)
@@ -197,19 +209,32 @@ FRED에서 7개 지표를 다시 받고 종합지수(JS Economic Cycle Index)를
 | GET | `/api/assets/[id]` | 자산 상세 |
 | GET | `/api/members` | 가족 구성원 목록 |
 | GET | `/api/tickers` | 티커 목록 |
-| GET | `/api/chart/[ticker]` | Yahoo Finance OHLCV + MA5/MA20/볼린저밴드/rolling VWAP/RSI/MACD 히스토그램 계산 결과 (InstrumentChartScreen용) |
+| GET | `/api/chart/[ticker]` | Yahoo Finance OHLCV + MA5/MA20/볼린저밴드/rolling VWAP/RSI/MACD 히스토그램 계산 결과. `range`/`interval` 쿼리로 일봉·주봉·월봉은 물론 분봉(5m/15m/60m)도 지원 (InstrumentChartScreen, StockChart 공용) |
 | GET | `/api/prices` | 가격 데이터 |
 | GET | `/api/transactions` | 거래 내역 |
 | GET | `/api/screener` | KOSPI200 스크리너 목록 프록시(30분 캐시) — 아래 herencia-ta 참고 |
+| GET | `/api/screener-live` | KOSPI200 200종목 전체의 실시간 근사 매매신호(15분 캐시, 전체 사용자 공유) — 아래 참고 |
+| GET | `/api/stock-news` | 종목별 뉴스. 대형주 5종목은 매일 자동 수집된 배치(엑셀) 데이터, 나머지는 Google News 실시간 조회(30분 캐시) |
+| POST | `/api/stock-ai-report` | 종목 기술적 지표 기반 Gemini AI 분석 리포트 생성 |
 
-### 기술적 지표 탭 — herencia-ta 외부 API 연동
+### 기술적 지표 탭 — herencia-ta 외부 API 연동 + 실시간 근사 지표
 
 `ScreenerScreen`/`StockDetail`은 별도 저장소(`herencia-ta`, Python/FastAPI, Render 배포:
 `https://herencia-ta.onrender.com`)의 API를 호출한다. 목록은 `/api/screener` 프록시를
 거치지만, 종목 상세(`/api/stocks/{code}`)와 히스토리(`/api/stocks/{code}/history`)는
 브라우저에서 herencia-ta API를 직접 호출한다(CORS 전체 허용). herencia-ta 쪽은 매일
-GitHub Actions로 KOSPI200 200종목 지표를 자동 갱신하므로, 이 앱은 데이터 계산 로직을
-따로 구현하지 않고 그대로 fetch해서 보여주기만 한다.
+GitHub Actions로 KOSPI200 200종목 지표를 자동 갱신하므로, RSI/MACD/진입의견 같은
+"공식" 지표는 항상 전일 종가 기준이다.
+
+장중 변동을 반영하기 위해, herencia-ta 일봉 히스토리 뒤에 오늘자 Yahoo Finance
+시간봉(`/api/chart/[ticker]?interval=60m`)을 합성한 봉을 이어 붙이고
+(`buildLiveBars`, `src/lib/stockAnalysis.ts`) ADX·캔들패턴·매매신호·공포탐욕지수·
+AI 분석 판정 근거를 이 값으로 다시 계산한다 — 이 값들은 "근사치"로 명확히
+구분해서 표시하고, herencia-ta의 공식 entry_opinion/지표는 그대로 둔다.
+`/api/screener-live`가 200종목 전체에 대해 이 계산을 15분마다 한 번(서버 캐시,
+전체 사용자 공유) 수행해 목록의 실시간 배지를 채운다 — 종목당 herencia-ta
+히스토리 + Yahoo 시간봉 총 2회 호출(200종목 × 2 = 400회)이 필요해서, 무료 API
+과호출을 피하려고 이렇게 묶었다.
 
 ---
 
@@ -228,6 +253,9 @@ src/
 │   │   ├── boom-burst/  # FRED 기반 시장 지수 API
 │   │   ├── assets/
 │   │   ├── chart/
+│   │   ├── screener-live/  # KOSPI200 200종목 실시간 근사 매매신호(15분 캐시)
+│   │   ├── stock-news/     # 종목별 뉴스(대형주 배치 + 나머지 실시간 조회)
+│   │   ├── stock-ai-report/ # 종목 기술적 지표 Gemini AI 분석 리포트
 │   │   └── ...
 │   ├── globals.css
 │   ├── layout.tsx
@@ -260,12 +288,68 @@ src/
 └── lib/
     ├── db.ts
     ├── price-fetcher.ts
-    └── types.ts
+    ├── types.ts
+    ├── gemini.ts            # Gemini SDK 공용 클라이언트
+    ├── stockAnalysis.ts     # ADX/캔들패턴/매매신호/공포탐욕지수 + buildLiveBars(실시간 합성봉)
+    ├── taIndicators.ts      # sma/ema/bollinger/rsi/macd 계산 (차트 API·stockAnalysis 공유)
+    ├── yahooChart.ts        # Yahoo Finance 조회+지표계산 (차트 API·screener-live 공유)
+    ├── herenciaTa.ts        # herencia-ta 종목 목록 캐시 (screener·screener-live 공유)
+    └── googleNews.ts        # Google News RSS 조회 (시장지표·종목 뉴스 공유)
 ```
 
 ---
 
 ## 변경 이력
+
+### 2026-07-31
+- **종목 상세화면(기술적 지표 탭) 4탭 구조로 전면 리디자인** — 참고 이미지(SIGLENS
+  스타일)를 바탕으로 `StockDetail`(`ScreenerScreen.jsx`)을 차트/뉴스/AI 분석/
+  공포탐욕지수 4개 탭으로 재구성. KOSPI200은 인트라데이 데이터·펀더멘털·뉴스가
+  전무해서, 이번 스코프는 이 4개로 한정하고 의회거래/옵션(미국 종목 개념이라
+  해당 없음)·재무제표(데이터 소스 없음)는 제외.
+- **가격 헤더 실시간화** — 시장지표 탭(`InstrumentChartScreen.jsx`) 상세화면과
+  `MarketTab.jsx` 목록 카드가 60초 간격(화면이 보일 때만)으로 자동 새로고침되도록
+  폴링 추가. `/api/market`의 서버 캐시도 15분→1분으로 줄임(캐시 키
+  `market-v5`→`market-v6`으로 즉시 반영).
+- **차트에 분봉(5분/15분/1시간) 옵션 추가** — `/api/chart/[ticker]`가 `interval`
+  쿼리 파라미터를 직접 받도록 확장(기존 호출자는 영향 없음), `StockChart.jsx`에
+  일봉 기간 버튼 옆에 분봉 버튼 추가. 개발 중 lightweight-charts가 일봉(문자열
+  날짜)과 분봉(숫자 타임스탬프)을 같은 차트에서 섞으면 날짜 축 눈금이 엉뚱하게
+  표시되는 문제를 발견 — 커스텀 `tickMarkFormatter`로 해결.
+- **AI 분석 탭 (Gemini)** — `/api/stock-ai-report`가 herencia-ta 지표 + 자체 계산
+  지표(ADX/캔들패턴/매매신호/주봉추세)를 바탕으로 리포트 생성, 세션 캐시 + 가격·
+  시간 기준 "재분석 필요" 배너. 종목마다 리포트 구조가 들쭉날쭉하다는 피드백을
+  받아, 실제 생성됐던 리포트 하나를 few-shot 예시로 시스템 프롬프트에 그대로
+  박아 넣어 모든 종목이 동일한 6문단 구조를 따르게 하고 temperature도 0.6→0.2로
+  낮춤.
+- **실시간 근사 지표(당일 반영)** — herencia-ta 일봉은 하루 한 번만 갱신돼 장중
+  급등락이 ADX/캔들패턴/매매신호/공포탐욕지수/AI 판정에 전혀 반영 안 되는 문제를
+  발견. 오늘자 Yahoo Finance 시간봉을 일봉 히스토리 뒤에 합성해 붙이고
+  (`buildLiveBars`, `src/lib/stockAnalysis.ts`) 이 값들만 다시 계산하도록 함 —
+  herencia-ta 공식 entry_opinion/RSI/MACD 표기는 "전일 종가 기준"으로 그대로 두고
+  분리 표시. 매수/매도 판정 임계값을 ±2→±3으로 올려봤다가 200종목 실측 결과 거의
+  전부 관망으로만 나와(RSI/BB는 극단치일 때만 투표하는 구조라 3표 이상 쏠리기
+  어려움) 다시 ±2로 되돌림.
+- **KOSPI200 200종목 목록에 실시간 매매신호 배지** — `/api/screener-live`가
+  herencia-ta 히스토리 + Yahoo 시간봉으로 200종목 전체의 근사 신호를 계산해 15분
+  캐시(전체 사용자 공유, 종목당 외부 호출 2회 × 200종목 = 400회라 매 요청마다
+  하면 두 무료 API 다 차단 위험). 목록 필터 칩/카운트/배지가 서로 다른 기준(공식
+  vs 실시간)을 쓰던 걸 `effectiveSignal()`로 통일.
+- **종목 뉴스 자동화** — 대형주 5종목(삼성전자·SK하이닉스·현대차·LG에너지솔루션·
+  삼성바이오로직스, 외신 커버리지가 실제로 있는 종목만)은
+  `scripts/stock_news/fetch_stock_news.py` + 신규 GitHub Actions 워크플로
+  (`.github/workflows/stock_news_update.yml`, 매일 07:00 KST)로 자동 수집,
+  나머지 종목은 기존처럼 실시간 조회. 처음엔 Google News RSS로 만들었으나 그
+  리다이렉트 링크가 실제 기사로 안 열리고(JS 리다이렉트) 모든 요약이 구글의 고정
+  문구로 똑같이 나오는 문제를 발견해 Bing News RSS로 교체(실제 기사 링크·요약을
+  바로 제공).
+- **요약 문단 톤 일치 + 엘더 임펄스 설명 추가** — 가격이 급등했는데 문단은 계속
+  낙관적으로만 읽히고 엘더 임펄스는 약세로 나오는 등 톤이 어긋나던 문제를
+  "다만/실제로/참고로" 연결어와 함께 엘더 임펄스 설명 문장을 추가해 해결.
+- **공유 유틸 추출** — `taIndicators.ts`(sma/ema/bollinger/rsi/macd),
+  `yahooChart.ts`(Yahoo 조회+지표계산), `herenciaTa.ts`(종목 목록 캐시),
+  `googleNews.ts`(RSS 조회)로 기존 라우트들의 중복 로직을 공용 모듈로 분리 —
+  `/api/chart/[ticker]`는 이제 `fetchYahooBars`를 호출하는 얇은 wrapper.
 
 ### 2026-07-27
 - **Econ Idea ISABELNET 차트 자동갱신 — 실제로는 한 번도 커밋되지 않았던 문제 발견 및 해결**
