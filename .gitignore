@@ -46,6 +46,12 @@ next-env.d.ts
 # Office temp files
 ~$*
 
+# Telegram Desktop 개인 데이터(프로젝트 폴더 안에서 실행 중 — 커밋 대상 아님).
+# Tailwind v4의 자동 content 스캔이 .gitignore를 참고해 스킵 대상을 정하는데, 여기
+# 빠져 있으면 Telegram이 쓰기 중인 tdata 캐시 파일(binlog)을 읽으려다 잠금 충돌로
+# Turbopack이 globals.css 컴파일에서 그대로 죽는 문제가 있었다.
+/Telegram/
+
 # Python / Streamlit
 __pycache__/
 *.pyc

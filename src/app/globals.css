@@ -95,31 +95,41 @@ body {
   50%       { opacity: 0.2; }
 }
 
-/* ── 탭바 ── */
+/* ── 탭바 ──
+   탭이 4개(투자하기)일 때 한 줄에 다 욱여넣으면(예전 flex+nowrap) 영문 라벨이
+   길어서(Technical/Sentiment Indicator 등) 잘리거나 너무 촘촘해져 안 보인다는
+   피드백 — 2열 그리드로 바꾸고 줄바꿈을 허용해서 라벨이 늘 온전히 보이게 한다. */
 .tab-bar {
-  display: flex;
-  padding: 0 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  padding: 6px 14px 10px;
   border-bottom: 0.5px solid #222230;
   flex-shrink: 0;
 }
 .tab-btn {
-  flex: 1;
   text-align: center;
-  padding: 9px 0;
-  font-size: 13px;
+  padding: 8px 4px;
+  font-size: 12px;
   font-weight: 500;
-  color: #555;
-  background: none;
-  border: none;
+  line-height: 1.25;
+  color: #777;
+  background: #14141c;
+  border: 0.5px solid #22222e;
+  border-radius: 10px;
   cursor: pointer;
-  transition: color 0.15s;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -0.5px;
-  white-space: nowrap;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  white-space: normal;
+  word-break: keep-all;
+}
+/* 탭이 홀수 개(공부하기 3개)면 마지막 탭만 그 줄에 남으므로 전체 너비로 채운다. */
+.tab-btn:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 .tab-btn.active {
-  color: #7F77DD;
-  border-bottom: 2px solid #534AB7;
+  color: #fff;
+  background: linear-gradient(135deg, #4a41a8 0%, #7F77DD 100%);
+  border-color: transparent;
 }
 
 /* ── 섹션 스위치 (공부하기 / 투자하기) ── */
