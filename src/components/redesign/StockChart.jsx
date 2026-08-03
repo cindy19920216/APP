@@ -3,10 +3,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart, TickMarkType } from 'lightweight-charts';
 
-const UP = '#1D9E75';
-const DOWN = '#E24B4A';
+// 한국 증시 관행(상승=빨강/하락=파랑)에 맞춰 캔들·거래량·MACD 히스토그램 색을 통일한다.
+const UP = '#E24B4A';
+const DOWN = '#3B82F6';
 const MA5_COLOR = '#e67e22';
-const MA20_COLOR = '#2980b9';
+// 캔들 DOWN 색을 파랑으로 바꾸면서 기존 MA20 파랑과 겹쳐 보이는 문제가 생겨 녹색으로 교체.
+const MA20_COLOR = '#22A559';
 const BB_COLOR = '#95a5a6';
 const VWAP_COLOR = '#8e44ad';
 

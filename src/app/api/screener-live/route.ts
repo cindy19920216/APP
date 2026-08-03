@@ -49,7 +49,7 @@ const getLiveSignals = unstable_cache(
 
     return { signals, generatedAt: new Date().toISOString() };
   },
-  ['screener-live-v3'], // v3: ±3표 실효성 없어 ±2로 되돌림(computeApproxSignal 참고)
+  ['screener-live-v5'], // v5: 엘더 임펄스·MA60 이격도 투표 추가, Discount/Premium은 상쇄 부작용으로 제외(6표 중 ±2, computeApproxSignal 참고)
   { revalidate: 900 }
 );
 

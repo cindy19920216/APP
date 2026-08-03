@@ -110,6 +110,7 @@ export async function fetchYahooBars(ticker: string, opts: YahooBarsOptions = {}
   const closeArr = bars.map(b => b.close);
   const ma5Arr  = sma(closeArr, 5);
   const ma20Arr = sma(closeArr, 20);
+  const ma60Arr = sma(closeArr, 60);
   const { upper: bbUpper, lower: bbLower } = bollinger(closeArr, 20, 2);
   const rsiArr  = rsi(closeArr, 14);
   const macdArr = macdHistogram(closeArr, 12, 26, 9);
@@ -121,7 +122,7 @@ export async function fetchYahooBars(ticker: string, opts: YahooBarsOptions = {}
     open: b.open, high: b.high, low: b.low, close: b.close,
     price: b.close, // 하위 호환 (기존 소비자가 price 필드를 쓰는 경우 대비)
     volume: hasVolume ? b.volume : null,
-    ma5: ma5Arr[i], ma20: ma20Arr[i],
+    ma5: ma5Arr[i], ma20: ma20Arr[i], ma60: ma60Arr[i],
     bb_upper: bbUpper[i], bb_lower: bbLower[i],
     vwap: vwapArr[i],
     rsi: rsiArr[i],

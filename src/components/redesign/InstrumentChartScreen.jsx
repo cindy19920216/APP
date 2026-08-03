@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
+import { computeApproxSignalDetail, attachAuxIndicators } from '@/lib/stockAnalysis';
 
 // ─── 심볼 매핑 ────────────────────────────────────────────
 const SYMBOL_MAP = {
@@ -59,31 +60,35 @@ const META_MAP = {
   'BTC':       { unit: 'USD',   fmt: v => '$' + pt(v) },
 };
 
-// ─── 기술적 분석 의견 (RSI·이동평균·MACD·볼린저밴드 기반 단순 룰) ─────
+// ─── 기술적 분석 의견 (RSI·이동평균·MACD·볼린저밴드·엘더 임펄스·MA60이격도 기반) ──
 // 기술적 지표 탭(개별 종목)의 entry_opinion은 herencia-ta 백엔드가 SMC 지지/저항
-// 구조까지 반영해 계산하지만, 시장지표(지수·환율·원자재)는 그런 구조 데이터가 없어
-// 여기서는 RSI/추세/모멘텀/밴드 4개 신호를 점수화하는 단순 룰로 판단한다.
+// 구조까지 반영해 계산하지만, 시장지표(지수·환율·원자재)는 그런 구조 데이터가 없다.
+// 대신 종목 상세와 완전히 같은 계산(src/lib/stockAnalysis.ts의 computeApproxSignalDetail,
+// 6개 지표 스코어링)을 그대로 재사용해서, 앱 전체가 하나의 기준으로 통일되게 한다 —
+// 예전엔 이 화면만 RSI/MA/MACD/BB 4개짜리 로컬 룰을 따로 구현해서 종목 상세(엘더 임펄스·
+// MA60 포함 6개)와 기준이 달랐다.
 const SIGNAL_LABEL = { buy: '매수 신호', sell: '매도 신호', neutral: '중립' };
 const SIGNAL_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#666' };
 
 // 초보자도 읽을 수 있도록 "지표가 뭔지 → 지금 값이 뭘 뜻하는지" 순서로 문장을 만든다.
+// value는 카드 헤더에 숫자/상태를 바로 보여주기 위한 짧은 표시값(RSI 44.2, 상승 모멘텀 등).
 function rsiExplain(rsi) {
   if (rsi == null) return null;
   const val = rsi.toFixed(1);
-  let signal, reading, judge;
+  let reading, judge;
   if (rsi <= 30) {
-    signal = 'buy'; reading = '과매도(짧은 기간 많이 팔려서 가격이 많이 내린 상태)';
+    reading = '과매도(짧은 기간 많이 팔려서 가격이 많이 내린 상태)';
     judge = '단기적으로 낙폭이 과했다는 매수 신호로 볼 수 있어요.';
   } else if (rsi >= 70) {
-    signal = 'sell'; reading = '과매수(짧은 기간 많이 사서 가격이 많이 오른 상태)';
+    reading = '과매수(짧은 기간 많이 사서 가격이 많이 오른 상태)';
     judge = '단기적으로 상승폭이 과했다는 매도 신호로 볼 수 있어요.';
   } else {
-    signal = 'neutral'; reading = '중립 구간';
+    reading = '중립 구간';
     judge = '이 지표만 보면 뚜렷한 매수·매도 신호는 없어요.';
   }
   return {
-    signal,
     label: 'RSI (상대강도지수)',
+    value: `${val} · ${rsi <= 30 ? '과매도' : rsi >= 70 ? '과매수' : '중립'}`,
     text: `최근 가격이 얼마나 강하게 오르거나 내렸는지를 0~100 사이 숫자로 나타내요. 보통 70을 넘으면 "많이 올랐다"(과매수), 30 밑이면 "많이 내렸다"(과매도)로 봐요. 지금 값은 ${val}로 ${reading}이고, ${judge}`,
   };
 }
@@ -92,8 +97,8 @@ function maExplain(ma5, ma20) {
   if (ma5 == null || ma20 == null) return null;
   const up = ma5 > ma20;
   return {
-    signal: up ? 'buy' : 'sell',
     label: '이동평균선 (MA5 · MA20)',
+    value: up ? '단기 상승 추세' : '단기 하락 추세',
     text: `최근 며칠 동안의 평균 가격을 이어 그린 선이에요. 짧은 기간(5일) 평균이 긴 기간(20일) 평균보다 위에 있으면 최근 가격이 예전보다 높아지고 있다는 뜻이라 단기 상승 추세로, 아래에 있으면 하락 추세로 봐요. 지금은 5일 평균이 20일 평균보다 ${up ? '위' : '아래'}에 있어서 단기 ${up ? '상승' : '하락'} 추세로 해석돼요.`,
   };
 }
@@ -102,52 +107,85 @@ function macdExplain(macd) {
   if (macd == null) return null;
   const up = macd > 0;
   return {
-    signal: up ? 'buy' : 'sell',
     label: 'MACD 히스토그램',
+    value: up ? '상승 모멘텀' : '하락 모멘텀',
     text: `단기 추세와 장기 추세가 벌어지는 속도(모멘텀)를 막대로 보여줘요. 0보다 크면 상승에 속도가 붙고 있다는 뜻이고, 0보다 작으면 하락에 속도가 붙고 있다는 뜻이에요. 지금은 ${up ? '0보다 커서 상승 모멘텀이' : '0보다 작아서 하락 모멘텀이'} 진행 중인 것으로 해석돼요.`,
   };
 }
 
 function bbExplain(close, upper, lower) {
   if (close == null || upper == null || lower == null) return null;
-  let signal, pos, judge;
+  let pos, judge, value;
   if (close <= lower) {
-    signal = 'buy'; pos = '아래쪽 띠에 닿거나 벗어난'; judge = '단기간에 너무 많이 떨어졌다는 신호로 볼 수 있어요.';
+    pos = '아래쪽 띠에 닿거나 벗어난'; judge = '단기간에 너무 많이 떨어졌다는 신호로 볼 수 있어요.'; value = '하단 이탈';
   } else if (close >= upper) {
-    signal = 'sell'; pos = '위쪽 띠에 닿거나 벗어난'; judge = '단기간에 너무 많이 올랐다는 신호로 볼 수 있어요.';
+    pos = '위쪽 띠에 닿거나 벗어난'; judge = '단기간에 너무 많이 올랐다는 신호로 볼 수 있어요.'; value = '상단 이탈';
   } else {
-    signal = 'neutral'; pos = '위아래 띠 안쪽에 있는'; judge = '이 지표만 보면 특별한 신호는 없어요.';
+    pos = '위아래 띠 안쪽에 있는'; judge = '이 지표만 보면 특별한 신호는 없어요.'; value = '밴드 내';
   }
   return {
-    signal,
     label: '볼린저밴드',
+    value,
     text: `최근 20일 평균 가격을 중심으로, 최근 변동폭만큼 위아래에 띠를 두른 거예요. 가격이 ${pos} 상태이며, ${judge}`,
   };
 }
 
-function computeOpinion(latest) {
+// 종목 상세(ScreenerScreen.jsx)의 엘더 임펄스 설명과 같은 정의 — 13일 지수이동평균
+// (EMA13, MA5/MA20과는 별개 지표) 기울기 + MACD 모멘텀 기울기가 둘 다 상승/하락이면
+// 강세/약세, 엇갈리면 중립.
+function elderExplain(elderImpulse) {
+  if (elderImpulse == null) return null;
+  const value = elderImpulse === 'green' ? '강세' : elderImpulse === 'red' ? '약세' : '중립';
+  const detail = elderImpulse === 'green'
+    ? '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)이 상승하고 MACD 모멘텀도 함께 오르는 상태예요.'
+    : elderImpulse === 'red'
+    ? '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)이 하락하고 MACD 모멘텀도 함께 내려가는 상태예요.'
+    : '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)과 MACD 모멘텀의 방향이 서로 엇갈린 상태예요.';
+  return {
+    label: '엘더 임펄스',
+    value,
+    text: `추세(이동평균 기울기)와 모멘텀(MACD)을 함께 봐서 강세·약세·중립으로 분류하는 지표예요. ${detail}`,
+  };
+}
+
+// MA5/MA20보다 더 긴 호흡(60일, 약 3개월)의 추세 확인용.
+function ma60Explain(close, ma60) {
+  if (close == null || ma60 == null) return null;
+  const up = close >= ma60;
+  const gapPct = ((close - ma60) / ma60 * 100).toFixed(1);
+  return {
+    label: 'MA60 이격도',
+    value: `${gapPct >= 0 ? '+' : ''}${gapPct}%`,
+    text: `60일(약 3개월) 평균 가격 대비 지금 가격이 얼마나 떨어져 있는지를 보는, MA5/MA20보다 더 긴 흐름의 추세 지표예요. 지금은 60일 평균보다 ${up ? '위' : '아래'}에 있어서(${gapPct}%) 장기 흐름상 ${up ? '상승' : '하락'} 쪽으로 해석돼요.`,
+  };
+}
+
+function computeOpinion(history) {
+  if (!history?.length) return null;
+  const augmented = attachAuxIndicators(history);
+  const latest = augmented.at(-1);
   if (!latest) return null;
-  const { close, rsi, ma5, ma20, bb_upper, bb_lower, macd_hist } = latest;
+  const { close, rsi, ma5, ma20, ma60, bb_upper, bb_lower, macd_hist, elder_impulse } = latest;
+  const detail = computeApproxSignalDetail(latest);
 
-  const items = [
-    rsiExplain(rsi),
-    maExplain(ma5, ma20),
-    macdExplain(macd_hist),
-    bbExplain(close, bb_upper, bb_lower),
-  ].filter(Boolean);
+  // votes(computeApproxSignalDetail의 판정)를 그대로 신뢰 소스로 삼아 각 카드의
+  // signal을 덮어쓴다 — 카드 문구는 읽기 좋으라고 따로 쓰지만, 배지 색(매수/매도/중립)은
+  // 항상 실제 판정과 같은 값에서 나오게 해서 둘이 어긋날 일이 없게 한다.
+  const explainByKey = {
+    rsi: rsiExplain(rsi), ma: maExplain(ma5, ma20), macd: macdExplain(macd_hist),
+    bb: bbExplain(close, bb_upper, bb_lower), elder: elderExplain(elder_impulse),
+    ma60: ma60Explain(close, ma60),
+  };
+  const items = detail.votes
+    .map(v => explainByKey[v.key] && { ...explainByKey[v.key], signal: v.vote })
+    .filter(Boolean);
 
-  const buyCount  = items.filter(i => i.signal === 'buy').length;
-  const sellCount = items.filter(i => i.signal === 'sell').length;
-  const score = buyCount - sellCount;
-
-  // ±3(4개 중 3개 이상 일치)을 시도해봤으나 RSI/BB는 극단치일 때만 투표하는 지표라
-  // 거의 항상 관망만 나와버려(200종목 실측 확인) 실효성이 없었다 — ±2로 되돌림
-  // (src/lib/stockAnalysis.ts의 computeApproxSignal과 동일 기준으로 맞춤).
+  const buyCount = detail.buy, sellCount = detail.sell;
   let opinion, color, verdict;
-  if (score >= 2) {
+  if (detail.signal === 'buy') {
     opinion = '매수 관심'; color = '#1D9E75';
     verdict = `${items.length}개 지표 중 매수 신호가 ${buyCount}개로 가장 많아요. 여러 지표가 동시에 단기 저점·상승 전환을 가리키고 있어 매수 관심 구간으로 판단됩니다.`;
-  } else if (score <= -2) {
+  } else if (detail.signal === 'sell') {
     opinion = '매도 관심'; color = '#E24B4A';
     verdict = `${items.length}개 지표 중 매도 신호가 ${sellCount}개로 가장 많아요. 여러 지표가 동시에 단기 과열·하락을 가리키고 있어 매도 관심 구간으로 판단됩니다.`;
   } else {
@@ -159,10 +197,12 @@ function computeOpinion(latest) {
 }
 
 // ─── TradingView 스타일 캔들차트 (StockChart.jsx와 동일한 색·구조) ─────
-const UP = '#1D9E75';
-const DOWN = '#E24B4A';
+// 한국 증시 관행(상승=빨강/하락=파랑)에 맞춰 캔들·거래량·MACD 히스토그램 색을 통일한다.
+const UP = '#E24B4A';
+const DOWN = '#3B82F6';
 const MA5_COLOR = '#e67e22';
-const MA20_COLOR = '#2980b9';
+// 캔들 DOWN 색을 파랑으로 바꾸면서 기존 MA20 파랑과 겹쳐 보이는 문제가 생겨 녹색으로 교체.
+const MA20_COLOR = '#22A559';
 const BB_COLOR = '#95a5a6';
 const VWAP_COLOR = '#8e44ad';
 
@@ -406,7 +446,7 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
     : '0';
   const high3M = last3M.length ? Math.max(...last3M.map(h => h.high)) : null;
   const low3M  = last3M.length ? Math.min(...last3M.map(h => h.low))  : null;
-  const opinion = computeOpinion(history.at(-1));
+  const opinion = computeOpinion(history);
 
   return (
     <div style={S.wrap}>
@@ -465,6 +505,7 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
                   <div key={i} style={S.opinionItem}>
                     <div style={S.opinionItemHead}>
                       <span style={S.opinionItemLabel}>{item.label}</span>
+                      <span style={S.opinionItemValue}>{item.value}</span>
                       <span style={{ ...S.opinionItemTag, color: SIGNAL_COLOR[item.signal], background: SIGNAL_COLOR[item.signal] + '18' }}>
                         {SIGNAL_LABEL[item.signal]}
                       </span>
@@ -475,7 +516,7 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
               </div>
 
               <div style={S.opinionCaveat}>
-                RSI·이동평균·MACD·볼린저밴드 4개 지표를 단순 점수화한 참고용 판단이며, 투자 조언이 아닙니다.
+                RSI·이동평균·MACD·볼린저밴드·엘더 임펄스·MA60 이격도 6개 지표를 단순 점수화한 참고용 판단이며(종목 상세와 같은 계산 기준), 투자 조언이 아닙니다.
               </div>
             </div>
           )}
@@ -532,7 +573,8 @@ const S = {
   opinionItem: { display: 'flex', flexDirection: 'column', gap: 4 },
   opinionItemHead: { display: 'flex', alignItems: 'center', gap: 7 },
   opinionItemLabel: { fontSize: 11.5, color: '#ddd', fontWeight: 600 },
-  opinionItemTag: { fontSize: 9, fontWeight: 600, padding: '2px 7px', borderRadius: 5 },
+  opinionItemValue: { fontSize: 10.5, color: '#999' },
+  opinionItemTag: { fontSize: 9, fontWeight: 600, padding: '2px 7px', borderRadius: 5, marginLeft: 'auto' },
   opinionItemText: { fontSize: 11.5, color: '#999', lineHeight: 1.7 },
   opinionCaveat: { fontSize: 9.5, color: '#444', lineHeight: 1.5, marginTop: 2 },
 

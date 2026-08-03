@@ -7,7 +7,7 @@ import StockChart from './StockChart';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import {
   computeADX, detectCandlePatterns, detectSignalFlips, computeWeeklyTrend, computeStockSentiment,
-  buildLiveBars, computeApproxSignal,
+  buildLiveBars, computeApproxSignal, computeElderImpulse, computeSwingZone,
 } from '@/lib/stockAnalysis';
 
 // ─── 유틸 ─────────────────────────────────
@@ -48,19 +48,31 @@ function elderColor(c) {
   if (c === 'red') return '#E24B4A';
   return '#7F77DD';
 }
+// "강세(매수 가능)"/"약세(신규 매수 자제)"처럼 라벨 자체에 매매 권유가 붙어 있으면, 이
+// 값이 상단 실시간 매매신호와 다를 때(예: 매도인데 엘더 임펄스는 중립) "권하기 어렵다"는
+// 말이 그 자체로 관망을 권하는 것처럼 읽혀서 배지랑 다른 얘기를 하는 것처럼 보인다.
+// 라벨은 상태(강세/약세/중립)만 말하고, 권유 뉘앙스는 전부 뺀다.
 function elderLabel(c) {
-  if (c === 'green') return '강세(매수 가능)';
-  if (c === 'red') return '약세(신규 매수 자제)';
+  if (c === 'green') return '강세';
+  if (c === 'red') return '약세';
   return '중립';
 }
 // 엘더 임펄스 시스템: 13일 이평선 추세 + MACD 히스토그램 모멘텀이 둘 다 상승이면
 // 초록(매수 가능), 둘 다 하락이면 빨강(신규 매수 자제), 방향이 엇갈리면 중립(파랑)으로
 // 분류하는 알렉산더 엘더의 지표. buildStockSummary에 풀어 써서 요약문 톤이 이 판정과
 // 어긋나지 않게(예: 가격은 급등했는데 문단은 계속 긍정적으로만 읽히는 일이 없게) 한다.
+// 위 sentence2가 쓰는 MA5/MA20(5·20일 단순이평 교차)과는 다른 지표라, 문구에서 "이동평균"
+// 대신 "13일 지수이동평균(EMA13)"으로 명시해 두 문장이 서로 다른 걸 말한다는 게 분명하게
+// 읽히도록 한다 — 안 그러면 "MA5가 MA20 위(상승)"와 "이동평균 추세 하락"이 한 문단 안에서
+// 같은 지표를 가리키는 것처럼 보여 모순처럼 읽힌다.
+// "권하기 어렵다"/"안전하게 보는 시점"/"정리를 고려" 같은 표현은 그 자체로 하나의
+// 매매 권유(=사실상 관망 권유)라, 상단 배지가 매도인데 이 문장은 "그럼 관망해라"로
+// 읽혀서 또 따로 노는 문제가 생긴다. 그래서 권유 표현은 다 빼고, EMA13·MACD가 지금
+// 어떤 상태인지만 사실 그대로 설명한다 — 판단은 위 실시간 매매신호 하나로 통일.
 function elderImpulseExplain(c) {
-  if (c === 'green') return '최근 이동평균 추세와 MACD 모멘텀이 둘 다 상승 방향일 때만 켜지는 신호인데, 지금이 그 구간이라 신규 매수 진입을 비교적 안전하게 보는 시점이에요.';
-  if (c === 'red') return '이동평균 추세와 MACD 모멘텀이 둘 다 하락 방향일 때 켜지는 신호인데, 지금이 그 구간이라 신규 매수보다는 관망하거나 보유분 정리를 고려하는 시점으로 봐요.';
-  return '이동평균 추세와 MACD 모멘텀의 방향이 서로 엇갈려 있어서, 매수도 매도도 강하게 권하기 어려운 구간이에요.';
+  if (c === 'green') return '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)이 상승하고 MACD 모멘텀도 함께 오르는 상태입니다.';
+  if (c === 'red') return '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)이 하락하고 MACD 모멘텀도 함께 내려가는 상태입니다.';
+  return '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)과 MACD 모멘텀의 방향이 서로 엇갈린 상태입니다.';
 }
 function chochLabel(c) {
   if (c === 'bullish') return '상승 전환';
@@ -121,39 +133,68 @@ function buildStockSummary(detail, history, live) {
   const dir = change != null && change >= 0 ? '상승' : '하락';
   const topic = eunNeun(detail.name);
   const sentence1 = change != null
-    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원이며, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원(${changeCtx} 변화 수준) ${dir}했습니다.`
+    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원으로, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원 ${dir}했습니다(${changeCtx} 변화 폭).`
     : `현재 ${detail.name}${topic} ${fmtPrice(close)}원입니다.`;
 
   const rsiVal = live?.rsi ?? ind.rsi;
   const ma5Val = live?.ma5 ?? ind.ma5;
   const ma20Val = live?.ma20 ?? ind.ma20;
-  const parts2 = [];
-  if (rsiVal != null) parts2.push(`RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간`);
-  if (ma5Val != null && ma20Val != null) {
-    parts2.push(ma5Val >= ma20Val ? 'MA5가 MA20 위에 위치해 단기 상승 추세' : 'MA5가 MA20 아래에 위치해 단기 하락 추세');
-  }
-  const sentence2 = parts2.length ? parts2.join(', ') + '입니다.' : '';
+  const maText = ma5Val != null && ma20Val != null
+    ? (ma5Val >= ma20Val ? 'MA5가 MA20 위에 위치해 단기 상승 추세를 보이고 있습니다.' : 'MA5가 MA20 아래에 위치해 단기 하락 추세를 보이고 있습니다.')
+    : '';
+  let sentence2 = '';
+  if (rsiVal != null && maText) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간이며, ${maText}`;
+  else if (rsiVal != null) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간입니다.`;
+  else if (maText) sentence2 = maText;
 
-  let sentence3 = '';
-  if (ind.equilibrium != null && close != null) {
-    const isDiscount = close < ind.equilibrium;
-    const zoneLabel = isDiscount ? 'Discount(매수 관심)' : 'Premium(매도/차익실현)';
-    const rangeText = (ind.swing_high != null && ind.swing_low != null)
-      ? ` 최근 60거래일 고점 ${fmtPrice(ind.swing_high)}원과 저점 ${fmtPrice(ind.swing_low)}원의 중간값(${fmtPrice(ind.equilibrium)}원)보다 ${isDiscount ? '낮아' : '높아'} 상대적으로 ${isDiscount ? '저렴한' : '비싼'} 구간이라는 뜻이에요.`
+  // Discount/Premium 구간과 엘더 임펄스는 상단 "실시간 매매신호" 배지와 같은 기준(오늘
+  // 합성봉 포함 최근 값)으로 통일한다 — live에 값이 있으면(오늘 시세 반영) 그걸 쓰고,
+  // 없으면(장 마감 후 등 합성봉이 없을 때) herencia-ta 공식값으로 폴백한다.
+  const equilibrium = live?.equilibrium ?? ind.equilibrium;
+  const swingHigh = live?.swingHigh ?? ind.swing_high;
+  const swingLow = live?.swingLow ?? ind.swing_low;
+
+  // 엘더 임펄스는 computeApproxSignal의 6개 투표에 포함되므로, 가격·RSI·MA와 같은
+  // "1문단(=위 실시간 매매신호 계산에 쓰이는 값들)"에 넣는다. 문장마다 "이 지표도
+  // 6개 중 하나"를 반복하는 대신, 문단 자체를 계산에 포함되는 값들로만 묶어서 위치로
+  // 표현한다 — 단, 방향이 갈릴 때는 왜 다른지(소수 의견으로 반영) 설명은 그대로 남긴다.
+  const elderImpulse = live?.elderImpulse ?? ind.elder_impulse;
+  const primarySignal = live?.primarySignal;
+  let elderSentence = '';
+  if (elderImpulse != null) {
+    const elderDir = elderImpulse === 'green' ? 'buy' : elderImpulse === 'red' ? 'sell' : 'neutral';
+    if (primarySignal != null && elderDir !== 'neutral' && primarySignal !== 'neutral' && elderDir === primarySignal) {
+      elderSentence = `추세와 모멘텀을 함께 보는 엘더 임펄스도 ${elderLabel(elderImpulse)}로 나타나, 위 실시간 매매신호와 같은 방향입니다. ${elderImpulseExplain(elderImpulse)}`;
+    } else if (primarySignal != null && elderDir !== 'neutral' && primarySignal !== 'neutral' && elderDir !== primarySignal) {
+      elderSentence = `추세와 모멘텀을 함께 보는 엘더 임펄스만 보면 ${elderLabel(elderImpulse)}로, 위 실시간 매매신호와는 다른 방향인데, 나머지 5개 지표와 함께 계산돼 전체 결과에는 소수 의견으로 반영됐습니다. ${elderImpulseExplain(elderImpulse)}`;
+    } else {
+      elderSentence = `추세와 모멘텀을 함께 보는 엘더 임펄스는 ${elderLabel(elderImpulse)}로 나타나며, ${elderImpulseExplain(elderImpulse)}`;
+    }
+  }
+
+  // 1문단: 가격 + RSI/MA5vs20 + 엘더 임펄스 — 전부 위 "실시간 매매신호" 계산에 쓰이는 값.
+  const paragraph1 = [sentence1, sentence2, elderSentence].filter(Boolean).join(' ');
+
+  // Discount/Premium(60거래일 가격 범위 내 위치)은 computeApproxSignal 점수에서 뺐다 —
+  // 평균회귀형이라(떨어질 만큼 떨어지면 "싸다"=매수로 투표) 추세추종 지표들과 정반대로
+  // 투표하는 게 정상 동작인데, 매 봉 무조건 투표하다 보니 추세 쪽 표를 계속 상쇄시켜
+  // 관망 비율이 크게 늘어나는 부작용이 있었다(stockAnalysis.ts의 computeApproxSignal
+  // 주석 참고). 그래서 계산에 쓰이는 1문단과는 분리된 2문단("한편"으로 시작)에 순수
+  // 참고 정보로만 둔다 — 문단 자체가 나뉘어 있어 "계산 안에 있는 값 vs 안 쓰이는 참고
+  // 값"이 한눈에 구분된다.
+  let paragraph2 = '';
+  if (equilibrium != null && close != null) {
+    const isDiscount = close < equilibrium;
+    const zoneLabel = isDiscount ? 'Discount(저가 구간)' : 'Premium(고가 구간)';
+    const rangeText = (swingHigh != null && swingLow != null)
+      ? `이는 최근 60거래일 고점 ${fmtPrice(swingHigh)}원과 저점 ${fmtPrice(swingLow)}원의 중간값(${fmtPrice(equilibrium)}원)보다 ${isDiscount ? '낮다는' : '높다는'} 의미로, 상대적으로 ${isDiscount ? '저렴한' : '비싼'} 구간이라는 뜻입니다.`
       : '';
-    sentence3 = `스윙 구조상 ${zoneLabel} 구간에 위치해 있습니다.${rangeText}`;
+    paragraph2 = rangeText
+      ? `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있는데, ${rangeText} 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.`
+      : `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있습니다. 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.`;
   }
 
-  // 앞 문장들(가격 상승폭, Discount 구간 등)이 낙관적으로 읽혀도, 추세+모멘텀을 함께 보는
-  // 엘더 임펄스가 약세면 "다만"으로 이어서 톤을 맞춘다 — 배지(약세)와 문단이 서로 다른
-  // 얘기를 하는 것처럼 보이지 않게.
-  let sentence4 = '';
-  if (ind.elder_impulse != null) {
-    const connector = ind.elder_impulse === 'red' ? '다만' : ind.elder_impulse === 'green' ? '실제로' : '참고로';
-    sentence4 = `${connector} 추세와 모멘텀을 함께 보는 엘더 임펄스 지표는 ${elderLabel(ind.elder_impulse)}로 나와 있는데, ${elderImpulseExplain(ind.elder_impulse)}`;
-  }
-
-  return [sentence1, sentence2, sentence3, sentence4].filter(Boolean).join(' ');
+  return [paragraph1, paragraph2].filter(Boolean).join('\n\n');
 }
 
 const FILTERS = [
@@ -170,6 +211,14 @@ function effectiveSignal(stock) {
   if (stock.entry_opinion.startsWith('매수')) return 'buy';
   if (stock.entry_opinion.startsWith('매도')) return 'sell';
   return 'neutral';
+}
+// 목록의 "추세" 배지도 herencia-ta 공식값(다른 시점 기준) 대신 진입의견과 같은
+// effectiveSignal 하나로 통일해서 파생한다 — 두 컬럼이 서로 다른 소스를 보여주면서
+// 어긋나 보이는 일이 없도록, 항상 같은 값에서 같이 나오게 한다.
+function liveTrendLabel(signal) {
+  if (signal === 'buy') return '강세';
+  if (signal === 'sell') return '약세';
+  return '혼조';
 }
 function matchesFilter(stock, key) {
   if (key === 'all') return true;
@@ -456,6 +505,8 @@ function StockDetail({ code, apiBase }) {
   const adx = useMemo(() => computeADX(liveBars), [liveBars]);
   const weeklyTrend = useMemo(() => computeWeeklyTrend(liveBars), [liveBars]);
   const sentiment = useMemo(() => computeStockSentiment(liveBars), [liveBars]);
+  const liveElderImpulse = useMemo(() => computeElderImpulse(liveBars), [liveBars]);
+  const liveSwingZone = useMemo(() => computeSwingZone(liveBars), [liveBars]);
 
   const runAiAnalysis = () => {
     if (!detail) return;
@@ -591,23 +642,40 @@ function StockDetail({ code, apiBase }) {
     ? new Date((hourlyPoints.at(-1).date + 9 * 3600) * 1000).getUTCHours()
     : null;
 
-  // 요약 문단도 herencia-ta의 daily RSI/MA가 아니라 오늘 합성봉 반영값을 우선 쓴다.
+  // 진입의견(매수 관심/매도 관심/관망)도 실시간 근사치로 별도 표시 — 공식
+  // entry_opinion(헤더의 detail.entry_opinion)은 herencia-ta 전일 기준 그대로 둔다.
+  // 요약 문단(아래)이 이 값을 "기준 신호"로 참조해야 해서 buildStockSummary보다 먼저 계산한다.
   const liveBarsLatest = liveBars.at(-1);
+  const LIVE_OPINION_LABEL = { buy: '매수 관심', sell: '매도 관심', neutral: '관망' };
+  const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#555' };
+  const liveOpinionSignal = computeApproxSignal(liveBarsLatest ?? {});
+  const liveOpinionLabel = LIVE_OPINION_LABEL[liveOpinionSignal];
+  const liveOpinionColor = LIVE_OPINION_COLOR[liveOpinionSignal];
+
+  // 요약 문단도 herencia-ta의 daily RSI/MA가 아니라 오늘 합성봉 반영값을 우선 쓴다.
+  // primarySignal(위 liveOpinionSignal)을 함께 넘겨서, 엘더 임펄스 문장이 독자적인
+  // 매수/매도 권유처럼 읽히지 않고 "기준 신호"인 진입의견과의 관계로 설명되게 한다.
   const summary = buildStockSummary(detail, history, {
     close: displayPrice,
     prevClose: displayPrevClose,
     rsi: liveBarsLatest?.rsi,
     ma5: liveBarsLatest?.ma5,
     ma20: liveBarsLatest?.ma20,
+    elderImpulse: liveElderImpulse,
+    equilibrium: liveSwingZone?.equilibrium,
+    swingHigh: liveSwingZone?.swingHigh,
+    swingLow: liveSwingZone?.swingLow,
+    primarySignal: liveOpinionSignal,
   });
 
-  // 진입의견(매수 관심/매도 관심/관망)도 실시간 근사치로 별도 표시 — 공식
-  // entry_opinion(헤더의 detail.entry_opinion)은 herencia-ta 전일 기준 그대로 둔다.
-  const LIVE_OPINION_LABEL = { buy: '매수 관심', sell: '매도 관심', neutral: '관망' };
-  const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#555' };
-  const liveOpinionSignal = computeApproxSignal(liveBarsLatest ?? {});
-  const liveOpinionLabel = LIVE_OPINION_LABEL[liveOpinionSignal];
-  const liveOpinionColor = LIVE_OPINION_COLOR[liveOpinionSignal];
+  // 사이드/키 스탯(엘더 임펄스·RSI·MACD)도 전부 요약 문단과 같은 기준으로 통일한다.
+  // 이전엔 여기 RSI/MACD만 ind.rsi/ind.macd_hist(공식, 전일 종가 기준)를 그대로 써서,
+  // 문단은 실시간 재계산 RSI를 말하는데 바로 옆 사이드 스탯은 다른 숫자를 보여주는
+  // 문제가 있었다(예: 문단 "RSI 44.4" vs 사이드 스탯 "RSI 48.8"). 실시간 합성봉으로
+  // 다시 계산된 값이 있으면 그걸 쓰고, 없으면(장 마감 후 등) 공식값으로 폴백한다.
+  const elderImpulseDisplay = liveElderImpulse ?? ind.elder_impulse;
+  const rsiDisplay = liveBarsLatest?.rsi ?? ind.rsi;
+  const macdHistDisplay = liveBarsLatest?.macd_hist ?? ind.macd_hist;
 
   const priceHeader = (
     <div style={S.priceHeaderBlock}>
@@ -623,7 +691,7 @@ function StockDetail({ code, apiBase }) {
       {showsLive && (
         <div style={S.livePriceCaption}>
           RSI·MACD·진입의견(공식) 등 아래 지표는 전일 종가 {fmtPrice(close)}원 기준입니다(하루 1회 갱신).
-          {liveBarsActive && ` ADX·캔들패턴·매매신호·공포탐욕지수·AI 판정(근사치)은 ${lastHourKst}시 기준으로 갱신됩니다(매 정시).`}
+          {liveBarsActive && ` ADX·캔들패턴·매매신호·엘더 임펄스·Discount/Premium 판정·공포탐욕지수·AI 판정(근사치)은 ${lastHourKst}시 기준으로 갱신됩니다(매 정시).`}
         </div>
       )}
     </div>
@@ -635,15 +703,25 @@ function StockDetail({ code, apiBase }) {
     </span>
   );
 
+  // 헤더에서 제일 크게 보이는 텍스트가 "매수 관심" 같은 herencia-ta 공식 의견(전일
+  // 종가 기준)이고, 그 옆의 작은 배지가 "실시간 관망"이면 — 눈에 제일 먼저 들어오는
+  // 게 오래된 값이라 실시간 배지랑 반대로 읽혀서 헷갈린다는 피드백을 받았다. 그래서
+  // 실시간 값이 있을 땐 그걸 제일 크게 보여주고, 공식 의견은 "전일 종가 기준"이라고
+  // 명시한 채 작은 보조 텍스트로 내린다. 실시간 값이 아직 없을 때(로딩 중)만 공식
+  // 의견을 그대로 크게 보여준다(폴백).
   const headerRow = (
     <div style={S.detailHeaderRow}>
-      <div style={S.detailOpinion}>{detail.entry_opinion}</div>
-      <div style={S.detailHeaderBadges}>
-        {liveBarsActive && (
-          <span style={{ ...S.sentimentBadge, color: liveOpinionColor, background: liveOpinionColor + '18' }}>
-            실시간 {liveOpinionLabel}
-          </span>
+      <div>
+        {liveBarsActive ? (
+          <>
+            <div style={{ ...S.detailOpinion, color: liveOpinionColor }}>실시간 {liveOpinionLabel}</div>
+            <div style={S.detailOpinionSub}>공식 진입의견(전일 종가 기준): {detail.entry_opinion}</div>
+          </>
+        ) : (
+          <div style={S.detailOpinion}>{detail.entry_opinion}</div>
         )}
+      </div>
+      <div style={S.detailHeaderBadges}>
         {sentimentBadge}
       </div>
     </div>
@@ -675,14 +753,14 @@ function StockDetail({ code, apiBase }) {
             </div>
             <div style={S.detailSideCol}>
               <div style={S.sideStatsList}>
-                <SideStat label="RSI" value={`${fmtNum(ind.rsi)} · ${rsiLabel(ind.rsi)}`} />
-                <SideStat label="MACD" value={macdMomentumText(ind.macd_hist)} />
+                <SideStat label="RSI" value={`${fmtNum(rsiDisplay)} · ${rsiLabel(rsiDisplay)}`} />
+                <SideStat label="MACD" value={macdMomentumText(macdHistDisplay)} />
                 <SideStat label="ADX" value={adxValue} />
                 <SideStat label="52주 저점 대비" value={vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'} />
                 <SideStat
                   label="엘더 임펄스"
-                  value={elderLabel(ind.elder_impulse)}
-                  valueColor={elderColor(ind.elder_impulse)}
+                  value={elderLabel(elderImpulseDisplay)}
+                  valueColor={elderColor(elderImpulseDisplay)}
                 />
               </div>
               {summary && <div style={S.summaryText}>{summary}</div>}
@@ -714,12 +792,12 @@ function StockDetail({ code, apiBase }) {
           <div style={S.keyStatsRow}>
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>RSI</div>
-              <div style={S.keyStatValue}>{fmtNum(ind.rsi)}</div>
-              <div style={S.keyStatSub}>{rsiLabel(ind.rsi)}</div>
+              <div style={S.keyStatValue}>{fmtNum(rsiDisplay)}</div>
+              <div style={S.keyStatSub}>{rsiLabel(rsiDisplay)}</div>
             </div>
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>MACD</div>
-              <div style={{ ...S.keyStatValue, fontSize: 10.5 }}>{macdMomentumText(ind.macd_hist)}</div>
+              <div style={{ ...S.keyStatValue, fontSize: 10.5 }}>{macdMomentumText(macdHistDisplay)}</div>
             </div>
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>52주 저점 대비</div>
@@ -727,8 +805,8 @@ function StockDetail({ code, apiBase }) {
             </div>
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>엘더 임펄스</div>
-              <div style={{ ...S.keyStatValue, color: elderColor(ind.elder_impulse), fontSize: 10.5 }}>
-                {elderLabel(ind.elder_impulse)}
+              <div style={{ ...S.keyStatValue, color: elderColor(elderImpulseDisplay), fontSize: 10.5 }}>
+                {elderLabel(elderImpulseDisplay)}
               </div>
             </div>
           </div>
@@ -769,8 +847,8 @@ function StockRow({ stock, isOpen, onToggle, apiBase, liveSignal }) {
           <div style={S.stockName}>{stock.name}</div>
           <div style={S.stockMeta}>{stock.code} · {stock.market} · 시총 {formatMarketCap(stock.market_cap_100m)}</div>
         </div>
-        <span style={{ ...S.trendBadge, color: trendColor(stock.trend), borderColor: trendColor(stock.trend) + '40' }}>
-          {stock.trend}
+        <span style={{ ...S.trendBadge, color: trendColor(liveTrendLabel(effectiveSignal(stock))), borderColor: trendColor(liveTrendLabel(effectiveSignal(stock))) + '40' }}>
+          {liveTrendLabel(effectiveSignal(stock))}
         </span>
         <span style={{ ...S.opinionBadge, color: badgeColor, background: badgeColor + '15' }}>
           {badgeLabel}
@@ -870,6 +948,7 @@ export default function ScreenerScreen() {
               <span style={S.deskTitle}>KOSPI200 스크리너</span>
             </div>
             <div style={S.subtitle}>200종목 추세·모멘텀·진입의견</div>
+            <div style={S.basisNote}>추세·진입의견 모두 같은 실시간 근사 신호(오늘 장중 가격 반영) 기준으로 통일했습니다.</div>
           </div>
           <button style={S.guideEntryDesk} onClick={() => setShowGuide(true)}>
             <i className="ti ti-info-circle" style={{ fontSize: 13, color: '#7F77DD' }} />
@@ -925,8 +1004,8 @@ export default function ScreenerScreen() {
                       <span style={S.deskRowCode}>{s.code}</span>
                     </span>
                     <span style={S.deskRowCap}>{formatMarketCap(s.market_cap_100m)}</span>
-                    <span style={{ ...S.trendBadge, color: trendColor(s.trend), borderColor: trendColor(s.trend) + '40', width: 52, textAlign: 'center' }}>
-                      {s.trend}
+                    <span style={{ ...S.trendBadge, color: trendColor(liveTrendLabel(effectiveSignal(s))), borderColor: trendColor(liveTrendLabel(effectiveSignal(s))) + '40', width: 52, textAlign: 'center' }}>
+                      {liveTrendLabel(effectiveSignal(s))}
                     </span>
                     <span style={{
                       ...S.opinionBadge, width: 92, textAlign: 'center',
@@ -967,6 +1046,7 @@ export default function ScreenerScreen() {
           <span style={S.title}>KOSPI200 스크리너</span>
         </div>
         <div style={S.subtitle}>200종목 추세·모멘텀·진입의견</div>
+        <div style={S.basisNote}>추세는 herencia-ta 공식 분류(최근 영업일 종가 기준)이고, 진입의견 배지는 오늘 실시간 근사치라 서로 다른 시점을 가리킬 수 있어요.</div>
       </div>
 
       <button style={S.guideEntry} onClick={() => setShowGuide(true)}>
@@ -1027,6 +1107,7 @@ const S = {
   titleRow: { display: 'flex', alignItems: 'center', gap: 6 },
   title: { fontSize: 16, fontWeight: 600, color: '#fff' },
   subtitle: { fontSize: 10, color: '#555', marginTop: 3 },
+  basisNote: { fontSize: 9.5, color: '#555', marginTop: 4, lineHeight: 1.4, maxWidth: 420 },
 
   guideEntry: {
     display: 'flex', alignItems: 'center', gap: 8,
@@ -1067,8 +1148,9 @@ const S = {
 
   detailWrap: { background: '#13131e', padding: '12px 14px 16px', borderTop: '0.5px solid #1e1e28', display: 'flex', flexDirection: 'column', gap: 10 },
   detailLoading: { background: '#13131e', padding: '14px', fontSize: 11, color: '#555', borderTop: '0.5px solid #1e1e28' },
-  detailOpinion: { fontSize: 11.5, color: '#bbb', lineHeight: 1.5 },
-  detailHeaderRow: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
+  detailOpinion: { fontSize: 12.5, fontWeight: 700, lineHeight: 1.4 },
+  detailOpinionSub: { fontSize: 10, color: '#666', lineHeight: 1.4, marginTop: 2 },
+  detailHeaderRow: { display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 },
   detailHeaderBadges: { display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 },
   sentimentBadge: { fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 7, whiteSpace: 'nowrap' },
 
@@ -1133,7 +1215,7 @@ const S = {
   keyStatValue: { fontSize: 12, color: '#ddd', fontWeight: 600 },
   keyStatSub: { fontSize: 8.5, color: '#666', marginTop: 2 },
 
-  summaryText: { fontSize: 11.5, color: '#999', lineHeight: 1.7, background: '#181820', borderRadius: 10, padding: '10px 12px' },
+  summaryText: { fontSize: 11.5, color: '#999', lineHeight: 1.7, background: '#181820', borderRadius: 10, padding: '10px 12px', whiteSpace: 'pre-wrap' },
 
   rawToggle: {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
