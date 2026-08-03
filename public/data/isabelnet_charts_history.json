@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-04",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "The Greed and Fear Index climbed to 77.29 after earnings from large-cap stocks, with investors still firmly bullish and showing little sign of worry.",
+        "descKo": "대형주 실적 발표 이후 공포·탐욕 지수가 77.29까지 상승했다. 투자자들은 여전히 강한 매수 우위를 유지하고 있으며, 불안감은 거의 보이지 않고 있다.",
+        "date": "2026-08-03",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-08-04/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance After a Negative June and July",
+        "titleKo": "6월과 7월 부진 이후 S&P 500의 성과",
+        "desc": "The S&P 500 fell 0.1% in July. Bulls can call it noise, but bears will see a familiar pattern. Since 1950, when both June and July have been weak, the rest of the year has often had a hard time delivering much upside.",
+        "descKo": "S&P 500 지수는 7월에 0.1% 하락했다. 강세론자들은 이를 일시적 소음으로 치부할 수 있지만, 약세론자들은 익숙한 패턴으로 받아들일 것이다. 1950년 이후 6월과 7월이 모두 약세였던 경우, 남은 기간 동안 큰 폭의 상승세를 기대하기 어려웠다.",
+        "date": "2026-08-03",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-negative-june-and-july/",
+        "image": "/isabelnet-charts/2026-08-04/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment Indicator and Stock Positioning",
+        "titleKo": "심리 지표와 주식 포지셔닝",
+        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator sits at 1.6. Similar readings have historically been followed by an average 0.4% drop in the S&P 500 over the next month.Image: Goldman Sachs Global Investment Research",
+        "descKo": "골드만삭스의 미국 주식 심리 지표는 1.6을 기록했다. 과거 비슷한 수준을 기록했을 때 S&P 500 지수는 다음 달 평균 0.4% 하락하는 경향을 보였다.",
+        "date": "2026-08-03",
+        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
+        "image": "/isabelnet-charts/2026-08-04/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 EPS 성장 전망치",
+        "desc": "Wall Street is betting on a powerful earnings tailwind: S&P 500 profits are set to jump 31% in 2026 and another 12% in 2027. Small caps could steal the show, with earnings growth of 37% this year and 45% next year.",
+        "descKo": "월가는 강력한 실적 모멘텀에 베팅하고 있다. S&P 500 기업들의 이익은 2026년 31%, 2027년 12% 각각 증가할 것으로 전망된다. 중소형주는 올해 37%, 내년 45%의 이익 성장세를 보이며 시장의 주도권을 잡을 가능성이 있다.",
+        "date": "2026-08-03",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-08-04/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Index P/E Valuations vs. History",
+        "titleKo": "미국 주식 지수별 P/E 밸류에이션 비교",
+        "desc": "Risk appetite hasn’t cooled. The Russell 2000 now trades at 25 times forward earnings, ahead of 23 for the Nasdaq 100 and 20 for the S&P 500. It looks expensive, but the chase for stocks isn’t over.",
+        "descKo": "위험 선호 심리는 식지 않았다. 러셀 2000 지수의 선행 주가수익비율(P/E)은 25배로, 나스닥 100의 23배와 S&P 500의 20배를 웃돈다. 고평가 논란에도 불구하고 주식 매수세는 여전히 이어지고 있다.",
+        "date": "2026-08-03",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
+        "image": "/isabelnet-charts/2026-08-04/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-01",
     "charts": [
       {
