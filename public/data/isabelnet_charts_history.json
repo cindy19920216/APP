@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-05",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "With a reading of 72.11, the S&P 500 is sitting in a middle ground, not overbought yet, not oversold, with bulls still in control.",
+        "descKo": "S&P 500 지수가 72.11을 기록하며 과매수도 과매도도 아닌 중간 영역에 머물고 있는 가운데, 강세론자들이 여전히 시장 주도권을 유지하고 있다.",
+        "date": "2026-08-04",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-05/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Index Average Monthly Returns",
+        "titleKo": "계절성 – S&P 500 지수 월평균 수익률",
+        "desc": "August and September have rarely been kind to U.S. stocks, posting some of the weakest average returns of the year. With July, normally a strong month, now barely negative, do the odds look different this time?",
+        "descKo": "8월과 9월은 연중 가장 저조한 평균 수익률을 기록하며 미국 증시에 좀처럼 우호적이지 않았다. 통상 강세를 보이던 7월마저 소폭 하락세로 마감한 상황에서 이번에는 다른 양상이 전개될지 주목된다.",
+        "date": "2026-08-04",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-index-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-08-05/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning is in the 37th percentile, just below neutral and nowhere near crowded, which leaves room for more upside.",
+        "descKo": "통합 주식 포지셔닝은 37퍼센타일 수준으로 중립 구간을 소폭 하회하고 있다. 시장 과열과는 거리가 멀어 추가 상승 여력이 충분하다는 평가다.",
+        "date": "2026-08-04",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-08-05/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "ISM Manufacturing Index vs. S&P 500 Index",
+        "titleKo": "ISM 제조업 지수 vs. S&P 500 지수",
+        "desc": "U.S. manufacturing picked up speed in July. The ISM Manufacturing Index climbed to 55.6, beating expectations of 54 and notching a seventh straight month of expansion. Momentum is building across the industrial sector. The chart shows the correlation between the U.S. ISM Manufacturing Index and the S&P 500 index year-over-year percent change, since 2011.",
+        "descKo": "7월 미국 제조업 경기가 가속화됐다. ISM 제조업 지수는 예상치인 54를 상회한 55.6을 기록하며 7개월 연속 확장세를 이어갔다. 산업 전반에 걸쳐 모멘텀이 강화되는 모습이다. 해당 차트는 2011년 이후 미국 ISM 제조업 지수와 S&P 500 지수의 전년 대비 변동률 간 상관관계를 보여준다.",
+        "date": "2026-08-04",
+        "sourceUrl": "https://www.isabelnet.com/ism-manufacturing-index-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-08-05/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Net Long Positioning – Leveraged Funds and Asset Managers Net Future Positions",
+        "titleKo": "주식 순매수 포지션 – 레버리지 펀드 및 자산운용사의 선물 순포지션",
+        "desc": "Leveraged funds and asset managers have piled into long S&P 500 futures, pushing net exposure to a record. That screams risk appetite, but it also means there are fewer buyers left if sentiment flips.",
+        "descKo": "레버리지 펀드와 자산운용사들이 S&P 500 선물 매수 포지션을 대거 구축하며 순익스포저가 사상 최고치를 기록했다. 이는 높은 위험 선호 심리를 방증하지만, 투자 심리가 반전될 경우 매수세가 위축될 수 있음을 시사한다.",
+        "date": "2026-08-04",
+        "sourceUrl": "https://www.isabelnet.com/equity-leveraged-funds-and-asset-managers-net-future-positions/",
+        "image": "/isabelnet-charts/2026-08-05/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-04",
     "charts": [
       {
