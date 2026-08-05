@@ -55,6 +55,10 @@ next-env.d.ts
 # Python / Streamlit
 __pycache__/
 *.pyc
+
+# kospi_capitulation_index.py 로컬 실행 산출물(현재 합성/시뮬레이션 데이터 기반 프로토타입 —
+# 실제 데이터로 재실행하기 전까지는 커밋 대상 아님)
+/outputs/
 /data/
 /charts/
 *.jpg

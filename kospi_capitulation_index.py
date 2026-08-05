@@ -332,7 +332,7 @@ def main():
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
     
     ax.grid(True, linestyle=":", alpha=0.5)
-    ax.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="none", alpha=0.9)
+    ax.legend(loc="upper left", frameon=True, facecolor="white", edgecolor="none", framealpha=0.9)
     
     plt.tight_layout()
     plt.savefig(png_path, dpi=150)

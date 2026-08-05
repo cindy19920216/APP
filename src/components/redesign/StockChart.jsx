@@ -40,8 +40,13 @@ function lineData(sliced, key) {
 }
 
 // 일봉(문자열 "YYYY-MM-DD")과 분봉(UTC 초단위 숫자 타임스탬프)을 같은 방식으로 Date로 변환.
+// 분봉은 항상 KOSPI200 국내 종목(원화)이라, Yahoo가 주는 UTC 타임스탬프를 그대로
+// getUTCHours()로 읽으면 실제 장중 시각보다 9시간 이른 시각(예: 오전 10시 봉이 "01:00"
+// 으로 표시)이 나와 "차트가 실시간을 반영 못 한다"는 오해를 준다. KST(UTC+9)로 보정한
+// 뒤에 UTC getter로 읽는 방식(src/lib/stockAnalysis.ts의 kstDateStr와 동일한 트릭)으로
+// 통일한다.
 function timeToDate(time) {
-  return typeof time === 'number' ? new Date(time * 1000) : new Date(`${time}T00:00:00Z`);
+  return typeof time === 'number' ? new Date((time + 9 * 3600) * 1000) : new Date(`${time}T00:00:00Z`);
 }
 const pad2 = (n) => String(n).padStart(2, '0');
 
@@ -79,19 +84,46 @@ const MARGINS_COMPACT = {
   price: { top: 0.05, bottom: 0.32 },
   volume: { top: 0.75, bottom: 0.05 },
 };
-const MARGINS_WITH_PANES = {
-  price: { top: 0.03, bottom: 0.55 },
-  volume: { top: 0.48, bottom: 0.36 },
-  rsi: { top: 0.67, bottom: 0.17 },
-  macd: { top: 0.85, bottom: 0 },
-};
+const HIDDEN_MARGIN = { top: 0.99, bottom: 0 };
+
+// RSI/MACD를 켰을 때 기존엔 캔들·거래량 영역의 비율(top/bottom)만 줄여서 같은 총
+// 높이 안에 욱여넣었다 — "차트를 켜면 주가 캔들이 작아진다"는 문제. 대신 캔들·거래량은
+// 컴팩트 레이아웃과 정확히 같은 "픽셀" 크기·위치를 유지하고, RSI/MACD 두 개의 얇은
+// 패널을 그 아래에 새로 얹는 만큼만 전체 차트 높이(totalHeight)를 늘린다.
+const PANE_H = 40;   // RSI/MACD 패널 하나의 높이(px) — "너무 크지 않게" 요청 반영
+const PANE_GAP = 6;  // 패널 사이/여백(px)
+
+function computeLayout(baseHeight, showPanes) {
+  if (!showPanes) {
+    return { totalHeight: baseHeight, price: MARGINS_COMPACT.price, volume: MARGINS_COMPACT.volume, rsi: HIDDEN_MARGIN, macd: HIDDEN_MARGIN };
+  }
+  // 컴팩트 레이아웃에서 거래량이 끝나는 절대 픽셀 위치(0.95 * baseHeight)를 그대로
+  // 기준점으로 삼아 그 아래에 RSI → MACD 순서로 붙인다.
+  const volBottomPx = 0.95 * baseHeight;
+  const rsiTopPx = volBottomPx + PANE_GAP;
+  const rsiBottomPx = rsiTopPx + PANE_H;
+  const macdTopPx = rsiBottomPx + PANE_GAP;
+  const macdBottomPx = macdTopPx + PANE_H;
+  const totalHeight = macdBottomPx + PANE_GAP;
+
+  // k = baseHeight/totalHeight 비율로 top/bottom을 같이 축소하면, 캔들·거래량의
+  // "화면상 픽셀 크기와 위치"가 컴팩트 레이아웃과 완전히 동일하게 보존된다(대수적으로
+  // top_new*totalHeight === top_old*baseHeight, bottom edge도 마찬가지).
+  const k = baseHeight / totalHeight;
+  const price = { top: MARGINS_COMPACT.price.top * k, bottom: (1 - k) + MARGINS_COMPACT.price.bottom * k };
+  const volume = { top: MARGINS_COMPACT.volume.top * k, bottom: (1 - k) + MARGINS_COMPACT.volume.bottom * k };
+  const rsi = { top: rsiTopPx / totalHeight, bottom: 1 - rsiBottomPx / totalHeight };
+  const macd = { top: macdTopPx / totalHeight, bottom: 1 - macdBottomPx / totalHeight };
+
+  return { totalHeight, price, volume, rsi, macd };
+}
 
 export default function StockChart({ history, height = 300, patternMarkers = [], signalMarkers = [], code }) {
   const containerRef = useRef(null);
   const chartRef = useRef(null);
   const seriesRef = useRef({});
   const [period, setPeriod] = useState('3M');
-  const [showPanes, setShowPanes] = useState(false);
+  const [showPanes, setShowPanes] = useState(true);
   const [tooltip, setTooltip] = useState(null);
   const [intradayHistory, setIntradayHistory] = useState([]);
   const [intradayLoading, setIntradayLoading] = useState(false);
@@ -102,11 +134,12 @@ export default function StockChart({ history, height = 300, patternMarkers = [],
   // 차트는 mount 시 한 번만 생성 — 데이터/기간 변경은 별도 effect에서 setData만 호출.
   useEffect(() => {
     if (!containerRef.current) return;
+    const initialLayout = computeLayout(height, showPanes);
     const chart = createChart(containerRef.current, {
       layout: { background: { color: 'transparent' }, textColor: '#666', fontSize: 10 },
       grid: { vertLines: { color: '#1a1a24' }, horzLines: { color: '#1a1a24' } },
       width: containerRef.current.clientWidth,
-      height,
+      height: initialLayout.totalHeight,
       rightPriceScale: { borderColor: '#2a2a35' },
       timeScale: { borderColor: '#2a2a35', tickMarkFormatter },
       crosshair: { mode: 1 },
@@ -127,13 +160,13 @@ export default function StockChart({ history, height = 300, patternMarkers = [],
     const rsi = chart.addLineSeries({ color: '#7F77DD', lineWidth: 1, priceScaleId: 'rsi', priceLineVisible: false, lastValueVisible: false });
     const macd = chart.addHistogramSeries({ priceScaleId: 'macd', priceLineVisible: false, lastValueVisible: false });
 
-    chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
-    chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_COMPACT.volume });
+    chart.priceScale('right').applyOptions({ scaleMargins: initialLayout.price });
+    chart.priceScale('volume').applyOptions({ scaleMargins: initialLayout.volume });
     // visible:false는 축 라벨만 숨길 뿐 시리즈 자체는 기본 scaleMargins(꽤 큰 영역)로
     // 계속 그려져서 캔들/거래량과 겹쳐 보이는 원인이 됐다 — 패널이 꺼져 있을 때는
     // margin 자체를 거의 0 높이로 눌러서 실제로도 안 보이게 만든다.
-    chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-    chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
+    chart.priceScale('rsi').applyOptions({ scaleMargins: initialLayout.rsi, visible: showPanes });
+    chart.priceScale('macd').applyOptions({ scaleMargins: initialLayout.macd, visible: showPanes });
 
     seriesRef.current = { candle, ma5, ma20, bbUpper, bbLower, vwap, volume, rsi, macd };
 
@@ -160,27 +193,20 @@ export default function StockChart({ history, height = 300, patternMarkers = [],
     };
   }, []);
 
-  // RSI/MACD 서브패널 토글 시 가격/거래량 패널의 세로 비율만 재조정.
+  // RSI/MACD 토글, 부모가 요구하는 높이(height prop) 변경 — 둘 다 전체 차트 높이와
+  // 캔들/거래량/RSI/MACD 배치에 같이 영향을 주므로 한 effect에서 묶어 처리한다.
+  // RSI/MACD를 켜면 캔들·거래량 픽셀 크기는 그대로 두고 전체 높이(totalHeight)만
+  // 늘려서 붙이므로("주가 차트는 고정"), 여기서 매번 chart 자체의 height도 같이 갱신한다.
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart) return;
-    if (showPanes) {
-      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_WITH_PANES.price });
-      chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_WITH_PANES.volume });
-      chart.priceScale('rsi').applyOptions({ scaleMargins: MARGINS_WITH_PANES.rsi, visible: true });
-      chart.priceScale('macd').applyOptions({ scaleMargins: MARGINS_WITH_PANES.macd, visible: true });
-    } else {
-      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
-      chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_COMPACT.volume });
-      chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-      chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-    }
-  }, [showPanes]);
-
-  // 부모(모바일 스택형 vs 데스크톱 큰 차트)가 요구하는 높이가 바뀌면 반영.
-  useEffect(() => {
-    chartRef.current?.applyOptions({ height });
-  }, [height]);
+    const layout = computeLayout(height, showPanes);
+    chart.applyOptions({ height: layout.totalHeight });
+    chart.priceScale('right').applyOptions({ scaleMargins: layout.price });
+    chart.priceScale('volume').applyOptions({ scaleMargins: layout.volume });
+    chart.priceScale('rsi').applyOptions({ scaleMargins: layout.rsi, visible: showPanes });
+    chart.priceScale('macd').applyOptions({ scaleMargins: layout.macd, visible: showPanes });
+  }, [height, showPanes]);
 
   // 분봉 선택 시 herencia-ta 일봉과 별개로 Yahoo Finance 분봉을 직접 받아온다.
   // 장중에는 화면이 보이는 동안 60초 간격으로 재조회해 실시간에 가깝게 갱신.
