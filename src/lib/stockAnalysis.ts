@@ -8,6 +8,7 @@
 // 재계산된 값을 쓴다.
 
 import { sma, bollinger, rsi as calcRsi, macdHistogram, ema } from './taIndicators';
+import { normalizeIndicator, type NormalizedStat } from './statisticalNormalization';
 
 export type Bar = {
   date: string;
@@ -105,7 +106,103 @@ export function detectCandlePatterns(bars: Bar[]): CandlePattern[] {
 // 이동평균)를 6번째 신호로 추가했다 — herencia-ta가 이미 ma60을 주므로 새 계산 없이 재사용.
 export type ApproxSignal = 'buy' | 'sell' | 'neutral';
 export type ApproxVote = { key: 'rsi' | 'ma' | 'macd' | 'bb' | 'elder' | 'ma60'; vote: ApproxSignal };
-export type ApproxSignalDetail = { signal: ApproxSignal; buy: number; sell: number; votes: ApproxVote[] };
+
+// ── 앙상블 가중치 모델 ────────────────────────────────────
+// 기존 방식은 6개 지표를 각각 -1/0/+1로 이산화해서 단순 합산(±2 임계값)했다 — RSI 31과
+// RSI 69.9가 똑같이 "1표"였고, 후행 지표(MA5/MA20)와 선행 지표(RSI/MACD)가 똑같은
+// 무게를 받았다. 여기서는 (1) 각 지표를 이산 투표 대신 -1~+1 연속 점수로 바꿔 크기
+// 정보를 보존하고, (2) 추세(후행)·모멘텀(선행)·평균회귀(볼린저)·엘더 임펄스(추세+모멘텀
+// 결합) 4개 그룹으로 묶어 그룹별 가중치를 다르게 주고, (3) 볼린저 밴드폭을 변동성
+// 근사로 써서 저변동성 국면엔 추세 가중치를, 고변동성 국면엔 모멘텀·평균회귀 가중치를
+// 자동으로 높인다(레짐 의존 가중치).
+// votes(아래, 개별 지표 배지 표시용)는 기존 이산 판정 그대로 유지한다 — 화면의 "판단
+// 근거" 지표별 카드는 그대로고, 그 6개를 합쳐 최종 매수/매도/관망을 내는 방식만 바뀐다.
+// AI 리포트 라우트(stock-ai-report)는 프런트에서 스냅샷 하나만 전달받아 과거 시계열이
+// 없으므로, 이 함수는 의도적으로 bar 하나의 필드만으로 전부 계산한다(과거 시계열이
+// 필요한 z-score/percentile 방식은 axis 1의 computeRsiContext처럼 별도 함수로 분리).
+export type EnsembleComponents = { trend: number; momentum: number; bb: number; elder: number };
+export type EnsembleWeights = { trend: number; momentum: number; bb: number; elder: number };
+
+const ENSEMBLE_BASE_WEIGHTS: EnsembleWeights = { trend: 0.30, momentum: 0.35, bb: 0.15, elder: 0.20 };
+const REGIME_SHIFT_MAX = 0.15; // 국면에 따라 추세 ↔ (모멘텀+평균회귀) 사이에서 최대 이만큼 가중치 이동
+// 볼린저 밴드폭(=(상단-하단)/종가)을 "보통 변동성" 기준점(중앙값)으로 잡고 그 폭을
+// 저/고변동성 경계로 삼는다 — KOSPI200 200종목 실측 밴드폭 분포(2026-08-04 기준:
+// p25 0.131 · 중앙값 0.206 · p75 0.338)로 보정한 값. 처음엔 0.06/0.06으로 잡았다가
+// 실측해보니 대부분 종목이 상한(+1)에 몰려 저/고변동성을 전혀 구분 못 하는 걸 발견
+// (변동성 큰 장세라 실제 밴드폭이 훨씬 넓었음) — 실측 분포 기준으로 다시 잡았다.
+// 시장 변동성 레벨 자체가 크게 바뀌면(예: 장기 저변동성 국면) 이 상수도 재보정 필요.
+const BANDWIDTH_CENTER = 0.20;
+const BANDWIDTH_SCALE = 0.20;
+// 앙상블 점수(-1~+1)를 매수/매도로 가르는 임계값 — 기존 6표 ±2 임계값과 비슷한 "강한
+// 신호만 통과" 취지를 유지하도록 200종목 실측 분포로 보정한 값.
+const ENSEMBLE_BUY_THRESHOLD = 0.20;
+const ENSEMBLE_SELL_THRESHOLD = -0.20;
+
+function clamp(v: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, v)); }
+
+function computeEnsemble(bar: Bar): { score: number; components: EnsembleComponents; weights: EnsembleWeights; volRegime: number } {
+  // 추세(후행): MA5 vs MA20 단기 교차 + 종가 vs MA60 장기 이격도의 평균. tanh 배율(15, 8)은
+  // 전형적인 며칠~몇 주 단위 이격 폭(수 %~십수 %)을 -1~+1 범위에 고르게 펼치기 위한 보정치.
+  let trendSum = 0, trendParts = 0;
+  if (bar.ma5 != null && bar.ma20 != null && bar.ma20 !== 0) {
+    trendSum += Math.tanh(((bar.ma5 - bar.ma20) / bar.ma20) * 15);
+    trendParts++;
+  }
+  if (bar.close != null && bar.ma60 != null && bar.ma60 !== 0) {
+    trendSum += Math.tanh(((bar.close - bar.ma60) / bar.ma60) * 8);
+    trendParts++;
+  }
+  const trend = trendParts > 0 ? trendSum / trendParts : 0;
+
+  // 모멘텀(선행): RSI(0~100 → -1~+1로 재조정) + MACD 히스토그램(종가 대비 상대값으로
+  // 정규화해 종목 간 가격 스케일 차이를 제거한 뒤 tanh로 압축).
+  let momentumSum = 0, momentumParts = 0;
+  if (bar.rsi != null) {
+    momentumSum += (bar.rsi - 50) / 50;
+    momentumParts++;
+  }
+  if (bar.macd_hist != null && bar.close != null && bar.close !== 0) {
+    momentumSum += Math.tanh((bar.macd_hist / bar.close) * 300);
+    momentumParts++;
+  }
+  const momentum = momentumParts > 0 ? momentumSum / momentumParts : 0;
+
+  // 평균회귀: %B(볼린저밴드 내 위치)가 낮을수록(하단 근접) 반등 기대로 +, 높을수록 -.
+  let bb = 0;
+  if (bar.close != null && bar.bb_upper != null && bar.bb_lower != null && bar.bb_upper !== bar.bb_lower) {
+    const pctB = (bar.close - bar.bb_lower) / (bar.bb_upper - bar.bb_lower);
+    bb = clamp((0.5 - pctB) * 2, -1, 1);
+  }
+
+  // 엘더 임펄스: EMA13 기울기 + MACD 기울기가 이미 결합된 지표라 별도 연속화 없이
+  // 이산값(강세/약세/중립)을 그대로 -1/0/+1로 사용.
+  const elder = bar.elder_impulse === 'green' ? 1 : bar.elder_impulse === 'red' ? -1 : 0;
+
+  // 변동성 국면: 볼린저 밴드폭이 넓을수록(고변동성) 모멘텀·평균회귀 가중치를 높이고,
+  // 좁을수록(저변동성) 추세 가중치를 높인다 — 조용한 장에서는 완만한 추세추종이,
+  // 출렁이는 장에서는 빠른 되돌림·과매수매도 반응이 더 유효하다는 통상적 TA 관점.
+  let volRegime = 0;
+  if (bar.close != null && bar.bb_upper != null && bar.bb_lower != null && bar.close !== 0) {
+    const bandwidth = (bar.bb_upper - bar.bb_lower) / bar.close;
+    volRegime = clamp((bandwidth - BANDWIDTH_CENTER) / BANDWIDTH_SCALE, -1, 1);
+  }
+  const shift = volRegime * REGIME_SHIFT_MAX;
+  const weights: EnsembleWeights = {
+    trend: ENSEMBLE_BASE_WEIGHTS.trend - shift,
+    momentum: ENSEMBLE_BASE_WEIGHTS.momentum + shift * 0.7,
+    bb: ENSEMBLE_BASE_WEIGHTS.bb + shift * 0.3,
+    elder: ENSEMBLE_BASE_WEIGHTS.elder,
+  };
+
+  const components: EnsembleComponents = { trend, momentum, bb, elder };
+  const score = weights.trend * trend + weights.momentum * momentum + weights.bb * bb + weights.elder * elder;
+  return { score, components, weights, volRegime };
+}
+
+export type ApproxSignalDetail = {
+  signal: ApproxSignal; buy: number; sell: number; votes: ApproxVote[];
+  ensembleScore: number; ensembleComponents: EnsembleComponents; ensembleWeights: EnsembleWeights; volRegime: number;
+};
 
 // 화면(종목 상세·시장지표 탭)에서 "왜 이 판정이 나왔는지" 6개 지표별로 나눠 보여줄 수
 // 있게 투표 breakdown까지 반환한다. computeApproxSignal()은 이 함수의 최종 결과만
@@ -125,13 +222,27 @@ export function computeApproxSignalDetail(bar: Bar): ApproxSignalDetail {
 
   const buy = votes.filter(v => v.vote === 'buy').length;
   const sell = votes.filter(v => v.vote === 'sell').length;
-  const score = buy - sell;
-  const signal: ApproxSignal = score >= 2 ? 'buy' : score <= -2 ? 'sell' : 'neutral';
-  return { signal, buy, sell, votes };
+
+  const { score: ensembleScore, components: ensembleComponents, weights: ensembleWeights, volRegime } = computeEnsemble(bar);
+  const signal: ApproxSignal = ensembleScore >= ENSEMBLE_BUY_THRESHOLD ? 'buy' : ensembleScore <= ENSEMBLE_SELL_THRESHOLD ? 'sell' : 'neutral';
+
+  return { signal, buy, sell, votes, ensembleScore, ensembleComponents, ensembleWeights, volRegime };
 }
 
 export function computeApproxSignal(bar: Bar): ApproxSignal {
   return computeApproxSignalDetail(bar).signal;
+}
+
+// ── RSI의 통계적 맥락 (percentile / z-score) ─────────────────
+// computeApproxSignalDetail의 RSI 투표는 30/70 고정 임계값을 쓰는데, 이는 모든 종목에
+// 같은 잣대를 대는 것이라 "이 종목이 평소 RSI 35~65 사이만 오가는지 20~80까지 널뛰는지"
+// 같은 맥락이 사라진다. 임계값 판정(투표)은 그대로 두고, 화면에 보여줄 설명 문구에만
+// "과거 분포에서 지금이 몇 percentile인지"를 덧붙이는 용도로 쓴다.
+export function computeRsiContext(bars: Bar[], window = 252): NormalizedStat | null {
+  const series = bars.map(b => b.rsi).filter((v): v is number => v != null);
+  const latest = bars.at(-1)?.rsi;
+  if (latest == null || series.length < 20) return null;
+  return normalizeIndicator(latest, series, window);
 }
 
 export function detectSignalFlips(bars: Bar[]): { date: string; signal: 'buy' | 'sell' }[] {
@@ -177,6 +288,72 @@ export function computeWeeklyTrend(bars: Bar[]): { label: '강세' | '약세' | 
   if (lastClose > ma4 && ma4 > prevMa4) label = '강세';
   else if (lastClose < ma4 && ma4 < prevMa4) label = '약세';
   return { label, insufficient: false };
+}
+
+// ── 다중 시간프레임 정합성 ────────────────────────────────
+// MA5/MA20(일봉 추세)·주봉 추세(computeWeeklyTrend)·60일 레인지 내 위치, 서로 다른
+// 시간축의 지표 3개를 각각 나열만 하면 "그래서 셋이 같은 얘기를 하는 건지"는 사용자가
+// 직접 머릿속에서 종합해야 한다. 여기서는 세 축을 상승/하락/중립으로 환산해 방향이
+// 맞는지(정합) 자체를 계산하고, 엇갈리면 "혼재 국면"으로 명시 분류해 신뢰도를 낮춘다.
+// 60일 레인지 위치는 computeApproxSignalDetail이 참고용으로만 쓰는 평균회귀 관점(쌌으니
+// 매수)과 달리, 여기서는 추세 구조 관점(고점권=상승 추세 구조, 저점권=하락 추세 구조)으로
+// 해석한다 — 매매 신호가 아니라 "지금 가격이 최근 추세선상 어디쯤 있는지" 구조 확인용.
+// "혼재(conflicting)"와 "신호 부족(insufficient)"은 구분한다 — 상승 1개·중립 2개처럼
+// 실제로는 충돌하는 축이 하나도 없는데(bearish 0개) 그냥 신호가 약한 경우까지 "혼재
+// 국면"이라고 부르면, 정말로 방향이 정반대로 부딪히는 경우와 똑같이 "믿을 수 없다"는
+// 인상을 줘서 오해를 준다. 상승/하락 축이 각각 1개 이상씩 실제로 존재할 때만 conflicting,
+// 그 외에 aligned 조건을 못 채우면 insufficient로 나눈다.
+export type TrendDirection = 'bullish' | 'bearish' | 'neutral';
+export type AlignmentStatus = 'aligned_bullish' | 'aligned_bearish' | 'conflicting' | 'insufficient';
+export type TimeframeAlignment = {
+  daily: TrendDirection;
+  weekly: TrendDirection;
+  range: TrendDirection;
+  weeklyInsufficient: boolean;
+  bullishCount: number;
+  bearishCount: number;
+  status: AlignmentStatus;
+  confidence: 'high' | 'medium' | 'low';
+};
+
+export function computeTimeframeAlignment(bars: Bar[]): TimeframeAlignment | null {
+  const latest = bars.at(-1);
+  if (!latest) return null;
+
+  const daily: TrendDirection = latest.ma5 != null && latest.ma20 != null
+    ? (latest.ma5 > latest.ma20 ? 'bullish' : latest.ma5 < latest.ma20 ? 'bearish' : 'neutral')
+    : 'neutral';
+
+  const weeklyTrend = computeWeeklyTrend(bars);
+  const weekly: TrendDirection = weeklyTrend.insufficient
+    ? 'neutral'
+    : weeklyTrend.label === '강세' ? 'bullish' : weeklyTrend.label === '약세' ? 'bearish' : 'neutral';
+
+  const range: TrendDirection = latest.close != null && latest.equilibrium != null
+    ? (latest.close > latest.equilibrium ? 'bullish' : latest.close < latest.equilibrium ? 'bearish' : 'neutral')
+    : 'neutral';
+
+  const directions = [daily, weekly, range];
+  const bullishCount = directions.filter(d => d === 'bullish').length;
+  const bearishCount = directions.filter(d => d === 'bearish').length;
+
+  let status: AlignmentStatus;
+  let confidence: 'high' | 'medium' | 'low';
+  if (bullishCount >= 2 && bearishCount === 0) {
+    status = 'aligned_bullish';
+    confidence = bullishCount === 3 ? 'high' : 'medium';
+  } else if (bearishCount >= 2 && bullishCount === 0) {
+    status = 'aligned_bearish';
+    confidence = bearishCount === 3 ? 'high' : 'medium';
+  } else if (bullishCount >= 1 && bearishCount >= 1) {
+    status = 'conflicting';
+    confidence = 'low';
+  } else {
+    status = 'insufficient';
+    confidence = 'low';
+  }
+
+  return { daily, weekly, range, weeklyInsufficient: weeklyTrend.insufficient, bullishCount, bearishCount, status, confidence };
 }
 
 // ── 종목별 공포·탐욕 점수 (0~100) ────────────────────────────

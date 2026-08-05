@@ -7,8 +7,10 @@ import StockChart from './StockChart';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import {
   computeADX, detectCandlePatterns, detectSignalFlips, computeWeeklyTrend, computeStockSentiment,
-  buildLiveBars, computeApproxSignal, computeElderImpulse, computeSwingZone,
+  buildLiveBars, computeApproxSignalDetail, computeElderImpulse, computeSwingZone, computeRsiContext,
+  computeTimeframeAlignment,
 } from '@/lib/stockAnalysis';
+import { computeVolatilityContext, describeVolatilityMultiple, percentileToText } from '@/lib/statisticalNormalization';
 
 // ─── 유틸 ─────────────────────────────────
 function trendColor(t) {
@@ -74,6 +76,70 @@ function elderImpulseExplain(c) {
   if (c === 'red') return '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)이 하락하고 MACD 모멘텀도 함께 내려가는 상태입니다.';
   return '13일 지수이동평균(EMA13, MA5/MA20과는 별개 지표)과 MACD 모멘텀의 방향이 서로 엇갈린 상태입니다.';
 }
+
+// ── 다중 시간프레임 정합도 표시 ────────────────────────────
+// computeTimeframeAlignment(일봉·주봉·60일 레인지 위치 3축)의 결과를 배지/문장으로
+// 풀어 쓴다. 매수·매도 권유가 아니라 "여러 시간축이 같은 얘기를 하고 있는지"만
+// 사실대로 알려주는 신뢰도 지표라, 엘더 임펄스와 같은 원칙(권유 표현 배제)을 따른다.
+// conflicting(정말 반대 방향 축이 있는 경우)과 insufficient(그냥 신호가 약한 경우)를
+// 구분한다 — 상승 1개·중립 2개처럼 실제 충돌이 없는 경우까지 "혼재 국면"이라 부르면,
+// 정말로 방향이 정반대로 부딪히는 경우와 같은 취급을 받아 오해를 준다.
+//
+// alignment.status("aligned_bullish"/"aligned_bearish")를 그대로 배지로 보여주면, 위
+// 실시간 매매신호(예: "매수 관심")와 방향이 반대일 때 "하락 정합"이라는 독립적인 반대
+// 의견처럼 읽혀서 "왜 매수 관심인데 하락이라는 거냐"는 혼란을 준다 — 실제로는 그런
+// 게 아니라, MACD·엘더 임펄스처럼 빠르게 반응하는 지표가 매수 쪽 6표 중 다수를 차지해
+// 매수 관심으로 판정됐지만, 더 느리게 움직이는 일봉/주봉/레인지 위치가 아직 그 방향을
+// 뒷받침하지 못했다는(=신호가 갓 나왔다는) 뜻이다. 그래서 primarySignal(위 매매신호)과
+// 비교해 "확인됨/미확인(반대)"로 재구성한 relateAlignmentToSignal을 배지·문장 둘 다에
+// 쓴다 — 절대적인 방향 주장이 아니라 "위 신호를 얼마나 믿어도 되는지"로 항상 귀결시킨다.
+function relateAlignmentToSignal(alignment, primarySignal) {
+  if (!alignment) return null;
+  const { status } = alignment;
+  if (status === 'conflicting' || status === 'insufficient') return status;
+  if (primarySignal !== 'buy' && primarySignal !== 'sell') return status; // 관망일 땐 비교 대상이 없어 방향 그대로 노출
+  const alignDir = status === 'aligned_bullish' ? 'buy' : 'sell';
+  return alignDir === primarySignal ? 'confirmed' : 'contradicting';
+}
+function alignmentLabel(rel) {
+  if (rel === 'confirmed') return '추세로 확인됨';
+  if (rel === 'contradicting') return '추세 미확인';
+  if (rel === 'aligned_bullish') return '상승 정합';
+  if (rel === 'aligned_bearish') return '하락 정합';
+  if (rel === 'conflicting') return '혼재 국면';
+  return '신호 부족';
+}
+function alignmentColor(rel) {
+  if (rel === 'confirmed') return '#1D9E75';
+  if (rel === 'contradicting') return '#f97316';
+  if (rel === 'aligned_bullish') return '#1D9E75';
+  if (rel === 'aligned_bearish') return '#E24B4A';
+  if (rel === 'conflicting') return '#eab308';
+  return '#666';
+}
+const CONFIDENCE_TEXT = { high: '신뢰도가 높은 편', medium: '신뢰도가 보통 수준', low: '신뢰도가 낮은 편' };
+function alignmentSentence(alignment, primarySignal) {
+  if (!alignment) return '';
+  const { status, confidence, bullishCount, bearishCount, weeklyInsufficient } = alignment;
+  const caveat = weeklyInsufficient ? ' (주봉 데이터가 아직 충분하지 않아 일봉·레인지 위치 두 기준만 반영됐습니다.)' : '';
+  if (status === 'conflicting') {
+    return `일봉 추세·주봉 추세·60일 레인지 내 위치, 세 시간축의 방향이 서로 엇갈리는 혼재 국면이라 위 실시간 매매신호는 ${CONFIDENCE_TEXT[confidence]}으로 보는 게 좋습니다.${caveat}`;
+  }
+  if (status === 'insufficient') {
+    return `일봉 추세·주봉 추세·60일 레인지 내 위치 대부분이 뚜렷한 방향 없이 중립이라, 시간프레임 사이에서 서로 확인해 줄 신호 자체가 부족한 구간입니다.${caveat}`;
+  }
+  const dirWord = status === 'aligned_bullish' ? '상승' : '하락';
+  const agreeCount = status === 'aligned_bullish' ? bullishCount : bearishCount;
+  const base = `일봉 추세·주봉 추세·60일 레인지 내 위치 중 ${agreeCount}개 시간축이 함께 ${dirWord} 쪽을 가리키고 있습니다.`;
+  const alignDir = status === 'aligned_bullish' ? 'buy' : 'sell';
+  if (primarySignal === 'buy' || primarySignal === 'sell') {
+    if (alignDir === primarySignal) {
+      return `${base} 위 실시간 매매신호와 같은 방향이라 ${CONFIDENCE_TEXT[confidence]}입니다.${caveat}`;
+    }
+    return `${base} 다만 이는 위 실시간 매매신호와는 반대 방향입니다 — 그 신호는 MACD·엘더 임펄스처럼 빠르게 반응하는 지표가 주도한 결과이고, 더 느리게 움직이는 일봉·주봉 추세·레인지 위치는 아직 따라오지 못한 상태라 추세로 확정되기보다는 막 나온 신호로 보는 게 좋습니다.${caveat}`;
+  }
+  return `${base} 여러 시간축에서 같은 방향이 확인되는 만큼 ${CONFIDENCE_TEXT[confidence]}입니다.${caveat}`;
+}
 function chochLabel(c) {
   if (c === 'bullish') return '상승 전환';
   if (c === 'bearish') return '하락 전환';
@@ -117,34 +183,43 @@ function buildStockSummary(detail, history, live) {
 
   const change = prev != null ? close - prev : null;
 
+  // 변화폭을 "일반적/드문" 같은 라벨로만 부르면 그 뒤의 실제 수치(몇 배인지)가 사라진다.
+  // ATR(14, 고가-저가 기반 Wilder 평활)을 이 종목의 "평소 변동성" 기준으로 삼아 오늘 변화폭이
+  // 몇 배인지 계산하고, 라벨 옆에 배수를 숫자로 같이 보여준다(예: "평균보다 큰 변화 폭
+  // (ATR 대비 약 2.1배)"). high/low가 없어 ATR을 못 구하면(데이터 부족) 라벨을 생략한다.
   let changeCtx = '';
-  if (history?.length > 5 && change != null) {
-    const closes = history.map(h => h.close).filter(v => typeof v === 'number');
-    const diffs = closes.slice(1).map((c, i) => Math.abs(c - closes[i]));
-    const sorted = [...diffs].sort((a, b) => a - b);
-    const medDiff = sorted[Math.floor(sorted.length / 2)] || 1;
-    const ratio = Math.abs(change) / medDiff;
-    if (ratio < 0.5) changeCtx = '소폭의';
-    else if (ratio < 1.5) changeCtx = '일반적인';
-    else if (ratio < 3) changeCtx = '평균보다 큰';
-    else changeCtx = '역사적으로 드문';
+  let atrMultipleText = '';
+  if (history?.length > 20 && change != null) {
+    const volCtx = computeVolatilityContext(history, 14);
+    if (volCtx) {
+      const multiple = Math.abs(change) / volCtx.atr;
+      changeCtx = describeVolatilityMultiple(multiple);
+      atrMultipleText = ` (ATR 대비 약 ${multiple.toFixed(1)}배)`;
+    }
   }
 
   const dir = change != null && change >= 0 ? '상승' : '하락';
   const topic = eunNeun(detail.name);
   const sentence1 = change != null
-    ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원으로, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원 ${dir}했습니다(${changeCtx} 변화 폭).`
+    ? (changeCtx
+        ? `현재 ${detail.name}${topic} ${fmtPrice(close)}원으로, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원 ${dir}했습니다(${changeCtx} 변화 폭${atrMultipleText}).`
+        : `현재 ${detail.name}${topic} ${fmtPrice(close)}원으로, 전일 종가 대비 ${fmtPrice(Math.abs(change))}원 ${dir}했습니다.`)
     : `현재 ${detail.name}${topic} ${fmtPrice(close)}원입니다.`;
 
   const rsiVal = live?.rsi ?? ind.rsi;
+  const rsiCtx = live?.rsiContext;
+  // "중립 구간"이라는 라벨은 30~70 사이 전부를 하나로 뭉뚱그린다. 이 종목의 최근 1년
+  // RSI 분포에서 지금 값이 상위 몇 %인지를 괄호로 덧붙여, 같은 "중립"이라도 40대 중반과
+  // 60대 중반은 다르다는 걸 구분해서 보여준다.
+  const rsiPctText = rsiCtx ? `(최근 1년 분포 기준 ${percentileToText(rsiCtx.percentile)})` : '';
   const ma5Val = live?.ma5 ?? ind.ma5;
   const ma20Val = live?.ma20 ?? ind.ma20;
   const maText = ma5Val != null && ma20Val != null
     ? (ma5Val >= ma20Val ? 'MA5가 MA20 위에 위치해 단기 상승 추세를 보이고 있습니다.' : 'MA5가 MA20 아래에 위치해 단기 하락 추세를 보이고 있습니다.')
     : '';
   let sentence2 = '';
-  if (rsiVal != null && maText) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간이며, ${maText}`;
-  else if (rsiVal != null) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간입니다.`;
+  if (rsiVal != null && maText) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간${rsiPctText}이며, ${maText}`;
+  else if (rsiVal != null) sentence2 = `RSI는 ${fmtNum(rsiVal)}로 ${rsiLabel(rsiVal)} 구간${rsiPctText}입니다.`;
   else if (maText) sentence2 = maText;
 
   // Discount/Premium 구간과 엘더 임펄스는 상단 "실시간 매매신호" 배지와 같은 기준(오늘
@@ -182,6 +257,11 @@ function buildStockSummary(detail, history, live) {
   // 주석 참고). 그래서 계산에 쓰이는 1문단과는 분리된 2문단("한편"으로 시작)에 순수
   // 참고 정보로만 둔다 — 문단 자체가 나뉘어 있어 "계산 안에 있는 값 vs 안 쓰이는 참고
   // 값"이 한눈에 구분된다.
+  // 이 문단의 "저렴한/비싼 구간"은 평균회귀 관점(쌌으니 반등 가능)인데, 바로 아래 3문단
+  // (시간프레임 정합도)은 같은 종가-중간값 비교를 추세 구조 관점(저점권=하락 구조, 고점권=
+  // 상승 구조)으로 정반대로 해석한다. 같은 숫자를 다른 렌즈로 두 번 쓰는 건 의도한
+  // 설계지만, 아무 설명 없이 두 문단이 뚝뚝 끊어져 있으면 서로 모순되는 것처럼 읽힌다.
+  // 그래서 여기서 "관점이 다르다"는 걸 한 문장으로 미리 밝혀 둔다.
   let paragraph2 = '';
   if (equilibrium != null && close != null) {
     const isDiscount = close < equilibrium;
@@ -189,12 +269,19 @@ function buildStockSummary(detail, history, live) {
     const rangeText = (swingHigh != null && swingLow != null)
       ? `이는 최근 60거래일 고점 ${fmtPrice(swingHigh)}원과 저점 ${fmtPrice(swingLow)}원의 중간값(${fmtPrice(equilibrium)}원)보다 ${isDiscount ? '낮다는' : '높다는'} 의미로, 상대적으로 ${isDiscount ? '저렴한' : '비싼'} 구간이라는 뜻입니다.`
       : '';
+    const lensNote = live?.alignment
+      ? ` 단, 이 "저렴함/비쌈"은 평균회귀 관점의 해석이고, 같은 위치를 추세 구조 관점에서 다시 보는 시간프레임 정합도는 아래에 따로 있습니다.`
+      : '';
     paragraph2 = rangeText
-      ? `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있는데, ${rangeText} 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.`
-      : `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있습니다. 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.`;
+      ? `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있는데, ${rangeText} 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.${lensNote}`
+      : `한편 스윙 구조상으로는 ${zoneLabel}에 위치해 있습니다. 이 위치 정보는 위 실시간 매매신호 계산에는 포함되지 않는 별도 참고 지표입니다.${lensNote}`;
   }
 
-  return [paragraph1, paragraph2].filter(Boolean).join('\n\n');
+  // 3문단: 다중 시간프레임 정합도 — 위 실시간 매매신호(1문단)를 그대로 믿어도 되는지에
+  // 대한 신뢰도 코멘트라, 계산에 쓰이는 값(1문단)도 참고 정보(2문단)도 아닌 별도 문단으로 둔다.
+  const paragraph3 = alignmentSentence(live?.alignment, live?.primarySignal);
+
+  return [paragraph1, paragraph2, paragraph3].filter(Boolean).join('\n\n');
 }
 
 const FILTERS = [
@@ -507,6 +594,8 @@ function StockDetail({ code, apiBase }) {
   const sentiment = useMemo(() => computeStockSentiment(liveBars), [liveBars]);
   const liveElderImpulse = useMemo(() => computeElderImpulse(liveBars), [liveBars]);
   const liveSwingZone = useMemo(() => computeSwingZone(liveBars), [liveBars]);
+  const rsiContext = useMemo(() => computeRsiContext(liveBars), [liveBars]);
+  const alignment = useMemo(() => computeTimeframeAlignment(liveBars), [liveBars]);
 
   const runAiAnalysis = () => {
     if (!detail) return;
@@ -648,9 +737,17 @@ function StockDetail({ code, apiBase }) {
   const liveBarsLatest = liveBars.at(-1);
   const LIVE_OPINION_LABEL = { buy: '매수 관심', sell: '매도 관심', neutral: '관망' };
   const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#555' };
-  const liveOpinionSignal = computeApproxSignal(liveBarsLatest ?? {});
+  // computeApproxSignalDetail을 직접 써서 ensembleScore(가중 합산 점수)까지 받는다 —
+  // signal은 이제 6표 다수결이 아니라 추세·모멘텀·평균회귀·엘더 임펄스 가중 합산이라,
+  // 사이드 스탯에 점수 자체를 같이 보여줘야 "왜 이 판정인지" 근거를 확인할 수 있다.
+  const liveOpinionDetail = computeApproxSignalDetail(liveBarsLatest ?? {});
+  const liveOpinionSignal = liveOpinionDetail.signal;
   const liveOpinionLabel = LIVE_OPINION_LABEL[liveOpinionSignal];
   const liveOpinionColor = LIVE_OPINION_COLOR[liveOpinionSignal];
+  // 정합도 배지는 절대 방향("하락 정합")이 아니라 위 실시간 매매신호 기준 상대 판정
+  // ("추세로 확인됨"/"추세 미확인")으로 보여준다 — 그래야 "매수 관심"인데 "하락 정합"이
+  // 동시에 뜨는 것처럼 보여서 서로 모순처럼 읽히는 일이 없다.
+  const alignmentRel = alignment ? relateAlignmentToSignal(alignment, liveOpinionSignal) : null;
 
   // 요약 문단도 herencia-ta의 daily RSI/MA가 아니라 오늘 합성봉 반영값을 우선 쓴다.
   // primarySignal(위 liveOpinionSignal)을 함께 넘겨서, 엘더 임펄스 문장이 독자적인
@@ -659,6 +756,8 @@ function StockDetail({ code, apiBase }) {
     close: displayPrice,
     prevClose: displayPrevClose,
     rsi: liveBarsLatest?.rsi,
+    rsiContext,
+    alignment,
     ma5: liveBarsLatest?.ma5,
     ma20: liveBarsLatest?.ma20,
     elderImpulse: liveElderImpulse,
@@ -753,7 +852,7 @@ function StockDetail({ code, apiBase }) {
             </div>
             <div style={S.detailSideCol}>
               <div style={S.sideStatsList}>
-                <SideStat label="RSI" value={`${fmtNum(rsiDisplay)} · ${rsiLabel(rsiDisplay)}`} />
+                <SideStat label="RSI" value={`${fmtNum(rsiDisplay)} · ${rsiLabel(rsiDisplay)}${rsiContext ? ' · ' + percentileToText(rsiContext.percentile) : ''}`} />
                 <SideStat label="MACD" value={macdMomentumText(macdHistDisplay)} />
                 <SideStat label="ADX" value={adxValue} />
                 <SideStat label="52주 저점 대비" value={vsLow != null ? `+${vsLow.toFixed(1)}%` : '-'} />
@@ -762,7 +861,32 @@ function StockDetail({ code, apiBase }) {
                   value={elderLabel(elderImpulseDisplay)}
                   valueColor={elderColor(elderImpulseDisplay)}
                 />
+                <SideStat
+                  label="가중 합산 점수"
+                  value={`${liveOpinionDetail.ensembleScore >= 0 ? '+' : ''}${liveOpinionDetail.ensembleScore.toFixed(2)} (${liveOpinionLabel})`}
+                  valueColor={liveOpinionColor}
+                />
+                {alignment && (
+                  <SideStat
+                    label="시간프레임 정합도"
+                    value={`${alignmentLabel(alignmentRel)} · ${CONFIDENCE_TEXT[alignment.confidence]}`}
+                    valueColor={alignmentColor(alignmentRel)}
+                  />
+                )}
               </div>
+              <div style={S.alignmentFootnote}>
+                * 가중 합산 점수는 RSI·MACD·MA5/20·MA60·볼린저밴드·엘더 임펄스 6개를 단순히
+                다수결로 세지 않고, 추세·모멘텀·평균회귀·엘더 임펄스 그룹별 가중치(변동성에
+                따라 자동 조정)로 합산한 값(-1~+1)입니다. 개별 지표 중 몇 개가 매수/매도인지와
+                실제 판정이 다를 수 있습니다.
+              </div>
+              {alignment && (
+                <div style={S.alignmentFootnote}>
+                  * 시간프레임 정합도는 일봉(MA5/MA20)·주봉 추세·60일 레인지 위치만 따로 계산한
+                  결과로, 바로 위 RSI·MACD·엘더 임펄스와는 다른 지표입니다. 방향이 엇갈려도
+                  모순이 아니라 서로 다른 걸 보는 것입니다.
+                </div>
+              )}
               {summary && <div style={S.summaryText}>{summary}</div>}
               {rawToggleBtn}
               {showRaw && <RawIndicatorSections ind={ind} />}
@@ -793,7 +917,7 @@ function StockDetail({ code, apiBase }) {
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>RSI</div>
               <div style={S.keyStatValue}>{fmtNum(rsiDisplay)}</div>
-              <div style={S.keyStatSub}>{rsiLabel(rsiDisplay)}</div>
+              <div style={S.keyStatSub}>{rsiLabel(rsiDisplay)}{rsiContext ? ` · ${percentileToText(rsiContext.percentile)}` : ''}</div>
             </div>
             <div style={S.keyStat}>
               <div style={S.keyStatLabel}>MACD</div>
@@ -810,6 +934,33 @@ function StockDetail({ code, apiBase }) {
               </div>
             </div>
           </div>
+
+          <div style={S.alignmentBadgeRow}>
+            <span style={{ ...S.alignmentBadge, color: liveOpinionColor, background: liveOpinionColor + '18' }}>
+              가중 합산 {liveOpinionDetail.ensembleScore >= 0 ? '+' : ''}{liveOpinionDetail.ensembleScore.toFixed(2)}
+            </span>
+            <span style={S.alignmentConfidenceText}>{liveOpinionLabel}</span>
+          </div>
+          <div style={S.alignmentFootnote}>
+            * RSI·MACD·MA5/20·MA60·볼린저밴드·엘더 임펄스 6개를 다수결이 아니라 추세·모멘텀·
+            평균회귀·엘더 임펄스 그룹별 가중치(변동성에 따라 자동 조정)로 합산한 값입니다.
+          </div>
+
+          {alignment && (
+            <>
+              <div style={S.alignmentBadgeRow}>
+                <span style={{ ...S.alignmentBadge, color: alignmentColor(alignmentRel), background: alignmentColor(alignmentRel) + '18' }}>
+                  {alignmentLabel(alignmentRel)}
+                </span>
+                <span style={S.alignmentConfidenceText}>{CONFIDENCE_TEXT[alignment.confidence]}</span>
+              </div>
+              <div style={S.alignmentFootnote}>
+                * 일봉(MA5/MA20)·주봉 추세·60일 레인지 위치만 따로 계산한 결과로, 위 RSI·MACD·
+                엘더 임펄스와는 다른 지표입니다. 방향이 엇갈려도 모순이 아니라 서로 다른 걸
+                보는 것입니다.
+              </div>
+            </>
+          )}
 
           {summary && <div style={S.summaryText}>{summary}</div>}
           {rawToggleBtn}
@@ -1214,6 +1365,10 @@ const S = {
   keyStatLabel: { fontSize: 8, color: '#444', marginBottom: 4 },
   keyStatValue: { fontSize: 12, color: '#ddd', fontWeight: 600 },
   keyStatSub: { fontSize: 8.5, color: '#666', marginTop: 2 },
+  alignmentBadgeRow: { display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 },
+  alignmentBadge: { fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 7 },
+  alignmentConfidenceText: { fontSize: 10, color: '#666' },
+  alignmentFootnote: { fontSize: 9, color: '#444', lineHeight: 1.5, marginTop: -2 },
 
   summaryText: { fontSize: 11.5, color: '#999', lineHeight: 1.7, background: '#181820', borderRadius: 10, padding: '10px 12px', whiteSpace: 'pre-wrap' },
 

@@ -54,7 +54,9 @@
       "Bash(grep -o '<div class=\"date-meta\">.\\\\{0,300\\\\}' /tmp/isabelnet_blog.html)",
       "Bash(git fetch *)",
       "WebFetch(domain:app-herencia92.vercel.app)",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "Bash(PowerShell -Command \"Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue\")",
+      "Bash(netstat -ano)"
     ]
   }
 }

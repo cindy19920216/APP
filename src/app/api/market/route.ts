@@ -5,28 +5,50 @@ import { fetchGoogleNews } from '@/lib/googleNews';
 export const dynamic = 'force-dynamic';
 
 // ── Yahoo Finance v8/chart 단건 ───────────────────────────
+// 전일 종가를 구하는 방법을 두 번 갈아엎었다: 처음엔 일봉(interval=1d) 배열에서 null만
+// 걸러내고 마지막 두 값을 비교했는데, KOSPI 같은 일부 심볼은 특정 날짜(예: 2026-08-03)의
+// 일봉 close가 통째로 null로 와서 그 날을 건너뛰고 더 이전 거래일과 비교하는 바람에
+// 등락률이 크게 틀어졌다(실측: 실제로는 +1.6%인데 -3.6%로 계산됨). 그래서 meta의
+// chartPreviousClose로 바꿔봤는데, 이 필드는 range 파라미터에 따라 완전히 다른(그리고
+// 실제 어느 날짜의 종가와도 안 맞는) 값을 줘서 더 못 믿을 물건이었다(range=5d일 때
+// 6023.66, range=1mo일 때 8088.34 — 둘 다 최근 실제 가격대와 안 맞음). 반면 시간봉
+// (interval=60m)은 같은 날짜에 결측이 없어서, 시간봉을 KST 날짜별로 묶어 "가장 최근
+// 완결된 거래일의 마지막 시간봉 종가"를 직접 재구성해 전일 종가로 쓴다 — 이 방식으로
+// KOSPI를 다시 계산해보니 시간봉상 08-03 마지막 종가 6251.59 → 08-04 6358.95로 약
+// +1.7%, 사용자가 실제로 확인한 +1.62%와 거의 일치했다.
 async function fetchChart(symbol: string): Promise<{ price: number; changePct: number; change: number } | null> {
   try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=60m&range=5d`;
     const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } });
     if (!res.ok) return null;
     const json = await res.json();
     const result = json?.chart?.result?.[0];
     if (!result) return null;
 
-    const closes: number[] = (result.indicators?.quote?.[0]?.close ?? [])
-      .filter((v: unknown) => v != null);
-    if (closes.length >= 2) {
-      const last = closes.at(-1)!, prev = closes.at(-2)!;
-      return { price: last, change: last - prev, changePct: ((last - prev) / prev) * 100 };
+    const price = result.meta?.regularMarketPrice;
+    if (typeof price !== 'number') return null;
+
+    const timestamps: number[] = result.timestamp ?? [];
+    const closes: (number | null)[] = result.indicators?.quote?.[0]?.close ?? [];
+    const lastCloseByDate = new Map<string, number>();
+    for (let i = 0; i < timestamps.length; i++) {
+      const c = closes[i];
+      if (c == null) continue;
+      const kstDate = new Date((timestamps[i] + 9 * 3600) * 1000).toISOString().slice(0, 10);
+      lastCloseByDate.set(kstDate, c); // 같은 날짜를 시간 순서대로 덮어써서 그 날의 마지막 값만 남김
+    }
+    const todayKst = new Date((Math.floor(Date.now() / 1000) + 9 * 3600) * 1000).toISOString().slice(0, 10);
+    const priorDates = [...lastCloseByDate.keys()].filter(d => d < todayKst).sort();
+    const prevClose = priorDates.length ? lastCloseByDate.get(priorDates.at(-1)!)! : null;
+
+    if (prevClose != null && prevClose !== 0) {
+      return { price, change: price - prevClose, changePct: ((price - prevClose) / prevClose) * 100 };
     }
 
-    // 일부 거래량 적은 심볼(예: CNYKRW=X)은 차트 시계열이 1개 이하로만 오는 경우가 있어
-    // meta의 현재가/전일종가로 폴백 (완전히 빠지는 것보다 낫다).
-    const price = result.meta?.regularMarketPrice;
-    const prevClose = result.meta?.chartPreviousClose;
-    if (typeof price === 'number' && typeof prevClose === 'number' && prevClose !== 0) {
-      return { price, change: price - prevClose, changePct: ((price - prevClose) / prevClose) * 100 };
+    // 시간봉 5일치로도 전일 종가를 못 구한 예외적인 경우(신규 상장 등)에만 meta로 폴백.
+    const metaPrev = result.meta?.chartPreviousClose;
+    if (typeof metaPrev === 'number' && metaPrev !== 0) {
+      return { price, change: price - metaPrev, changePct: ((price - metaPrev) / metaPrev) * 100 };
     }
     return null;
   } catch { return null; }
@@ -152,7 +174,7 @@ const getMarketData = unstable_cache(
     const results = await Promise.all(SYMBOLS.map(fetchChart));
     return Object.fromEntries(SYMBOLS.map((s, i) => [s, results[i]]));
   },
-  ['market-v6'],
+  ['market-v8'], // v8: chartPreviousClose가 range별로 다른 값을 주는 걸 확인해 폐기 — 시간봉을 날짜별로 묶어 전일 종가를 직접 재구성
   { revalidate: 60 }
 );
 

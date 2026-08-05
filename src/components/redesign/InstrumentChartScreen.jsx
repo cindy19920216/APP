@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
-import { computeApproxSignalDetail, attachAuxIndicators } from '@/lib/stockAnalysis';
+import { computeApproxSignalDetail, attachAuxIndicators, computeRsiContext, computeTimeframeAlignment, buildLiveBars } from '@/lib/stockAnalysis';
+import { computeVolatilityContext, percentileToText } from '@/lib/statisticalNormalization';
 
 // ─── 심볼 매핑 ────────────────────────────────────────────
 const SYMBOL_MAP = {
@@ -70,9 +71,71 @@ const META_MAP = {
 const SIGNAL_LABEL = { buy: '매수 신호', sell: '매도 신호', neutral: '중립' };
 const SIGNAL_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#666' };
 
+// ── 다중 시간프레임 정합도 ──────────────────────────────────
+// computeTimeframeAlignment(일봉 MA5/MA20·주봉 추세·60일 레인지 위치 3축)을 배지+문장으로
+// 풀어 쓴다. 위 6개 지표 투표(매수/매도/중립)와는 다른 질문("여러 시간축이 같은 얘기를
+// 하고 있는지")에 답하는 신뢰도 지표라, 종목 상세와 같은 원칙대로 매매 권유 표현 없이
+// 사실만 서술한다.
+// conflicting(실제로 반대 방향 축이 있는 경우)과 insufficient(그냥 신호가 약한 경우)를
+// 구분한다 — 상승 1개·중립 2개처럼 실제 충돌이 없는 경우까지 "혼재 국면"이라 부르면,
+// 정말로 방향이 정반대로 부딪히는 경우와 같은 취급을 받아 오해를 준다.
+//
+// alignment.status를 그대로 배지로 보여주면, 위 매수·매도 신호와 방향이 반대일 때
+// "하락 정합"이라는 독립적인 반대 의견처럼 읽혀서 "왜 매수 신호인데 하락이라는 거냐"는
+// 혼란을 준다 — 실제로는 MACD·엘더 임펄스처럼 빠르게 반응하는 지표가 매수 쪽에 표를
+// 몰아줘서 매수 신호가 나왔지만, 더 느리게 움직이는 일봉/주봉/레인지 위치가 아직 그
+// 방향을 뒷받침하지 못했다(=신호가 갓 나왔다)는 뜻이다. detail.signal(위 매수/매도
+// 신호)과 비교해 "확인됨/미확인"으로 재구성해서, 항상 "위 신호를 얼마나 믿어도 되는지"로
+// 귀결시킨다.
+function relateAlignmentToSignal(alignment, primarySignal) {
+  if (!alignment) return null;
+  const { status } = alignment;
+  if (status === 'conflicting' || status === 'insufficient') return status;
+  if (primarySignal !== 'buy' && primarySignal !== 'sell') return status; // 중립일 땐 비교 대상이 없어 방향 그대로 노출
+  const alignDir = status === 'aligned_bullish' ? 'buy' : 'sell';
+  return alignDir === primarySignal ? 'confirmed' : 'contradicting';
+}
+const ALIGNMENT_LABEL = {
+  confirmed: '추세로 확인됨', contradicting: '추세 미확인',
+  aligned_bullish: '상승 정합', aligned_bearish: '하락 정합',
+  conflicting: '혼재 국면', insufficient: '신호 부족',
+};
+const ALIGNMENT_COLOR = {
+  confirmed: '#1D9E75', contradicting: '#f97316',
+  aligned_bullish: '#1D9E75', aligned_bearish: '#E24B4A',
+  conflicting: '#eab308', insufficient: '#666',
+};
+const ALIGNMENT_CONFIDENCE_TEXT = { high: '신뢰도가 높은 편', medium: '신뢰도가 보통 수준', low: '신뢰도가 낮은 편' };
+
+function alignmentSentence(alignment, primarySignal) {
+  if (!alignment) return null;
+  const { status, confidence, bullishCount, bearishCount, weeklyInsufficient } = alignment;
+  const caveat = weeklyInsufficient ? ' 주봉 데이터가 아직 충분하지 않아 일봉·레인지 위치 두 기준만 반영됐어요.' : '';
+  if (status === 'conflicting') {
+    return `일봉 추세·주봉 추세·60일 레인지 내 위치, 세 시간축의 방향이 서로 엇갈리는 혼재 국면이에요. 위 매수·매도 신호는 ${ALIGNMENT_CONFIDENCE_TEXT[confidence]}으로 보는 게 좋아요.${caveat}`;
+  }
+  if (status === 'insufficient') {
+    return `일봉 추세·주봉 추세·60일 레인지 내 위치 대부분이 뚜렷한 방향 없이 중립이라, 시간프레임 사이에서 서로 확인해 줄 신호 자체가 부족해요.${caveat}`;
+  }
+  const dirWord = status === 'aligned_bullish' ? '상승' : '하락';
+  const agreeCount = status === 'aligned_bullish' ? bullishCount : bearishCount;
+  const base = `일봉 추세·주봉 추세·60일 레인지 내 위치 중 ${agreeCount}개 시간축이 함께 ${dirWord} 쪽을 가리키고 있어요.`;
+  const alignDir = status === 'aligned_bullish' ? 'buy' : 'sell';
+  if (primarySignal === 'buy' || primarySignal === 'sell') {
+    if (alignDir === primarySignal) {
+      return `${base} 위 매수·매도 신호와 같은 방향이라 ${ALIGNMENT_CONFIDENCE_TEXT[confidence]}이에요.${caveat}`;
+    }
+    return `${base} 다만 이는 위 매수·매도 신호와는 반대 방향이에요 — 그 신호는 MACD·엘더 임펄스처럼 빠르게 반응하는 지표가 주도한 결과이고, 더 느리게 움직이는 일봉·주봉 추세·레인지 위치는 아직 따라오지 못한 상태라 추세로 확정되기보다는 막 나온 신호로 보는 게 좋아요.${caveat}`;
+  }
+  return `${base} 여러 시간축에서 같은 방향이 확인되는 만큼 ${ALIGNMENT_CONFIDENCE_TEXT[confidence]}이에요.${caveat}`;
+}
+
 // 초보자도 읽을 수 있도록 "지표가 뭔지 → 지금 값이 뭘 뜻하는지" 순서로 문장을 만든다.
 // value는 카드 헤더에 숫자/상태를 바로 보여주기 위한 짧은 표시값(RSI 44.2, 상승 모멘텀 등).
-function rsiExplain(rsi) {
+// rsiContext(있으면): 이 종목/지수 자신의 최근 1년 RSI 분포에서 지금 값이 몇 percentile인지.
+// 30/70 고정 임계값 판정(reading/judge)은 그대로 두고, 그 뒤에 "이 자산 기준으로는 상위 몇
+// %인지"를 덧붙여 같은 "중립"이라도 평소보다 높은 편인지 낮은 편인지 구분해서 보여준다.
+function rsiExplain(rsi, rsiContext) {
   if (rsi == null) return null;
   const val = rsi.toFixed(1);
   let reading, judge;
@@ -86,10 +149,13 @@ function rsiExplain(rsi) {
     reading = '중립 구간';
     judge = '이 지표만 보면 뚜렷한 매수·매도 신호는 없어요.';
   }
+  const pctText = rsiContext
+    ? ` 참고로 이 자산의 최근 1년 RSI 분포에서 보면 지금 값은 ${percentileToText(rsiContext.percentile)}에 해당해요.`
+    : '';
   return {
     label: 'RSI (상대강도지수)',
     value: `${val} · ${rsi <= 30 ? '과매도' : rsi >= 70 ? '과매수' : '중립'}`,
-    text: `최근 가격이 얼마나 강하게 오르거나 내렸는지를 0~100 사이 숫자로 나타내요. 보통 70을 넘으면 "많이 올랐다"(과매수), 30 밑이면 "많이 내렸다"(과매도)로 봐요. 지금 값은 ${val}로 ${reading}이고, ${judge}`,
+    text: `최근 가격이 얼마나 강하게 오르거나 내렸는지를 0~100 사이 숫자로 나타내요. 보통 70을 넘으면 "많이 올랐다"(과매수), 30 밑이면 "많이 내렸다"(과매도)로 봐요. 지금 값은 ${val}로 ${reading}이고, ${judge}${pctText}`,
   };
 }
 
@@ -167,12 +233,14 @@ function computeOpinion(history) {
   if (!latest) return null;
   const { close, rsi, ma5, ma20, ma60, bb_upper, bb_lower, macd_hist, elder_impulse } = latest;
   const detail = computeApproxSignalDetail(latest);
+  const rsiContext = computeRsiContext(augmented);
+  const alignment = computeTimeframeAlignment(augmented);
 
   // votes(computeApproxSignalDetail의 판정)를 그대로 신뢰 소스로 삼아 각 카드의
   // signal을 덮어쓴다 — 카드 문구는 읽기 좋으라고 따로 쓰지만, 배지 색(매수/매도/중립)은
   // 항상 실제 판정과 같은 값에서 나오게 해서 둘이 어긋날 일이 없게 한다.
   const explainByKey = {
-    rsi: rsiExplain(rsi), ma: maExplain(ma5, ma20), macd: macdExplain(macd_hist),
+    rsi: rsiExplain(rsi, rsiContext), ma: maExplain(ma5, ma20), macd: macdExplain(macd_hist),
     bb: bbExplain(close, bb_upper, bb_lower), elder: elderExplain(elder_impulse),
     ma60: ma60Explain(close, ma60),
   };
@@ -180,20 +248,34 @@ function computeOpinion(history) {
     .map(v => explainByKey[v.key] && { ...explainByKey[v.key], signal: v.vote })
     .filter(Boolean);
 
+  // detail.signal은 6개 지표를 단순 다수결로 세지 않는다 — 추세(MA5/20·MA60, 후행)·
+  // 모멘텀(RSI·MACD, 선행)·평균회귀(볼린저)·엘더 임펄스 4개 그룹에 가중치를 주고, 변동성
+  // (볼린저 밴드폭)에 따라 저변동성 국면엔 추세를, 고변동성 국면엔 모멘텀·평균회귀를 더
+  // 반영하는 가중 합산 결과다. 그래서 "매도 신호 3개, 매수 1개"처럼 개별 지표 표(votes)는
+  // 한쪽으로 쏠려도 가중 합산 점수는 임계값을 못 넘어 관망이 나올 수 있다 — 예전엔 여기서
+  // "매도 신호가 N개로 가장 많아요"라고 다수결처럼 설명해서, 이런 경우 "표는 매도가
+  // 많은데 왜 관망이냐"는 모순으로 읽혔다. 이제는 다수결이라고 주장하지 않고, 개별 표는
+  // 참고 숫자로만 괄호에 남긴다.
   const buyCount = detail.buy, sellCount = detail.sell;
+  const scoreText = `가중 합산 점수 ${detail.ensembleScore >= 0 ? '+' : ''}${detail.ensembleScore.toFixed(2)}`;
   let opinion, color, verdict;
   if (detail.signal === 'buy') {
     opinion = '매수 관심'; color = '#1D9E75';
-    verdict = `${items.length}개 지표 중 매수 신호가 ${buyCount}개로 가장 많아요. 여러 지표가 동시에 단기 저점·상승 전환을 가리키고 있어 매수 관심 구간으로 판단됩니다.`;
+    verdict = `추세·모멘텀·평균회귀·엘더 임펄스를 가중치로 합산한 결과(${scoreText})가 매수 쪽으로 기울어 매수 관심 구간으로 판단됩니다. 개별 지표로는 ${items.length}개 중 매수 신호 ${buyCount}개, 매도 신호 ${sellCount}개입니다.`;
   } else if (detail.signal === 'sell') {
     opinion = '매도 관심'; color = '#E24B4A';
-    verdict = `${items.length}개 지표 중 매도 신호가 ${sellCount}개로 가장 많아요. 여러 지표가 동시에 단기 과열·하락을 가리키고 있어 매도 관심 구간으로 판단됩니다.`;
+    verdict = `추세·모멘텀·평균회귀·엘더 임펄스를 가중치로 합산한 결과(${scoreText})가 매도 쪽으로 기울어 매도 관심 구간으로 판단됩니다. 개별 지표로는 ${items.length}개 중 매수 신호 ${buyCount}개, 매도 신호 ${sellCount}개입니다.`;
   } else {
     opinion = '관망'; color = '#555';
-    verdict = `${items.length}개 지표 중 매수 신호 ${buyCount}개, 매도 신호 ${sellCount}개로 신호가 엇갈리고 있어요. 한쪽으로 확신하기 어려운 구간이라 무리해서 사거나 팔지 않고 관망하는 걸 권장합니다.`;
+    verdict = `추세·모멘텀·평균회귀·엘더 임펄스를 가중치로 합산한 결과(${scoreText})가 뚜렷한 방향 없이 중립권이라 관망 구간으로 판단됩니다. 개별 지표로는 ${items.length}개 중 매수 신호 ${buyCount}개, 매도 신호 ${sellCount}개인데, 가중 합산에서는 지표 종류(추세·모멘텀 등)에 따라 무게가 달라 단순히 개수가 더 많다고 판정이 정해지지는 않습니다.`;
   }
 
-  return { opinion, color, verdict, items };
+  // 정합도 배지는 절대 방향("하락 정합")이 아니라 위 매수/매도 신호(detail.signal) 기준
+  // 상대 판정("추세로 확인됨"/"추세 미확인")으로 보여준다 — "매수 관심"과 "하락 정합"이
+  // 동시에 떠서 서로 모순처럼 읽히는 일이 없게 한다.
+  const alignmentRel = alignment ? relateAlignmentToSignal(alignment, detail.signal) : null;
+
+  return { opinion, color, verdict, items, alignment, alignmentRel, primarySignal: detail.signal };
 }
 
 // ─── TradingView 스타일 캔들차트 (StockChart.jsx와 동일한 색·구조) ─────
@@ -408,6 +490,7 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
   const symbol = SYMBOL_MAP[instrumentKey];
 
   const [history,   setHistory]   = useState([]);
+  const [hourlyPoints, setHourlyPoints] = useState(null);
   const [hasVolume, setHasVolume] = useState(false);
   const [loading,   setLoading]   = useState(true);
   const [error,     setError]     = useState(null);
@@ -417,14 +500,25 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
 
     let cancelled = false;
 
+    // range=1y(일봉)만 쓰면 RSI/MACD/정합도/가중 합산 점수 같은 "지표"가 이 일봉의 마지막
+    // 봉에서 계산되는데, 일부 심볼(특히 FX·원자재)은 Yahoo가 당일 일봉을 장중에 실시간으로
+    // 갱신해주지 않아 지표가 하루 종일 그대로처럼 보이는 문제가 있었다(가격 헤더는 별도로
+    // MarketTab의 실시간 시세를 쓰다 보니, 헤더 가격은 바뀌는데 지표는 안 바뀌는 것처럼
+    // 보임). 종목 상세(StockDetail)가 herencia-ta 일봉 뒤에 오늘자 Yahoo 시간봉을 합성해
+    // 붙이는 것과 같은 방식(buildLiveBars)을 여기도 적용해, 시간봉으로 오늘자 봉을 직접
+    // 재구성한다.
     const load = (isFirst) => {
       if (isFirst) setLoading(true);
-      fetch(`/api/chart/${symbol}?range=1y`)
-        .then(r => r.ok ? r.json() : Promise.reject(r.status))
-        .then(d => {
+      Promise.all([
+        fetch(`/api/chart/${symbol}?range=1y`).then(r => r.ok ? r.json() : Promise.reject(r.status)),
+        fetch(`/api/chart/${symbol}?range=1mo&interval=60m`).then(r => r.ok ? r.json() : null).catch(() => null),
+      ])
+        .then(([d, hourly]) => {
           if (cancelled) return;
           setHistory(d.points ?? []);
           setHasVolume(!!d.hasVolume);
+          const points = (hourly?.points ?? []).filter(p => typeof p.date === 'number');
+          setHourlyPoints(points);
           setError(null);
         })
         .catch(e => { if (!cancelled) setError(String(e)); })
@@ -440,13 +534,23 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
     return () => { cancelled = true; clearInterval(timer); };
   }, [symbol]);
 
-  const last3M = history.slice(-66);
+  // herencia-ta 종목 상세(ScreenerScreen.jsx)와 동일한 로직 — 오늘자 시간봉이 있으면
+  // 일봉 히스토리 뒤에 합성해 붙여서 RSI/MACD/정합도/가중 합산 점수가 장중에도 갱신되게
+  // 한다. 시간봉이 없거나(휴장·데이터 없음) 오늘자 일봉이 이미 최신이면 원본 history를
+  // attachAuxIndicators만 거쳐 그대로 쓴다.
+  const liveBars = useMemo(() => buildLiveBars(history, hourlyPoints), [history, hourlyPoints]);
+
+  const last3M = liveBars.slice(-66);
   const periodReturn = last3M.length >= 2
     ? ((last3M.at(-1).close - last3M[0].close) / last3M[0].close * 100).toFixed(2)
     : '0';
   const high3M = last3M.length ? Math.max(...last3M.map(h => h.high)) : null;
   const low3M  = last3M.length ? Math.min(...last3M.map(h => h.low))  : null;
-  const opinion = computeOpinion(history);
+  const opinion = computeOpinion(liveBars);
+  // ATR(14, Wilder 평활) 대비 오늘 고가-저가 폭이 몇 배인지 — "평소" 변동성 대비 오늘이
+  // 얼마나 조용하거나 요동쳤는지를 절대 단위(포인트·원 등, 자산마다 스케일이 달라 비교 불가)
+  // 대신 배수로 표현해 자산군을 가리지 않고 비교 가능하게 한다.
+  const volCtx = liveBars?.length > 20 ? computeVolatilityContext(liveBars, 14) : null;
 
   return (
     <div style={S.wrap}>
@@ -484,7 +588,7 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
             ) : error ? (
               <div style={S.loadBox}>데이터를 불러올 수 없습니다</div>
             ) : (
-              <TVChart history={history} hasVolume={hasVolume} meta={meta} height={260} />
+              <TVChart history={liveBars} hasVolume={hasVolume} meta={meta} height={260} />
             )}
           </div>
 
@@ -495,8 +599,14 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
                 <span style={{ ...S.opinionBadge, color: opinion.color, background: opinion.color + '15' }}>
                   {opinion.opinion}
                 </span>
+                {opinion.alignment && (
+                  <span style={{ ...S.opinionBadge, color: ALIGNMENT_COLOR[opinion.alignmentRel], background: ALIGNMENT_COLOR[opinion.alignmentRel] + '15' }}>
+                    {ALIGNMENT_LABEL[opinion.alignmentRel]}
+                  </span>
+                )}
               </div>
               <div style={S.opinionText}>{opinion.verdict}</div>
+              {opinion.alignment && <div style={S.opinionText}>{alignmentSentence(opinion.alignment, opinion.primarySignal)}</div>}
 
               <div style={S.opinionDivider} />
               <div style={S.opinionSubtitle}>판단 근거 (지표별 설명)</div>
@@ -516,7 +626,8 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
               </div>
 
               <div style={S.opinionCaveat}>
-                RSI·이동평균·MACD·볼린저밴드·엘더 임펄스·MA60 이격도 6개 지표를 단순 점수화한 참고용 판단이며(종목 상세와 같은 계산 기준), 투자 조언이 아닙니다.
+                RSI·이동평균·MACD·볼린저밴드·엘더 임펄스·MA60 이격도 6개 지표를 추세·모멘텀·평균회귀·엘더 임펄스 그룹으로 묶어 가중치를 다르게 준 뒤 변동성(볼린저 밴드폭)에 따라 가중치를 조정해 합산한 참고용 판단이며(종목 상세와 같은 계산 기준), 투자 조언이 아닙니다.
+                {opinion.alignment && ' 옆의 시간프레임 정합도 배지는 이 계산과는 별도로 일봉(MA5/MA20)·주봉 추세·60일 레인지 위치만 따로 계산한 결과라, 위 지표들(특히 엘더 임펄스)과 방향이 달라도 모순이 아니라 서로 다른 걸 보는 것입니다.'}
               </div>
             </div>
           )}
@@ -526,10 +637,11 @@ export default function InstrumentChartScreen({ instrumentKey, currentValue, cur
             <div style={S.statsCard}>
               {[
                 { label: '조회 기간', value: `${last3M[0].date} ~ ${last3M.at(-1).date} (최근 3개월)` },
-                { label: '전체 데이터', value: `${history[0].date} ~ ${history.at(-1).date}` },
+                { label: '전체 데이터', value: `${liveBars[0].date} ~ ${liveBars.at(-1).date}` },
                 { label: '3개월 최고', value: meta?.fmt(high3M) },
                 { label: '3개월 최저', value: meta?.fmt(low3M) },
                 { label: '3개월 수익률', value: (+periodReturn >= 0 ? '+' : '') + periodReturn + '%', color: +periodReturn >= 0 ? '#1D9E75' : '#E24B4A' },
+                ...(volCtx ? [{ label: '오늘 변동성(ATR14 대비)', value: `${volCtx.atrMultiple.toFixed(1)}배` }] : []),
               ].map((s, i, arr) => (
                 <div key={i} style={{ ...S.statRow, borderBottom: i < arr.length - 1 ? '0.5px solid #151520' : 'none' }}>
                   <span style={S.statLabel}>{s.label}</span>
@@ -564,7 +676,7 @@ const S = {
   loadBox:   { height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#444', fontSize: 12 },
 
   opinionCard: { background: '#181820', borderRadius: 12, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 },
-  opinionBadgeRow: { display: 'flex' },
+  opinionBadgeRow: { display: 'flex', gap: 6, flexWrap: 'wrap' },
   opinionBadge: { fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 7 },
   opinionText: { fontSize: 12.5, color: '#ccc', lineHeight: 1.7 },
   opinionDivider: { height: 1, background: '#1e1e28', margin: '2px 0' },
