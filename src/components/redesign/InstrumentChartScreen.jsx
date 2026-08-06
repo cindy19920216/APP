@@ -314,28 +314,50 @@ const MARGINS_COMPACT = {
   price: { top: 0.05, bottom: 0.32 },
   volume: { top: 0.75, bottom: 0.05 },
 };
-const MARGINS_WITH_PANES = {
-  price: { top: 0.03, bottom: 0.55 },
-  volume: { top: 0.48, bottom: 0.36 },
-  rsi: { top: 0.67, bottom: 0.17 },
-  macd: { top: 0.85, bottom: 0 },
-};
+const HIDDEN_MARGIN = { top: 0.99, bottom: 0 };
+
+// StockChart.jsx와 동일한 방식: RSI/MACD를 켜도 캔들·거래량의 픽셀 크기·위치는
+// 컴팩트 레이아웃 그대로 유지하고, 그 아래에 RSI/MACD(각 40px) 패널만큼 전체
+// 차트 높이(totalHeight)를 늘린다.
+const PANE_H = 40;
+const PANE_GAP = 6;
+
+function computeLayout(baseHeight, showPanes) {
+  if (!showPanes) {
+    return { totalHeight: baseHeight, price: MARGINS_COMPACT.price, volume: MARGINS_COMPACT.volume, rsi: HIDDEN_MARGIN, macd: HIDDEN_MARGIN };
+  }
+  const volBottomPx = 0.95 * baseHeight;
+  const rsiTopPx = volBottomPx + PANE_GAP;
+  const rsiBottomPx = rsiTopPx + PANE_H;
+  const macdTopPx = rsiBottomPx + PANE_GAP;
+  const macdBottomPx = macdTopPx + PANE_H;
+  const totalHeight = macdBottomPx + PANE_GAP;
+
+  const k = baseHeight / totalHeight;
+  const price = { top: MARGINS_COMPACT.price.top * k, bottom: (1 - k) + MARGINS_COMPACT.price.bottom * k };
+  const volume = { top: MARGINS_COMPACT.volume.top * k, bottom: (1 - k) + MARGINS_COMPACT.volume.bottom * k };
+  const rsi = { top: rsiTopPx / totalHeight, bottom: 1 - rsiBottomPx / totalHeight };
+  const macd = { top: macdTopPx / totalHeight, bottom: 1 - macdBottomPx / totalHeight };
+
+  return { totalHeight, price, volume, rsi, macd };
+}
 
 function TVChart({ history, hasVolume, meta, height = 300 }) {
   const containerRef = useRef(null);
   const chartRef = useRef(null);
   const seriesRef = useRef({});
   const [period, setPeriod] = useState('3M');
-  const [showPanes, setShowPanes] = useState(false);
+  const [showPanes, setShowPanes] = useState(true);
   const [tooltip, setTooltip] = useState(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
+    const initialLayout = computeLayout(height, showPanes);
     const chart = createChart(containerRef.current, {
       layout: { background: { color: 'transparent' }, textColor: '#666', fontSize: 10 },
       grid: { vertLines: { color: '#1a1a24' }, horzLines: { color: '#1a1a24' } },
       width: containerRef.current.clientWidth,
-      height,
+      height: initialLayout.totalHeight,
       rightPriceScale: { borderColor: '#2a2a35' },
       timeScale: { borderColor: '#2a2a35' },
       crosshair: { mode: 1 },
@@ -356,10 +378,10 @@ function TVChart({ history, hasVolume, meta, height = 300 }) {
     const rsi = chart.addLineSeries({ color: '#7F77DD', lineWidth: 1, priceScaleId: 'rsi', priceLineVisible: false, lastValueVisible: false });
     const macd = chart.addHistogramSeries({ priceScaleId: 'macd', priceLineVisible: false, lastValueVisible: false });
 
-    chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
-    chart.priceScale('volume').applyOptions({ scaleMargins: hasVolume ? MARGINS_COMPACT.volume : { top: 0.99, bottom: 0 }, visible: hasVolume });
-    chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-    chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
+    chart.priceScale('right').applyOptions({ scaleMargins: initialLayout.price });
+    chart.priceScale('volume').applyOptions({ scaleMargins: hasVolume ? initialLayout.volume : HIDDEN_MARGIN, visible: hasVolume });
+    chart.priceScale('rsi').applyOptions({ scaleMargins: initialLayout.rsi, visible: showPanes });
+    chart.priceScale('macd').applyOptions({ scaleMargins: initialLayout.macd, visible: showPanes });
 
     seriesRef.current = { candle, ma5, ma20, bbUpper, bbLower, vwap, volume, rsi, macd };
 
@@ -387,25 +409,18 @@ function TVChart({ history, hasVolume, meta, height = 300 }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // RSI/MACD 토글과 부모가 요구하는 높이(height prop) 변경 — 둘 다 전체 차트 높이와
+  // 캔들/거래량/RSI/MACD 배치에 같이 영향을 주므로 한 effect에서 묶어 처리한다.
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart) return;
-    if (showPanes) {
-      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_WITH_PANES.price });
-      chart.priceScale('volume').applyOptions({ scaleMargins: MARGINS_WITH_PANES.volume, visible: hasVolume });
-      chart.priceScale('rsi').applyOptions({ scaleMargins: MARGINS_WITH_PANES.rsi, visible: true });
-      chart.priceScale('macd').applyOptions({ scaleMargins: MARGINS_WITH_PANES.macd, visible: true });
-    } else {
-      chart.priceScale('right').applyOptions({ scaleMargins: MARGINS_COMPACT.price });
-      chart.priceScale('volume').applyOptions({ scaleMargins: hasVolume ? MARGINS_COMPACT.volume : { top: 0.99, bottom: 0 }, visible: hasVolume });
-      chart.priceScale('rsi').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-      chart.priceScale('macd').applyOptions({ scaleMargins: { top: 0.99, bottom: 0 }, visible: false });
-    }
-  }, [showPanes, hasVolume]);
-
-  useEffect(() => {
-    chartRef.current?.applyOptions({ height });
-  }, [height]);
+    const layout = computeLayout(height, showPanes);
+    chart.applyOptions({ height: layout.totalHeight });
+    chart.priceScale('right').applyOptions({ scaleMargins: layout.price });
+    chart.priceScale('volume').applyOptions({ scaleMargins: hasVolume ? layout.volume : HIDDEN_MARGIN, visible: hasVolume });
+    chart.priceScale('rsi').applyOptions({ scaleMargins: layout.rsi, visible: showPanes });
+    chart.priceScale('macd').applyOptions({ scaleMargins: layout.macd, visible: showPanes });
+  }, [height, showPanes, hasVolume]);
 
   useEffect(() => {
     const s = seriesRef.current;
