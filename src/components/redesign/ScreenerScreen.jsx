@@ -7,7 +7,7 @@ import StockChart from './StockChart';
 import useIsDesktop from '@/hooks/useIsDesktop';
 import {
   computeADX, detectCandlePatterns, detectSignalFlips, computeWeeklyTrend, computeStockSentiment,
-  buildLiveBars, computeApproxSignalDetail, computeElderImpulse, computeSwingZone, computeRsiContext,
+  buildLiveBars, hasTodayHourlyBar, computeApproxSignalDetail, computeElderImpulse, computeSwingZone, computeRsiContext,
   computeTimeframeAlignment,
 } from '@/lib/stockAnalysis';
 import { computeVolatilityContext, describeVolatilityMultiple, percentileToText } from '@/lib/statisticalNormalization';
@@ -724,9 +724,10 @@ function StockDetail({ code, apiBase }) {
   const pct = (change != null && displayPrevClose) ? (change / displayPrevClose) * 100 : null;
   const showsLive = currentLivePrice != null && close != null && Math.abs(currentLivePrice - close) / close > 0.001;
 
-  // liveBars가 history보다 길면 오늘자 합성봉이 실제로 반영된 것 — ADX/패턴/신호/
-  // 공포탐욕지수가 "몇 시 기준"인지 hourlyPoints의 마지막 시간봉에서 뽑아 보여준다.
-  const liveBarsActive = liveBars.length > history.length;
+  // buildLiveBars가 오늘자 시간봉이 있으면 herencia-ta의 당일 스냅샷 봉도 항상 교체하므로
+  // (길이가 늘지 않을 수 있어 length 비교로는 판단 불가) hasTodayHourlyBar로 직접 판정한다.
+  // ADX/패턴/신호/공포탐욕지수가 "몇 시 기준"인지는 hourlyPoints의 마지막 시간봉에서 뽑는다.
+  const liveBarsActive = hasTodayHourlyBar(hourlyPoints);
   const lastHourKst = liveBarsActive && hourlyPoints?.length
     ? new Date((hourlyPoints.at(-1).date + 9 * 3600) * 1000).getUTCHours()
     : null;

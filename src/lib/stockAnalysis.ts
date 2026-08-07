@@ -437,19 +437,28 @@ function kstDateStr(unixSeconds: number): string {
   return new Date((unixSeconds + 9 * 3600) * 1000).toISOString().slice(0, 10);
 }
 
-export function buildLiveBars(dailyHistory: Bar[], hourlyPoints: HourlyPoint[] | null | undefined): Bar[] {
-  if (!dailyHistory?.length) return dailyHistory ?? [];
-
+function filterTodayHourly(hourlyPoints: HourlyPoint[] | null | undefined) {
   const todayStr = kstDateStr(Math.floor(Date.now() / 1000));
-  if (dailyHistory.at(-1)?.date === todayStr) return attachAuxIndicators(dailyHistory); // herencia-ta가 이미 오늘자 반영
-
-  const todays = (hourlyPoints ?? []).filter(
+  return (hourlyPoints ?? []).filter(
     (p): p is HourlyPoint & { open: number; high: number; low: number; close: number } =>
       typeof p.date === 'number' && kstDateStr(p.date) === todayStr &&
       p.open != null && p.high != null && p.low != null && p.close != null
   );
-  if (!todays.length) return attachAuxIndicators(dailyHistory);
+}
 
+// ScreenerScreen.jsx 등이 "오늘 시간봉으로 갱신됐는지"를 buildLiveBars와 같은 기준으로
+// 판단해야 해서(길이 비교만으로는 아래 교체 케이스를 못 잡는다) 판정 로직을 공유 export한다.
+export function hasTodayHourlyBar(hourlyPoints: HourlyPoint[] | null | undefined): boolean {
+  return filterTodayHourly(hourlyPoints).length > 0;
+}
+
+export function buildLiveBars(dailyHistory: Bar[], hourlyPoints: HourlyPoint[] | null | undefined): Bar[] {
+  if (!dailyHistory?.length) return dailyHistory ?? [];
+
+  const todays = filterTodayHourly(hourlyPoints);
+  if (!todays.length) return attachAuxIndicators(dailyHistory); // 오늘자 시간봉이 아직 없으면 원본 그대로
+
+  const todayStr = kstDateStr(Math.floor(Date.now() / 1000));
   const syntheticToday: Bar = {
     date: todayStr,
     open: todays[0].open,
@@ -459,7 +468,12 @@ export function buildLiveBars(dailyHistory: Bar[], hourlyPoints: HourlyPoint[] |
     volume: todays.reduce((s, p) => s + (p.volume ?? 0), 0),
   };
 
-  const merged = [...dailyHistory, syntheticToday];
+  // herencia-ta가 오늘 날짜로 이미 한 건(장중 스냅샷)을 내려줄 때가 있는데, 그 봉은
+  // herencia-ta 배치가 실행된 시점 이후의 장중 변동을 반영하지 못해 오히려 Yahoo 시간봉
+  // 합성값보다 낡은 경우가 많다(예: 당일 거래량이 다른 날의 1/3 수준으로 작음 = 장중
+  // 스냅샷). 그래서 날짜가 같아도 신뢰하지 말고 항상 시간봉 합성값으로 교체한다.
+  const base = dailyHistory.at(-1)?.date === todayStr ? dailyHistory.slice(0, -1) : dailyHistory;
+  const merged = [...base, syntheticToday];
   const closes = merged.map(b => b.close ?? 0);
   const ma5Arr = sma(closes, 5);
   const ma20Arr = sma(closes, 20);
