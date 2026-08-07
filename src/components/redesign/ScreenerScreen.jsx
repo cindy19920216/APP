@@ -21,7 +21,7 @@ function trendColor(t) {
 function opinionColor(op) {
   if (op.startsWith('매수')) return '#1D9E75';
   if (op.startsWith('매도')) return '#E24B4A';
-  return '#555';
+  return '#fff';
 }
 function opinionLabel(op) {
   return op.split('(')[0].trim();
@@ -32,7 +32,7 @@ const LIVE_SIGNAL_LABEL = { buy: '실시간 매수', sell: '실시간 매도', n
 function liveSignalColor(signal) {
   if (signal === 'buy') return '#1D9E75';
   if (signal === 'sell') return '#E24B4A';
-  return '#555';
+  return '#fff';
 }
 function formatMarketCap(v) {
   if (v == null) return '-';
@@ -736,7 +736,7 @@ function StockDetail({ code, apiBase }) {
   // 요약 문단(아래)이 이 값을 "기준 신호"로 참조해야 해서 buildStockSummary보다 먼저 계산한다.
   const liveBarsLatest = liveBars.at(-1);
   const LIVE_OPINION_LABEL = { buy: '매수 관심', sell: '매도 관심', neutral: '관망' };
-  const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#555' };
+  const LIVE_OPINION_COLOR = { buy: '#1D9E75', sell: '#E24B4A', neutral: '#fff' };
   // computeApproxSignalDetail을 직접 써서 ensembleScore(가중 합산 점수)까지 받는다 —
   // signal은 이제 6표 다수결이 아니라 추세·모멘텀·평균회귀·엘더 임펄스 가중 합산이라,
   // 사이드 스탯에 점수 자체를 같이 보여줘야 "왜 이 판정인지" 근거를 확인할 수 있다.
@@ -817,7 +817,7 @@ function StockDetail({ code, apiBase }) {
             <div style={S.detailOpinionSub}>공식 진입의견(전일 종가 기준): {detail.entry_opinion}</div>
           </>
         ) : (
-          <div style={S.detailOpinion}>{detail.entry_opinion}</div>
+          <div style={{ ...S.detailOpinion, color: opinionColor(detail.entry_opinion) }}>{detail.entry_opinion}</div>
         )}
       </div>
       <div style={S.detailHeaderBadges}>
