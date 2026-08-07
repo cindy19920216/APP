@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-08",
+    "charts": [
+      {
+        "title": "Forward S&P 500 Returns After Prior Breakouts to New Highs Beat the Average Day",
+        "titleKo": "S&P 500 신고가 경신 이후 수익률, 평균 상회",
+        "desc": "Over the past ten years, when the S&P 500 has broken to a new high after at least two months without one, the 12‑month forward return has averaged 16.4%. Fear, in this case, has been a poor strategist.",
+        "descKo": "지난 10년간 S&P 500 지수가 최소 두 달 만에 신고가를 경신했을 때, 향후 12개월간 평균 수익률은 16.4%를 기록했다. 이번 사례에서 보듯 시장에 대한 두려움은 나쁜 투자 전략이었다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-breakout/",
+        "image": "/isabelnet-charts/2026-08-08/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Index Max Pullback per Calendar Year",
+        "titleKo": "연도별 S&P 500 지수 최대 낙폭",
+        "desc": "March’s 9% pullback may already be the year’s deepest. If so, the market has less room for another major selloff. Back-to-back drawdowns of that size are rare, giving bulls a reason to stay optimistic.",
+        "descKo": "지난 3월의 9% 하락이 올해 가장 깊은 조정일 가능성이 있다. 만약 그렇다면 향후 추가적인 대규모 매도세가 나타날 여지는 줄어든다. 이 정도 규모의 하락이 연이어 발생하는 일은 드물며, 이는 강세론자들이 낙관론을 유지할 근거가 된다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-max-pullback-per-calendar-year/",
+        "image": "/isabelnet-charts/2026-08-08/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장 집중도: S&P 500 내 시가총액 상위 10개 기업 비중",
+        "desc": "What once echoed the market now sets the tempo. The top 10 names in the S&P 500 account for 39% of the index and 38% of its earnings, pushing up multiples and amplifying day-to-day swings.",
+        "descKo": "한때 시장의 흐름을 반영하던 상위 10개 종목이 이제는 시장 전체를 주도하고 있다. S&P 500 내 상위 10개 기업이 지수의 39%, 이익의 38%를 차지하며 멀티플 상승과 일일 변동성 확대를 견인하고 있다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-08/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수: 투자자 심리 현황",
+        "desc": "The Fear & Greed Index is at 60, solidly in greed territory. Risk appetite is back, but the gauge isn’t screaming euphoria. It’s just enough fuel to keep the rally rolling.",
+        "descKo": "공포·탐욕 지수가 60을 기록하며 확실한 '탐욕(Greed)' 구간에 진입했다. 위험 선호 심리가 되살아났으나, 지표가 극도의 과열을 가리키는 수준은 아니다. 이는 랠리를 이어가기에 충분한 동력으로 작용하고 있다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-08/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – S&P 500 NTM P/E",
+        "titleKo": "밸류에이션: S&P 500 12개월 선행 주가수익비율(NTM P/E)",
+        "desc": "At 16 times forward earnings, versus 20 for the benchmark, the equal-weight index isn’t cheap, but it looks more appealing than the broader market.",
+        "descKo": "동일가중 지수의 선행 주가수익비율(P/E)은 16배로 전체 벤치마크의 20배 대비 결코 저렴하지는 않지만, 시장 전반과 비교했을 때 더욱 매력적인 수준으로 보인다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
+        "image": "/isabelnet-charts/2026-08-08/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-07",
     "charts": [
       {
