@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-12",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "With a reading of 86.38, the S&P 500 is firmly in overbought territory, while bullish sentiment shows little sign of fading.",
+        "descKo": "S&P 500 지수가 86.38을 기록하며 확실한 과매수 구간에 진입했으나, 강세 심리는 좀처럼 꺾이지 않고 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-12/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 가격 목표치",
+        "desc": "Goldman Sachs still expects earnings to drive the S&P 500 up 17% to 8,000 in 2026, even if the path stays volatile.",
+        "descKo": "골드만삭스는 변동성 장세가 이어지더라도 기업 실적 개선에 힘입어 2026년 S&P 500 지수가 17% 상승한 8,000포인트에 도달할 것으로 전망했다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-08-12/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "At the 55th percentile, consolidated equity positioning is only modestly overweight, with room for more upside before things get stretched.",
+        "descKo": "통합 주식 포지셔닝은 55퍼센타일로 소폭 비중 확대 수준에 머물러 있어, 과열 국면 진입 전 추가 상승 여력이 남아 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-08-12/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders appear reluctant to buy as the Insider Transactions Ratio slides back into bearish territory.",
+        "descKo": "내부자 거래 비율이 다시 약세 영역으로 하락함에 따라 기업 내부자들은 매수에 신중한 태도를 보이고 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-08-12/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap MCG & Tech Positioning vs. Earnings Growth",
+        "titleKo": "대형주 MCG 및 기술주 포지셔닝 대비 실적 성장",
+        "desc": "Positioning in large-cap MCG and Tech has surged, leaving the sector overweight and much closer to where it should be given today’s earnings growth.",
+        "descKo": "대형주 MCG와 기술 섹터에 대한 포지셔닝이 급증하면서 해당 섹터의 비중은 확대되었고, 현재의 실적 성장세에 비추어 볼 때 적정 수준에 한층 가까워졌다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
+        "image": "/isabelnet-charts/2026-08-12/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-11",
     "charts": [
       {
