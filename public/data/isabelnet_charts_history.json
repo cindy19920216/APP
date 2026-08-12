@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-13",
+    "charts": [
+      {
+        "title": "S&P 500 Annual Total Return, Conditioned on Reported EPS Direction",
+        "titleKo": null,
+        "desc": "Earnings up? The S&P 500 only rallied 79% of those years. Earnings down? It still climbed 66% of the time. That’s because markets trade on expectations, not last quarter’s print.",
+        "descKo": null,
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/rolling-10-year-annualized-real-gdp-growth-vs-total-return-for-sp-500-index/",
+        "image": "/isabelnet-charts/2026-08-13/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Returns After >10% Months",
+        "titleKo": null,
+        "desc": "When the S&P 500 explodes higher by more than 10% in a single month, as it did in April, bulls get excited for a reason. Since 1950, the market has been higher a year later 85% of the time, with a median gain of 17.6%.",
+        "descKo": null,
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-what-happens-after-10-monthly-gains/",
+        "image": "/isabelnet-charts/2026-08-13/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "EPS Revisions",
+        "titleKo": null,
+        "desc": "Since the start of the year, EPS revisions have trended higher across the S&P 500, STOXX 600 and Topix, with MSCI EM leading the way as confidence in 2026 earnings grows.",
+        "descKo": null,
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/eps-revisions-2/",
+        "image": "/isabelnet-charts/2026-08-13/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Mega-Cap Growth & Tech Positioning",
+        "titleKo": null,
+        "desc": "Investors have rushed back into Mega-Cap Growth and Tech, pushing positioning to the 95th percentile. The trade is now firmly overweight, but not quite at the June and last October highs.",
+        "descKo": null,
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
+        "image": "/isabelnet-charts/2026-08-13/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Relative Performance of Hyperscalers to S&P 500",
+        "titleKo": null,
+        "desc": "Hyperscalers have been trapped in a two-year range versus the S&P 500. Now the question is whether they can break out while AI capex returns remain in doubt.",
+        "descKo": null,
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/msci-emerging-market-equities-vs-sp-500-relative-performance/",
+        "image": "/isabelnet-charts/2026-08-13/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-12",
     "charts": [
       {
