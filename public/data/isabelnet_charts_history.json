@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-15",
+    "charts": [
+      {
+        "title": "S&P 500 Annual Total Return by Change in Reported EPS",
+        "titleKo": "S&P 500의 연간 총수익률과 보고된 EPS 변화의 상관관계",
+        "desc": "Earnings drive corrections by severity, not direction. The deeper the earnings decline, the deeper the market decline. Every 20% market drop has arrived alongside a meaningful earnings decline, without exception.",
+        "descKo": "기업 실적은 조정의 방향이 아닌 강도를 결정한다. 실적 하락 폭이 클수록 시장의 하락 폭도 깊어지며, 예외 없이 20% 이상의 시장 하락은 모두 유의미한 실적 악화와 함께 나타났다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/time-series-of-sp-500-price-forward-eps-and-price-to-forward-eps/",
+        "image": "/isabelnet-charts/2026-08-15/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "VIX Seasonality",
+        "titleKo": "VIX(변동성 지수)의 계절성",
+        "desc": "The market’s summer calm does not always last. Volatility often picks up from late July into the autumn, setting the stage for a bumpier ride in U.S. stocks.",
+        "descKo": "여름철 시장의 평온함은 항상 지속되지 않는다. 7월 말부터 가을까지는 변동성이 확대되는 경향이 있어 미국 증시의 불안정한 흐름을 예고한다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/vix-seasonality/",
+        "image": "/isabelnet-charts/2026-08-15/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수와 투자자 심리",
+        "desc": "The Fear & Greed Index sits at 66, firmly in greed territory. Risk appetite is healthy, not euphoric. There’s still enough fuel to push the market higher.",
+        "descKo": "공포·탐욕 지수가 66을 기록하며 탐욕 구간에 머물러 있다. 위험 선호 심리는 과열되지 않고 건전한 수준이며, 시장을 추가로 밀어 올릴 동력은 여전히 충분하다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-15/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Median 2-Week S&P 500 Returns",
+        "titleKo": "S&P 500의 2주간 수익률 중앙값",
+        "desc": "Since 1950, the S&P 500 has tended to post stronger returns in the second half of August than in the first. Could that pave the way for new all-time highs?",
+        "descKo": "1950년 이후 S&P 500은 8월 상반기보다 하반기에 더 높은 수익률을 기록하는 경향을 보였다. 이러한 흐름이 사상 최고치 경신으로 이어질 수 있을지 주목된다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/median-2-week-sp-500-returns/",
+        "image": "/isabelnet-charts/2026-08-15/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Valuation Metrics (Z-Score Since 1900)",
+        "titleKo": "미국 주식 가치 평가 지표(1900년 이후 Z-스코어)",
+        "desc": "U.S. stocks have priced in a lot of good news, with most valuation metrics more than two standard deviations above their historical averages. But momentum could keep the rally going longer than many expect.",
+        "descKo": "미국 주식은 대부분의 가치 평가 지표가 역사적 평균 대비 두 표준편차를 상회하며 많은 호재를 선반영하고 있다. 그러나 모멘텀이 뒷받침된다면 예상보다 긴 랠리가 이어질 가능성이 있다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/equity-valuations/",
+        "image": "/isabelnet-charts/2026-08-15/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-14",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-07-28",
         "sourceUrl": "https://www.isabelnet.com/sp-500-cap-weighted-index-vs-sp-500-equally-weighted-index/",
         "image": "/isabelnet-charts/2026-07-29/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-28",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "The Greed and Fear Index fell to 69.05, and with the S&P 500 now below its 50-day moving average, near-term downside risk has increased.",
-        "descKo": "공포·탐욕 지수가 69.05로 하락한 가운데, S&P 500 지수가 50일 이동평균선을 하회하면서 단기적인 하방 리스크가 커지고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-07-28/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Index Performance – S&P 500, Nasdaq 100, Russell 2000, Mag 7",
-        "titleKo": "지수 성과 – S&P 500, 나스닥 100, 러셀 2000, 매그니피센트 7",
-        "desc": "Investors are still rotating out of mega-cap tech. Since late October 2025, the Magnificent Seven have underperformed sharply, while the broader market has proved far more resilient.",
-        "descKo": "투자자들의 대형 기술주 이탈 흐름이 지속되고 있다. 2025년 10월 말 이후 매그니피센트 7의 성과는 크게 부진한 반면, 시장 전반은 훨씬 더 강한 회복력을 보이고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/performance-fang-index-vs-sp-500-and-u-s-banks/",
-        "image": "/isabelnet-charts/2026-07-28/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are turning more cautious as the Insider Transactions Ratio slips back into bearish territory, with little sign of buying interest.",
-        "descKo": "내부자 거래 비율이 약세 영역으로 다시 진입하고 매수세가 거의 포착되지 않으면서 기업 내부자들의 경계심이 높아지고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-07-28/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026",
-        "titleKo": "2026년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs continues to see steady earnings growth as the driver behind a 17% climb in the S&P 500 to 8,000 in 2026, though volatility is likely to stick around.",
-        "descKo": "골드만삭스는 꾸준한 이익 성장이 2026년 S&P 500 지수를 8,000선까지 17% 상승시키는 원동력이 될 것으로 보고 있으나, 변동성은 여전할 것으로 전망된다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-07-28/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Oil Price Fair Value",
-        "titleKo": "국제 유가 적정 가치",
-        "desc": "Oil is trading more than 50% above its estimate of medium-term fair value. Outside the 2022 shock peak, the market has rarely looked this stretched, leaving plenty of room for a pullback if conditions normalize.",
-        "descKo": "현재 유가는 중기적 적정 가치 추정치보다 50% 이상 높은 수준에서 거래되고 있다. 2022년의 급등기를 제외하면 시장이 이처럼 과열된 경우는 드물었으며, 상황이 정상화될 경우 조정의 여지가 크다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/wti-crude-oil-price-and-fitted-oil-price/",
-        "image": "/isabelnet-charts/2026-07-28/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
