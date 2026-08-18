@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-19",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 85.03, the S&P 500 remains firmly overbought, with bullish sentiment showing few signs of cooling.",
+        "descKo": "85.03을 기록한 S&P 500은 여전히 강력한 과매수 상태이며, 강세 심리는 식을 기미를 보이지 않고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-19/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
+        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합",
+        "desc": "The S&P 500 Cycle Composite still points to a constructive year for 2026, but the near-term path may be bumpy. U.S. stocks are entering their weakest seasonal stretch, which typically runs from mid-August through early October.",
+        "descKo": "S&P 500 사이클 종합은 여전히 2026년에 대해 긍정적인 전망을 제시하고 있으나, 단기적인 흐름은 불안정할 수 있다. 미국 주식 시장은 통상 8월 중순부터 10월 초까지 이어지는 연중 가장 취약한 계절적 구간에 진입하고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
+        "image": "/isabelnet-charts/2026-08-19/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "GS Financial Conditions Index",
+        "titleKo": "골드만삭스 금융상황지수",
+        "desc": "U.S. financial conditions excluding equities have tightened slightly, but the overall stance remains easy and supportive of growth rather than restrictive.",
+        "descKo": "주식을 제외한 미국 금융 상황은 소폭 긴축되었으나, 전반적인 기조는 여전히 완화적이며 긴축보다는 성장을 뒷받침하는 수준이다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
+        "image": "/isabelnet-charts/2026-08-19/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Buying and selling are now in balance, pushing the Insider Transactions Ratio back into neutral territory. For now, insiders are giving investors no clear message.",
+        "descKo": "현재 매수와 매도가 균형을 이루며 내부자 거래 비율이 중립 영역으로 복귀했다. 당분간 내부자들은 투자자들에게 명확한 신호를 보내지 않고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-08-19/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자자 vs 체계적 투자자 포지셔닝",
+        "desc": "Systematic strategies sit in the 76th percentile and still overweight, while discretionary investors are only in the 44th percentile and remain slightly underweight, leaving plenty of room to add risk.",
+        "descKo": "체계적 전략은 76 백분위수로 여전히 비중 확대 상태인 반면, 재량적 투자자들은 44 백분위수에 머물며 소폭 비중 축소 상태를 유지하고 있어 위험 자산을 추가할 여력이 충분하다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-08-19/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-18",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-07-30",
         "sourceUrl": "https://www.isabelnet.com/valuation-u-s-market-capitalization-to-gdp-and-cyclically-adjusted-p-e-shiller-cape/",
         "image": "/isabelnet-charts/2026-07-31/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-30",
-    "charts": [
-      {
-        "title": "Foreign Holdings of U.S. Treasury Securities",
-        "titleKo": "미 국채의 외국인 보유 현황",
-        "desc": "U.S. Treasuries continue to draw strong foreign demand. Holdings rose to a record $9.37 trillion in May, but the buying power has passed from foreign central banks to private balance sheets. That marks a structural shift.",
-        "descKo": "미 국채에 대한 외국인 투자 수요가 지속되고 있다. 5월 보유액은 9조 3,700억 달러로 사상 최고치를 기록했으나, 매수 주체는 외국 중앙은행에서 민간 대차대조표로 이동했다. 이는 구조적 변화를 의미한다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/monthly-foreign-net-purchases-of-long-term-u-s-securities/",
-        "image": "/isabelnet-charts/2026-07-30/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 기반 EPS 성장 전망",
-        "desc": "Wall Street sees a strong earnings tailwind ahead, with S&P 500 profits forecast to rise 28% in 2026 and 14% in 2027. Small caps could outperform, with earnings growth of 38% this year and 43% next year.",
-        "descKo": "월가는 향후 기업 실적이 강력한 순풍을 맞을 것으로 보고 있다. S&P 500 기업의 이익은 2026년 28%, 2027년 14% 증가할 것으로 전망된다. 중소형주는 올해 38%, 내년 43%의 이익 성장을 기록하며 시장 수익률을 상회할 가능성이 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-07-30/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Positioning",
-        "titleKo": "주식 포지셔닝",
-        "desc": "At the 36th percentile, overall equity positioning sits just below neutral and well short of crowded, while large-cap tech at the 56th percentile is near neutral after easing from more elevated levels.",
-        "descKo": "전반적인 주식 포지셔닝은 36퍼센타일로 중립 수준을 소폭 밑돌며 과밀 상태와는 거리가 멀다. 대형 기술주는 56퍼센타일을 기록하며 높은 수준에서 조정된 후 중립 영역에 머물러 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/large-cap-equity-positioning/",
-        "image": "/isabelnet-charts/2026-07-30/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sector Fund Flows",
-        "titleKo": "섹터별 펀드 자금 흐름",
-        "desc": "Tech funds enjoyed strong inflows over the past year, driven by AI hype, but those flows are reversing as investors reassess valuations, rates and market risk. The tech story isn’t over; it’s just a crowded trade losing momentum.",
-        "descKo": "기술주 펀드는 AI 열풍에 힘입어 지난 1년간 강한 자금 유입을 보였으나, 투자자들이 밸류에이션, 금리, 시장 위험을 재평가함에 따라 자금 흐름이 반전되고 있다. 기술주 테마가 끝난 것은 아니며, 다만 과밀했던 거래의 모멘텀이 약화되고 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/annual-equity-flows/",
-        "image": "/isabelnet-charts/2026-07-30/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
-        "titleKo": "수익률 곡선으로 본 미국 경기 침체 확률",
-        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 13.6%, leaving the expansion narrative in place. This cycle still has room to run.",
-        "descKo": "수익률 곡선으로 산출한 향후 12개월 내 미국 경기 침체 확률은 13.6%로, 경기 확장 국면은 여전히 유효하다. 이번 사이클은 아직 상승 여력이 남아 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
-        "image": "/isabelnet-charts/2026-07-30/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
