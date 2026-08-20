@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-21",
+    "charts": [
+      {
+        "title": "S&P 500 – Real Growth of $1 in U.S. Stocks",
+        "titleKo": null,
+        "desc": "Since 1871, U.S. stocks have spent about three out of every four months below a previous peak. The trend line goes up, but the typical investor experience is more red ink than new highs.",
+        "descKo": null,
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/real-sp-500-market-doubles/",
+        "image": "/isabelnet-charts/2026-08-21/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Abnormal Returns",
+        "titleKo": null,
+        "desc": "The market keeps rewarding the stubborn. For more than 25 years, U.S. equities have brushed off one wave of bad news after another. Bull markets don’t wait for the headlines to improve. They climb, one worry at a time.",
+        "descKo": null,
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/returns-sp-500-vs-sp-ex-faanmg/",
+        "image": "/isabelnet-charts/2026-08-21/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": null,
+        "desc": "A handful of giants now run the S&P 500. The biggest 10 stocks account for 39% of the index’s weight and 37% of its earnings, driving multiples higher and making each session more prone to sharp swings.",
+        "descKo": null,
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-21/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Cumulative Sector ETF Flows",
+        "titleKo": null,
+        "desc": "Tech demand is showing the first faint signs of a pause. It’s far too early to call a change in trend, but investors are cautiously starting to rotate into cyclicals and defensives.",
+        "descKo": null,
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/cumulative-equity-sector-flows-single-stock-vs-etf/",
+        "image": "/isabelnet-charts/2026-08-21/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Estimated Exposure to AI Automation",
+        "titleKo": null,
+        "desc": "Investors have begun punishing U.S. sectors perceived as most exposed to AI-driven automation, even when those companies still show steady fundamentals, while rewarding the companies supplying the tools behind the boom.",
+        "descKo": null,
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/major-u-s-mutual-funds-net-exposure-to-u-s-equities/",
+        "image": "/isabelnet-charts/2026-08-21/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-20",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-03",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
         "image": "/isabelnet-charts/2026-08-04/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-01",
-    "charts": [
-      {
-        "title": "S&P 500 Average Monthly Returns Since 1964",
-        "titleKo": "1964년 이후 S&P 500의 월평균 수익률",
-        "desc": "S&P 500 seasonality shows August is rarely a sweet spot for stocks, as volatility tends to pick up and returns often lag.",
-        "descKo": "S&P 500의 계절성을 분석한 결과, 8월은 변동성이 확대되고 수익률이 저조한 경향을 보여 주식 시장에서 기피되는 시기로 나타났다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-returns/",
-        "image": "/isabelnet-charts/2026-08-01/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수(Fear & Greed Index)로 본 투자 심리",
-        "desc": "At 38 on the Fear & Greed Index, the market is in fear but not panic mode, which keeps the door open for a slow grind higher in U.S. stocks if news flow improves.",
-        "descKo": "공포·탐욕 지수가 38을 기록하며 시장이 '공포' 단계에 머물러 있으나 패닉 상태는 아니기에, 향후 뉴스 흐름이 개선될 경우 미국 증시는 완만한 상승세를 이어갈 가능성이 있다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-01/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation Percentile – Shiller P/E and U.S. 10-Year Yield",
-        "titleKo": "밸류에이션 백분위수: 쉴러 P/E와 미국 10년물 국채 금리",
-        "desc": "U.S. equities are trading at stretched valuation percentiles on the Shiller P/E, while the 10‑year Treasury yield sits close to its long‑term average.",
-        "descKo": "쉴러 P/E 기준으로 미국 주식 시장의 밸류에이션은 역사적으로 높은 수준에 머물러 있는 반면, 10년물 국채 금리는 장기 평균치에 근접해 있다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/average-valuation-percentile-equity-bond-credit/",
-        "image": "/isabelnet-charts/2026-08-01/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Median 2-Week S&P 500 Returns",
-        "titleKo": "S&P 500의 2주간 중간 수익률",
-        "desc": "Since 1950, the first half of August has often been a drag on the S&P 500, ranking as the fifth-weakest half‑month of the year.",
-        "descKo": "1950년 이후 8월 상반기는 S&P 500 수익률에 부정적인 영향을 미치는 경우가 많았으며, 연중 수익률 하위 5위에 해당하는 시기로 기록되었다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/median-2-week-sp-500-returns/",
-        "image": "/isabelnet-charts/2026-08-01/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "SpaceX and Median of 20 Largest IPOs on Nasdaq",
-        "titleKo": "스페이스X와 나스닥 상위 20개 기업의 IPO 중간값 비교",
-        "desc": "Wall Street’s old joke that IPO stands for “It’s Probably Overpriced” feels a little less funny now, but not entirely wrong. SpaceX is lagging most other large IPOs. A great business isn’t automatically a great buy.",
-        "descKo": "IPO가 '과대평가(It’s Probably Overpriced)'를 의미한다는 월가의 농담이 예전만큼 통용되지는 않으나 여전히 유효한 측면이 있다. 스페이스X는 다른 대형 IPO 기업들과 비교해 저조한 성과를 보이고 있으며, 훌륭한 사업 모델이 반드시 투자 수익을 보장하는 것은 아니다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/u-s-ipos-excluding-spacs-deal-count-and-deal-value/",
-        "image": "/isabelnet-charts/2026-08-01/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
