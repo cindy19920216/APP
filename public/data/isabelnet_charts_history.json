@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-22",
+    "charts": [
+      {
+        "title": "S&P 500 CAPE Ratio vs. Subsequent 10 Year Annualized Real Return",
+        "titleKo": "S&P 500 쉴러 CAPE 지수와 향후 10년 연평균 실질 수익률",
+        "desc": "The S&P 500 is now sitting at a Shiller CAPE level that has only shown up during the market’s priciest episodes. History points to real annualized returns in the -3.8% to -1.4% range over the next 10 years.",
+        "descKo": "현재 S&P 500의 쉴러 CAPE 지수는 시장 역사상 가장 고평가되었던 시기들과 유사한 수준을 기록하고 있다. 과거 사례에 비추어 볼 때, 향후 10년간 연평균 실질 수익률은 -3.8%에서 -1.4% 범위를 기록할 것으로 전망된다.",
+        "date": "2026-08-21",
+        "sourceUrl": "https://www.isabelnet.com/valuation-real-sp-500-index-with-recessions-and-sp-500-shiller-cape-ratio/",
+        "image": "/isabelnet-charts/2026-08-22/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Percent of S&P 500 Stocks with Dividends > 10-Year Treasury Yield",
+        "titleKo": "S&P 500 종목 중 배당수익률이 10년 만기 국채 금리를 상회하는 비중",
+        "desc": "The income trade has flipped. In July 2016, 63.4% of S&P 500 stocks yielded more than the 10-year Treasury. Today, fewer than 4% do, leaving Treasuries with a higher current yield than almost every blue-chip stock.",
+        "descKo": "인컴 투자 환경이 완전히 뒤바뀌었다. 2016년 7월에는 S&P 500 종목의 63.4%가 10년 만기 국채보다 높은 배당수익률을 기록했으나, 현재는 그 비중이 4% 미만으로 떨어졌다. 사실상 대부분의 우량주보다 국채의 현재 수익률이 더 높은 상황이다.",
+        "date": "2026-08-21",
+        "sourceUrl": "https://www.isabelnet.com/of-sp-500-stocks-with-a-dividend-yield-above-stated-levels/",
+        "image": "/isabelnet-charts/2026-08-22/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuations – S&P 500 Sector Forward P/E",
+        "titleKo": "밸류에이션 – S&P 500 섹터별 선행 주가수익비율(Forward P/E)",
+        "desc": "Energy remains the market’s valuation laggard, while Industrials, Healthcare and Consumer Staples are already priced for a lot of optimism.",
+        "descKo": "에너지 섹터는 여전히 시장에서 가장 저평가된 상태이나, 산업재, 헬스케어, 필수소비재 섹터는 이미 시장의 낙관론이 상당 부분 가격에 반영되어 있다.",
+        "date": "2026-08-21",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-energy-sector-valuations/",
+        "image": "/isabelnet-charts/2026-08-22/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자 심리 현황",
+        "desc": "The Fear & Greed Index stands at 53, pointing to neutral sentiment. Investors are willing to take on risk, but enthusiasm is still measured, leaving room for stocks to climb if sentiment brightens.",
+        "descKo": "공포·탐욕 지수는 53으로 중립 수준을 나타내고 있다. 투자자들은 위험을 감수할 의향이 있으나 열기는 아직 절제된 상태로, 투자 심리가 개선될 경우 주가 상승 여력이 남아 있다.",
+        "date": "2026-08-21",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-22/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap Healthcare Positioning",
+        "titleKo": "대형주 헬스케어 포지셔닝",
+        "desc": "Large-cap healthcare positioning sits at the 55th percentile, just above neutral and far from crowded, leaving room for buyers to add.",
+        "descKo": "대형주 헬스케어 포지셔닝은 55퍼센타일로 중립 수준을 소폭 상회하고 있다. 과밀 상태와는 거리가 멀어 추가 매수 여력이 존재한다.",
+        "date": "2026-08-21",
+        "sourceUrl": "https://www.isabelnet.com/healthcare-positioning/",
+        "image": "/isabelnet-charts/2026-08-22/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-21",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-04",
         "sourceUrl": "https://www.isabelnet.com/equity-leveraged-funds-and-asset-managers-net-future-positions/",
         "image": "/isabelnet-charts/2026-08-05/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-04",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "The Greed and Fear Index climbed to 77.29 after earnings from large-cap stocks, with investors still firmly bullish and showing little sign of worry.",
-        "descKo": "대형주 실적 발표 이후 공포·탐욕 지수가 77.29까지 상승했다. 투자자들은 여전히 강한 매수 우위를 유지하고 있으며, 불안감은 거의 보이지 않고 있다.",
-        "date": "2026-08-03",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-08-04/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance After a Negative June and July",
-        "titleKo": "6월과 7월 부진 이후 S&P 500의 성과",
-        "desc": "The S&P 500 fell 0.1% in July. Bulls can call it noise, but bears will see a familiar pattern. Since 1950, when both June and July have been weak, the rest of the year has often had a hard time delivering much upside.",
-        "descKo": "S&P 500 지수는 7월에 0.1% 하락했다. 강세론자들은 이를 일시적 소음으로 치부할 수 있지만, 약세론자들은 익숙한 패턴으로 받아들일 것이다. 1950년 이후 6월과 7월이 모두 약세였던 경우, 남은 기간 동안 큰 폭의 상승세를 기대하기 어려웠다.",
-        "date": "2026-08-03",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-negative-june-and-july/",
-        "image": "/isabelnet-charts/2026-08-04/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment Indicator and Stock Positioning",
-        "titleKo": "심리 지표와 주식 포지셔닝",
-        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator sits at 1.6. Similar readings have historically been followed by an average 0.4% drop in the S&P 500 over the next month.Image: Goldman Sachs Global Investment Research",
-        "descKo": "골드만삭스의 미국 주식 심리 지표는 1.6을 기록했다. 과거 비슷한 수준을 기록했을 때 S&P 500 지수는 다음 달 평균 0.4% 하락하는 경향을 보였다.",
-        "date": "2026-08-03",
-        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
-        "image": "/isabelnet-charts/2026-08-04/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 EPS 성장 전망치",
-        "desc": "Wall Street is betting on a powerful earnings tailwind: S&P 500 profits are set to jump 31% in 2026 and another 12% in 2027. Small caps could steal the show, with earnings growth of 37% this year and 45% next year.",
-        "descKo": "월가는 강력한 실적 모멘텀에 베팅하고 있다. S&P 500 기업들의 이익은 2026년 31%, 2027년 12% 각각 증가할 것으로 전망된다. 중소형주는 올해 37%, 내년 45%의 이익 성장세를 보이며 시장의 주도권을 잡을 가능성이 있다.",
-        "date": "2026-08-03",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-08-04/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Equity Index P/E Valuations vs. History",
-        "titleKo": "미국 주식 지수별 P/E 밸류에이션 비교",
-        "desc": "Risk appetite hasn’t cooled. The Russell 2000 now trades at 25 times forward earnings, ahead of 23 for the Nasdaq 100 and 20 for the S&P 500. It looks expensive, but the chase for stocks isn’t over.",
-        "descKo": "위험 선호 심리는 식지 않았다. 러셀 2000 지수의 선행 주가수익비율(P/E)은 25배로, 나스닥 100의 23배와 S&P 500의 20배를 웃돈다. 고평가 논란에도 불구하고 주식 매수세는 여전히 이어지고 있다.",
-        "date": "2026-08-03",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
-        "image": "/isabelnet-charts/2026-08-04/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
