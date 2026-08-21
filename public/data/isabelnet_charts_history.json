@@ -1,5 +1,610 @@
 [
   {
+    "runDate": "2026-08-21",
+    "charts": [
+      {
+        "title": "S&P 500 – Real Growth of $1 in U.S. Stocks",
+        "titleKo": "S&P 500 – 미국 주식에 투자한 1달러의 실질 성장",
+        "desc": "Since 1871, U.S. stocks have spent about three out of every four months below a previous peak. The trend line goes up, but the typical investor experience is more red ink than new highs.",
+        "descKo": "1871년 이후 미국 주식은 전체 기간의 약 4분의 3에 해당하는 달을 이전 고점 아래에서 보냈다. 추세선은 우상향하지만, 일반 투자자가 체감하는 현실은 신고점 경신보다 마이너스 구간이 더 많다.",
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/real-sp-500-market-doubles/",
+        "image": "/isabelnet-charts/2026-08-21/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Abnormal Returns",
+        "titleKo": "S&P 500 비정상 수익률",
+        "desc": "The market keeps rewarding the stubborn. For more than 25 years, U.S. equities have brushed off one wave of bad news after another. Bull markets don’t wait for the headlines to improve. They climb, one worry at a time.",
+        "descKo": "시장은 꾸준히 버틴 투자자에게 계속 보상해왔다. 25년 넘게 미국 주식은 잇따른 악재를 그때그때 털어내며 올랐다. 강세장은 헤드라인이 좋아지기를 기다리지 않는다 — 하나씩 걱정거리를 넘어서며 오를 뿐이다.",
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/returns-sp-500-vs-sp-ex-faanmg/",
+        "image": "/isabelnet-charts/2026-08-21/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식시장 쏠림 현상 – S&P 500 전체 대비 시가총액 상위 10개 기업 비중",
+        "desc": "A handful of giants now run the S&P 500. The biggest 10 stocks account for 39% of the index’s weight and 37% of its earnings, driving multiples higher and making each session more prone to sharp swings.",
+        "descKo": "이제 소수의 거대 기업들이 S&P 500을 움직인다. 시가총액 상위 10개 종목이 지수 비중의 39%, 이익의 37%를 차지하면서 밸류에이션(멀티플)을 끌어올리고, 하루하루의 변동성도 더 커지게 만들고 있다.",
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-21/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Cumulative Sector ETF Flows",
+        "titleKo": "섹터별 ETF 누적 자금 유입",
+        "desc": "Tech demand is showing the first faint signs of a pause. It’s far too early to call a change in trend, but investors are cautiously starting to rotate into cyclicals and defensives.",
+        "descKo": "기술주에 대한 수요가 처음으로 미세한 정체 조짐을 보이고 있다. 추세 전환이라고 단정하기엔 아직 너무 이르지만, 투자자들은 조심스럽게 경기민감주와 방어주로 자금을 옮기기 시작했다.",
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/cumulative-equity-sector-flows-single-stock-vs-etf/",
+        "image": "/isabelnet-charts/2026-08-21/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Estimated Exposure to AI Automation",
+        "titleKo": "AI 자동화 노출도 추정",
+        "desc": "Investors have begun punishing U.S. sectors perceived as most exposed to AI-driven automation, even when those companies still show steady fundamentals, while rewarding the companies supplying the tools behind the boom.",
+        "descKo": "투자자들은 AI발 자동화에 가장 많이 노출됐다고 여겨지는 미국 섹터들을, 펀더멘털이 여전히 견조한데도 불구하고 매도하기 시작했다. 반면 이 붐을 뒷받침하는 도구를 공급하는 기업들에는 오히려 후한 평가를 주고 있다.",
+        "date": "2026-08-20",
+        "sourceUrl": "https://www.isabelnet.com/major-u-s-mutual-funds-net-exposure-to-u-s-equities/",
+        "image": "/isabelnet-charts/2026-08-21/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-20",
+    "charts": [
+      {
+        "title": "S&P 500 CAPE Valuations and 10 Year Annualized Real Return",
+        "titleKo": "S&P 500 쉴러 CAPE 지수와 10년 연평균 실질 수익률",
+        "desc": "The S&P 500 is trading at a Shiller CAPE ratio seen only during some of the market’s most expensive periods. That kind of optimism can weigh on real returns in the years ahead, creating a difficult backdrop for risk assets.",
+        "descKo": "S&P 500이 시장 역사상 가장 고평가되었던 시기들에나 볼 수 있었던 수준의 쉴러 CAPE 지수에서 거래되고 있다. 이러한 낙관론은 향후 수년간 실질 수익률에 부담으로 작용하며 위험 자산 운용에 어려운 배경을 조성할 수 있다.",
+        "date": "2026-08-19",
+        "sourceUrl": "https://www.isabelnet.com/forward-10-year-real-returns-and-cape-valuations/",
+        "image": "/isabelnet-charts/2026-08-20/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Truck Tonnage vs. S&P 500 Index",
+        "titleKo": "트럭 운송 물동량 지수와 S&P 500 지수 비교",
+        "desc": "The Truck Tonnage Index fell 1% in July. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.68 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
+        "descKo": "7월 트럭 운송 물동량 지수가 1% 하락했다. 트럭 운송은 미국 화물 운송의 72.7%를 차지하며 미국 경제의 바로미터 역할을 한다. 해당 차트는 역사적으로 미국 증시가 미국 경제의 물리적 규모 및 확장과 궤를 같이하며 상승해 왔음을 보여준다(2002년 이후 결정계수 R²=0.68). 트럭 운송 물동량 지수가 미국 증시의 선행 지표는 아니지만, 미국 증시가 실물 경제의 팽창과 수축을 어떻게 따라왔는지 보여주는 흥미로운 지표다.",
+        "date": "2026-08-19",
+        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-08-20/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuations – 12-Month Forward P/E Ranges (MSCI Regions)",
+        "titleKo": "밸류에이션 – 12개월 선행 PER 범위 (MSCI 지역별)",
+        "desc": "U.S. and global stocks still look expensive, but earnings growth is justifying the price tag. As long as the profit trend holds, that premium is more a tax on optimism than a red flag.",
+        "descKo": "미국 및 글로벌 증시는 여전히 고평가 상태로 보이지만, 이익 성장이 현재의 가격대를 정당화하고 있다. 이익 추세가 유지되는 한, 현재의 프리미엄은 경고 신호라기보다 낙관론에 대한 비용 정도로 해석된다.",
+        "date": "2026-08-19",
+        "sourceUrl": "https://www.isabelnet.com/valuation-12-month-forward-p-e-ranges-msci-regions/",
+        "image": "/isabelnet-charts/2026-08-20/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 EPS 성장 전망치",
+        "desc": "Small caps could deliver the biggest earnings surge. Profits are set to jump 34% this year and 47% in 2027, versus 32% and 12% for the S&P 500.",
+        "descKo": "중소형주가 가장 큰 폭의 이익 급증을 기록할 것으로 보인다. 올해와 2027년 중소형주의 이익은 각각 34%와 47% 증가할 것으로 예상되며, 이는 S&P 500의 32% 및 12%와 대비된다.",
+        "date": "2026-08-19",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-08-20/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap Consumer Staples Positioning",
+        "titleKo": "대형주 필수소비재 포지셔닝",
+        "desc": "Positioning in large-cap consumer staples sits in the 13th percentile, with investors heavily underweight. Even a small lift in sentiment could be enough to spark a bounce.",
+        "descKo": "대형 필수소비재에 대한 포지셔닝은 13% 수준에 머물러 있어 투자자들의 비중 축소 기조가 뚜렷하다. 투자 심리의 소폭 개선만으로도 반등을 유도하기에 충분한 상황이다.",
+        "date": "2026-08-19",
+        "sourceUrl": "https://www.isabelnet.com/consumer-staples-positioning/",
+        "image": "/isabelnet-charts/2026-08-20/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-19",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 85.03, the S&P 500 remains firmly overbought, with bullish sentiment showing few signs of cooling.",
+        "descKo": "85.03을 기록한 S&P 500은 여전히 강력한 과매수 상태이며, 강세 심리는 식을 기미를 보이지 않고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-19/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
+        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합",
+        "desc": "The S&P 500 Cycle Composite still points to a constructive year for 2026, but the near-term path may be bumpy. U.S. stocks are entering their weakest seasonal stretch, which typically runs from mid-August through early October.",
+        "descKo": "S&P 500 사이클 종합은 여전히 2026년에 대해 긍정적인 전망을 제시하고 있으나, 단기적인 흐름은 불안정할 수 있다. 미국 주식 시장은 통상 8월 중순부터 10월 초까지 이어지는 연중 가장 취약한 계절적 구간에 진입하고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
+        "image": "/isabelnet-charts/2026-08-19/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "GS Financial Conditions Index",
+        "titleKo": "골드만삭스 금융상황지수",
+        "desc": "U.S. financial conditions excluding equities have tightened slightly, but the overall stance remains easy and supportive of growth rather than restrictive.",
+        "descKo": "주식을 제외한 미국 금융 상황은 소폭 긴축되었으나, 전반적인 기조는 여전히 완화적이며 긴축보다는 성장을 뒷받침하는 수준이다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
+        "image": "/isabelnet-charts/2026-08-19/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Buying and selling are now in balance, pushing the Insider Transactions Ratio back into neutral territory. For now, insiders are giving investors no clear message.",
+        "descKo": "현재 매수와 매도가 균형을 이루며 내부자 거래 비율이 중립 영역으로 복귀했다. 당분간 내부자들은 투자자들에게 명확한 신호를 보내지 않고 있다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-08-19/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자자 vs 체계적 투자자 포지셔닝",
+        "desc": "Systematic strategies sit in the 76th percentile and still overweight, while discretionary investors are only in the 44th percentile and remain slightly underweight, leaving plenty of room to add risk.",
+        "descKo": "체계적 전략은 76 백분위수로 여전히 비중 확대 상태인 반면, 재량적 투자자들은 44 백분위수에 머물며 소폭 비중 축소 상태를 유지하고 있어 위험 자산을 추가할 여력이 충분하다.",
+        "date": "2026-08-18",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-08-19/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-18",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "With the Greed and Fear Index at 86.63, risk appetite is running hot. That is helping fuel the rally, but it also leaves the market vulnerable to a short-term peak or a period of consolidation.",
+        "descKo": "공포·탐욕 지수가 86.63을 기록하며 위험 자산 선호 심리가 과열되고 있다. 이는 증시 랠리를 뒷받침하고 있으나, 시장이 단기 고점에 도달하거나 조정 국면에 진입할 위험 또한 높이고 있다.",
+        "date": "2026-08-17",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-08-18/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 목표 주가",
+        "desc": "Goldman Sachs is sticking with its call for earnings to push the S&P 500 to 8,000 in 2026, a 17% annual return even if the road there stays bumpy.",
+        "descKo": "골드만삭스는 기업 이익 성장을 근거로 2026년 S&P 500 지수가 8,000포인트에 도달할 것이라는 전망을 유지했다. 이는 시장의 변동성이 지속되더라도 연평균 17%의 수익률을 기대할 수 있다는 분석이다.",
+        "date": "2026-08-17",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-08-18/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "At the 58th percentile, consolidated equity positioning sits modestly overweight, with plenty of room to run before crowding becomes a concern.",
+        "descKo": "통합 주식 포지셔닝은 58퍼센타일 수준으로 완만한 비중 확대 상태를 보이고 있다. 시장 과열을 우려할 단계까지는 아직 충분한 여유가 있는 것으로 평가된다.",
+        "date": "2026-08-17",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-08-18/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Indexed Returns of AI-Related Portfolios vs. Equal-Weight S&P 500",
+        "titleKo": "AI 관련 포트폴리오와 S&P 500 동일가중지수의 수익률 비교",
+        "desc": "The AI rally has largely been an infrastructure trade, rewarding chipmakers, data-center builders and cloud platforms, while leaving software and productivity stocks behind.",
+        "descKo": "AI 랠리는 주로 인프라 관련주를 중심으로 전개됐다. 반도체 제조사, 데이터센터 구축 업체, 클라우드 플랫폼이 강세를 보인 반면, 소프트웨어 및 생산성 관련주는 상대적으로 소외됐다.",
+        "date": "2026-08-17",
+        "sourceUrl": "https://www.isabelnet.com/indexed-return-of-fangmat-vs-the-field/",
+        "image": "/isabelnet-charts/2026-08-18/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Flows into Gold Funds",
+        "titleKo": "금 펀드로의 자금 유입",
+        "desc": "Demand for gold funds is picking up again as retail investors return to ETFs, central banks keep adding to their reserves and the macro backdrop continues to favor gold.",
+        "descKo": "개인 투자자들의 ETF 매수세가 재개되고 중앙은행의 금 매입이 지속되는 가운데, 우호적인 거시경제 환경이 조성되면서 금 펀드에 대한 수요가 다시 증가하고 있다.",
+        "date": "2026-08-17",
+        "sourceUrl": "https://www.isabelnet.com/weekly-gold-fund-flows-2/",
+        "image": "/isabelnet-charts/2026-08-18/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-15",
+    "charts": [
+      {
+        "title": "S&P 500 Annual Total Return by Change in Reported EPS",
+        "titleKo": "S&P 500의 연간 총수익률과 보고된 EPS 변화의 상관관계",
+        "desc": "Earnings drive corrections by severity, not direction. The deeper the earnings decline, the deeper the market decline. Every 20% market drop has arrived alongside a meaningful earnings decline, without exception.",
+        "descKo": "기업 실적은 조정의 방향이 아닌 강도를 결정한다. 실적 하락 폭이 클수록 시장의 하락 폭도 깊어지며, 예외 없이 20% 이상의 시장 하락은 모두 유의미한 실적 악화와 함께 나타났다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/time-series-of-sp-500-price-forward-eps-and-price-to-forward-eps/",
+        "image": "/isabelnet-charts/2026-08-15/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "VIX Seasonality",
+        "titleKo": "VIX(변동성 지수)의 계절성",
+        "desc": "The market’s summer calm does not always last. Volatility often picks up from late July into the autumn, setting the stage for a bumpier ride in U.S. stocks.",
+        "descKo": "여름철 시장의 평온함은 항상 지속되지 않는다. 7월 말부터 가을까지는 변동성이 확대되는 경향이 있어 미국 증시의 불안정한 흐름을 예고한다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/vix-seasonality/",
+        "image": "/isabelnet-charts/2026-08-15/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수와 투자자 심리",
+        "desc": "The Fear & Greed Index sits at 66, firmly in greed territory. Risk appetite is healthy, not euphoric. There’s still enough fuel to push the market higher.",
+        "descKo": "공포·탐욕 지수가 66을 기록하며 탐욕 구간에 머물러 있다. 위험 선호 심리는 과열되지 않고 건전한 수준이며, 시장을 추가로 밀어 올릴 동력은 여전히 충분하다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-15/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Median 2-Week S&P 500 Returns",
+        "titleKo": "S&P 500의 2주간 수익률 중앙값",
+        "desc": "Since 1950, the S&P 500 has tended to post stronger returns in the second half of August than in the first. Could that pave the way for new all-time highs?",
+        "descKo": "1950년 이후 S&P 500은 8월 상반기보다 하반기에 더 높은 수익률을 기록하는 경향을 보였다. 이러한 흐름이 사상 최고치 경신으로 이어질 수 있을지 주목된다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/median-2-week-sp-500-returns/",
+        "image": "/isabelnet-charts/2026-08-15/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Valuation Metrics (Z-Score Since 1900)",
+        "titleKo": "미국 주식 가치 평가 지표(1900년 이후 Z-스코어)",
+        "desc": "U.S. stocks have priced in a lot of good news, with most valuation metrics more than two standard deviations above their historical averages. But momentum could keep the rally going longer than many expect.",
+        "descKo": "미국 주식은 대부분의 가치 평가 지표가 역사적 평균 대비 두 표준편차를 상회하며 많은 호재를 선반영하고 있다. 그러나 모멘텀이 뒷받침된다면 예상보다 긴 랠리가 이어질 가능성이 있다.",
+        "date": "2026-08-14",
+        "sourceUrl": "https://www.isabelnet.com/equity-valuations/",
+        "image": "/isabelnet-charts/2026-08-15/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-14",
+    "charts": [
+      {
+        "title": "Share of S&P 500 by Weight Eligible to Repurchase Stock",
+        "titleKo": "S&P 500 내 자사주 매입 가능 종목 비중",
+        "desc": "As S&P 500 companies emerge from earnings-related blackout periods, buyback activity is expected to resume by mid-August. That could offer some support to equities, but it is no guarantee that the S&P 500 will move higher.",
+        "descKo": "S&P 500 기업들이 실적 발표 관련 블랙아웃 기간에서 벗어나면서, 8월 중순부터 자사주 매입이 재개될 전망이다. 이는 주식 시장에 일정 부분 지지력을 제공할 수 있으나, S&P 500 지수의 상승을 보장하는 것은 아니다.",
+        "date": "2026-08-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-share-buybacks-by-quarter/",
+        "image": "/isabelnet-charts/2026-08-14/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Average Cumulative S&P 500 Total Returns – Invest on Any Day vs. Invest at a New High",
+        "titleKo": "S&P 500 평균 누적 총수익률 – 무작위 투자 vs 신고가 경신 시 투자 비교",
+        "desc": "Record highs make many investors nervous. But history shows that buying into strength has often delivered better forward returns than buying on an average day.",
+        "descKo": "많은 투자자가 증시의 신고가 경신에 불안감을 느낀다. 그러나 과거 데이터는 강세장에서의 매수가 평상시 매수보다 더 나은 미래 수익률을 기록했음을 보여준다.",
+        "date": "2026-08-13",
+        "sourceUrl": "https://www.isabelnet.com/average-cumulative-sp-500-total-returns/",
+        "image": "/isabelnet-charts/2026-08-14/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Ratio of Bitcoin to Production Cost",
+        "titleKo": "비트코인 시세 대비 생산 원가 비율",
+        "desc": "Bitcoin is trading at a steep discount to JPMorgan’s estimated $76,000 production cost, but the bank continues to see a bullish long-term path for the cryptocurrency.",
+        "descKo": "비트코인은 JP모건이 추산한 생산 원가인 7만 6,000달러 대비 큰 폭의 할인율로 거래되고 있으나, JP모건은 여전히 암호화폐에 대한 장기적 강세 전망을 유지하고 있다.",
+        "date": "2026-08-13",
+        "sourceUrl": "https://www.isabelnet.com/bitcoin-market-price-and-average-cost-of-production/",
+        "image": "/isabelnet-charts/2026-08-14/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 기준 주당순이익(EPS) 성장률 전망",
+        "desc": "The biggest earnings growth may come from small caps. Their profits are projected to jump 37% this year and 45% in 2027, while S&P 500 earnings are expected to rise 32% and 12%, respectively.",
+        "descKo": "가장 큰 폭의 이익 성장은 중소형주에서 나타날 가능성이 있다. 중소형주의 이익은 올해 37%, 2027년 45% 증가할 것으로 예상되는 반면, S&P 500 기업의 이익은 각각 32%와 12% 증가에 그칠 전망이다.",
+        "date": "2026-08-13",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-08-14/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장 집중도 – S&P 500 내 시가총액 상위 10개 종목 비중",
+        "desc": "Concentration has turned the S&P 500 into a top-heavy index. The biggest 10 stocks now account for 40% of its weight and 38% of earnings, pushing multiples higher and magnifying daily moves.",
+        "descKo": "시장 집중도가 심화하며 S&P 500 지수는 상위 종목 쏠림 현상이 강해졌다. 현재 상위 10개 종목이 지수 비중의 40%, 이익의 38%를 차지하고 있으며, 이는 밸류에이션 멀티플을 높이고 일일 주가 변동성을 확대하는 요인이 되고 있다.",
+        "date": "2026-08-13",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-14/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-13",
+    "charts": [
+      {
+        "title": "S&P 500 Annual Total Return, Conditioned on Reported EPS Direction",
+        "titleKo": "발표된 EPS 방향에 따른 S&P 500 연간 총수익률",
+        "desc": "Earnings up? The S&P 500 only rallied 79% of those years. Earnings down? It still climbed 66% of the time. That’s because markets trade on expectations, not last quarter’s print.",
+        "descKo": "실적이 개선된 해에도 S&P 500이 오른 비율은 79%에 그쳤다. 실적이 악화된 해에도 66%는 상승했다. 시장은 지난 분기 실적이 아니라 기대를 반영해 움직이기 때문이다.",
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/rolling-10-year-annualized-real-gdp-growth-vs-total-return-for-sp-500-index/",
+        "image": "/isabelnet-charts/2026-08-13/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Returns After >10% Months",
+        "titleKo": "월간 10% 이상 상승 이후 S&P 500 수익률",
+        "desc": "When the S&P 500 explodes higher by more than 10% in a single month, as it did in April, bulls get excited for a reason. Since 1950, the market has been higher a year later 85% of the time, with a median gain of 17.6%.",
+        "descKo": "지난 4월처럼 S&P 500이 한 달 새 10% 넘게 급등하면 강세론자들이 흥분할 만한 이유가 있다. 1950년 이후 이런 달 다음 1년간 시장이 상승한 비율은 85%였고, 중간값 상승률은 17.6%였다.",
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-what-happens-after-10-monthly-gains/",
+        "image": "/isabelnet-charts/2026-08-13/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "EPS Revisions",
+        "titleKo": "EPS 전망치 수정",
+        "desc": "Since the start of the year, EPS revisions have trended higher across the S&P 500, STOXX 600 and Topix, with MSCI EM leading the way as confidence in 2026 earnings grows.",
+        "descKo": "연초 이후 S&P 500, STOXX 600, Topix 전반에서 EPS 전망치가 상향 조정되는 추세이며, 2026년 실적에 대한 자신감이 커지면서 MSCI EM이 가장 앞서가고 있다.",
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/eps-revisions-2/",
+        "image": "/isabelnet-charts/2026-08-13/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Mega-Cap Growth & Tech Positioning",
+        "titleKo": "메가캡 성장주 및 기술주 포지셔닝",
+        "desc": "Investors have rushed back into Mega-Cap Growth and Tech, pushing positioning to the 95th percentile. The trade is now firmly overweight, but not quite at the June and last October highs.",
+        "descKo": "투자자들이 메가캡 성장주와 기술주로 다시 몰리면서 포지셔닝이 95퍼센타일까지 올라섰다. 이 트레이드는 이제 확실한 비중 확대 국면이지만, 지난 6월과 10월 고점에는 아직 못 미친다.",
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
+        "image": "/isabelnet-charts/2026-08-13/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Relative Performance of Hyperscalers to S&P 500",
+        "titleKo": "하이퍼스케일러의 S&P 500 대비 상대 성과",
+        "desc": "Hyperscalers have been trapped in a two-year range versus the S&P 500. Now the question is whether they can break out while AI capex returns remain in doubt.",
+        "descKo": "하이퍼스케일러는 S&P 500 대비 2년째 박스권에 갇혀 있다. 이제 관건은 AI 설비투자(capex) 수익성에 대한 의구심이 남은 상황에서 이 박스권을 돌파할 수 있을지다.",
+        "date": "2026-08-12",
+        "sourceUrl": "https://www.isabelnet.com/msci-emerging-market-equities-vs-sp-500-relative-performance/",
+        "image": "/isabelnet-charts/2026-08-13/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-12",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "With a reading of 86.38, the S&P 500 is firmly in overbought territory, while bullish sentiment shows little sign of fading.",
+        "descKo": "S&P 500 지수가 86.38을 기록하며 확실한 과매수 구간에 진입했으나, 강세 심리는 좀처럼 꺾이지 않고 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-12/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 가격 목표치",
+        "desc": "Goldman Sachs still expects earnings to drive the S&P 500 up 17% to 8,000 in 2026, even if the path stays volatile.",
+        "descKo": "골드만삭스는 변동성 장세가 이어지더라도 기업 실적 개선에 힘입어 2026년 S&P 500 지수가 17% 상승한 8,000포인트에 도달할 것으로 전망했다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-08-12/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "At the 55th percentile, consolidated equity positioning is only modestly overweight, with room for more upside before things get stretched.",
+        "descKo": "통합 주식 포지셔닝은 55퍼센타일로 소폭 비중 확대 수준에 머물러 있어, 과열 국면 진입 전 추가 상승 여력이 남아 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-08-12/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders appear reluctant to buy as the Insider Transactions Ratio slides back into bearish territory.",
+        "descKo": "내부자 거래 비율이 다시 약세 영역으로 하락함에 따라 기업 내부자들은 매수에 신중한 태도를 보이고 있다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-08-12/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap MCG & Tech Positioning vs. Earnings Growth",
+        "titleKo": "대형주 MCG 및 기술주 포지셔닝 대비 실적 성장",
+        "desc": "Positioning in large-cap MCG and Tech has surged, leaving the sector overweight and much closer to where it should be given today’s earnings growth.",
+        "descKo": "대형주 MCG와 기술 섹터에 대한 포지셔닝이 급증하면서 해당 섹터의 비중은 확대되었고, 현재의 실적 성장세에 비추어 볼 때 적정 수준에 한층 가까워졌다.",
+        "date": "2026-08-11",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
+        "image": "/isabelnet-charts/2026-08-12/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-11",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "Strong large-cap earnings pushed the Greed and Fear Index up to 83.21, as investors continued to pile into risk with few signs of concern.",
+        "descKo": "대형주들의 견조한 실적 발표가 이어지며 공포·탐욕 지수가 83.21까지 상승했다. 투자자들은 별다른 우려 없이 위험 자산에 대한 매수세를 지속하고 있다.",
+        "date": "2026-08-10",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-08-11/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 – Length of Bull Markets and When They Started",
+        "titleKo": "S&P 500 – 강세장 지속 기간 및 시작 시점",
+        "desc": "This bull market, born in October 2022, is now 3.8 years old. History shows that once a bull reaches the three-year mark, it tends to run for several more. The odds still favor more upside, even if bears aren’t ready to buy it.",
+        "descKo": "2022년 10월 시작된 이번 강세장은 현재 3.8년 차를 맞이했다. 역사적으로 강세장이 3년을 넘어서면 추가로 수년간 이어지는 경향이 있다. 하락론자들의 회의적인 시각에도 불구하고 시장의 추가 상승 가능성이 여전히 높다.",
+        "date": "2026-08-10",
+        "sourceUrl": "https://www.isabelnet.com/length-of-bull-markets-and-when-they-started/",
+        "image": "/isabelnet-charts/2026-08-11/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Hyperscaler Capex",
+        "titleKo": "하이퍼스케일러 자본지출(Capex)",
+        "desc": "U.S. hyperscaler capex is now expected to reach $799 billion this year, then rise to $1.068 trillion in 2027 and $1.301 trillion in 2028. This is starting to look less like a cycle than a structural reset.",
+        "descKo": "미국 하이퍼스케일러 기업들의 올해 자본지출 규모는 7,990억 달러로 예상되며, 2027년에는 1조 680억 달러, 2028년에는 1조 3,010억 달러까지 증가할 전망이다. 이는 단순한 순환적 흐름이라기보다 구조적인 변화의 양상을 띠고 있다.",
+        "date": "2026-08-10",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-yoy-growth-buybacks-vs-capex-and-rd/",
+        "image": "/isabelnet-charts/2026-08-11/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment Indicator and Stock Positioning",
+        "titleKo": "투자 심리 지표 및 주식 포지셔닝",
+        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator sits at 1.2. In the past, similar levels have preceded an average 1.2% rise in the S&P 500 over the following month.Image: Goldman Sachs Global Investment Research",
+        "descKo": "골드만삭스의 미국 주식 심리 지표는 1.2를 기록했다. 과거 사례를 볼 때, 이와 유사한 수준을 보였던 시기에는 이후 한 달간 S&P 500 지수가 평균 1.2% 상승했다.",
+        "date": "2026-08-10",
+        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
+        "image": "/isabelnet-charts/2026-08-11/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance Since 2025",
+        "titleKo": "2025년 이후 S&P 500 성과",
+        "desc": "After spending two months stuck in a narrow range, the S&P 500 broke decisively higher during earnings season. Investors had been underpositioned for the strength of earnings and were now scrambling to catch up.",
+        "descKo": "두 달간 좁은 박스권에 갇혀 있던 S&P 500은 실적 시즌을 거치며 확실한 상승세로 돌아섰다. 실적 강세를 예상하지 못했던 투자자들이 뒤늦게 매수에 가담하며 시장이 움직이고 있다.",
+        "date": "2026-08-10",
+        "sourceUrl": "https://www.isabelnet.com/median-quarterly-sp-500-performance/",
+        "image": "/isabelnet-charts/2026-08-11/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-08",
+    "charts": [
+      {
+        "title": "Forward S&P 500 Returns After Prior Breakouts to New Highs Beat the Average Day",
+        "titleKo": "S&P 500 신고가 경신 이후 수익률, 평균 상회",
+        "desc": "Over the past ten years, when the S&P 500 has broken to a new high after at least two months without one, the 12‑month forward return has averaged 16.4%. Fear, in this case, has been a poor strategist.",
+        "descKo": "지난 10년간 S&P 500 지수가 최소 두 달 만에 신고가를 경신했을 때, 향후 12개월간 평균 수익률은 16.4%를 기록했다. 이번 사례에서 보듯 시장에 대한 두려움은 나쁜 투자 전략이었다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-breakout/",
+        "image": "/isabelnet-charts/2026-08-08/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Index Max Pullback per Calendar Year",
+        "titleKo": "연도별 S&P 500 지수 최대 낙폭",
+        "desc": "March’s 9% pullback may already be the year’s deepest. If so, the market has less room for another major selloff. Back-to-back drawdowns of that size are rare, giving bulls a reason to stay optimistic.",
+        "descKo": "지난 3월의 9% 하락이 올해 가장 깊은 조정일 가능성이 있다. 만약 그렇다면 향후 추가적인 대규모 매도세가 나타날 여지는 줄어든다. 이 정도 규모의 하락이 연이어 발생하는 일은 드물며, 이는 강세론자들이 낙관론을 유지할 근거가 된다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-max-pullback-per-calendar-year/",
+        "image": "/isabelnet-charts/2026-08-08/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장 집중도: S&P 500 내 시가총액 상위 10개 기업 비중",
+        "desc": "What once echoed the market now sets the tempo. The top 10 names in the S&P 500 account for 39% of the index and 38% of its earnings, pushing up multiples and amplifying day-to-day swings.",
+        "descKo": "한때 시장의 흐름을 반영하던 상위 10개 종목이 이제는 시장 전체를 주도하고 있다. S&P 500 내 상위 10개 기업이 지수의 39%, 이익의 38%를 차지하며 멀티플 상승과 일일 변동성 확대를 견인하고 있다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-08/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수: 투자자 심리 현황",
+        "desc": "The Fear & Greed Index is at 60, solidly in greed territory. Risk appetite is back, but the gauge isn’t screaming euphoria. It’s just enough fuel to keep the rally rolling.",
+        "descKo": "공포·탐욕 지수가 60을 기록하며 확실한 '탐욕(Greed)' 구간에 진입했다. 위험 선호 심리가 되살아났으나, 지표가 극도의 과열을 가리키는 수준은 아니다. 이는 랠리를 이어가기에 충분한 동력으로 작용하고 있다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-08/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – S&P 500 NTM P/E",
+        "titleKo": "밸류에이션: S&P 500 12개월 선행 주가수익비율(NTM P/E)",
+        "desc": "At 16 times forward earnings, versus 20 for the benchmark, the equal-weight index isn’t cheap, but it looks more appealing than the broader market.",
+        "descKo": "동일가중 지수의 선행 주가수익비율(P/E)은 16배로 전체 벤치마크의 20배 대비 결코 저렴하지는 않지만, 시장 전반과 비교했을 때 더욱 매력적인 수준으로 보인다.",
+        "date": "2026-08-07",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
+        "image": "/isabelnet-charts/2026-08-08/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
+    "runDate": "2026-08-07",
+    "charts": [
+      {
+        "title": "S&P 500 Annual vs. Intra-Year Returns",
+        "titleKo": "S&P 500의 연간 수익률과 연중 변동폭",
+        "desc": "Most years, the S&P 500 gives up 5% to 10%. With March’s double-digit drop already in the books, the next move lower may be more modest. Back-to-back big drawdowns don’t happen often.",
+        "descKo": "S&P 500 지수는 대부분의 해에 5~10% 수준의 하락을 겪는다. 3월에 이미 두 자릿수 하락을 기록했기에 추가적인 하락 폭은 제한적일 것으로 보인다. 연속적인 대규모 하락장은 흔치 않다.",
+        "date": "2026-08-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-average-median-return-by-month/",
+        "image": "/isabelnet-charts/2026-08-07/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
+        "titleKo": "계절성 분석: 2026년 S&P 500 사이클 합성 지표",
+        "desc": "The S&P 500 Cycle Composite points to a bullish but choppy 2026. U.S. stocks are now heading into their weakest seasonal stretch, which typically runs from mid-August to early October.",
+        "descKo": "S&P 500 사이클 합성 지표는 2026년 시장이 강세를 보이겠지만 변동성은 클 것으로 시사한다. 미국 증시는 통상 8월 중순부터 10월 초까지 이어지는 계절적 약세 구간에 진입하고 있다.",
+        "date": "2026-08-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
+        "image": "/isabelnet-charts/2026-08-07/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "New S&P 500 Index All-Time Highs Per Year",
+        "titleKo": "연도별 S&P 500 지수 사상 최고치 경신 횟수",
+        "desc": "The S&P 500 has reached 25 record highs this year. In robust bull markets, new highs usually come in clusters and last longer than the crowd expects, as long as earnings and growth stay on track.",
+        "descKo": "올해 S&P 500은 25차례 사상 최고치를 경신했다. 견조한 강세장에서 새로운 최고가는 대개 군집을 이루며 나타나고, 실적과 성장세가 뒷받침되는 한 시장의 예상보다 길게 지속되는 경향이 있다.",
+        "date": "2026-08-06",
+        "sourceUrl": "https://www.isabelnet.com/new-sp-500-index-all-time-highs-per-year/",
+        "image": "/isabelnet-charts/2026-08-07/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
+        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행 지표)",
+        "desc": "U.S. heavy truck sales rose in June to 483K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
+        "descKo": "6월 미국 대형 트럭 판매량은 연율 기준 48만 3,000대를 기록했다. 대형 트럭 판매량은 경기 침체에 앞서 정점을 찍고 하락하는 경향이 있어, 미국 경제 전반의 건전성을 판단하는 선행 경제 지표로 활용된다.",
+        "date": "2026-08-06",
+        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
+        "image": "/isabelnet-charts/2026-08-07/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap MCG & Tech Positioning vs. Earnings Revisions",
+        "titleKo": "대형주 MCG 및 기술주 포지셔닝과 실적 수정치 비교",
+        "desc": "Large-cap tech companies have seen upward earnings revisions, but positioning remains only modestly overweight at the 54th percentile. That gap to fundamentals leaves some air for a catch-up trade.",
+        "descKo": "대형 기술 기업들의 실적 전망치는 상향 조정되고 있으나, 포지셔닝은 54번째 백분위수로 여전히 완만한 비중 확대 수준에 머물러 있다. 펀더멘털과의 이러한 괴리는 향후 주가 상승 여력이 남아 있음을 시사한다.",
+        "date": "2026-08-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-earnings-revisions-breadth-3/",
+        "image": "/isabelnet-charts/2026-08-07/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-06",
     "charts": [
       {
@@ -160,336 +765,6 @@
         "date": "2026-08-03",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
         "image": "/isabelnet-charts/2026-08-04/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-01",
-    "charts": [
-      {
-        "title": "S&P 500 Average Monthly Returns Since 1964",
-        "titleKo": "1964년 이후 S&P 500의 월평균 수익률",
-        "desc": "S&P 500 seasonality shows August is rarely a sweet spot for stocks, as volatility tends to pick up and returns often lag.",
-        "descKo": "S&P 500의 계절성을 분석한 결과, 8월은 변동성이 확대되고 수익률이 저조한 경향을 보여 주식 시장에서 기피되는 시기로 나타났다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-returns/",
-        "image": "/isabelnet-charts/2026-08-01/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수(Fear & Greed Index)로 본 투자 심리",
-        "desc": "At 38 on the Fear & Greed Index, the market is in fear but not panic mode, which keeps the door open for a slow grind higher in U.S. stocks if news flow improves.",
-        "descKo": "공포·탐욕 지수가 38을 기록하며 시장이 '공포' 단계에 머물러 있으나 패닉 상태는 아니기에, 향후 뉴스 흐름이 개선될 경우 미국 증시는 완만한 상승세를 이어갈 가능성이 있다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-01/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation Percentile – Shiller P/E and U.S. 10-Year Yield",
-        "titleKo": "밸류에이션 백분위수: 쉴러 P/E와 미국 10년물 국채 금리",
-        "desc": "U.S. equities are trading at stretched valuation percentiles on the Shiller P/E, while the 10‑year Treasury yield sits close to its long‑term average.",
-        "descKo": "쉴러 P/E 기준으로 미국 주식 시장의 밸류에이션은 역사적으로 높은 수준에 머물러 있는 반면, 10년물 국채 금리는 장기 평균치에 근접해 있다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/average-valuation-percentile-equity-bond-credit/",
-        "image": "/isabelnet-charts/2026-08-01/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Median 2-Week S&P 500 Returns",
-        "titleKo": "S&P 500의 2주간 중간 수익률",
-        "desc": "Since 1950, the first half of August has often been a drag on the S&P 500, ranking as the fifth-weakest half‑month of the year.",
-        "descKo": "1950년 이후 8월 상반기는 S&P 500 수익률에 부정적인 영향을 미치는 경우가 많았으며, 연중 수익률 하위 5위에 해당하는 시기로 기록되었다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/median-2-week-sp-500-returns/",
-        "image": "/isabelnet-charts/2026-08-01/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "SpaceX and Median of 20 Largest IPOs on Nasdaq",
-        "titleKo": "스페이스X와 나스닥 상위 20개 기업의 IPO 중간값 비교",
-        "desc": "Wall Street’s old joke that IPO stands for “It’s Probably Overpriced” feels a little less funny now, but not entirely wrong. SpaceX is lagging most other large IPOs. A great business isn’t automatically a great buy.",
-        "descKo": "IPO가 '과대평가(It’s Probably Overpriced)'를 의미한다는 월가의 농담이 예전만큼 통용되지는 않으나 여전히 유효한 측면이 있다. 스페이스X는 다른 대형 IPO 기업들과 비교해 저조한 성과를 보이고 있으며, 훌륭한 사업 모델이 반드시 투자 수익을 보장하는 것은 아니다.",
-        "date": "2026-07-31",
-        "sourceUrl": "https://www.isabelnet.com/u-s-ipos-excluding-spacs-deal-count-and-deal-value/",
-        "image": "/isabelnet-charts/2026-08-01/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-31",
-    "charts": [
-      {
-        "title": "Equal-Weight S&P 500 (RSP) Relative to Cap-Weight S&P 500 (SPY)",
-        "titleKo": "시가총액 가중 S&P 500(SPY) 대비 동일 가중 S&P 500(RSP)의 상대적 성과",
-        "desc": "As megacap leadership fades, market breadth is improving. This isn’t an outflow from equities. It’s just a rotation out of concentration.",
-        "descKo": "메가캡 주도의 장세가 약화되면서 시장의 폭이 개선되고 있다. 이는 주식 시장에서의 자금 이탈이 아니라, 특정 종목 쏠림 현상에서 벗어나는 순환매 과정이다.",
-        "date": "2026-07-30",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-equalweight-sp-500-market-cap-weighted/",
-        "image": "/isabelnet-charts/2026-07-31/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "The Performance of the S&P 500 Before and After Midterm Elections",
-        "titleKo": "중간선거 전후 S&P 500의 성과",
-        "desc": "History has been kind to investors after midterms. In all 20 midterm elections since World War II, the S&P 500 has been higher nine months later every time.",
-        "descKo": "역사적으로 중간선거 이후 증시는 투자자들에게 우호적이었다. 제2차 세계대전 이후 치러진 20번의 중간선거에서 S&P 500 지수는 9개월 뒤 예외 없이 상승했다.",
-        "date": "2026-07-30",
-        "sourceUrl": "https://www.isabelnet.com/the-performance-of-the-sp-500-before-and-after-midterm-elections/",
-        "image": "/isabelnet-charts/2026-07-31/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장의 집중도: S&P 500 시가총액 상위 10개 종목 비중",
-        "desc": "What once mirrored the market now drives it. The top 10 S&P 500 stocks make up 38% of the index and generate 38% of its earnings, pushing valuations higher and amplifying daily moves.",
-        "descKo": "과거 시장을 반영하던 지수는 이제 상위 10개 종목에 의해 좌우된다. S&P 500 내 상위 10개 종목은 지수의 38%를 차지하며 전체 이익의 38%를 창출해 밸류에이션을 높이고 일일 변동성을 확대하고 있다.",
-        "date": "2026-07-30",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-07-31/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Median Monthly Realized Volatility – Midterm Election Years vs. All Years",
-        "titleKo": "S&P 500 월간 실현 변동성 중앙값: 중간선거 해와 전체 기간 비교",
-        "desc": "Midterm years often bring a bump in S&P 500 volatility, as investors wait to see who controls Congress and what that means for taxes, regulation and spending before making bigger moves.",
-        "descKo": "중간선거가 있는 해에는 S&P 500의 변동성이 커지는 경향이 있다. 투자자들이 의회 권력 구도와 이에 따른 세금, 규제, 지출 정책의 향방을 확인한 뒤 본격적인 투자에 나서기 때문이다.",
-        "date": "2026-07-30",
-        "sourceUrl": "https://www.isabelnet.com/implied-volatility-vix-and-realized-sp-500-volatility-1-month/",
-        "image": "/isabelnet-charts/2026-07-31/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation – Shiller Cyclically-Adjusted S&P 500 Price-to-Earnings Ratio",
-        "titleKo": "밸류에이션: 쉴러 경기조정 주가수익비율(CAPE)",
-        "desc": "On the Shiller CAPE, U.S. stocks are back in the stratosphere, the kind that thrills investors on the way up and has a habit of burning them on the way down. Levels like this have a track record of slimmer returns and higher risk.",
-        "descKo": "쉴러 CAPE 기준으로 미국 증시는 다시 고공행진을 이어가고 있다. 이는 상승기에는 투자자를 열광시키지만 하락기에는 큰 손실을 입히는 수준이다. 현재와 같은 수준은 향후 수익률 저하와 리스크 증대로 이어질 가능성이 높다.",
-        "date": "2026-07-30",
-        "sourceUrl": "https://www.isabelnet.com/valuation-u-s-market-capitalization-to-gdp-and-cyclically-adjusted-p-e-shiller-cape/",
-        "image": "/isabelnet-charts/2026-07-31/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-30",
-    "charts": [
-      {
-        "title": "Foreign Holdings of U.S. Treasury Securities",
-        "titleKo": "미 국채의 외국인 보유 현황",
-        "desc": "U.S. Treasuries continue to draw strong foreign demand. Holdings rose to a record $9.37 trillion in May, but the buying power has passed from foreign central banks to private balance sheets. That marks a structural shift.",
-        "descKo": "미 국채에 대한 외국인 투자 수요가 지속되고 있다. 5월 보유액은 9조 3,700억 달러로 사상 최고치를 기록했으나, 매수 주체는 외국 중앙은행에서 민간 대차대조표로 이동했다. 이는 구조적 변화를 의미한다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/monthly-foreign-net-purchases-of-long-term-u-s-securities/",
-        "image": "/isabelnet-charts/2026-07-30/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 기반 EPS 성장 전망",
-        "desc": "Wall Street sees a strong earnings tailwind ahead, with S&P 500 profits forecast to rise 28% in 2026 and 14% in 2027. Small caps could outperform, with earnings growth of 38% this year and 43% next year.",
-        "descKo": "월가는 향후 기업 실적이 강력한 순풍을 맞을 것으로 보고 있다. S&P 500 기업의 이익은 2026년 28%, 2027년 14% 증가할 것으로 전망된다. 중소형주는 올해 38%, 내년 43%의 이익 성장을 기록하며 시장 수익률을 상회할 가능성이 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-07-30/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Positioning",
-        "titleKo": "주식 포지셔닝",
-        "desc": "At the 36th percentile, overall equity positioning sits just below neutral and well short of crowded, while large-cap tech at the 56th percentile is near neutral after easing from more elevated levels.",
-        "descKo": "전반적인 주식 포지셔닝은 36퍼센타일로 중립 수준을 소폭 밑돌며 과밀 상태와는 거리가 멀다. 대형 기술주는 56퍼센타일을 기록하며 높은 수준에서 조정된 후 중립 영역에 머물러 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/large-cap-equity-positioning/",
-        "image": "/isabelnet-charts/2026-07-30/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sector Fund Flows",
-        "titleKo": "섹터별 펀드 자금 흐름",
-        "desc": "Tech funds enjoyed strong inflows over the past year, driven by AI hype, but those flows are reversing as investors reassess valuations, rates and market risk. The tech story isn’t over; it’s just a crowded trade losing momentum.",
-        "descKo": "기술주 펀드는 AI 열풍에 힘입어 지난 1년간 강한 자금 유입을 보였으나, 투자자들이 밸류에이션, 금리, 시장 위험을 재평가함에 따라 자금 흐름이 반전되고 있다. 기술주 테마가 끝난 것은 아니며, 다만 과밀했던 거래의 모멘텀이 약화되고 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/annual-equity-flows/",
-        "image": "/isabelnet-charts/2026-07-30/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
-        "titleKo": "수익률 곡선으로 본 미국 경기 침체 확률",
-        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 13.6%, leaving the expansion narrative in place. This cycle still has room to run.",
-        "descKo": "수익률 곡선으로 산출한 향후 12개월 내 미국 경기 침체 확률은 13.6%로, 경기 확장 국면은 여전히 유효하다. 이번 사이클은 아직 상승 여력이 남아 있다.",
-        "date": "2026-07-29",
-        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
-        "image": "/isabelnet-charts/2026-07-30/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-29",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "With a reading of 65.38, the S&P 500 has eased back from last week’s selloff, slipping out of overbought territory but still far from oversold.",
-        "descKo": "65.38을 기록한 S&P 500 지수는 지난주 매도세에서 다소 회복하며 과매수 구간을 벗어났으나, 여전히 과매도 수준과는 거리가 있다.",
-        "date": "2026-07-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-07-29/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Quarterly EPS SA vs. S&P 500",
-        "titleKo": "S&P 500 분기 주당순이익(EPS) 계절 조정치 vs. S&P 500 지수",
-        "desc": "Despite a strong second quarter of earnings, U.S. stocks have mostly gone nowhere. If the Fed turns more hawkish or rates stay elevated for longer, valuation multiples could still face pressure even as profits keep rising.",
-        "descKo": "견조한 2분기 실적에도 불구하고 미국 증시는 뚜렷한 방향성을 보이지 못했다. 연준이 매파적 태도를 강화하거나 고금리 기조가 장기화될 경우, 기업 이익 증가세와 별개로 밸류에이션 멀티플은 압박을 받을 수 있다.",
-        "date": "2026-07-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-quarterly-yoy-eps-growth/",
-        "image": "/isabelnet-charts/2026-07-29/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance Since 2025",
-        "titleKo": "2025년 이후 S&P 500 수익률",
-        "desc": "The S&P 500 has been trapped in a narrow range for two months, with rotations playing out underneath the surface, reminiscent of the November-to-February period.",
-        "descKo": "S&P 500은 두 달째 좁은 박스권에 갇혀 있다. 시장 내부에서는 지난해 11월부터 올해 2월까지와 유사한 순환매 장세가 나타나고 있다.",
-        "date": "2026-07-28",
-        "sourceUrl": "https://www.isabelnet.com/median-quarterly-sp-500-performance/",
-        "image": "/isabelnet-charts/2026-07-29/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning sits in the 36th percentile, a touch below neutral and far from crowded, leaving some room for upside.",
-        "descKo": "현재 통합 주식 포지셔닝은 36퍼센타일로 중립 수준을 소폭 하회하고 있으며, 과열 상태와 거리가 있어 추가 상승 여력이 존재한다.",
-        "date": "2026-07-28",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-07-29/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Cap-Weighted Index vs. S&P 500 Equally-Weighted Index",
-        "titleKo": "S&P 500 시가총액 가중 지수 vs. S&P 500 동일 가중 지수",
-        "desc": "Investors looking to trim exposure to AI-fueled volatility may want to consider the equal-weight S&P 500. It beat the cap-weighted index during the dot-com bust and has often held up better when leadership gets narrow.",
-        "descKo": "AI발 변동성에 대한 노출도를 줄이려는 투자자라면 S&P 500 동일 가중 지수를 고려해 볼 만하다. 해당 지수는 닷컴 버블 당시 시가총액 가중 지수보다 우수한 성과를 보였으며, 시장 주도주가 좁혀질 때 상대적으로 견고한 방어력을 보였다.",
-        "date": "2026-07-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cap-weighted-index-vs-sp-500-equally-weighted-index/",
-        "image": "/isabelnet-charts/2026-07-29/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-28",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "The Greed and Fear Index fell to 69.05, and with the S&P 500 now below its 50-day moving average, near-term downside risk has increased.",
-        "descKo": "공포·탐욕 지수가 69.05로 하락한 가운데, S&P 500 지수가 50일 이동평균선을 하회하면서 단기적인 하방 리스크가 커지고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-07-28/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Index Performance – S&P 500, Nasdaq 100, Russell 2000, Mag 7",
-        "titleKo": "지수 성과 – S&P 500, 나스닥 100, 러셀 2000, 매그니피센트 7",
-        "desc": "Investors are still rotating out of mega-cap tech. Since late October 2025, the Magnificent Seven have underperformed sharply, while the broader market has proved far more resilient.",
-        "descKo": "투자자들의 대형 기술주 이탈 흐름이 지속되고 있다. 2025년 10월 말 이후 매그니피센트 7의 성과는 크게 부진한 반면, 시장 전반은 훨씬 더 강한 회복력을 보이고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/performance-fang-index-vs-sp-500-and-u-s-banks/",
-        "image": "/isabelnet-charts/2026-07-28/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are turning more cautious as the Insider Transactions Ratio slips back into bearish territory, with little sign of buying interest.",
-        "descKo": "내부자 거래 비율이 약세 영역으로 다시 진입하고 매수세가 거의 포착되지 않으면서 기업 내부자들의 경계심이 높아지고 있다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-07-28/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026",
-        "titleKo": "2026년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs continues to see steady earnings growth as the driver behind a 17% climb in the S&P 500 to 8,000 in 2026, though volatility is likely to stick around.",
-        "descKo": "골드만삭스는 꾸준한 이익 성장이 2026년 S&P 500 지수를 8,000선까지 17% 상승시키는 원동력이 될 것으로 보고 있으나, 변동성은 여전할 것으로 전망된다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-07-28/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Oil Price Fair Value",
-        "titleKo": "국제 유가 적정 가치",
-        "desc": "Oil is trading more than 50% above its estimate of medium-term fair value. Outside the 2022 shock peak, the market has rarely looked this stretched, leaving plenty of room for a pullback if conditions normalize.",
-        "descKo": "현재 유가는 중기적 적정 가치 추정치보다 50% 이상 높은 수준에서 거래되고 있다. 2022년의 급등기를 제외하면 시장이 이처럼 과열된 경우는 드물었으며, 상황이 정상화될 경우 조정의 여지가 크다.",
-        "date": "2026-07-27",
-        "sourceUrl": "https://www.isabelnet.com/wti-crude-oil-price-and-fitted-oil-price/",
-        "image": "/isabelnet-charts/2026-07-28/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-07-27",
-    "charts": [
-      {
-        "title": "U.S. 10-Year Treasury Yield vs. Crude Oil (USO)",
-        "titleKo": "미국 10년물 국채 금리와 원유(USO)의 상관관계",
-        "desc": "Oil and yields have moved together since the Middle East conflict started in February. But that correlation often weakens once tensions cool.",
-        "descKo": "지난 2월 중동 분쟁 발생 이후 유가와 국채 금리는 동조화 흐름을 보였다. 하지만 이러한 상관관계는 긴장이 완화될 경우 약화되는 경향이 있다.",
-        "date": "2026-07-24",
-        "sourceUrl": "https://www.isabelnet.com/oil-prices-fair-value-as-a-function-of-the-u-s-dollar-and-global-growth/",
-        "image": "/isabelnet-charts/2026-07-27/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "History of Asset Bubbles Past 60-Years",
-        "titleKo": "지난 60년간의 자산 버블 역사",
-        "desc": "The AI rally is powering investor enthusiasm, with semiconductor names among the biggest winners. It’s also reviving talk of past hype cycles and whether the run can last.",
-        "descKo": "AI 랠리가 투자자들의 열기를 고조시키며 반도체 관련주들이 최대 수혜주로 떠올랐다. 이와 함께 과거의 과열 주기와 현재 상승세의 지속 가능성에 대한 논의가 다시 활발해지고 있다.",
-        "date": "2026-07-24",
-        "sourceUrl": "https://www.isabelnet.com/history-of-asset-bubbles-past-60-years/",
-        "image": "/isabelnet-charts/2026-07-27/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Hyperscaler Capex Estimates by Year",
-        "titleKo": "연도별 하이퍼스케일러 자본적지출(Capex) 전망",
-        "desc": "Wall Street has been underestimating the scale of hyperscaler spending on AI infrastructure. What looked like a one-time wave now looks more like a multiyear arms race across data centers, chips, networking, and power.",
-        "descKo": "월가는 하이퍼스케일러의 AI 인프라 투자 규모를 과소평가해 왔다. 일시적인 현상으로 보였던 흐름은 이제 데이터센터, 칩, 네트워킹, 전력 분야에 걸친 다년간의 군비 경쟁 양상으로 바뀌고 있다.",
-        "date": "2026-07-24",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-consensus-quarterly-earnings-actual-and-consensus-estimates/",
-        "image": "/isabelnet-charts/2026-07-27/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수로 본 투자 심리",
-        "desc": "At 39 on the Fear & Greed Index, sentiment is in fear territory, but not outright panic, leaving U.S. stocks room to grind higher if headlines improve.",
-        "descKo": "공포·탐욕 지수가 39를 기록하며 투자 심리는 공포 영역에 머물러 있으나 패닉 수준은 아니다. 뉴스 흐름이 개선된다면 미국 증시는 점진적인 상승세를 이어갈 여지가 있다.",
-        "date": "2026-07-24",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-07-27/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Equity Valuation Metrics (Z-Score Since 1900)",
-        "titleKo": "미국 주식 밸류에이션 지표 (1900년 이후 Z-스코어)",
-        "desc": "U.S. stocks are still priced richly, with most valuation metrics sitting more than two standard deviations above history. Cheap may be dead for now, but momentum could keep this bull market alive longer than many expect.",
-        "descKo": "미국 증시는 여전히 고평가 상태이며, 대부분의 밸류에이션 지표가 과거 평균 대비 2표준편차를 상회하고 있다. 당분간 저평가 매력은 기대하기 어렵지만, 모멘텀이 뒷받침된다면 강세장은 예상보다 길게 이어질 수 있다.",
-        "date": "2026-07-24",
-        "sourceUrl": "https://www.isabelnet.com/equity-valuations/",
-        "image": "/isabelnet-charts/2026-07-27/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
