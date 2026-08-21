@@ -194,6 +194,75 @@ FRED에서 7개 지표를 다시 받고 종합지수(JS Economic Cycle Index)를
 
 ---
 
+## KOSPI Capitulation Index (프로토타입, 스크립트)
+
+`kospi_capitulation_index.py`(저장소 루트, 독립 실행 스크립트 — 위 BOOM-BURST/JS Economic
+Cycle Index와는 별개)는 모간스탠리 리서치 "Capitulation Index"(Exhibit 4)의 시각적
+특징을 역산해 한국 증시 버전으로 재구성한 합성 지표 프로토타입이다. 모간스탠리 원본의
+정확한 구성지표·가중치는 비공개라 이 스크립트는 추정(inference)에 기반하며, 원본과
+동일한 결과를 보장하지 않는다.
+
+### 계산 방법
+
+1. 구성지표 5개를 각각 "값이 클수록 패닉"이 되도록 부호 정렬
+2. 주간(금요일) 리샘플링
+3. 각 지표를 3년(156주) 롤링 z-score로 표준화 (median/MAD 기반 robust z-score, ±4 MAD로 clip)
+4. 5개 z-score 단순평균 → 합성지수(raw composite, 최소 3개 지표가 유효할 때만 계산)
+5. 합성지수를 전체 기간 평균/표준편차로 재표준화(±1SD 밴드가 정확히 ±1.0에 위치)한 뒤
+   **부호를 반전** → 최종 Capitulation Index
+
+**부호 규약: 음수 = 항복/과매도(캐피튤레이션, 매수 관심), 양수 = 과열(euphoria).**
+1~4단계는 계산 편의상 "양수=패닉"으로 정렬해서 진행하지만, 마지막 5단계에서 -1을 곱해
+원본 Exhibit 4와 같은 부호 규약으로 맞춘다. (2026-08-20: 실제 Exhibit 4 차트(2026-07-30
+기준 -2.53, "-1SD를 하회하는 극단적 과매도")와 직접 비교해 부호가 반대였던 버그를
+발견하고 수정함 — 수정 전에는 2008 GFC(+4.6)·2020 코로나 급락(+3.2) 같은 실제 패닉
+구간이 전부 양수로 나왔음.)
+
+### 구성지표 (한국 시장 대체)
+
+| 카테고리 | 원본(미국) | 대체(한국) | 소스 |
+|---|---|---|---|
+| 변동성 | VIX | VKOSPI 대용치: KOSPI 지수(`^KS11`) 일별수익률의 20거래일 롤링 실현변동성(연율화) | Yahoo Finance — VKOSPI(내재변동성) 자체는 KRX 독점 산출이라 무료 소스가 없음 |
+| 수급/심리 | AAII Bull-Bear | 개인 순매도 강도(개인 순매수 부호반전) | 네이버금융 `investorDealTrendDay.naver` |
+| 신용 스트레스 | HY OAS 스프레드 | 신용융자 잔고 증감률(부호반전) | 금융투자협회(KOFIA) `freesis.kofia.or.kr` |
+| 기술적 과매도 | RSI, %>200MA | KOSPI 전체 상장종목 200일선 상회 비율(부호반전) | Yahoo Finance(`FinanceDataReader.StockListing('KOSPI')`로 받은 현재 상장종목 구성 942개를 과거에 근사 적용, 2026-08-20부터 KOSPI200 200종목 → 시장 전체로 확대) |
+| 신용 스프레드 | HY OAS 스프레드 | 회사채(BBB-, 3년) - 국고채(3년) 스프레드 | 한국은행 ECOS API(`ECOS_API_KEY`) |
+
+5개 지표 모두 2026-08-20부터 KRX 로그인 없이 접근 가능한 소스(Yahoo/네이버금융/KOFIA/ECOS)의
+실데이터를 우선 사용하고, 호출 실패 시에만 과거 위기 패턴을 재현한 가상 데이터로 폴백한다.
+
+### 실행
+
+```bash
+python kospi_capitulation_index.py
+```
+
+`outputs/kospi_capitulation_index.csv`(구성지표별 z-score + 최종 지수), `outputs/kospi_capitulation_index.png`(차트)로 저장된다. `outputs/krx_cache/`에 Yahoo/네이버금융 조회 결과를 캐싱해 재실행 시 재호출을 줄인다.
+
+### 주간 자동 갱신 (2026-08-21 추가)
+
+`.github/workflows/weekly_capitulation_index_update.yml`이 매주 일요일 22:00 UTC(월요일
+07:00 KST)에 GitHub Actions에서 `kospi_capitulation_index.py` → `scripts/import_capitulation_snapshot.js`를
+순서대로 실행해, 지수를 재계산하고 Sentiment Indicator > "나만의 지표" 탭용 스냅샷
+(`public/data/capitulation_snapshot.json`)을 갱신, 변경이 있으면 commit + push한다
+(push=배포이므로 Vercel이 자동 재배포). `END_DATE`는 실행 시점 UTC 날짜로 자동 설정되며,
+특정 시점을 재현하려면 환경변수 `CAPITULATION_END_DATE`(YYYYMMDD)로 덮어쓸 수 있다.
+
+- `outputs/`는 `.gitignore` 대상이라 커밋으로는 실행 간에 안 남지만, 원시 데이터 캐시
+  (`outputs/krx_cache/`)만 `actions/cache`로 워크플로 실행 간에 보존한다. 200일선
+  상회비율(Yahoo Finance, KOSPI 상장종목 전체 약 900여 개)과 개인 순매도 강도
+  (네이버금융)는 `kospi_capitulation_index.py`가 지난주 캐시 마지막 날짜 다음날부터만
+  증분으로 받아 이어붙이므로(2026-08-21부터), 매주 2008년/2023년치를 처음부터 다시
+  긁지 않는다 — 단, Yahoo는 종목당 한 번씩은 호출해야 해서 요청 "건수" 자체(~900건)는
+  줄지 않고 payload/처리 시간만 줄어든다. 캐시가 없는 첫 실행이나 캐시가 아예 만료된
+  경우는 예전처럼 전체 재수집한다.
+- GitHub 저장소 시크릿 `ECOS_API_KEY` 필요(신용 스프레드 조회용, 없으면 해당 지표만
+  가상 데이터로 폴백).
+- 수동으로 즉시 갱신하고 싶으면 Actions 탭에서 `KOSPI Capitulation Index 주간 자동 갱신`
+  워크플로를 `workflow_dispatch`로 실행.
+
+---
+
 ## API 엔드포인트
 
 | 메서드 | 경로 | 설명 |

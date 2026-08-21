@@ -1,0 +1,56 @@
+name: KOSPI Capitulation Index 주간 자동 갱신
+
+on:
+  schedule:
+    # 매주 일요일 22:00 UTC = 월요일 07:00 KST. 지수가 금요일 종가 기준 주간
+    # 리샘플이라, 지난주 마지막 거래일(금요일) 데이터가 확정된 뒤 월요일 아침에 갱신한다.
+    - cron: '0 22 * * 0'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 의존성 설치
+        run: pip install pandas numpy requests matplotlib python-dotenv FinanceDataReader
+
+      # outputs/는 .gitignore 대상이라 커밋으로는 실행 간에 안 남는다 — Yahoo/네이버금융
+      # 원시 데이터 캐시(outputs/krx_cache)를 actions/cache로 대신 보존해서, 매주 END_DATE만
+      # 앞으로 이동할 때 kospi_capitulation_index.py가 지난주 캐시 이후 구간만 증분으로
+      # 받게 한다(전체 히스토리 재수집 방지). key에 run_id를 넣어 매번 최신 캐시로 갱신되게 함.
+      - name: KOSPI 원시 데이터 캐시 복원 (outputs/krx_cache)
+        uses: actions/cache@v4
+        with:
+          path: outputs/krx_cache
+          key: capitulation-krx-cache-${{ github.run_id }}
+          restore-keys: |
+            capitulation-krx-cache-
+
+      - name: KOSPI Capitulation Index 재계산 (kospi_capitulation_index.py)
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
+        run: python kospi_capitulation_index.py
+
+      - name: Sentiment Indicator "나만의 지표" 탭용 스냅샷 JSON 생성
+        run: node scripts/import_capitulation_snapshot.js
+
+      - name: 변경사항 있으면 commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/capitulation_snapshot.json
+          if git diff --cached --quiet; then
+            echo "변경된 내용 없음, 커밋 생략"
+          else
+            git commit -m "KOSPI Capitulation Index 주간 자동 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d')"
+            git push
+          fi
