@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-26",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 71.51, the S&P 500 is slightly overbought. Sentiment remains bullish, and no major technical breaks have emerged. More volatility may be ahead.",
+        "descKo": "71.51을 기록한 S&P 500 지수는 다소 과매수 상태입니다. 시장 심리는 여전히 강세를 유지하고 있으며, 주요 기술적 이탈 신호는 나타나지 않았습니다. 향후 변동성이 확대될 가능성이 있습니다.",
+        "date": "2026-08-25",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-08-26/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 가격 목표치",
+        "desc": "Goldman Sachs is holding its call for earnings to propel the S&P 500 to 8,000 in 2026, implying a 17% annual return even if the path remains bumpy.",
+        "descKo": "골드만삭스는 기업 실적을 바탕으로 2026년 S&P 500 지수가 8,000선에 도달할 것이라는 기존 전망을 유지했습니다. 이는 향후 과정이 순탄치 않더라도 연간 17%의 수익률을 의미합니다.",
+        "date": "2026-08-25",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-08-26/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "At the 58th percentile, consolidated equity positioning is modestly overweight but far from crowded, leaving room for investors to add risk.",
+        "descKo": "통합 주식 포지셔닝은 58퍼센타일로, 완만한 비중 확대 상태이나 과열권과는 거리가 있어 투자자들이 위험 자산을 추가할 여력이 남아 있습니다.",
+        "date": "2026-08-25",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-08-26/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders are stepping back into the market, sending the Insider Transactions Ratio into bullish territory. The renewed buying gives bulls another reason to stay optimistic.",
+        "descKo": "기업 내부자들이 시장에 다시 복귀하면서 내부자 거래 비율이 강세 영역으로 진입했습니다. 이들의 매수세 재개는 강세론자들에게 낙관론을 유지할 또 다른 근거가 되고 있습니다.",
+        "date": "2026-08-25",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-08-26/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – S&P 500 NTM P/E",
+        "titleKo": "밸류에이션 – S&P 500 12개월 선행 주가수익비율(NTM P/E)",
+        "desc": "The S&P 500 equal-weight index trades at 16 times forward earnings, versus 20 times for the benchmark. It is hardly cheap, but the discount makes it look more attractive.",
+        "descKo": "S&P 500 동일가중지수의 선행 주가수익비율은 16배로, 벤치마크 지수의 20배 대비 낮습니다. 저평가된 수준은 아니나, 할인된 밸류에이션이 매력도를 높이고 있습니다.",
+        "date": "2026-08-25",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
+        "image": "/isabelnet-charts/2026-08-26/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-25",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-06",
         "sourceUrl": "https://www.isabelnet.com/sp-500-earnings-revisions-breadth-3/",
         "image": "/isabelnet-charts/2026-08-07/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-06",
-    "charts": [
-      {
-        "title": "Margin Debt and Net Investor Credit Balance",
-        "titleKo": "신용융자 잔고와 투자자 순신용 잔액",
-        "desc": "NYSE margin debt just blew past $1.5 trillion. Investors are piling into leverage with both hands, leaving little room for error. The market has gotten riskier, more fragile, but that doesn’t mean a crash is guaranteed.",
-        "descKo": "뉴욕증권거래소(NYSE)의 신용융자 잔고가 1조 5천억 달러를 돌파했다. 투자자들이 공격적으로 레버리지를 활용하면서 시장의 허용 오차 범위가 좁아졌다. 시장의 위험과 취약성은 커졌지만, 이것이 곧 폭락을 의미하는 것은 아니다.",
-        "date": "2026-08-05",
-        "sourceUrl": "https://www.isabelnet.com/u-s-stock-market-margin-debt-and-free-cash-balances/",
-        "image": "/isabelnet-charts/2026-08-06/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Bull Markets",
-        "titleKo": "S&P 500 강세장의 흐름",
-        "desc": "Over the past 50 years, the average U.S. bull market lasted 8 years and delivered a 288% gain. This one is just under 4 years old and up 115%, so it still looks far from exhausted, leaving bears trapped in a painful squeeze.",
-        "descKo": "지난 50년간 미국 증시의 평균 강세장은 8년간 지속되며 288%의 수익률을 기록했다. 현재의 강세장은 시작된 지 4년이 채 되지 않았고 수익률은 115% 수준으로, 아직 상승 여력이 충분해 보여 약세론자들은 고통스러운 숏스퀴즈 상황에 직면해 있다.",
-        "date": "2026-08-05",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-and-average-bull-markets/",
-        "image": "/isabelnet-charts/2026-08-06/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Large Cap MCG & Tech Positioning vs. Earnings Growth",
-        "titleKo": "대형주 및 기술주 포지셔닝 대 이익 성장",
-        "desc": "Despite booming earnings growth, large-cap Tech positioning remains only modestly overweight, at the 54th percentile. Positioning is still lagging fundamentals, leaving room for a catch-up trade.",
-        "descKo": "가파른 이익 성장에도 불구하고 대형 기술주에 대한 포지셔닝은 54% 수준으로 완만한 비중 확대에 머물러 있다. 포지셔닝이 펀더멘털을 따라가지 못하고 있어 추가 상승을 통한 키 맞추기 장세가 예상된다.",
-        "date": "2026-08-05",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
-        "image": "/isabelnet-charts/2026-08-06/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Gold Price Forecast",
-        "titleKo": "금 가격 전망",
-        "desc": "Gold’s rally still has central banks at its back. Deutsche Bank remains bullish on the metal, putting fair value at about $4,700 an ounce by year-end, then $5,100 in 2027 and $5,442 in 2028.",
-        "descKo": "중앙은행들의 매수세가 금값 랠리를 뒷받침하고 있다. 도이체방크는 금에 대해 여전히 낙관적인 전망을 유지하며 올해 말 적정 가치를 온스당 약 4,700달러로, 2027년에는 5,100달러, 2028년에는 5,442달러까지 오를 것으로 내다봤다.",
-        "date": "2026-08-05",
-        "sourceUrl": "https://www.isabelnet.com/gold-price-forecast/",
-        "image": "/isabelnet-charts/2026-08-06/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "MSCI World Sector/Style Valuations",
-        "titleKo": "MSCI 세계 지수 섹터 및 스타일 밸류에이션",
-        "desc": "Valuations are rich across sectors and styles, leaving investors with barely any cushion. In this market, even a small shift in sentiment can send prices sliding with little support below.",
-        "descKo": "모든 섹터와 스타일 전반에 걸쳐 밸류에이션이 높아져 투자자들의 안전마진이 거의 없는 상태다. 현재 시장에서는 작은 투자 심리 변화만으로도 지지선 없이 가격이 급락할 위험이 있다.",
-        "date": "2026-08-05",
-        "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
-        "image": "/isabelnet-charts/2026-08-06/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
