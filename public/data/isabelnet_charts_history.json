@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-27",
+    "charts": [
+      {
+        "title": "$100,000 over 30 Years: The Fund vs. The Average Investor",
+        "titleKo": "30년간 10만 달러 투자: 펀드 수익률과 일반 투자자 수익률의 격차",
+        "desc": "U.S. funds returned an annualized 8.2%, but the average investor earned only about 7.0%. Much of the gap came from poor timing: buying after prices had risen and selling after they fell.",
+        "descKo": "미국 펀드의 연평균 수익률은 8.2%였으나, 일반 투자자의 수익률은 약 7.0%에 그쳤다. 이러한 수익률 격차는 상당 부분 가격 상승 후 매수하고 하락 후 매도하는 잘못된 타이밍 선택에서 비롯됐다.",
+        "date": "2026-08-26",
+        "sourceUrl": "https://www.isabelnet.com/fed-funds-annual-rate-of-change/",
+        "image": "/isabelnet-charts/2026-08-27/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI AC World EPS",
+        "titleKo": "MSCI AC 세계 지수 주당순이익(EPS) 전망",
+        "desc": "Wall Street is pushing up MSCI AC World EPS targets for 2026 and 2027, betting AI’s surge will lift margins instead of sparking another capex boom-and-bust. So where’s the bubble: in earnings or just the hype?",
+        "descKo": "월가는 AI 열풍이 자본지출(Capex)의 호황과 불황을 반복하기보다 수익성을 개선할 것으로 기대하며 2026년과 2027년 MSCI AC 세계 지수의 EPS 목표치를 상향 조정하고 있다. 그렇다면 거품은 실적에 있는 것인가, 아니면 단순한 기대감에 있는 것인가?",
+        "date": "2026-08-26",
+        "sourceUrl": "https://www.isabelnet.com/msci-world-eps-and-south-korea-exports/",
+        "image": "/isabelnet-charts/2026-08-27/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자와 체계적 투자 전략의 주식 비중 비교",
+        "desc": "Systematic strategies remain bullish, ranking in the 76th percentile and still overweight. Discretionary investors are more cautious, sitting at the 44th percentile and slightly underweight, leaving room to add risk.",
+        "descKo": "체계적 투자 전략은 76백분위수로 여전히 비중 확대 기조를 유지하며 강세장을 전망하고 있다. 반면 재량적 투자자들은 44백분위수로 다소 신중한 비중 축소 전략을 취하고 있어, 향후 위험 자산을 늘릴 여력이 남아 있다.",
+        "date": "2026-08-26",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-08-27/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Sectors Announced Buybacks (Last 3 Months)",
+        "titleKo": "S&P 500 섹터별 자사주 매입 발표 현황 (최근 3개월)",
+        "desc": "Over the past three months, buyback announcements have been led by Financials, Tech and Industrials, which together make up most of the repurchase activity in U.S. equities.",
+        "descKo": "최근 3개월간 자사주 매입 발표는 금융, 기술, 산업재 섹터가 주도했으며, 이들 섹터가 미국 주식 시장 자사주 매입 활동의 대부분을 차지했다.",
+        "date": "2026-08-26",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-sectors-announced-buybacks-last-3-months/",
+        "image": "/isabelnet-charts/2026-08-27/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
+        "titleKo": "수익률 곡선으로 본 미국 경기 침체 확률",
+        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 13.6%, leaving the expansion narrative in place. For now, the cycle still has momentum.",
+        "descKo": "수익률 곡선을 통해 산출한 향후 12개월 내 미국 경기 침체 확률은 13.6%로, 경기 확장 국면은 여전히 유효하다. 현재로서는 경기 사이클이 상승 모멘텀을 유지하고 있다.",
+        "date": "2026-08-26",
+        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
+        "image": "/isabelnet-charts/2026-08-27/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-26",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-07",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
         "image": "/isabelnet-charts/2026-08-08/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-07",
-    "charts": [
-      {
-        "title": "S&P 500 Annual vs. Intra-Year Returns",
-        "titleKo": "S&P 500의 연간 수익률과 연중 변동폭",
-        "desc": "Most years, the S&P 500 gives up 5% to 10%. With March’s double-digit drop already in the books, the next move lower may be more modest. Back-to-back big drawdowns don’t happen often.",
-        "descKo": "S&P 500 지수는 대부분의 해에 5~10% 수준의 하락을 겪는다. 3월에 이미 두 자릿수 하락을 기록했기에 추가적인 하락 폭은 제한적일 것으로 보인다. 연속적인 대규모 하락장은 흔치 않다.",
-        "date": "2026-08-06",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-average-median-return-by-month/",
-        "image": "/isabelnet-charts/2026-08-07/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
-        "titleKo": "계절성 분석: 2026년 S&P 500 사이클 합성 지표",
-        "desc": "The S&P 500 Cycle Composite points to a bullish but choppy 2026. U.S. stocks are now heading into their weakest seasonal stretch, which typically runs from mid-August to early October.",
-        "descKo": "S&P 500 사이클 합성 지표는 2026년 시장이 강세를 보이겠지만 변동성은 클 것으로 시사한다. 미국 증시는 통상 8월 중순부터 10월 초까지 이어지는 계절적 약세 구간에 진입하고 있다.",
-        "date": "2026-08-06",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
-        "image": "/isabelnet-charts/2026-08-07/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "New S&P 500 Index All-Time Highs Per Year",
-        "titleKo": "연도별 S&P 500 지수 사상 최고치 경신 횟수",
-        "desc": "The S&P 500 has reached 25 record highs this year. In robust bull markets, new highs usually come in clusters and last longer than the crowd expects, as long as earnings and growth stay on track.",
-        "descKo": "올해 S&P 500은 25차례 사상 최고치를 경신했다. 견조한 강세장에서 새로운 최고가는 대개 군집을 이루며 나타나고, 실적과 성장세가 뒷받침되는 한 시장의 예상보다 길게 지속되는 경향이 있다.",
-        "date": "2026-08-06",
-        "sourceUrl": "https://www.isabelnet.com/new-sp-500-index-all-time-highs-per-year/",
-        "image": "/isabelnet-charts/2026-08-07/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
-        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행 지표)",
-        "desc": "U.S. heavy truck sales rose in June to 483K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
-        "descKo": "6월 미국 대형 트럭 판매량은 연율 기준 48만 3,000대를 기록했다. 대형 트럭 판매량은 경기 침체에 앞서 정점을 찍고 하락하는 경향이 있어, 미국 경제 전반의 건전성을 판단하는 선행 경제 지표로 활용된다.",
-        "date": "2026-08-06",
-        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
-        "image": "/isabelnet-charts/2026-08-07/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Large Cap MCG & Tech Positioning vs. Earnings Revisions",
-        "titleKo": "대형주 MCG 및 기술주 포지셔닝과 실적 수정치 비교",
-        "desc": "Large-cap tech companies have seen upward earnings revisions, but positioning remains only modestly overweight at the 54th percentile. That gap to fundamentals leaves some air for a catch-up trade.",
-        "descKo": "대형 기술 기업들의 실적 전망치는 상향 조정되고 있으나, 포지셔닝은 54번째 백분위수로 여전히 완만한 비중 확대 수준에 머물러 있다. 펀더멘털과의 이러한 괴리는 향후 주가 상승 여력이 남아 있음을 시사한다.",
-        "date": "2026-08-06",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-earnings-revisions-breadth-3/",
-        "image": "/isabelnet-charts/2026-08-07/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
