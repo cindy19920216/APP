@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-28",
+    "charts": [
+      {
+        "title": "Investor Psychology Cycle",
+        "titleKo": "투자자 심리 사이클",
+        "desc": "When panic hits, markets overshoot to the downside, creating opportunities for contrarians to buy into peak fear. The mirror image? Euphoria, which usually sets up the exit.",
+        "descKo": "공포가 확산되면 시장은 하방으로 과도하게 이탈하며, 역발상 투자자들에게는 극도의 공포 속에서 매수할 기회를 제공한다. 반대 상황인 낙관론은 보통 매도 시점을 시사한다.",
+        "date": "2026-08-27",
+        "sourceUrl": "https://www.isabelnet.com/investor-psychology-cycle/",
+        "image": "/isabelnet-charts/2026-08-28/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
+        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행 지표)",
+        "desc": "U.S. heavy truck sales fell in July to 437K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
+        "descKo": "7월 미국의 대형 트럭 판매량은 연율 환산 기준 43만 7천 대를 기록했다. 경기 침체 이전 대형 트럭 판매량은 정점을 찍은 후 하락하는 경향이 있어, 경기 선행 지표로서 미국 경제 전반의 건전성을 가늠하게 한다.",
+        "date": "2026-08-27",
+        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
+        "image": "/isabelnet-charts/2026-08-28/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Magnificent Seven Minus S&P 500 ex Magnificent Seven EPS Growth",
+        "titleKo": "매그니피센트 7 및 S&P 500(매그니피센트 7 제외)의 EPS 성장률 비교",
+        "desc": "After years of leading, the Magnificent Seven’s EPS growth has cooled to the point where the rest of the S&P 500 is now growing faster, reversing the 2023–2025 dynamic.",
+        "descKo": "수년간 시장을 주도하던 매그니피센트 7의 EPS 성장률이 둔화되면서, 나머지 S&P 500 기업들의 성장률이 이를 앞지르는 2023~2025년과는 상반된 흐름이 나타나고 있다.",
+        "date": "2026-08-27",
+        "sourceUrl": "https://www.isabelnet.com/earnings-growth-vs-the-sp-500/",
+        "image": "/isabelnet-charts/2026-08-28/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 EPS 성장률 전망",
+        "desc": "Small caps could deliver the biggest earnings surge, with profits expected to jump 36% this year and 48% in 2027, compared with 32% and 12%, respectively, for the S&P 500.",
+        "descKo": "중소형주가 가장 큰 폭의 실적 급증을 보일 것으로 전망된다. 올해와 2027년 수익 증가율은 각각 36%, 48%로 예상되며, 이는 S&P 500의 예상 증가율인 32%, 12%를 상회하는 수준이다.",
+        "date": "2026-08-27",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-08-28/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "FX Impact from AI Disruption to Services",
+        "titleKo": "AI의 서비스업 파괴적 혁신이 외환 시장에 미치는 영향",
+        "desc": "As AI pushes the marginal cost of cognitive work lower, the UK stands out: its services-heavy economy leaves sterling the most exposed to disruption.",
+        "descKo": "AI가 인지 노동의 한계 비용을 낮춤에 따라 서비스업 비중이 높은 영국 경제가 가장 큰 영향을 받을 것으로 보이며, 이에 따라 파운드화가 가장 큰 변동성에 노출되어 있다.",
+        "date": "2026-08-27",
+        "sourceUrl": "https://www.isabelnet.com/cash-value-of-currencies-in-circulation-gdp/",
+        "image": "/isabelnet-charts/2026-08-28/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-27",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-10",
         "sourceUrl": "https://www.isabelnet.com/median-quarterly-sp-500-performance/",
         "image": "/isabelnet-charts/2026-08-11/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-08",
-    "charts": [
-      {
-        "title": "Forward S&P 500 Returns After Prior Breakouts to New Highs Beat the Average Day",
-        "titleKo": "S&P 500 신고가 경신 이후 수익률, 평균 상회",
-        "desc": "Over the past ten years, when the S&P 500 has broken to a new high after at least two months without one, the 12‑month forward return has averaged 16.4%. Fear, in this case, has been a poor strategist.",
-        "descKo": "지난 10년간 S&P 500 지수가 최소 두 달 만에 신고가를 경신했을 때, 향후 12개월간 평균 수익률은 16.4%를 기록했다. 이번 사례에서 보듯 시장에 대한 두려움은 나쁜 투자 전략이었다.",
-        "date": "2026-08-07",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-breakout/",
-        "image": "/isabelnet-charts/2026-08-08/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Index Max Pullback per Calendar Year",
-        "titleKo": "연도별 S&P 500 지수 최대 낙폭",
-        "desc": "March’s 9% pullback may already be the year’s deepest. If so, the market has less room for another major selloff. Back-to-back drawdowns of that size are rare, giving bulls a reason to stay optimistic.",
-        "descKo": "지난 3월의 9% 하락이 올해 가장 깊은 조정일 가능성이 있다. 만약 그렇다면 향후 추가적인 대규모 매도세가 나타날 여지는 줄어든다. 이 정도 규모의 하락이 연이어 발생하는 일은 드물며, 이는 강세론자들이 낙관론을 유지할 근거가 된다.",
-        "date": "2026-08-07",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-max-pullback-per-calendar-year/",
-        "image": "/isabelnet-charts/2026-08-08/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도: S&P 500 내 시가총액 상위 10개 기업 비중",
-        "desc": "What once echoed the market now sets the tempo. The top 10 names in the S&P 500 account for 39% of the index and 38% of its earnings, pushing up multiples and amplifying day-to-day swings.",
-        "descKo": "한때 시장의 흐름을 반영하던 상위 10개 종목이 이제는 시장 전체를 주도하고 있다. S&P 500 내 상위 10개 기업이 지수의 39%, 이익의 38%를 차지하며 멀티플 상승과 일일 변동성 확대를 견인하고 있다.",
-        "date": "2026-08-07",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-08-08/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수: 투자자 심리 현황",
-        "desc": "The Fear & Greed Index is at 60, solidly in greed territory. Risk appetite is back, but the gauge isn’t screaming euphoria. It’s just enough fuel to keep the rally rolling.",
-        "descKo": "공포·탐욕 지수가 60을 기록하며 확실한 '탐욕(Greed)' 구간에 진입했다. 위험 선호 심리가 되살아났으나, 지표가 극도의 과열을 가리키는 수준은 아니다. 이는 랠리를 이어가기에 충분한 동력으로 작용하고 있다.",
-        "date": "2026-08-07",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-08/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation – S&P 500 NTM P/E",
-        "titleKo": "밸류에이션: S&P 500 12개월 선행 주가수익비율(NTM P/E)",
-        "desc": "At 16 times forward earnings, versus 20 for the benchmark, the equal-weight index isn’t cheap, but it looks more appealing than the broader market.",
-        "descKo": "동일가중 지수의 선행 주가수익비율(P/E)은 16배로 전체 벤치마크의 20배 대비 결코 저렴하지는 않지만, 시장 전반과 비교했을 때 더욱 매력적인 수준으로 보인다.",
-        "date": "2026-08-07",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
-        "image": "/isabelnet-charts/2026-08-08/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
