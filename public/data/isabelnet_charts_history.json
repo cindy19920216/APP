@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-08-29",
+    "charts": [
+      {
+        "title": "S&P 500 Average Monthly Returns Since 1964",
+        "titleKo": "1964년 이후 S&P 500의 월평균 수익률",
+        "desc": "September is typically a weak month for U.S. equities, and midterm years tend to make it worse. Once Election Day passes, uncertainty lifts and markets frequently improve.",
+        "descKo": "9월은 통상 미국 증시의 약세 구간이며, 중간선거가 있는 해에는 상황이 더 악화하는 경향이 있다. 선거일이 지나면 불확실성이 해소되며 시장은 종종 반등세를 보인다.",
+        "date": "2026-08-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-08-29/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance After a Positive August and YTD Between 10% and 17.5%",
+        "titleKo": "8월 상승 및 연초 대비 수익률 10~17.5% 기록 후 S&P 500 성과",
+        "desc": "History says this setup is bullish. Since 1945, when August closed in the green with the market up between 10% and 17.5% year-to-date, September through December rallied 91% of the time, with an average 5.6% return.",
+        "descKo": "역사적으로 이러한 시장 환경은 강세 신호로 해석된다. 1945년 이후 8월이 상승 마감하고 연초 대비 수익률이 10~17.5%를 기록했을 때, 9월부터 12월까지의 기간 중 91%의 확률로 상승세가 나타났으며 평균 5.6%의 수익률을 기록했다.",
+        "date": "2026-08-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-positive-august-and-ytd-between-10-and-17-5/",
+        "image": "/isabelnet-charts/2026-08-29/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식시장 집중도 – S&P 500 내 시가총액 상위 10개 기업 비중",
+        "desc": "A handful of giants now run the S&P 500. The top 10 stocks make up 39% of the index’s weight and 36% of its earnings, pushing valuations up and leaving each day’s trade more exposed to sudden swings.",
+        "descKo": "현재 소수 대형주가 S&P 500을 주도하고 있다. 상위 10개 종목이 지수 내 비중의 39%, 이익의 36%를 차지하고 있어 밸류에이션이 상승했으며, 일일 거래가 급격한 변동성에 노출될 가능성도 커졌다.",
+        "date": "2026-08-28",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-08-29/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자 심리",
+        "desc": "With the Fear & Greed Index at 58, investors are leaning greedy but not euphoric. That kind of healthy risk appetite still leaves room for the market to climb.",
+        "descKo": "공포·탐욕 지수가 58을 기록하며 투자자들은 탐욕 단계에 기울어 있으나 과열 상태는 아니다. 이러한 건전한 위험 선호 심리는 시장이 추가 상승할 여력을 남겨두고 있다.",
+        "date": "2026-08-28",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-08-29/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Market Capitalization",
+        "titleKo": "미국 주식시장 시가총액",
+        "desc": "Since ChatGPT launched, multiple expansion has contributed 25% of the surge in U.S. market cap, crushing the equity risk premium and leaving little room for error if AI demand or earnings disappoint.",
+        "descKo": "챗GPT 출시 이후 멀티플 확장이 미국 시가총액 급등분의 25%를 견인했다. 이는 주식 위험 프리미엄을 크게 낮춘 상태로, AI 수요나 실적이 기대에 미치지 못할 경우 시장이 감내할 오차 범위는 거의 없다.",
+        "date": "2026-08-28",
+        "sourceUrl": "https://www.isabelnet.com/tech-market-capitalization-of-global-sectors/",
+        "image": "/isabelnet-charts/2026-08-29/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-28",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-11",
         "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
         "image": "/isabelnet-charts/2026-08-12/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-11",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "Strong large-cap earnings pushed the Greed and Fear Index up to 83.21, as investors continued to pile into risk with few signs of concern.",
-        "descKo": "대형주들의 견조한 실적 발표가 이어지며 공포·탐욕 지수가 83.21까지 상승했다. 투자자들은 별다른 우려 없이 위험 자산에 대한 매수세를 지속하고 있다.",
-        "date": "2026-08-10",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-08-11/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 – Length of Bull Markets and When They Started",
-        "titleKo": "S&P 500 – 강세장 지속 기간 및 시작 시점",
-        "desc": "This bull market, born in October 2022, is now 3.8 years old. History shows that once a bull reaches the three-year mark, it tends to run for several more. The odds still favor more upside, even if bears aren’t ready to buy it.",
-        "descKo": "2022년 10월 시작된 이번 강세장은 현재 3.8년 차를 맞이했다. 역사적으로 강세장이 3년을 넘어서면 추가로 수년간 이어지는 경향이 있다. 하락론자들의 회의적인 시각에도 불구하고 시장의 추가 상승 가능성이 여전히 높다.",
-        "date": "2026-08-10",
-        "sourceUrl": "https://www.isabelnet.com/length-of-bull-markets-and-when-they-started/",
-        "image": "/isabelnet-charts/2026-08-11/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Hyperscaler Capex",
-        "titleKo": "하이퍼스케일러 자본지출(Capex)",
-        "desc": "U.S. hyperscaler capex is now expected to reach $799 billion this year, then rise to $1.068 trillion in 2027 and $1.301 trillion in 2028. This is starting to look less like a cycle than a structural reset.",
-        "descKo": "미국 하이퍼스케일러 기업들의 올해 자본지출 규모는 7,990억 달러로 예상되며, 2027년에는 1조 680억 달러, 2028년에는 1조 3,010억 달러까지 증가할 전망이다. 이는 단순한 순환적 흐름이라기보다 구조적인 변화의 양상을 띠고 있다.",
-        "date": "2026-08-10",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-yoy-growth-buybacks-vs-capex-and-rd/",
-        "image": "/isabelnet-charts/2026-08-11/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment Indicator and Stock Positioning",
-        "titleKo": "투자 심리 지표 및 주식 포지셔닝",
-        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator sits at 1.2. In the past, similar levels have preceded an average 1.2% rise in the S&P 500 over the following month.Image: Goldman Sachs Global Investment Research",
-        "descKo": "골드만삭스의 미국 주식 심리 지표는 1.2를 기록했다. 과거 사례를 볼 때, 이와 유사한 수준을 보였던 시기에는 이후 한 달간 S&P 500 지수가 평균 1.2% 상승했다.",
-        "date": "2026-08-10",
-        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
-        "image": "/isabelnet-charts/2026-08-11/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance Since 2025",
-        "titleKo": "2025년 이후 S&P 500 성과",
-        "desc": "After spending two months stuck in a narrow range, the S&P 500 broke decisively higher during earnings season. Investors had been underpositioned for the strength of earnings and were now scrambling to catch up.",
-        "descKo": "두 달간 좁은 박스권에 갇혀 있던 S&P 500은 실적 시즌을 거치며 확실한 상승세로 돌아섰다. 실적 강세를 예상하지 못했던 투자자들이 뒤늦게 매수에 가담하며 시장이 움직이고 있다.",
-        "date": "2026-08-10",
-        "sourceUrl": "https://www.isabelnet.com/median-quarterly-sp-500-performance/",
-        "image": "/isabelnet-charts/2026-08-11/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
