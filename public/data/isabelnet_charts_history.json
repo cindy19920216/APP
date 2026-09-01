@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-02",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 지표 분석",
+        "desc": "At 74.31, the S&P 500 is overbought. Bulls still run the show and nothing has broken technically, but don’t bet on a smooth ride from here.",
+        "descKo": "S&P 500 지수의 기술적 점수가 74.31을 기록하며 과매수 구간에 진입했다. 상승 추세가 견조하고 기술적으로 훼손된 부분은 없으나, 향후 변동성 없는 순탄한 흐름을 기대하기는 어려운 상황이다.",
+        "date": "2026-09-01",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-09-02/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Average Monthly Performance Under President Trump",
+        "titleKo": "트럼프 행정부 시기 S&P 500의 월별 평균 수익률",
+        "desc": "September seasonality is flashing green. Under President Trump, U.S. stocks have closed higher in September in four out of five years, giving bulls reason to smile.",
+        "descKo": "9월 계절성이 긍정적인 신호를 보내고 있다. 트럼프 전 대통령 재임 기간 동안 미국 증시는 5년 중 4번이나 9월에 상승 마감했으며, 이는 강세론자들에게 기대감을 주는 요소다.",
+        "date": "2026-09-01",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-performance-and-how-often-each-month-is-higher/",
+        "image": "/isabelnet-charts/2026-09-02/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – Monthly Return Stats for the S&P 500",
+        "titleKo": "계절성 분석 – S&P 500 월간 수익률 통계",
+        "desc": "Call it the September drag. Since 1964, the S&P 500 has lost an average 0.7% in the month and finished higher in just 46% of Septembers. Can the market defy the script in 2026?",
+        "descKo": "소위 '9월의 저주'가 우려된다. 1964년 이후 S&P 500은 9월에 평균 0.7% 하락했으며, 상승 마감한 비중은 46%에 불과했다. 과연 2026년에는 시장이 이러한 통념을 깰 수 있을 것인가?",
+        "date": "2026-09-01",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-monthly-return-stats-for-the-sp-500/",
+        "image": "/isabelnet-charts/2026-09-02/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Insider buying and selling are back in equilibrium, pushing the Insider Transactions Ratio back to neutral. For now, insiders are giving investors no clear message.",
+        "descKo": "내부자 매수와 매도가 다시 균형을 찾으면서 내부자 거래 비율이 중립 수준으로 회귀했다. 현재로서는 내부자들이 투자자들에게 명확한 신호를 주지 않고 있다.",
+        "date": "2026-09-01",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-09-02/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Crypto Fund Flows",
+        "titleKo": "가상자산 펀드 자금 유입",
+        "desc": "Last week, cryptocurrency funds saw their biggest weekly inflows since May, driven largely by U.S. spot Bitcoin and Ethereum ETFs. Institutional money is back, and so is the risk appetite.",
+        "descKo": "지난주 가상자산 펀드로 유입된 자금 규모가 5월 이후 최대치를 기록했다. 이는 주로 미국 현물 비트코인 및 이더리움 ETF가 견인했다. 기관 자금이 복귀하며 위험 선호 심리도 다시 살아나고 있다.",
+        "date": "2026-09-01",
+        "sourceUrl": "https://www.isabelnet.com/crypto-fund-flows/",
+        "image": "/isabelnet-charts/2026-09-02/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-01",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-13",
         "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
         "image": "/isabelnet-charts/2026-08-14/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-13",
-    "charts": [
-      {
-        "title": "S&P 500 Annual Total Return, Conditioned on Reported EPS Direction",
-        "titleKo": "발표된 EPS 방향에 따른 S&P 500 연간 총수익률",
-        "desc": "Earnings up? The S&P 500 only rallied 79% of those years. Earnings down? It still climbed 66% of the time. That’s because markets trade on expectations, not last quarter’s print.",
-        "descKo": "실적이 개선된 해에도 S&P 500이 오른 비율은 79%에 그쳤다. 실적이 악화된 해에도 66%는 상승했다. 시장은 지난 분기 실적이 아니라 기대를 반영해 움직이기 때문이다.",
-        "date": "2026-08-12",
-        "sourceUrl": "https://www.isabelnet.com/rolling-10-year-annualized-real-gdp-growth-vs-total-return-for-sp-500-index/",
-        "image": "/isabelnet-charts/2026-08-13/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Returns After >10% Months",
-        "titleKo": "월간 10% 이상 상승 이후 S&P 500 수익률",
-        "desc": "When the S&P 500 explodes higher by more than 10% in a single month, as it did in April, bulls get excited for a reason. Since 1950, the market has been higher a year later 85% of the time, with a median gain of 17.6%.",
-        "descKo": "지난 4월처럼 S&P 500이 한 달 새 10% 넘게 급등하면 강세론자들이 흥분할 만한 이유가 있다. 1950년 이후 이런 달 다음 1년간 시장이 상승한 비율은 85%였고, 중간값 상승률은 17.6%였다.",
-        "date": "2026-08-12",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-what-happens-after-10-monthly-gains/",
-        "image": "/isabelnet-charts/2026-08-13/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "EPS Revisions",
-        "titleKo": "EPS 전망치 수정",
-        "desc": "Since the start of the year, EPS revisions have trended higher across the S&P 500, STOXX 600 and Topix, with MSCI EM leading the way as confidence in 2026 earnings grows.",
-        "descKo": "연초 이후 S&P 500, STOXX 600, Topix 전반에서 EPS 전망치가 상향 조정되는 추세이며, 2026년 실적에 대한 자신감이 커지면서 MSCI EM이 가장 앞서가고 있다.",
-        "date": "2026-08-12",
-        "sourceUrl": "https://www.isabelnet.com/eps-revisions-2/",
-        "image": "/isabelnet-charts/2026-08-13/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Mega-Cap Growth & Tech Positioning",
-        "titleKo": "메가캡 성장주 및 기술주 포지셔닝",
-        "desc": "Investors have rushed back into Mega-Cap Growth and Tech, pushing positioning to the 95th percentile. The trade is now firmly overweight, but not quite at the June and last October highs.",
-        "descKo": "투자자들이 메가캡 성장주와 기술주로 다시 몰리면서 포지셔닝이 95퍼센타일까지 올라섰다. 이 트레이드는 이제 확실한 비중 확대 국면이지만, 지난 6월과 10월 고점에는 아직 못 미친다.",
-        "date": "2026-08-12",
-        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
-        "image": "/isabelnet-charts/2026-08-13/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Relative Performance of Hyperscalers to S&P 500",
-        "titleKo": "하이퍼스케일러의 S&P 500 대비 상대 성과",
-        "desc": "Hyperscalers have been trapped in a two-year range versus the S&P 500. Now the question is whether they can break out while AI capex returns remain in doubt.",
-        "descKo": "하이퍼스케일러는 S&P 500 대비 2년째 박스권에 갇혀 있다. 이제 관건은 AI 설비투자(capex) 수익성에 대한 의구심이 남은 상황에서 이 박스권을 돌파할 수 있을지다.",
-        "date": "2026-08-12",
-        "sourceUrl": "https://www.isabelnet.com/msci-emerging-market-equities-vs-sp-500-relative-performance/",
-        "image": "/isabelnet-charts/2026-08-13/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
