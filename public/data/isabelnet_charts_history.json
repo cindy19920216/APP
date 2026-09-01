@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-01",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "The Greed and Fear Index sits at 68.07, down from recent peaks as sentiment has cooled over the past two weeks. No alarm bells yet, but with September approaching, this shift in risk appetite deserves a close watch.",
+        "descKo": "공포·탐욕 지수가 68.07을 기록하며 최근 고점 대비 하락, 지난 2주간 투자 심리가 다소 진정되었다. 아직 경고 수준은 아니지만 9월을 앞두고 위험 선호 심리의 변화를 면밀히 지켜봐야 할 시점이다.",
+        "date": "2026-08-31",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-09-01/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Index Average Monthly Returns",
+        "titleKo": "계절성 – S&P 500 지수 월평균 수익률",
+        "desc": "History paints September as the worst month for U.S. stocks, with the weakest average return since 1950. But this year, August, typically sluggish in midterm years, is already up 3%. Do the odds look different this time?",
+        "descKo": "역사적으로 9월은 미국 증시에서 가장 저조한 수익률을 기록해 온 달이다. 그러나 중간선거가 있는 해의 8월은 통상 부진함에도 올해는 이미 3% 상승했다. 이번에는 과거와 다른 양상을 보일지 주목된다.",
+        "date": "2026-08-31",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-index-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-09-01/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning is only modestly overweight at the 62nd percentile, well short of crowded, so there’s still room to add risk.",
+        "descKo": "통합 주식 포지셔닝은 62퍼센타일 수준으로 완만한 비중 확대 상태에 머물러 있어, 과열과는 거리가 멀며 위험 자산을 추가할 여력은 남아 있다.",
+        "date": "2026-08-31",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-09-01/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "VIX Seasonality",
+        "titleKo": "VIX(변동성 지수)의 계절성",
+        "desc": "Summer calm rarely lasts. U.S. stock volatility usually kicks in about now. Does this time break the pattern?",
+        "descKo": "여름철의 평온함은 오래가지 않는 법이다. 미국 증시 변동성은 통상 이맘때부터 본격화되는데, 이번에도 이러한 패턴이 반복될지 여부가 관건이다.",
+        "date": "2026-08-31",
+        "sourceUrl": "https://www.isabelnet.com/vix-seasonality/",
+        "image": "/isabelnet-charts/2026-09-01/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Index P/E Valuations vs. History",
+        "titleKo": "미국 주식 지수별 선행 PER과 역사적 추이",
+        "desc": "Risk appetite hasn’t faded. The Russell 2000 trades at 25 times forward earnings, above the Nasdaq 100 at 23 times and the S&P 500 at 20 times. Yes, the market looks pricey, but money keeps flowing into stocks.",
+        "descKo": "위험 선호 심리는 여전하다. 러셀 2000 지수의 선행 주가수익비율(PER)은 25배로 나스닥 100의 23배, S&P 500의 20배를 웃돈다. 시장이 고평가 상태임에도 주식 시장으로의 자금 유입은 계속되고 있다.",
+        "date": "2026-08-31",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
+        "image": "/isabelnet-charts/2026-09-01/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-08-29",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-12",
         "sourceUrl": "https://www.isabelnet.com/msci-emerging-market-equities-vs-sp-500-relative-performance/",
         "image": "/isabelnet-charts/2026-08-13/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-12",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "With a reading of 86.38, the S&P 500 is firmly in overbought territory, while bullish sentiment shows little sign of fading.",
-        "descKo": "S&P 500 지수가 86.38을 기록하며 확실한 과매수 구간에 진입했으나, 강세 심리는 좀처럼 꺾이지 않고 있다.",
-        "date": "2026-08-11",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-08-12/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026",
-        "titleKo": "2026년 S&P 500 가격 목표치",
-        "desc": "Goldman Sachs still expects earnings to drive the S&P 500 up 17% to 8,000 in 2026, even if the path stays volatile.",
-        "descKo": "골드만삭스는 변동성 장세가 이어지더라도 기업 실적 개선에 힘입어 2026년 S&P 500 지수가 17% 상승한 8,000포인트에 도달할 것으로 전망했다.",
-        "date": "2026-08-11",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-08-12/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "At the 55th percentile, consolidated equity positioning is only modestly overweight, with room for more upside before things get stretched.",
-        "descKo": "통합 주식 포지셔닝은 55퍼센타일로 소폭 비중 확대 수준에 머물러 있어, 과열 국면 진입 전 추가 상승 여력이 남아 있다.",
-        "date": "2026-08-11",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-08-12/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders appear reluctant to buy as the Insider Transactions Ratio slides back into bearish territory.",
-        "descKo": "내부자 거래 비율이 다시 약세 영역으로 하락함에 따라 기업 내부자들은 매수에 신중한 태도를 보이고 있다.",
-        "date": "2026-08-11",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-08-12/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Large Cap MCG & Tech Positioning vs. Earnings Growth",
-        "titleKo": "대형주 MCG 및 기술주 포지셔닝 대비 실적 성장",
-        "desc": "Positioning in large-cap MCG and Tech has surged, leaving the sector overweight and much closer to where it should be given today’s earnings growth.",
-        "descKo": "대형주 MCG와 기술 섹터에 대한 포지셔닝이 급증하면서 해당 섹터의 비중은 확대되었고, 현재의 실적 성장세에 비추어 볼 때 적정 수준에 한층 가까워졌다.",
-        "date": "2026-08-11",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
-        "image": "/isabelnet-charts/2026-08-12/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
