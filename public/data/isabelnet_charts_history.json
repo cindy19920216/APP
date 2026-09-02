@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-03",
+    "charts": [
+      {
+        "title": "S&P 500 Valuation – The Shiller CAPE Since 1881",
+        "titleKo": "S&P 500 밸류에이션: 1881년 이후의 쉴러 CAPE",
+        "desc": "The S&P 500’s CAPE ratio has climbed to levels seen only in the market’s priciest episodes, when the next decade typically delivered negative real returns. History says this time is unlikely to be an exception.",
+        "descKo": "S&P 500의 CAPE 비율이 과거 시장 고평가 시기에만 나타났던 수준까지 상승했다. 당시 향후 10년간 실질 수익률은 통상적으로 마이너스를 기록했다. 역사적 데이터를 볼 때 이번에도 예외가 아닐 가능성이 높다.",
+        "date": "2026-09-02",
+        "sourceUrl": "https://www.isabelnet.com/real-sp-500-vs-valuation-cape-10/",
+        "image": "/isabelnet-charts/2026-09-03/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 – 10 Best September Returns Ever",
+        "titleKo": "S&P 500: 역대 최고의 9월 수익률 TOP 10",
+        "desc": "September is historically the worst month for U.S. stocks, but midterm election years have delivered some of the strongest Septembers on record. All four of the best September returns ever occurred in midterm years.",
+        "descKo": "9월은 역사적으로 미국 주식 시장에서 가장 부진한 달이지만, 중간선거가 있는 해에는 유독 강세를 보였다. 역대 9월 수익률 상위 4개 기록 모두 중간선거가 있었던 해에 나왔다.",
+        "date": "2026-09-02",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-10-best-september-returns-ever/",
+        "image": "/isabelnet-charts/2026-09-03/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 vs. G10 Excess Liquidity Leading Indicator",
+        "titleKo": "S&P 500 vs. G10 초과 유동성 선행 지표",
+        "desc": "G10 excess liquidity is still in negative territory, and that’s bad news for U.S. stocks over the next three to six months. As the liquidity backdrop fades, equities lose a crucial support.",
+        "descKo": "G10 국가들의 초과 유동성이 여전히 마이너스권에 머물러 있으며, 이는 향후 3~6개월간 미국 증시에 악재로 작용할 전망이다. 유동성 환경이 악화됨에 따라 주식 시장은 중요한 지지 기반을 잃고 있다.",
+        "date": "2026-09-02",
+        "sourceUrl": "https://www.isabelnet.com/msci-world-yoy-vs-vp-global-excess-liquidity-leading-indicator/",
+        "image": "/isabelnet-charts/2026-09-03/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "ISM Manufacturing Index vs. S&P 500 Index",
+        "titleKo": "ISM 제조업 지수 vs. S&P 500 지수",
+        "desc": "U.S. manufacturing cooled slightly in August. The ISM Manufacturing Index slipped to 54.6, below expectations of 55.6 and marking an eighth straight month of expansion. Growth is still on solid footing. The chart shows the correlation between the U.S. ISM Manufacturing Index and the S&P 500 index year-over-year percent change, since 2011.",
+        "descKo": "8월 미국 제조업 경기가 다소 둔화됐다. ISM 제조업 지수는 예상치인 55.6을 밑도는 54.6을 기록했으나, 8개월 연속 확장세를 유지하며 견고한 성장세를 보였다. 해당 차트는 2011년 이후 미국 ISM 제조업 지수와 S&P 500 지수의 전년 대비 등락률 간 상관관계를 보여준다.",
+        "date": "2026-09-02",
+        "sourceUrl": "https://www.isabelnet.com/ism-manufacturing-index-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-09-03/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Leveraged Fund Positions in NASDAQ-100 Futures",
+        "titleKo": "나스닥 100 선물 레버리지 펀드 포지션",
+        "desc": "Bears are piling into Nasdaq‑100 futures. Short positions have surged 35% since mid‑June and are now near record levels, setting up a sharp squeeze if momentum turns.",
+        "descKo": "나스닥 100 선물에 매도 포지션이 집중되고 있다. 숏 포지션은 6월 중순 이후 35% 급증하며 역대 최고 수준에 근접했으며, 시장 모멘텀이 전환될 경우 급격한 숏 스퀴즈가 발생할 가능성이 있다.",
+        "date": "2026-09-02",
+        "sourceUrl": "https://www.isabelnet.com/nasdaq-100-futures-positioning/",
+        "image": "/isabelnet-charts/2026-09-03/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-02",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-14",
         "sourceUrl": "https://www.isabelnet.com/equity-valuations/",
         "image": "/isabelnet-charts/2026-08-15/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-14",
-    "charts": [
-      {
-        "title": "Share of S&P 500 by Weight Eligible to Repurchase Stock",
-        "titleKo": "S&P 500 내 자사주 매입 가능 종목 비중",
-        "desc": "As S&P 500 companies emerge from earnings-related blackout periods, buyback activity is expected to resume by mid-August. That could offer some support to equities, but it is no guarantee that the S&P 500 will move higher.",
-        "descKo": "S&P 500 기업들이 실적 발표 관련 블랙아웃 기간에서 벗어나면서, 8월 중순부터 자사주 매입이 재개될 전망이다. 이는 주식 시장에 일정 부분 지지력을 제공할 수 있으나, S&P 500 지수의 상승을 보장하는 것은 아니다.",
-        "date": "2026-08-13",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-share-buybacks-by-quarter/",
-        "image": "/isabelnet-charts/2026-08-14/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Average Cumulative S&P 500 Total Returns – Invest on Any Day vs. Invest at a New High",
-        "titleKo": "S&P 500 평균 누적 총수익률 – 무작위 투자 vs 신고가 경신 시 투자 비교",
-        "desc": "Record highs make many investors nervous. But history shows that buying into strength has often delivered better forward returns than buying on an average day.",
-        "descKo": "많은 투자자가 증시의 신고가 경신에 불안감을 느낀다. 그러나 과거 데이터는 강세장에서의 매수가 평상시 매수보다 더 나은 미래 수익률을 기록했음을 보여준다.",
-        "date": "2026-08-13",
-        "sourceUrl": "https://www.isabelnet.com/average-cumulative-sp-500-total-returns/",
-        "image": "/isabelnet-charts/2026-08-14/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Ratio of Bitcoin to Production Cost",
-        "titleKo": "비트코인 시세 대비 생산 원가 비율",
-        "desc": "Bitcoin is trading at a steep discount to JPMorgan’s estimated $76,000 production cost, but the bank continues to see a bullish long-term path for the cryptocurrency.",
-        "descKo": "비트코인은 JP모건이 추산한 생산 원가인 7만 6,000달러 대비 큰 폭의 할인율로 거래되고 있으나, JP모건은 여전히 암호화폐에 대한 장기적 강세 전망을 유지하고 있다.",
-        "date": "2026-08-13",
-        "sourceUrl": "https://www.isabelnet.com/bitcoin-market-price-and-average-cost-of-production/",
-        "image": "/isabelnet-charts/2026-08-14/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 기준 주당순이익(EPS) 성장률 전망",
-        "desc": "The biggest earnings growth may come from small caps. Their profits are projected to jump 37% this year and 45% in 2027, while S&P 500 earnings are expected to rise 32% and 12%, respectively.",
-        "descKo": "가장 큰 폭의 이익 성장은 중소형주에서 나타날 가능성이 있다. 중소형주의 이익은 올해 37%, 2027년 45% 증가할 것으로 예상되는 반면, S&P 500 기업의 이익은 각각 32%와 12% 증가에 그칠 전망이다.",
-        "date": "2026-08-13",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-08-14/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도 – S&P 500 내 시가총액 상위 10개 종목 비중",
-        "desc": "Concentration has turned the S&P 500 into a top-heavy index. The biggest 10 stocks now account for 40% of its weight and 38% of earnings, pushing multiples higher and magnifying daily moves.",
-        "descKo": "시장 집중도가 심화하며 S&P 500 지수는 상위 종목 쏠림 현상이 강해졌다. 현재 상위 10개 종목이 지수 비중의 40%, 이익의 38%를 차지하고 있으며, 이는 밸류에이션 멀티플을 높이고 일일 주가 변동성을 확대하는 요인이 되고 있다.",
-        "date": "2026-08-13",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-08-14/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
