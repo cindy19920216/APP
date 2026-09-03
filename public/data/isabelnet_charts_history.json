@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-04",
+    "charts": [
+      {
+        "title": "Cumulative Bull vs. Bear Markets (Points)",
+        "titleKo": "강세장 vs 약세장 누적 수익률(포인트)",
+        "desc": "Bear markets don’t just trim gains. They can erase most of the inflation-adjusted upside from an entire bull run. Which is why a late-cycle drop is never just noise.",
+        "descKo": "약세장은 단순히 수익을 일부 줄이는 데 그치지 않는다. 강세장 동안 쌓아 올린 물가 조정 수익의 대부분을 지워버릴 수 있다. 이것이 바로 사이클 후반기의 하락을 단순한 소음으로 치부해서는 안 되는 이유다.",
+        "date": "2026-09-03",
+        "sourceUrl": "https://www.isabelnet.com/cumulative-bull-vs-bear-markets/",
+        "image": "/isabelnet-charts/2026-09-04/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Percent of S&P 500 Stocks with Dividends > 10-Year Treasury Yield",
+        "titleKo": "S&P 500 편입 종목 중 배당수익률이 10년물 국채 금리를 상회하는 종목 비중",
+        "desc": "The income trade has reversed. In July 2016, 63.4% of S&P 500 stocks yielded more than the 10-year U.S. Treasury. Today, fewer than 4.5% do, leaving Treasuries with higher yields than almost every blue-chip stock.",
+        "descKo": "인컴 투자 환경이 역전되었다. 2016년 7월에는 S&P 500 종목의 63.4%가 10년물 미 국채보다 높은 배당수익률을 기록했으나, 현재는 4.5% 미만에 불과하다. 사실상 거의 모든 우량주보다 국채의 수익률이 더 높은 상황이다.",
+        "date": "2026-09-03",
+        "sourceUrl": "https://www.isabelnet.com/of-sp-500-stocks-with-a-dividend-yield-above-stated-levels/",
+        "image": "/isabelnet-charts/2026-09-04/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary Positioning vs. Earning Growth",
+        "titleKo": "경기소비재 포지셔닝 vs 이익 성장률",
+        "desc": "Discretionary positioning is lagging earnings growth, which means the rally isn’t done yet. If revisions stay supportive and macro risks stay in check, expect more cash to move into equities.",
+        "descKo": "경기소비재 섹터의 포지셔닝이 이익 성장률을 따라가지 못하고 있으며, 이는 랠리가 아직 끝나지 않았음을 의미한다. 실적 전망치가 견조하게 유지되고 거시경제적 위험이 통제된다면, 주식 시장으로의 자금 유입은 더욱 확대될 전망이다.",
+        "date": "2026-09-03",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-investors-equity-positioning-vs-sp-500-eps-revision-ratio/",
+        "image": "/isabelnet-charts/2026-09-04/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Rebased to Sept 1 = 100 of Each Midterm Years",
+        "titleKo": "중간선거 연도 9월 1일 기준 S&P 500 지수 재산출(100=기준)",
+        "desc": "Midterm years tend to weigh on stocks, and September deserves extra care. Since WWII, the S&P 500 has fallen an average of 1.5% from Sept. 1 to its low, which tends to arrive in early October.",
+        "descKo": "중간선거가 있는 해에는 주식 시장이 압박을 받는 경향이 있으며, 특히 9월은 각별한 주의가 필요하다. 제2차 세계대전 이후 S&P 500은 9월 1일부터 10월 초순에 나타나는 저점까지 평균 1.5% 하락했다.",
+        "date": "2026-09-03",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-price-forecast-2/",
+        "image": "/isabelnet-charts/2026-09-04/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Volatility – VIX Index Average",
+        "titleKo": "변동성 – VIX 지수 평균",
+        "desc": "Summer calm often gives way to autumn volatility. Are markets braced for a rougher ride ahead?",
+        "descKo": "여름의 평온함은 종종 가을의 변동성으로 이어진다. 시장은 앞으로 다가올 거친 흐름에 대비하고 있는가?",
+        "date": "2026-09-03",
+        "sourceUrl": "https://www.isabelnet.com/volatility-average-vix-vs-short-term-rates-levels/",
+        "image": "/isabelnet-charts/2026-09-04/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-03",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-17",
         "sourceUrl": "https://www.isabelnet.com/weekly-gold-fund-flows-2/",
         "image": "/isabelnet-charts/2026-08-18/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-15",
-    "charts": [
-      {
-        "title": "S&P 500 Annual Total Return by Change in Reported EPS",
-        "titleKo": "S&P 500의 연간 총수익률과 보고된 EPS 변화의 상관관계",
-        "desc": "Earnings drive corrections by severity, not direction. The deeper the earnings decline, the deeper the market decline. Every 20% market drop has arrived alongside a meaningful earnings decline, without exception.",
-        "descKo": "기업 실적은 조정의 방향이 아닌 강도를 결정한다. 실적 하락 폭이 클수록 시장의 하락 폭도 깊어지며, 예외 없이 20% 이상의 시장 하락은 모두 유의미한 실적 악화와 함께 나타났다.",
-        "date": "2026-08-14",
-        "sourceUrl": "https://www.isabelnet.com/time-series-of-sp-500-price-forward-eps-and-price-to-forward-eps/",
-        "image": "/isabelnet-charts/2026-08-15/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "VIX Seasonality",
-        "titleKo": "VIX(변동성 지수)의 계절성",
-        "desc": "The market’s summer calm does not always last. Volatility often picks up from late July into the autumn, setting the stage for a bumpier ride in U.S. stocks.",
-        "descKo": "여름철 시장의 평온함은 항상 지속되지 않는다. 7월 말부터 가을까지는 변동성이 확대되는 경향이 있어 미국 증시의 불안정한 흐름을 예고한다.",
-        "date": "2026-08-14",
-        "sourceUrl": "https://www.isabelnet.com/vix-seasonality/",
-        "image": "/isabelnet-charts/2026-08-15/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수와 투자자 심리",
-        "desc": "The Fear & Greed Index sits at 66, firmly in greed territory. Risk appetite is healthy, not euphoric. There’s still enough fuel to push the market higher.",
-        "descKo": "공포·탐욕 지수가 66을 기록하며 탐욕 구간에 머물러 있다. 위험 선호 심리는 과열되지 않고 건전한 수준이며, 시장을 추가로 밀어 올릴 동력은 여전히 충분하다.",
-        "date": "2026-08-14",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-15/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Median 2-Week S&P 500 Returns",
-        "titleKo": "S&P 500의 2주간 수익률 중앙값",
-        "desc": "Since 1950, the S&P 500 has tended to post stronger returns in the second half of August than in the first. Could that pave the way for new all-time highs?",
-        "descKo": "1950년 이후 S&P 500은 8월 상반기보다 하반기에 더 높은 수익률을 기록하는 경향을 보였다. 이러한 흐름이 사상 최고치 경신으로 이어질 수 있을지 주목된다.",
-        "date": "2026-08-14",
-        "sourceUrl": "https://www.isabelnet.com/median-2-week-sp-500-returns/",
-        "image": "/isabelnet-charts/2026-08-15/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Equity Valuation Metrics (Z-Score Since 1900)",
-        "titleKo": "미국 주식 가치 평가 지표(1900년 이후 Z-스코어)",
-        "desc": "U.S. stocks have priced in a lot of good news, with most valuation metrics more than two standard deviations above their historical averages. But momentum could keep the rally going longer than many expect.",
-        "descKo": "미국 주식은 대부분의 가치 평가 지표가 역사적 평균 대비 두 표준편차를 상회하며 많은 호재를 선반영하고 있다. 그러나 모멘텀이 뒷받침된다면 예상보다 긴 랠리가 이어질 가능성이 있다.",
-        "date": "2026-08-14",
-        "sourceUrl": "https://www.isabelnet.com/equity-valuations/",
-        "image": "/isabelnet-charts/2026-08-15/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
