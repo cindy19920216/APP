@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-05",
+    "charts": [
+      {
+        "title": "S&P 500 Shiller CAPE Ratio – Average Real Returns Over the Following 10 Years, by Starting CAPE",
+        "titleKo": "S&P 500 쉴러 CAPE 비율: 시작 시점의 CAPE에 따른 향후 10년 평균 실질 수익률",
+        "desc": "With the CAPE ratio now above 40, the setup for the next decade looks grim. In past episodes at the current level, US equities went on to deliver negative real returns, averaging roughly −2.6% a year.",
+        "descKo": "현재 CAPE 비율이 40을 상회하면서 향후 10년 전망은 어두워 보인다. 과거 비슷한 수준을 기록했던 시기, 미국 주식은 연평균 약 -2.6%의 실질 수익률을 기록했다.",
+        "date": "2026-09-04",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cape-valuations/",
+        "image": "/isabelnet-charts/2026-09-05/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Index Performance After The First Fed Rate Hike",
+        "titleKo": "연준의 첫 금리 인상 이후 S&P 500 지수 성과",
+        "desc": "Historically, the S&P 500 has weathered the Fed’s first rate hike better than investors might expect. Following an initial 25 bp move, the index often stumbles early but, in every cycle since 1990, has been higher a year later.",
+        "descKo": "역사적으로 S&P 500 지수는 투자자들의 우려보다 연준의 첫 금리 인상을 잘 견뎌왔다. 25bp의 첫 인상 이후 지수는 초기에는 흔들리는 경향이 있으나, 1990년 이후 모든 사이클에서 1년 뒤 지수는 더 높은 수준을 기록했다.",
+        "date": "2026-09-04",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-performance-after-the-first-fed-rate-hike/",
+        "image": "/isabelnet-charts/2026-09-05/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포와 탐욕 지수: 투자자 심리",
+        "desc": "The Fear & Greed Index is sitting at 35, putting the market firmly in fear territory but not at panic levels. That leaves room for U.S. stocks to edge higher if the headlines turn more supportive.",
+        "descKo": "공포와 탐욕 지수가 35를 기록하며 시장은 공포 국면에 머물러 있으나 패닉 수준은 아니다. 시장 분위기가 우호적으로 개선될 경우 미국 증시는 완만한 상승세를 보일 여지가 있다.",
+        "date": "2026-09-04",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-09-05/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수: 투자자 심리",
+        "desc": "After hitting a new +2-year high at 102.7 last week, the NAAIM Exposure Index fell sharply to 85.6. Even so, active managers remain heavily exposed to equities and firmly bullish on U.S. stocks. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "지난주 102.7로 2년여 만에 최고치를 기록했던 NAAIM 익스포저 지수가 85.6으로 급락했다. 그럼에도 액티브 매니저들은 여전히 주식 비중을 높게 유지하며 미국 증시에 대해 강한 낙관론을 견지하고 있다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원사들의 미국 주식 노출도 2주 평균을 추적한다.",
+        "date": "2026-09-04",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-09-05/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Survey – Where Do You Expect the S&P 500 Index to Be in the Next 12 Months?",
+        "titleKo": "설문: 향후 12개월 S&P 500 지수 전망은?",
+        "desc": "Half of BCA’s clients see the S&P 500 up 10% or more over the next year, backed by AI-fueled earnings, light corporate leverage and good-old FOMO. Just 13% brace for a double-digit drop.",
+        "descKo": "BCA 고객의 절반은 AI가 주도하는 실적 성장과 낮은 기업 부채, FOMO(소외되는 것에 대한 두려움) 심리에 힘입어 향후 1년간 S&P 500 지수가 10% 이상 상승할 것으로 내다봤다. 두 자릿수 하락을 예상한 비중은 13%에 불과하다.",
+        "date": "2026-09-04",
+        "sourceUrl": "https://www.isabelnet.com/how-survey-responders-think-the-sp-500-will-perform-over-the-year-ahead/",
+        "image": "/isabelnet-charts/2026-09-05/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-04",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-18",
         "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
         "image": "/isabelnet-charts/2026-08-19/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-18",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "With the Greed and Fear Index at 86.63, risk appetite is running hot. That is helping fuel the rally, but it also leaves the market vulnerable to a short-term peak or a period of consolidation.",
-        "descKo": "공포·탐욕 지수가 86.63을 기록하며 위험 자산 선호 심리가 과열되고 있다. 이는 증시 랠리를 뒷받침하고 있으나, 시장이 단기 고점에 도달하거나 조정 국면에 진입할 위험 또한 높이고 있다.",
-        "date": "2026-08-17",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-08-18/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026",
-        "titleKo": "2026년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs is sticking with its call for earnings to push the S&P 500 to 8,000 in 2026, a 17% annual return even if the road there stays bumpy.",
-        "descKo": "골드만삭스는 기업 이익 성장을 근거로 2026년 S&P 500 지수가 8,000포인트에 도달할 것이라는 전망을 유지했다. 이는 시장의 변동성이 지속되더라도 연평균 17%의 수익률을 기대할 수 있다는 분석이다.",
-        "date": "2026-08-17",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-08-18/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "At the 58th percentile, consolidated equity positioning sits modestly overweight, with plenty of room to run before crowding becomes a concern.",
-        "descKo": "통합 주식 포지셔닝은 58퍼센타일 수준으로 완만한 비중 확대 상태를 보이고 있다. 시장 과열을 우려할 단계까지는 아직 충분한 여유가 있는 것으로 평가된다.",
-        "date": "2026-08-17",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-08-18/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Indexed Returns of AI-Related Portfolios vs. Equal-Weight S&P 500",
-        "titleKo": "AI 관련 포트폴리오와 S&P 500 동일가중지수의 수익률 비교",
-        "desc": "The AI rally has largely been an infrastructure trade, rewarding chipmakers, data-center builders and cloud platforms, while leaving software and productivity stocks behind.",
-        "descKo": "AI 랠리는 주로 인프라 관련주를 중심으로 전개됐다. 반도체 제조사, 데이터센터 구축 업체, 클라우드 플랫폼이 강세를 보인 반면, 소프트웨어 및 생산성 관련주는 상대적으로 소외됐다.",
-        "date": "2026-08-17",
-        "sourceUrl": "https://www.isabelnet.com/indexed-return-of-fangmat-vs-the-field/",
-        "image": "/isabelnet-charts/2026-08-18/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Flows into Gold Funds",
-        "titleKo": "금 펀드로의 자금 유입",
-        "desc": "Demand for gold funds is picking up again as retail investors return to ETFs, central banks keep adding to their reserves and the macro backdrop continues to favor gold.",
-        "descKo": "개인 투자자들의 ETF 매수세가 재개되고 중앙은행의 금 매입이 지속되는 가운데, 우호적인 거시경제 환경이 조성되면서 금 펀드에 대한 수요가 다시 증가하고 있다.",
-        "date": "2026-08-17",
-        "sourceUrl": "https://www.isabelnet.com/weekly-gold-fund-flows-2/",
-        "image": "/isabelnet-charts/2026-08-18/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
