@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-09",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "The Greed and Fear Index is at 68.43, down from recent peaks as sentiment cools over the last three weeks. Not a red flag, but with September in play, this softening in risk appetite bears watching.",
+        "descKo": "공포·탐욕 지수가 68.43을 기록하며 최근 고점 대비 하락해 지난 3주간 투자 심리가 다소 진정되었습니다. 당장 경고 신호는 아니지만, 9월 장세를 앞두고 나타나는 이러한 위험 선호 심리 위축은 예의주시할 필요가 있습니다.",
+        "date": "2026-09-08",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-09-09/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Risk Indicator and S&P 500",
+        "titleKo": "미국 주식 위험 지표와 S&P 500",
+        "desc": "The U.S. Equity Risk Indicator is flashing red, warning that the S&P 500 may be running hot. History shows that once this metric hits extreme levels, significant equity drawdowns often follow.",
+        "descKo": "미국 주식 위험 지표에 적신호가 켜지며 S&P 500 지수가 과열권에 진입했을 가능성을 경고하고 있습니다. 과거 사례를 보면 이 지표가 극단적인 수준에 도달했을 때 상당한 폭의 주가 하락이 뒤따르는 경향이 있었습니다.",
+        "date": "2026-09-08",
+        "sourceUrl": "https://www.isabelnet.com/equity-risk-indicator-and-sp-500/",
+        "image": "/isabelnet-charts/2026-09-09/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning sits modestly overweight at the 65th percentile. With positioning well below crowded levels, there’s still room to add risk.",
+        "descKo": "통합 주식 포지셔닝은 65퍼센타일 수준으로 완만한 비중 확대(overweight) 상태를 보이고 있습니다. 포지션이 과밀 구간을 크게 밑돌고 있어 위험 자산을 추가할 여력이 남아 있습니다.",
+        "date": "2026-09-08",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-09-09/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Insider buying and selling are in balance, with the Insider Transactions Ratio stuck in neutral. For now, insiders aren’t sending investors a clear signal.",
+        "descKo": "내부자 매수와 매도가 균형을 이루며 내부자 거래 비율이 중립 수준에 머물고 있습니다. 현재로서는 내부자들이 투자자들에게 뚜렷한 신호를 보내지 않고 있습니다.",
+        "date": "2026-09-08",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-09-09/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Gold Net Speculative Positioning",
+        "titleKo": "금 순 투기적 포지셔닝",
+        "desc": "Speculative positioning in gold has reversed sharply in recent weeks. Goldman Sachs still sees prices reaching $4,900 an ounce by the end of 2026.",
+        "descKo": "최근 수주 사이 금에 대한 투기적 포지셔닝이 급격히 반전되었습니다. 골드만삭스는 여전히 2026년 말 금 가격이 온스당 4,900달러에 도달할 것으로 전망합니다.",
+        "date": "2026-09-08",
+        "sourceUrl": "https://www.isabelnet.com/gold-and-u-s-dollar-futures-positions/",
+        "image": "/isabelnet-charts/2026-09-09/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-05",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-19",
         "sourceUrl": "https://www.isabelnet.com/consumer-staples-positioning/",
         "image": "/isabelnet-charts/2026-08-20/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-19",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 85.03, the S&P 500 remains firmly overbought, with bullish sentiment showing few signs of cooling.",
-        "descKo": "85.03을 기록한 S&P 500은 여전히 강력한 과매수 상태이며, 강세 심리는 식을 기미를 보이지 않고 있다.",
-        "date": "2026-08-18",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-08-19/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
-        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합",
-        "desc": "The S&P 500 Cycle Composite still points to a constructive year for 2026, but the near-term path may be bumpy. U.S. stocks are entering their weakest seasonal stretch, which typically runs from mid-August through early October.",
-        "descKo": "S&P 500 사이클 종합은 여전히 2026년에 대해 긍정적인 전망을 제시하고 있으나, 단기적인 흐름은 불안정할 수 있다. 미국 주식 시장은 통상 8월 중순부터 10월 초까지 이어지는 연중 가장 취약한 계절적 구간에 진입하고 있다.",
-        "date": "2026-08-18",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
-        "image": "/isabelnet-charts/2026-08-19/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "GS Financial Conditions Index",
-        "titleKo": "골드만삭스 금융상황지수",
-        "desc": "U.S. financial conditions excluding equities have tightened slightly, but the overall stance remains easy and supportive of growth rather than restrictive.",
-        "descKo": "주식을 제외한 미국 금융 상황은 소폭 긴축되었으나, 전반적인 기조는 여전히 완화적이며 긴축보다는 성장을 뒷받침하는 수준이다.",
-        "date": "2026-08-18",
-        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
-        "image": "/isabelnet-charts/2026-08-19/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Buying and selling are now in balance, pushing the Insider Transactions Ratio back into neutral territory. For now, insiders are giving investors no clear message.",
-        "descKo": "현재 매수와 매도가 균형을 이루며 내부자 거래 비율이 중립 영역으로 복귀했다. 당분간 내부자들은 투자자들에게 명확한 신호를 보내지 않고 있다.",
-        "date": "2026-08-18",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-08-19/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자자 vs 체계적 투자자 포지셔닝",
-        "desc": "Systematic strategies sit in the 76th percentile and still overweight, while discretionary investors are only in the 44th percentile and remain slightly underweight, leaving plenty of room to add risk.",
-        "descKo": "체계적 전략은 76 백분위수로 여전히 비중 확대 상태인 반면, 재량적 투자자들은 44 백분위수에 머물며 소폭 비중 축소 상태를 유지하고 있어 위험 자산을 추가할 여력이 충분하다.",
-        "date": "2026-08-18",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-08-19/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
