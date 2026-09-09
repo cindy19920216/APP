@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-10",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 73.33, the S&P 500 is slightly overbought. Bulls remain in control and the technical picture is intact, but the path ahead is likely to be bumpy rather than smooth.",
+        "descKo": "73.33을 기록 중인 S&P 500은 다소 과매수 상태입니다. 상승세가 시장을 주도하며 기술적 지표는 견고하나, 향후 시장의 흐름은 평탄하기보다 변동성이 클 것으로 전망됩니다.",
+        "date": "2026-09-09",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-09-10/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Around First Fed Rate Hikes vs. Speed of Hikes",
+        "titleKo": "연준의 첫 금리 인상 시기 및 속도와 S&P 500의 상관관계",
+        "desc": "In fast tightening cycles, the S&P 500 typically struggles in the 12 months post-first hike; in slow or no cycles, it tends to rally. Near term, stocks stay shaky until investors believe in a “slow-hike” or “one-and-done” Fed.",
+        "descKo": "급격한 긴축 국면에서 S&P 500은 첫 금리 인상 후 12개월 동안 부진을 겪는 경향이 있는 반면, 완만한 긴축이나 동결 기조에서는 반등하는 경향이 있습니다. 단기적으로는 연준의 '완만한 금리 인상'이나 '일회성 인상'에 대한 시장의 신뢰가 형성되기 전까지 주가는 불안정한 흐름을 보일 것입니다.",
+        "date": "2026-09-09",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-around-first-fed-rate-hikes-vs-speed-of-hikes/",
+        "image": "/isabelnet-charts/2026-09-10/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자자와 체계적 투자자의 주식 포지셔닝 비교",
+        "desc": "Systematic strategies are still leaning bullish, sitting in the 85th percentile and firmly overweight. Discretionary investors are more cautious, back to neutral at the 47th percentile, with room to add risk.",
+        "descKo": "체계적 전략은 여전히 낙관론을 유지하며 85퍼센타일 수준에서 확실한 비중 확대 전략을 취하고 있습니다. 반면 재량적 투자자들은 47퍼센타일의 중립 수준으로 복귀하며 신중한 태도를 보이고 있어, 추가적인 위험 자산 편입 여력이 남아 있습니다.",
+        "date": "2026-09-09",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-09-10/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Forward P/E Ratio and Subsequent 5-Year Returns",
+        "titleKo": "S&P 500 선행 주가수익비율(Forward P/E)과 향후 5년 수익률",
+        "desc": "With U.S. equities still trading as if nothing can go wrong, the next five years are likely to deliver thinner returns. The businesses are outstanding, but price still matters. Overpay, and even the best stocks can disappoint.",
+        "descKo": "미국 주식 시장이 여전히 낙관론에 취해 있는 상황에서 향후 5년간의 수익률은 낮아질 가능성이 큽니다. 기업들의 실적은 뛰어나지만 가격은 여전히 중요합니다. 지나치게 높은 가격에 매수한다면 최고의 우량주라도 실망스러운 결과를 가져올 수 있습니다.",
+        "date": "2026-09-09",
+        "sourceUrl": "https://www.isabelnet.com/forward-p-e-ratio-and-subsequent-5-year-annualized-returns/",
+        "image": "/isabelnet-charts/2026-09-10/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Temporary Help Services Jobs vs. Real GDP and U.S. Recessions",
+        "titleKo": "임시 인력 서비스업 고용 지표와 실질 GDP 및 미국 경기 침체",
+        "desc": "Temporary Help Services Jobs stand at 1.46% YoY in August. The relationship between Temporary Help Services jobs and the macroeconomy is complex. Declines in Temporary Help Services Jobs are often considered a leading indicator of a potential recession (red line at -3.5%), but they do not always guarantee one, as other economic factors can impact the labor market and job growth. However, when Temporary Help Services Jobs were below -3.5% YoY in 2001, 2007 and 2020, a recession was on the horizon in the United States.",
+        "descKo": "8월 임시 인력 서비스업 고용 지표는 전년 동기 대비 1.46% 증가했습니다. 임시직 고용과 거시 경제의 관계는 복잡합니다. 임시직 고용의 감소는 종종 경기 침체의 선행 지표(적색선 -3.5%)로 간주되지만, 다른 경제 요인들이 노동 시장과 고용 성장에 영향을 미칠 수 있어 항상 경기 침체를 보장하지는 않습니다. 다만 2001년, 2007년, 2020년과 같이 임시직 고용이 전년 대비 -3.5% 미만으로 떨어졌을 당시에는 미국에 경기 침체가 닥쳤습니다.",
+        "date": "2026-09-09",
+        "sourceUrl": "https://www.isabelnet.com/temporary-help-services-vs-real-gdp-and-u-s-recession/",
+        "image": "/isabelnet-charts/2026-09-10/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-09",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-20",
         "sourceUrl": "https://www.isabelnet.com/major-u-s-mutual-funds-net-exposure-to-u-s-equities/",
         "image": "/isabelnet-charts/2026-08-21/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-20",
-    "charts": [
-      {
-        "title": "S&P 500 CAPE Valuations and 10 Year Annualized Real Return",
-        "titleKo": "S&P 500 쉴러 CAPE 지수와 10년 연평균 실질 수익률",
-        "desc": "The S&P 500 is trading at a Shiller CAPE ratio seen only during some of the market’s most expensive periods. That kind of optimism can weigh on real returns in the years ahead, creating a difficult backdrop for risk assets.",
-        "descKo": "S&P 500이 시장 역사상 가장 고평가되었던 시기들에나 볼 수 있었던 수준의 쉴러 CAPE 지수에서 거래되고 있다. 이러한 낙관론은 향후 수년간 실질 수익률에 부담으로 작용하며 위험 자산 운용에 어려운 배경을 조성할 수 있다.",
-        "date": "2026-08-19",
-        "sourceUrl": "https://www.isabelnet.com/forward-10-year-real-returns-and-cape-valuations/",
-        "image": "/isabelnet-charts/2026-08-20/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Truck Tonnage vs. S&P 500 Index",
-        "titleKo": "트럭 운송 물동량 지수와 S&P 500 지수 비교",
-        "desc": "The Truck Tonnage Index fell 1% in July. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.68 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
-        "descKo": "7월 트럭 운송 물동량 지수가 1% 하락했다. 트럭 운송은 미국 화물 운송의 72.7%를 차지하며 미국 경제의 바로미터 역할을 한다. 해당 차트는 역사적으로 미국 증시가 미국 경제의 물리적 규모 및 확장과 궤를 같이하며 상승해 왔음을 보여준다(2002년 이후 결정계수 R²=0.68). 트럭 운송 물동량 지수가 미국 증시의 선행 지표는 아니지만, 미국 증시가 실물 경제의 팽창과 수축을 어떻게 따라왔는지 보여주는 흥미로운 지표다.",
-        "date": "2026-08-19",
-        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
-        "image": "/isabelnet-charts/2026-08-20/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuations – 12-Month Forward P/E Ranges (MSCI Regions)",
-        "titleKo": "밸류에이션 – 12개월 선행 PER 범위 (MSCI 지역별)",
-        "desc": "U.S. and global stocks still look expensive, but earnings growth is justifying the price tag. As long as the profit trend holds, that premium is more a tax on optimism than a red flag.",
-        "descKo": "미국 및 글로벌 증시는 여전히 고평가 상태로 보이지만, 이익 성장이 현재의 가격대를 정당화하고 있다. 이익 추세가 유지되는 한, 현재의 프리미엄은 경고 신호라기보다 낙관론에 대한 비용 정도로 해석된다.",
-        "date": "2026-08-19",
-        "sourceUrl": "https://www.isabelnet.com/valuation-12-month-forward-p-e-ranges-msci-regions/",
-        "image": "/isabelnet-charts/2026-08-20/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 EPS 성장 전망치",
-        "desc": "Small caps could deliver the biggest earnings surge. Profits are set to jump 34% this year and 47% in 2027, versus 32% and 12% for the S&P 500.",
-        "descKo": "중소형주가 가장 큰 폭의 이익 급증을 기록할 것으로 보인다. 올해와 2027년 중소형주의 이익은 각각 34%와 47% 증가할 것으로 예상되며, 이는 S&P 500의 32% 및 12%와 대비된다.",
-        "date": "2026-08-19",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-08-20/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Large Cap Consumer Staples Positioning",
-        "titleKo": "대형주 필수소비재 포지셔닝",
-        "desc": "Positioning in large-cap consumer staples sits in the 13th percentile, with investors heavily underweight. Even a small lift in sentiment could be enough to spark a bounce.",
-        "descKo": "대형 필수소비재에 대한 포지셔닝은 13% 수준에 머물러 있어 투자자들의 비중 축소 기조가 뚜렷하다. 투자 심리의 소폭 개선만으로도 반등을 유도하기에 충분한 상황이다.",
-        "date": "2026-08-19",
-        "sourceUrl": "https://www.isabelnet.com/consumer-staples-positioning/",
-        "image": "/isabelnet-charts/2026-08-20/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
