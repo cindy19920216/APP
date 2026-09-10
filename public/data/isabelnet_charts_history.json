@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-11",
+    "charts": [
+      {
+        "title": "S&P 500 – September Average Monthly Return",
+        "titleKo": "S&P 500 – 9월 월간 평균 수익률",
+        "desc": "Since 1928, September has been the only month to post an average loss, falling 1.1%, or 1.5% in midterm years. Its second half also contains the calendar’s weakest two-week stretch. Could history repeat?",
+        "descKo": "1928년 이후 9월은 평균 손실을 기록한 유일한 달로, 평균 1.1%, 중간선거가 있는 해에는 1.5% 하락했다. 9월 하반기는 연중 가장 약세를 보이는 2주간에 해당한다. 역사가 되풀이될지 주목된다.",
+        "date": "2026-09-10",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-historical-september-monthly-total-returns/",
+        "image": "/isabelnet-charts/2026-09-11/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Index – Trend Channel",
+        "titleKo": "S&P 500 지수 – 추세 채널",
+        "desc": "After a relentless rally since 2009, the S&P 500’s secular bull market looks mature, the long-term trend channel signaling rising risks beneath the surface momentum.",
+        "descKo": "2009년 이후 거침없는 랠리를 이어온 S&P 500의 장기 강세장은 성숙기에 접어든 것으로 보인다. 장기 추세 채널은 표면적인 모멘텀 이면에 잠재된 위험이 커지고 있음을 시사한다.",
+        "date": "2026-09-10",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-long-term-trend-and-expected-returns/",
+        "image": "/isabelnet-charts/2026-09-11/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Earnings Growth – Mag 7 and S&P 500 ex-Mag 7",
+        "titleKo": "이익 성장 – 매그니피센트 7과 S&P 500(매그니피센트 7 제외)",
+        "desc": "The Magnificent Seven are headed for 57% earnings growth this year, compared with 23% for the rest of the S&P 500. With tech still running hot, fading them feels like a losing bet.",
+        "descKo": "매그니피센트 7 종목들의 올해 이익 성장률은 57%로 예상되는 반면, 나머지 S&P 500 종목들은 23%에 그칠 전망이다. 기술주가 여전히 강세를 보이는 상황에서 이들을 배제하는 것은 위험한 투자로 여겨진다.",
+        "date": "2026-09-10",
+        "sourceUrl": "https://www.isabelnet.com/eps-earnings-per-share-growth-forecast/",
+        "image": "/isabelnet-charts/2026-09-11/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Median Short Interest Across U.S. Stocks",
+        "titleKo": "미국 주식 전체의 중앙값 공매도 잔고",
+        "desc": "Since 2022, traders have gradually piled into bearish bets on U.S. stocks, leaving the market vulnerable to a sharp short squeeze if momentum turns.",
+        "descKo": "2022년 이후 트레이더들은 미국 주식에 대한 약세 베팅을 점진적으로 늘려왔으며, 이는 모멘텀이 반전될 경우 시장이 급격한 숏스퀴즈에 취약해질 수 있음을 의미한다.",
+        "date": "2026-09-10",
+        "sourceUrl": "https://www.isabelnet.com/russell-3000-single-stocks-plus-etfs-shorts/",
+        "image": "/isabelnet-charts/2026-09-11/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality of the VIX Index",
+        "titleKo": "VIX 지수의 계절성",
+        "desc": "Middle East tensions, surging oil prices, higher yields and a U.S. midterm election are all flashing warning signs, but 2026 has so far defied the usual seasonal jump in volatility.",
+        "descKo": "중동 긴장 고조, 유가 급등, 금리 상승, 미국 중간선거 등이 모두 경고 신호를 보내고 있으나, 2026년 현재까지는 일반적인 계절적 변동성 확대 현상이 나타나지 않고 있다.",
+        "date": "2026-09-10",
+        "sourceUrl": "https://www.isabelnet.com/vix-seasonal-composite/",
+        "image": "/isabelnet-charts/2026-09-11/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-10",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-21",
         "sourceUrl": "https://www.isabelnet.com/healthcare-positioning/",
         "image": "/isabelnet-charts/2026-08-22/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-21",
-    "charts": [
-      {
-        "title": "S&P 500 – Real Growth of $1 in U.S. Stocks",
-        "titleKo": "S&P 500 – 미국 주식에 투자한 1달러의 실질 성장",
-        "desc": "Since 1871, U.S. stocks have spent about three out of every four months below a previous peak. The trend line goes up, but the typical investor experience is more red ink than new highs.",
-        "descKo": "1871년 이후 미국 주식은 전체 기간의 약 4분의 3에 해당하는 달을 이전 고점 아래에서 보냈다. 추세선은 우상향하지만, 일반 투자자가 체감하는 현실은 신고점 경신보다 마이너스 구간이 더 많다.",
-        "date": "2026-08-20",
-        "sourceUrl": "https://www.isabelnet.com/real-sp-500-market-doubles/",
-        "image": "/isabelnet-charts/2026-08-21/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Abnormal Returns",
-        "titleKo": "S&P 500 비정상 수익률",
-        "desc": "The market keeps rewarding the stubborn. For more than 25 years, U.S. equities have brushed off one wave of bad news after another. Bull markets don’t wait for the headlines to improve. They climb, one worry at a time.",
-        "descKo": "시장은 꾸준히 버틴 투자자에게 계속 보상해왔다. 25년 넘게 미국 주식은 잇따른 악재를 그때그때 털어내며 올랐다. 강세장은 헤드라인이 좋아지기를 기다리지 않는다 — 하나씩 걱정거리를 넘어서며 오를 뿐이다.",
-        "date": "2026-08-20",
-        "sourceUrl": "https://www.isabelnet.com/returns-sp-500-vs-sp-ex-faanmg/",
-        "image": "/isabelnet-charts/2026-08-21/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식시장 쏠림 현상 – S&P 500 전체 대비 시가총액 상위 10개 기업 비중",
-        "desc": "A handful of giants now run the S&P 500. The biggest 10 stocks account for 39% of the index’s weight and 37% of its earnings, driving multiples higher and making each session more prone to sharp swings.",
-        "descKo": "이제 소수의 거대 기업들이 S&P 500을 움직인다. 시가총액 상위 10개 종목이 지수 비중의 39%, 이익의 37%를 차지하면서 밸류에이션(멀티플)을 끌어올리고, 하루하루의 변동성도 더 커지게 만들고 있다.",
-        "date": "2026-08-20",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-08-21/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Cumulative Sector ETF Flows",
-        "titleKo": "섹터별 ETF 누적 자금 유입",
-        "desc": "Tech demand is showing the first faint signs of a pause. It’s far too early to call a change in trend, but investors are cautiously starting to rotate into cyclicals and defensives.",
-        "descKo": "기술주에 대한 수요가 처음으로 미세한 정체 조짐을 보이고 있다. 추세 전환이라고 단정하기엔 아직 너무 이르지만, 투자자들은 조심스럽게 경기민감주와 방어주로 자금을 옮기기 시작했다.",
-        "date": "2026-08-20",
-        "sourceUrl": "https://www.isabelnet.com/cumulative-equity-sector-flows-single-stock-vs-etf/",
-        "image": "/isabelnet-charts/2026-08-21/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Estimated Exposure to AI Automation",
-        "titleKo": "AI 자동화 노출도 추정",
-        "desc": "Investors have begun punishing U.S. sectors perceived as most exposed to AI-driven automation, even when those companies still show steady fundamentals, while rewarding the companies supplying the tools behind the boom.",
-        "descKo": "투자자들은 AI발 자동화에 가장 많이 노출됐다고 여겨지는 미국 섹터들을, 펀더멘털이 여전히 견조한데도 불구하고 매도하기 시작했다. 반면 이 붐을 뒷받침하는 도구를 공급하는 기업들에는 오히려 후한 평가를 주고 있다.",
-        "date": "2026-08-20",
-        "sourceUrl": "https://www.isabelnet.com/major-u-s-mutual-funds-net-exposure-to-u-s-equities/",
-        "image": "/isabelnet-charts/2026-08-21/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
