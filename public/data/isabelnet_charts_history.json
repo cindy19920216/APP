@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-12",
+    "charts": [
+      {
+        "title": "Valuation – S&P 500 PEG Ratio",
+        "titleKo": "밸류에이션 – S&P 500 PEG 비율",
+        "desc": "Fwd P/E? Rich. PEG? Cheap, because long-term earnings-growth estimates are the highest since 1995. That low PEG is just blockbuster growth expectation. A recession or an AI-spending slowdown could quickly turn that narrative.",
+        "descKo": "선행 PER은 높지만, 장기 이익 성장 전망치가 1995년 이래 최고 수준을 기록하면서 PEG 비율은 저평가 국면을 나타내고 있음. 낮은 PEG 비율은 기록적인 성장 기대감을 반영한 결과이나, 경기 침체나 AI 관련 지출이 둔화될 경우 이러한 낙관론은 빠르게 반전될 수 있음.",
+        "date": "2026-09-11",
+        "sourceUrl": "https://www.isabelnet.com/valuation-percentile-for-europe-u-k-and-u-s/",
+        "image": "/isabelnet-charts/2026-09-12/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Technical Composite",
+        "titleKo": "S&P 500 기술적 복합 지표",
+        "desc": "A composite of technical breadth measures is screaming oversold on the S&P 500, boosting the odds of a reflexive rally. Setups like this can flip quickly once buyers return.",
+        "descKo": "S&P 500의 기술적 등락비율(breadth)을 종합한 결과 과매도 신호가 강하게 나타나며 기술적 반등 가능성이 커짐. 이와 같은 지표는 매수세가 유입될 경우 빠르게 국면 전환이 가능함.",
+        "date": "2026-09-11",
+        "sourceUrl": "https://www.isabelnet.com/valuations-sp-500-nasdaq-and-tsx-composite/",
+        "image": "/isabelnet-charts/2026-09-12/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Forward P/E Ratio and Forward EPS",
+        "titleKo": "S&P 500 선행 PER 및 선행 EPS",
+        "desc": "Sustainable bull markets are driven by corporate earnings and fundamentals, not just hope. Vibes can lift prices for a while, but profits are what keep the rally going.",
+        "descKo": "지속 가능한 강세장은 단순한 기대감이 아닌 기업 이익과 펀더멘털에 의해 뒷받침됨. 투자 심리는 단기적으로 주가를 끌어올릴 수 있으나, 랠리를 유지하는 원동력은 결국 기업의 수익성임.",
+        "date": "2026-09-11",
+        "sourceUrl": "https://www.isabelnet.com/earnings-expectations-sp-500-index-and-12-month-forward-eps/",
+        "image": "/isabelnet-charts/2026-09-12/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자 심리",
+        "desc": "With the Fear & Greed Index at 36, fear dominates but not panic, giving U.S. equities room to edge higher if headlines turn supportive.",
+        "descKo": "공포·탐욕 지수가 36을 기록하며 공포 심리가 우세하지만 패닉 수준은 아님. 호재성 뉴스가 유입될 경우 미국 증시는 추가 상승 여력을 확보할 수 있음.",
+        "date": "2026-09-11",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-09-12/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 – 투자 심리",
+        "desc": "After hitting a new +2-year high at 102.7 two weeks ago, the NAAIM Exposure Index sits at 87.19. Active managers stay heavily exposed to equities and bullish on U.S. stocks. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "2주 전 2년 만의 최고치인 102.7을 기록했던 NAAIM 익스포저 지수는 현재 87.19를 나타냄. 액티브 매니저들은 여전히 높은 수준의 주식 비중을 유지하며 미국 증시를 낙관하고 있음. NAAIM 익스포저 지수는 미국 액티브 투자 관리자 협회 회원들이 보고한 2주 평균 미국 주식 익스포저를 추적함.",
+        "date": "2026-09-11",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-09-12/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-11",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-24",
         "sourceUrl": "https://www.isabelnet.com/real-sp-500-price-vs-real-earnings/",
         "image": "/isabelnet-charts/2026-08-25/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-22",
-    "charts": [
-      {
-        "title": "S&P 500 CAPE Ratio vs. Subsequent 10 Year Annualized Real Return",
-        "titleKo": "S&P 500 쉴러 CAPE 지수와 향후 10년 연평균 실질 수익률",
-        "desc": "The S&P 500 is now sitting at a Shiller CAPE level that has only shown up during the market’s priciest episodes. History points to real annualized returns in the -3.8% to -1.4% range over the next 10 years.",
-        "descKo": "현재 S&P 500의 쉴러 CAPE 지수는 시장 역사상 가장 고평가되었던 시기들과 유사한 수준을 기록하고 있다. 과거 사례에 비추어 볼 때, 향후 10년간 연평균 실질 수익률은 -3.8%에서 -1.4% 범위를 기록할 것으로 전망된다.",
-        "date": "2026-08-21",
-        "sourceUrl": "https://www.isabelnet.com/valuation-real-sp-500-index-with-recessions-and-sp-500-shiller-cape-ratio/",
-        "image": "/isabelnet-charts/2026-08-22/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Percent of S&P 500 Stocks with Dividends > 10-Year Treasury Yield",
-        "titleKo": "S&P 500 종목 중 배당수익률이 10년 만기 국채 금리를 상회하는 비중",
-        "desc": "The income trade has flipped. In July 2016, 63.4% of S&P 500 stocks yielded more than the 10-year Treasury. Today, fewer than 4% do, leaving Treasuries with a higher current yield than almost every blue-chip stock.",
-        "descKo": "인컴 투자 환경이 완전히 뒤바뀌었다. 2016년 7월에는 S&P 500 종목의 63.4%가 10년 만기 국채보다 높은 배당수익률을 기록했으나, 현재는 그 비중이 4% 미만으로 떨어졌다. 사실상 대부분의 우량주보다 국채의 현재 수익률이 더 높은 상황이다.",
-        "date": "2026-08-21",
-        "sourceUrl": "https://www.isabelnet.com/of-sp-500-stocks-with-a-dividend-yield-above-stated-levels/",
-        "image": "/isabelnet-charts/2026-08-22/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuations – S&P 500 Sector Forward P/E",
-        "titleKo": "밸류에이션 – S&P 500 섹터별 선행 주가수익비율(Forward P/E)",
-        "desc": "Energy remains the market’s valuation laggard, while Industrials, Healthcare and Consumer Staples are already priced for a lot of optimism.",
-        "descKo": "에너지 섹터는 여전히 시장에서 가장 저평가된 상태이나, 산업재, 헬스케어, 필수소비재 섹터는 이미 시장의 낙관론이 상당 부분 가격에 반영되어 있다.",
-        "date": "2026-08-21",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-energy-sector-valuations/",
-        "image": "/isabelnet-charts/2026-08-22/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 – 투자 심리 현황",
-        "desc": "The Fear & Greed Index stands at 53, pointing to neutral sentiment. Investors are willing to take on risk, but enthusiasm is still measured, leaving room for stocks to climb if sentiment brightens.",
-        "descKo": "공포·탐욕 지수는 53으로 중립 수준을 나타내고 있다. 투자자들은 위험을 감수할 의향이 있으나 열기는 아직 절제된 상태로, 투자 심리가 개선될 경우 주가 상승 여력이 남아 있다.",
-        "date": "2026-08-21",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-22/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Large Cap Healthcare Positioning",
-        "titleKo": "대형주 헬스케어 포지셔닝",
-        "desc": "Large-cap healthcare positioning sits at the 55th percentile, just above neutral and far from crowded, leaving room for buyers to add.",
-        "descKo": "대형주 헬스케어 포지셔닝은 55퍼센타일로 중립 수준을 소폭 상회하고 있다. 과밀 상태와는 거리가 멀어 추가 매수 여력이 존재한다.",
-        "date": "2026-08-21",
-        "sourceUrl": "https://www.isabelnet.com/healthcare-positioning/",
-        "image": "/isabelnet-charts/2026-08-22/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
