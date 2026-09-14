@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-15",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "At 63.20, the Greed and Fear Index has slipped from its highs, reflecting a cooler tone over the last four weeks. It’s not a warning light, but with September’s track record, this softening in risk appetite is worth watching.",
+        "descKo": "공포·탐욕 지수가 63.20을 기록하며 고점 대비 하락해 지난 4주간 다소 진정된 분위기를 보이고 있습니다. 경고 신호라고 보기는 어렵지만, 9월의 계절적 특성을 고려할 때 이러한 위험 선호 심리의 약화는 주목할 필요가 있습니다.",
+        "date": "2026-09-14",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-09-15/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026",
+        "titleKo": "2026년 S&P 500 가격 목표치",
+        "desc": "Goldman Sachs is sticking with its call for earnings to drive the S&P 500 to 8,000 in 2026, a path that implies a 17% annual return even if the ride stays bumpy.",
+        "descKo": "골드만삭스는 기업 실적 성장을 바탕으로 2026년 S&P 500 지수가 8,000포인트에 도달할 것이라는 전망을 유지했습니다. 이는 변동성이 지속되더라도 연평균 17%의 수익률을 의미하는 경로입니다.",
+        "date": "2026-09-14",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-09-15/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning drifted lower to the 58th percentile, but remains modestly overweight. With positioning far from extreme, investors have room to add risk.",
+        "descKo": "통합 주식 포지셔닝은 58퍼센타일로 하락했으나 여전히 완만한 비중 확대(Overweight) 상태를 유지하고 있습니다. 포지션이 극단적인 수준은 아니기에 투자자들이 위험 자산을 추가할 여력은 남아 있습니다.",
+        "date": "2026-09-14",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-09-15/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment Indicator and Stock Positioning",
+        "titleKo": "심리 지표 및 주식 포지셔닝",
+        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator sits at -0.5. Historically, the S&P 500 has posted an average 1.1% gain over the following month after similar readings.",
+        "descKo": "골드만삭스의 미국 주식 심리 지표는 -0.5를 기록 중입니다. 과거 사례를 볼 때, 유사한 수치를 보였던 시기 이후 한 달간 S&P 500은 평균 1.1%의 상승세를 기록했습니다.",
+        "date": "2026-09-14",
+        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
+        "image": "/isabelnet-charts/2026-09-15/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance on the Week of FOMC Meetings",
+        "titleKo": "FOMC 회의 주간 S&P 500 성과",
+        "desc": "U.S. stocks have whipsawed through recent FOMC meetings, but the average week still closes in the green.",
+        "descKo": "미국 증시는 최근 FOMC 회의 때마다 등락을 거듭했지만, 해당 주간의 마감은 여전히 평균적으로 상승세를 보였습니다.",
+        "date": "2026-09-14",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-around-narrowing-market-breadth-episodes/",
+        "image": "/isabelnet-charts/2026-09-15/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-12",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-25",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
         "image": "/isabelnet-charts/2026-08-26/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-25",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "Investor confidence remains high, with the Greed and Fear Index at 81.67. Optimism is running hot, but readings this elevated have often appeared just before a short-term peak or a period of consolidation.",
-        "descKo": "공포·탐욕 지수가 81.67을 기록하며 투자 심리가 여전히 높은 수준을 유지하고 있다. 낙관론이 과열된 가운데, 이처럼 지표가 높게 치솟은 시점은 통상 단기 고점이나 조정 국면 직전에 나타나곤 했다.",
-        "date": "2026-08-24",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-08-25/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Seasonal Composite Midterm Election Year",
-        "titleKo": "S&P 500 중간선거 연도 계절성 복합 지표",
-        "desc": "The S&P 500 Seasonal Composite still points to more upside for 2026, but the path could get choppy. U.S. stocks are entering their weakest seasonal stretch, which typically runs from mid-August to early October.",
-        "descKo": "S&P 500의 계절성 복합 지표는 2026년 추가 상승을 가리키고 있으나, 과정은 순탄치 않을 것으로 보인다. 미국 증시는 통상 8월 중순부터 10월 초까지 이어지는 연중 가장 취약한 계절적 구간에 진입했다.",
-        "date": "2026-08-24",
-        "sourceUrl": "https://www.isabelnet.com/u-s-presidential-cycle/",
-        "image": "/isabelnet-charts/2026-08-25/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment Indicator and Stock Positioning",
-        "titleKo": "심리 지표 및 주식 포지셔닝",
-        "desc": "Goldman Sachs’ US Equity Sentiment Indicator stands at 1.1. Similar readings have historically been followed by an average 1.2% gain in the S&P 500 over the next month.",
-        "descKo": "골드만삭스의 미국 주식 심리 지표가 1.1을 기록했다. 과거 유사한 수치를 보였을 때 S&P 500 지수는 다음 한 달간 평균 1.2%의 상승세를 보인 바 있다.",
-        "date": "2026-08-24",
-        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
-        "image": "/isabelnet-charts/2026-08-25/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "VIX Seasonality",
-        "titleKo": "VIX(변동성 지수)의 계절성",
-        "desc": "The market’s summer calm can disappear quickly. From late July into the fall, volatility often returns and U.S. stocks face a bumpier ride. Historically, the VIX tends to rise during this period.",
-        "descKo": "여름철 시장의 평온함은 빠르게 사라질 수 있다. 7월 하반기부터 가을까지는 변동성이 다시 커지며 미국 증시가 불안정한 흐름을 보이는 경향이 있다. 역사적으로 VIX는 이 시기에 상승하는 추세를 보인다.",
-        "date": "2026-08-24",
-        "sourceUrl": "https://www.isabelnet.com/vix-seasonality/",
-        "image": "/isabelnet-charts/2026-08-25/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Company Guidance vs. Consensus Growth Expectations",
-        "titleKo": "S&P 500 기업 가이던스 대비 컨센서스 성장 전망",
-        "desc": "Corporate guidance points to another upcoming quarter of robust earnings growth for the S&P 500, driven largely by continued strength in tech. But a pullback in AI spending or a macro shock could quickly pressure multiples.",
-        "descKo": "기업들이 제시한 가이던스는 기술주 중심의 견조한 실적을 바탕으로 S&P 500의 다음 분기 역시 강력한 이익 성장이 이어질 것임을 시사한다. 다만 AI 지출 감소나 거시경제적 충격이 발생할 경우 밸류에이션 멀티플은 빠르게 압박을 받을 수 있다.",
-        "date": "2026-08-24",
-        "sourceUrl": "https://www.isabelnet.com/real-sp-500-price-vs-real-earnings/",
-        "image": "/isabelnet-charts/2026-08-25/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
