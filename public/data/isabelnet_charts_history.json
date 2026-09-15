@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-16",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 68.63, the S&P 500 remains slightly overbought. Bulls are still in control and the trend stays healthy, but expect the next leg higher to be choppy, not smooth.",
+        "descKo": "S&P 500 지수는 68.63으로 다소 과매수 상태에 머물러 있습니다. 상승세가 여전히 시장을 주도하며 견조한 흐름을 보이고 있으나, 다음 상승 국면은 순탄치 않고 변동성이 클 것으로 예상됩니다.",
+        "date": "2026-09-15",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-09-16/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance on the Day of the FOMC Meeting",
+        "titleKo": "FOMC 당일 S&P 500 성과",
+        "desc": "U.S. stocks have struggled on FOMC days this year. Can this week break the pattern?",
+        "descKo": "올해 미국 증시는 FOMC 당일마다 고전을 면치 못했습니다. 이번 주에는 이러한 패턴을 깰 수 있을지 주목됩니다.",
+        "date": "2026-09-15",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-by-president-from-reagan-to-trump/",
+        "image": "/isabelnet-charts/2026-09-16/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자 vs 체계적 투자 포지셔닝",
+        "desc": "Systematic strategies continue to lean bullish, sitting in the 86th percentile and firmly overweight. Discretionary investors, by contrast, are underweight again at the 34th percentile, with ample room to add risk.",
+        "descKo": "체계적 투자 전략은 86백분위수로 확고한 비중 확대 기조를 유지하며 강세장을 견인하고 있습니다. 반면 재량적 투자자들은 34백분위수로 다시 비중을 축소한 상태여서, 추가적인 리스크 투입 여력은 충분합니다.",
+        "date": "2026-09-15",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-09-16/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders are buying again, pushing the Insider Transactions Ratio into bullish territory and adding fuel to the bull case.",
+        "descKo": "기업 내부자들의 매수세가 재개되면서 내부자 거래 비율이 강세 영역으로 진입했고, 이는 상승론에 힘을 실어주고 있습니다.",
+        "date": "2026-09-15",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-09-16/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Bond Positioning",
+        "titleKo": "채권 포지셔닝",
+        "desc": "Bond positioning has sunk to the 5th percentile. If history rhymes, yields are near a short-term peak.",
+        "descKo": "채권 포지셔닝이 5백분위수까지 하락했습니다. 과거의 사례가 반복된다면, 국채 금리는 단기 고점에 근접한 것으로 풀이됩니다.",
+        "date": "2026-09-15",
+        "sourceUrl": "https://www.isabelnet.com/return-u-s-corporate-bonds/",
+        "image": "/isabelnet-charts/2026-09-16/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-15",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-26",
         "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
         "image": "/isabelnet-charts/2026-08-27/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-26",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 71.51, the S&P 500 is slightly overbought. Sentiment remains bullish, and no major technical breaks have emerged. More volatility may be ahead.",
-        "descKo": "71.51을 기록한 S&P 500 지수는 다소 과매수 상태입니다. 시장 심리는 여전히 강세를 유지하고 있으며, 주요 기술적 이탈 신호는 나타나지 않았습니다. 향후 변동성이 확대될 가능성이 있습니다.",
-        "date": "2026-08-25",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-08-26/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026",
-        "titleKo": "2026년 S&P 500 가격 목표치",
-        "desc": "Goldman Sachs is holding its call for earnings to propel the S&P 500 to 8,000 in 2026, implying a 17% annual return even if the path remains bumpy.",
-        "descKo": "골드만삭스는 기업 실적을 바탕으로 2026년 S&P 500 지수가 8,000선에 도달할 것이라는 기존 전망을 유지했습니다. 이는 향후 과정이 순탄치 않더라도 연간 17%의 수익률을 의미합니다.",
-        "date": "2026-08-25",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-08-26/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "At the 58th percentile, consolidated equity positioning is modestly overweight but far from crowded, leaving room for investors to add risk.",
-        "descKo": "통합 주식 포지셔닝은 58퍼센타일로, 완만한 비중 확대 상태이나 과열권과는 거리가 있어 투자자들이 위험 자산을 추가할 여력이 남아 있습니다.",
-        "date": "2026-08-25",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-08-26/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are stepping back into the market, sending the Insider Transactions Ratio into bullish territory. The renewed buying gives bulls another reason to stay optimistic.",
-        "descKo": "기업 내부자들이 시장에 다시 복귀하면서 내부자 거래 비율이 강세 영역으로 진입했습니다. 이들의 매수세 재개는 강세론자들에게 낙관론을 유지할 또 다른 근거가 되고 있습니다.",
-        "date": "2026-08-25",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-08-26/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation – S&P 500 NTM P/E",
-        "titleKo": "밸류에이션 – S&P 500 12개월 선행 주가수익비율(NTM P/E)",
-        "desc": "The S&P 500 equal-weight index trades at 16 times forward earnings, versus 20 times for the benchmark. It is hardly cheap, but the discount makes it look more attractive.",
-        "descKo": "S&P 500 동일가중지수의 선행 주가수익비율은 16배로, 벤치마크 지수의 20배 대비 낮습니다. 저평가된 수준은 아니나, 할인된 밸류에이션이 매력도를 높이고 있습니다.",
-        "date": "2026-08-25",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
-        "image": "/isabelnet-charts/2026-08-26/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
