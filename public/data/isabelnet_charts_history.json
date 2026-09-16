@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-17",
+    "charts": [
+      {
+        "title": "S&P 500 Reported Earnings, Inflation-Adjusted to 2026 Dollars",
+        "titleKo": "S&P 500 기업 실적, 2026년 달러 가치 환산 기준",
+        "desc": "S&P 500 earnings just broke a 90‑year trend channel. Can profits stay this hot? The risk is a mean reversion that leaves current multiples looking far too rich.",
+        "descKo": "S&P 500 기업 실적이 90년 만에 추세 채널을 돌파했다. 현재의 높은 수익성이 지속될 수 있을까. 평균 회귀 현상이 발생할 경우 현재의 멀티플은 지나치게 고평가된 것으로 보일 위험이 있다.",
+        "date": "2026-09-16",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-earnings-per-share/",
+        "image": "/isabelnet-charts/2026-09-17/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance on Day of First Hike",
+        "titleKo": "첫 금리 인상 당일 S&P 500 성과",
+        "desc": "The last four first-hike days have been positive, with several big single-day gains, as the widely anticipated move clears the Fed doubts on timing. So, is this time different?",
+        "descKo": "지난 네 차례의 첫 금리 인상 당일 시장은 상승세를 보였으며, 여러 차례 큰 폭의 일일 상승률을 기록했다. 이는 널리 예상된 조치가 연준의 시점 불확실성을 해소했기 때문이다. 과연 이번에도 같은 흐름이 이어질까.",
+        "date": "2026-09-16",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-on-day-of-first-hike/",
+        "image": "/isabelnet-charts/2026-09-17/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuations – 12-Month Forward P/E Ranges (MSCI Regions)",
+        "titleKo": "밸류에이션 – 12개월 선행 주가수익비율(P/E) 범위 (MSCI 지역별)",
+        "desc": "U.S. and global stocks still look pricey, but earnings are growing fast enough to justify the bill. As long as profits keep surprising, the extra valuation is the price of admission, not a sell signal.",
+        "descKo": "미국 및 글로벌 증시는 여전히 비싸 보이지만, 실적 성장세가 이를 정당화하고 있다. 기업 이익이 계속해서 예상을 상회하는 한, 현재의 높은 밸류에이션은 매도 신호가 아닌 시장 참여를 위한 비용으로 보아야 한다.",
+        "date": "2026-09-16",
+        "sourceUrl": "https://www.isabelnet.com/valuation-12-month-forward-p-e-ranges-msci-regions/",
+        "image": "/isabelnet-charts/2026-09-17/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "주당순이익(EPS) 컨센서스 성장 전망",
+        "desc": "Small caps look poised to lead on earnings growth, with profits expected to jump 36% this year and 48% in 2027, compared with 33% and 15% for the S&P 500.",
+        "descKo": "소형주가 실적 성장을 주도할 것으로 보인다. 소형주의 올해와 2027년 이익 증가율은 각각 36%와 48%로 예상되며, 이는 S&P 500의 33%, 15%를 상회하는 수준이다.",
+        "date": "2026-09-16",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-09-17/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment – Risk Appetite and Expected U.S. Equity Market Performance",
+        "titleKo": "투자 심리 – 위험 선호도 및 미국 주식시장 기대 수익률",
+        "desc": "Risk appetite among U.S. equity fund managers has taken a sharp hit in September, as the conflict in the Middle East fuels concerns about its economic fallout and the outlook for monetary and fiscal policy.",
+        "descKo": "9월 중동 분쟁이 경제적 여파와 통화 및 재정 정책 전망에 대한 우려를 키우면서, 미국 주식 펀드 매니저들의 위험 선호도가 급격히 위축되었다.",
+        "date": "2026-09-16",
+        "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
+        "image": "/isabelnet-charts/2026-09-17/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-16",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-27",
         "sourceUrl": "https://www.isabelnet.com/cash-value-of-currencies-in-circulation-gdp/",
         "image": "/isabelnet-charts/2026-08-28/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-27",
-    "charts": [
-      {
-        "title": "$100,000 over 30 Years: The Fund vs. The Average Investor",
-        "titleKo": "30년간 10만 달러 투자: 펀드 수익률과 일반 투자자 수익률의 격차",
-        "desc": "U.S. funds returned an annualized 8.2%, but the average investor earned only about 7.0%. Much of the gap came from poor timing: buying after prices had risen and selling after they fell.",
-        "descKo": "미국 펀드의 연평균 수익률은 8.2%였으나, 일반 투자자의 수익률은 약 7.0%에 그쳤다. 이러한 수익률 격차는 상당 부분 가격 상승 후 매수하고 하락 후 매도하는 잘못된 타이밍 선택에서 비롯됐다.",
-        "date": "2026-08-26",
-        "sourceUrl": "https://www.isabelnet.com/fed-funds-annual-rate-of-change/",
-        "image": "/isabelnet-charts/2026-08-27/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "MSCI AC World EPS",
-        "titleKo": "MSCI AC 세계 지수 주당순이익(EPS) 전망",
-        "desc": "Wall Street is pushing up MSCI AC World EPS targets for 2026 and 2027, betting AI’s surge will lift margins instead of sparking another capex boom-and-bust. So where’s the bubble: in earnings or just the hype?",
-        "descKo": "월가는 AI 열풍이 자본지출(Capex)의 호황과 불황을 반복하기보다 수익성을 개선할 것으로 기대하며 2026년과 2027년 MSCI AC 세계 지수의 EPS 목표치를 상향 조정하고 있다. 그렇다면 거품은 실적에 있는 것인가, 아니면 단순한 기대감에 있는 것인가?",
-        "date": "2026-08-26",
-        "sourceUrl": "https://www.isabelnet.com/msci-world-eps-and-south-korea-exports/",
-        "image": "/isabelnet-charts/2026-08-27/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자와 체계적 투자 전략의 주식 비중 비교",
-        "desc": "Systematic strategies remain bullish, ranking in the 76th percentile and still overweight. Discretionary investors are more cautious, sitting at the 44th percentile and slightly underweight, leaving room to add risk.",
-        "descKo": "체계적 투자 전략은 76백분위수로 여전히 비중 확대 기조를 유지하며 강세장을 전망하고 있다. 반면 재량적 투자자들은 44백분위수로 다소 신중한 비중 축소 전략을 취하고 있어, 향후 위험 자산을 늘릴 여력이 남아 있다.",
-        "date": "2026-08-26",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-08-27/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Sectors Announced Buybacks (Last 3 Months)",
-        "titleKo": "S&P 500 섹터별 자사주 매입 발표 현황 (최근 3개월)",
-        "desc": "Over the past three months, buyback announcements have been led by Financials, Tech and Industrials, which together make up most of the repurchase activity in U.S. equities.",
-        "descKo": "최근 3개월간 자사주 매입 발표는 금융, 기술, 산업재 섹터가 주도했으며, 이들 섹터가 미국 주식 시장 자사주 매입 활동의 대부분을 차지했다.",
-        "date": "2026-08-26",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-sectors-announced-buybacks-last-3-months/",
-        "image": "/isabelnet-charts/2026-08-27/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
-        "titleKo": "수익률 곡선으로 본 미국 경기 침체 확률",
-        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 13.6%, leaving the expansion narrative in place. For now, the cycle still has momentum.",
-        "descKo": "수익률 곡선을 통해 산출한 향후 12개월 내 미국 경기 침체 확률은 13.6%로, 경기 확장 국면은 여전히 유효하다. 현재로서는 경기 사이클이 상승 모멘텀을 유지하고 있다.",
-        "date": "2026-08-26",
-        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
-        "image": "/isabelnet-charts/2026-08-27/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
