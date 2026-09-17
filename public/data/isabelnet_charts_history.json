@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-18",
+    "charts": [
+      {
+        "title": "Number of Rate Hikes per Fed Tightening Cycle, 1994 to 2023",
+        "titleKo": "1994년~2023년 연준 긴축 사이클별 금리 인상 횟수",
+        "desc": "Since 1994, the Fed has gone through six tightening cycles. Five lasted for years and involved at least six rate hikes. But with real rates already starting from historically high levels, this cycle may be much shorter.",
+        "descKo": "1994년 이후 연준은 여섯 차례의 긴축 사이클을 겪었다. 다섯 번의 사이클은 수년간 지속되며 최소 6회의 금리 인상을 동반했다. 그러나 실질 금리가 이미 역사적으로 높은 수준에서 출발한 이번 사이클은 훨씬 짧아질 수 있다.",
+        "date": "2026-09-17",
+        "sourceUrl": "https://www.isabelnet.com/every-fed-tightening-cycle-has-preceded-a-slowdown-in-the-ism-manufacturing-index/",
+        "image": "/isabelnet-charts/2026-09-18/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Global Equities Performance",
+        "titleKo": "글로벌 주식시장 성과",
+        "desc": "Since the start of 2025, U.S. stocks have fallen behind other major markets, ending a long run of outperformance. A weaker dollar is giving international investors another reason to look beyond Wall Street.",
+        "descKo": "2025년 들어 미국 주식은 다른 주요 시장 대비 부진하며 장기간 이어온 우월한 성과를 마감했다. 달러 약세는 해외 투자자들이 월스트리트 밖으로 눈을 돌릴 또 다른 이유를 제공하고 있다.",
+        "date": "2026-09-17",
+        "sourceUrl": "https://www.isabelnet.com/usa-vs-global-ex-u-s-equities-relative-performance/",
+        "image": "/isabelnet-charts/2026-09-18/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Company Guidance vs. Consensus Growth Expectations",
+        "titleKo": "S&P 500 기업 가이던스 대비 컨센서스 성장 전망",
+        "desc": "Corporate guidance points to another quarter of solid earnings growth for the S&P 500, led by continued strength in tech. But the gains are expected to broaden, with other sectors also projected to deliver solid results.",
+        "descKo": "기업 가이던스는 S&P 500이 기술주의 지속적인 강세에 힘입어 또 한 분기 견조한 이익 성장을 기록할 것임을 시사한다. 다만 이익 성장의 폭은 넓어져 다른 섹터들 역시 탄탄한 실적을 낼 것으로 전망된다.",
+        "date": "2026-09-17",
+        "sourceUrl": "https://www.isabelnet.com/real-sp-500-price-vs-real-earnings/",
+        "image": "/isabelnet-charts/2026-09-18/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fed Funds Rate Path Implied by the Median Dots",
+        "titleKo": "점도표가 시사하는 연방기금금리 경로",
+        "desc": "The Fed is signaling higher rates for longer, with a two-hike baseline for 2026, a 2029 median fed-funds rate of 3.5% to 3.75%, and a neutral rate of 3.25%. Long-duration assets and leveraged trades are now facing a tougher road.",
+        "descKo": "연준은 고금리 장기화 기조를 시사하고 있다. 2026년 두 차례 금리 인상을 기본 시나리오로 제시했으며, 2029년 연방기금금리 중간값은 3.5%~3.75%, 중립 금리는 3.25%로 예상된다. 이에 따라 장기 자산과 레버리지 투자 전략은 더 어려운 환경에 직면했다.",
+        "date": "2026-09-17",
+        "sourceUrl": "https://www.isabelnet.com/u-s-yield-curve-1m-to-30y-and-correlation-against-fed-funds-effective-rate/",
+        "image": "/isabelnet-charts/2026-09-18/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI World Sector/Style Valuations",
+        "titleKo": "MSCI 세계 섹터 및 스타일별 밸류에이션",
+        "desc": "Rich valuations leave investors with little cushion across sectors and investment styles. Even a modest turn in sentiment could push prices lower, with limited support underneath.",
+        "descKo": "높은 밸류에이션으로 인해 투자자들은 모든 섹터와 투자 스타일에서 안전판을 거의 확보하지 못한 상태다. 심리가 조금만 변해도 지지선이 부족한 상황에서 주가는 하락할 수 있다.",
+        "date": "2026-09-17",
+        "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
+        "image": "/isabelnet-charts/2026-09-18/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-17",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-28",
         "sourceUrl": "https://www.isabelnet.com/tech-market-capitalization-of-global-sectors/",
         "image": "/isabelnet-charts/2026-08-29/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-28",
-    "charts": [
-      {
-        "title": "Investor Psychology Cycle",
-        "titleKo": "투자자 심리 사이클",
-        "desc": "When panic hits, markets overshoot to the downside, creating opportunities for contrarians to buy into peak fear. The mirror image? Euphoria, which usually sets up the exit.",
-        "descKo": "공포가 확산되면 시장은 하방으로 과도하게 이탈하며, 역발상 투자자들에게는 극도의 공포 속에서 매수할 기회를 제공한다. 반대 상황인 낙관론은 보통 매도 시점을 시사한다.",
-        "date": "2026-08-27",
-        "sourceUrl": "https://www.isabelnet.com/investor-psychology-cycle/",
-        "image": "/isabelnet-charts/2026-08-28/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
-        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행 지표)",
-        "desc": "U.S. heavy truck sales fell in July to 437K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
-        "descKo": "7월 미국의 대형 트럭 판매량은 연율 환산 기준 43만 7천 대를 기록했다. 경기 침체 이전 대형 트럭 판매량은 정점을 찍은 후 하락하는 경향이 있어, 경기 선행 지표로서 미국 경제 전반의 건전성을 가늠하게 한다.",
-        "date": "2026-08-27",
-        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
-        "image": "/isabelnet-charts/2026-08-28/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Magnificent Seven Minus S&P 500 ex Magnificent Seven EPS Growth",
-        "titleKo": "매그니피센트 7 및 S&P 500(매그니피센트 7 제외)의 EPS 성장률 비교",
-        "desc": "After years of leading, the Magnificent Seven’s EPS growth has cooled to the point where the rest of the S&P 500 is now growing faster, reversing the 2023–2025 dynamic.",
-        "descKo": "수년간 시장을 주도하던 매그니피센트 7의 EPS 성장률이 둔화되면서, 나머지 S&P 500 기업들의 성장률이 이를 앞지르는 2023~2025년과는 상반된 흐름이 나타나고 있다.",
-        "date": "2026-08-27",
-        "sourceUrl": "https://www.isabelnet.com/earnings-growth-vs-the-sp-500/",
-        "image": "/isabelnet-charts/2026-08-28/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 EPS 성장률 전망",
-        "desc": "Small caps could deliver the biggest earnings surge, with profits expected to jump 36% this year and 48% in 2027, compared with 32% and 12%, respectively, for the S&P 500.",
-        "descKo": "중소형주가 가장 큰 폭의 실적 급증을 보일 것으로 전망된다. 올해와 2027년 수익 증가율은 각각 36%, 48%로 예상되며, 이는 S&P 500의 예상 증가율인 32%, 12%를 상회하는 수준이다.",
-        "date": "2026-08-27",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-08-28/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "FX Impact from AI Disruption to Services",
-        "titleKo": "AI의 서비스업 파괴적 혁신이 외환 시장에 미치는 영향",
-        "desc": "As AI pushes the marginal cost of cognitive work lower, the UK stands out: its services-heavy economy leaves sterling the most exposed to disruption.",
-        "descKo": "AI가 인지 노동의 한계 비용을 낮춤에 따라 서비스업 비중이 높은 영국 경제가 가장 큰 영향을 받을 것으로 보이며, 이에 따라 파운드화가 가장 큰 변동성에 노출되어 있다.",
-        "date": "2026-08-27",
-        "sourceUrl": "https://www.isabelnet.com/cash-value-of-currencies-in-circulation-gdp/",
-        "image": "/isabelnet-charts/2026-08-28/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
