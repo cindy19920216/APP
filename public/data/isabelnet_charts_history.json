@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-19",
+    "charts": [
+      {
+        "title": "Valuation – S&P 500 Trailing P/E: Current vs. Average Bull-Market Extremes",
+        "titleKo": "밸류에이션 – S&P 500 트레일링 PER: 현재 수준과 과거 강세장 고점 비교",
+        "desc": "At 26 times trailing earnings, the S&P 500 stands well above its historical average and many previous bull-market peaks, leaving little room for bad news. But that multiple alone does not make a crash inevitable.",
+        "descKo": "S&P 500의 트레일링 PER이 26배에 달하며 과거 평균 및 다수의 이전 강세장 고점을 크게 상회하고 있어 악재를 견딜 여력이 부족한 상태다. 그러나 이 멀티플 수치만으로 시장 붕괴가 필연적이라고 단정할 수는 없다.",
+        "date": "2026-09-18",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-trailing-4q-pe/",
+        "image": "/isabelnet-charts/2026-09-19/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Days in a Row without a 1% Drop",
+        "titleKo": "S&P 500 1% 이상 하락 없이 지속된 거래일수",
+        "desc": "Thirty-five trading days without a 1% decline have left the S&P 500 unusually calm. Historically, stretches of such low volatility have been more common in powerful bull markets than before major selloffs.",
+        "descKo": "35거래일 동안 1% 이상의 하락이 나타나지 않으면서 S&P 500은 이례적인 진정세를 보이고 있다. 역사적으로 이러한 저변동성 국면은 대규모 매도세 이전보다는 강력한 강세장에서 더 빈번하게 관찰되었다.",
+        "date": "2026-09-18",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-days-in-a-row-without-a-1-drop/",
+        "image": "/isabelnet-charts/2026-09-19/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자자 심리",
+        "desc": "At 29, the Fear & Greed Index still points to fear, not panic. For U.S. equities, that leaves the door open to further gains if the headlines turn friendlier.",
+        "descKo": "공포·탐욕 지수가 29를 기록하며 패닉이 아닌 공포 구간을 가리키고 있다. 미국 증시 입장에서 이는 향후 뉴스 흐름이 우호적으로 바뀔 경우 추가 상승의 여지가 남아있음을 의미한다.",
+        "date": "2026-09-18",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-09-19/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 노출 지수 – 투자자 심리",
+        "desc": "After hitting a new two-year high of 102.7 three weeks ago, the NAAIM Exposure Index has since dropped to 71.92. Active managers have sharply cut their exposure to U.S. equities as sentiment turns more cautious. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "3주 전 2년래 최고치인 102.7을 기록했던 NAAIM 노출 지수가 71.92까지 하락했다. 투자 심리가 신중해짐에 따라 액티브 매니저들은 미국 주식 비중을 급격히 축소했다. NAAIM 노출 지수는 전미액티브투자매니저협회 회원들이 보고한 미국 주식 노출도의 2주 평균을 추적한다.",
+        "date": "2026-09-18",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-09-19/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장 집중도 – S&P 500 전체 시가총액 대비 상위 10개 기업 비중",
+        "desc": "A handful of giants now dominate the S&P 500. The 10 largest stocks account for 40% of the index’s weight and 38% of its earnings, lifting valuations and making the market more vulnerable to sudden swings.",
+        "descKo": "현재 소수의 거대 기업이 S&P 500을 장악하고 있다. 상위 10개 종목이 지수 비중의 40%, 이익의 38%를 차지하고 있어 밸류에이션이 높아졌으며, 시장은 급격한 변동성에 더 취약해진 상황이다.",
+        "date": "2026-09-18",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-09-19/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-18",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-08-31",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
         "image": "/isabelnet-charts/2026-09-01/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-08-29",
-    "charts": [
-      {
-        "title": "S&P 500 Average Monthly Returns Since 1964",
-        "titleKo": "1964년 이후 S&P 500의 월평균 수익률",
-        "desc": "September is typically a weak month for U.S. equities, and midterm years tend to make it worse. Once Election Day passes, uncertainty lifts and markets frequently improve.",
-        "descKo": "9월은 통상 미국 증시의 약세 구간이며, 중간선거가 있는 해에는 상황이 더 악화하는 경향이 있다. 선거일이 지나면 불확실성이 해소되며 시장은 종종 반등세를 보인다.",
-        "date": "2026-08-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-returns/",
-        "image": "/isabelnet-charts/2026-08-29/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance After a Positive August and YTD Between 10% and 17.5%",
-        "titleKo": "8월 상승 및 연초 대비 수익률 10~17.5% 기록 후 S&P 500 성과",
-        "desc": "History says this setup is bullish. Since 1945, when August closed in the green with the market up between 10% and 17.5% year-to-date, September through December rallied 91% of the time, with an average 5.6% return.",
-        "descKo": "역사적으로 이러한 시장 환경은 강세 신호로 해석된다. 1945년 이후 8월이 상승 마감하고 연초 대비 수익률이 10~17.5%를 기록했을 때, 9월부터 12월까지의 기간 중 91%의 확률로 상승세가 나타났으며 평균 5.6%의 수익률을 기록했다.",
-        "date": "2026-08-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-positive-august-and-ytd-between-10-and-17-5/",
-        "image": "/isabelnet-charts/2026-08-29/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식시장 집중도 – S&P 500 내 시가총액 상위 10개 기업 비중",
-        "desc": "A handful of giants now run the S&P 500. The top 10 stocks make up 39% of the index’s weight and 36% of its earnings, pushing valuations up and leaving each day’s trade more exposed to sudden swings.",
-        "descKo": "현재 소수 대형주가 S&P 500을 주도하고 있다. 상위 10개 종목이 지수 내 비중의 39%, 이익의 36%를 차지하고 있어 밸류에이션이 상승했으며, 일일 거래가 급격한 변동성에 노출될 가능성도 커졌다.",
-        "date": "2026-08-28",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-08-29/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 – 투자 심리",
-        "desc": "With the Fear & Greed Index at 58, investors are leaning greedy but not euphoric. That kind of healthy risk appetite still leaves room for the market to climb.",
-        "descKo": "공포·탐욕 지수가 58을 기록하며 투자자들은 탐욕 단계에 기울어 있으나 과열 상태는 아니다. 이러한 건전한 위험 선호 심리는 시장이 추가 상승할 여력을 남겨두고 있다.",
-        "date": "2026-08-28",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-08-29/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Equity Market Capitalization",
-        "titleKo": "미국 주식시장 시가총액",
-        "desc": "Since ChatGPT launched, multiple expansion has contributed 25% of the surge in U.S. market cap, crushing the equity risk premium and leaving little room for error if AI demand or earnings disappoint.",
-        "descKo": "챗GPT 출시 이후 멀티플 확장이 미국 시가총액 급등분의 25%를 견인했다. 이는 주식 위험 프리미엄을 크게 낮춘 상태로, AI 수요나 실적이 기대에 미치지 못할 경우 시장이 감내할 오차 범위는 거의 없다.",
-        "date": "2026-08-28",
-        "sourceUrl": "https://www.isabelnet.com/tech-market-capitalization-of-global-sectors/",
-        "image": "/isabelnet-charts/2026-08-29/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
