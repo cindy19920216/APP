@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-23",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 66.87, the S&P 500 remains slightly overbought. Bulls haven’t lost control and the uptrend is fine, but don’t expect a straight line higher from here. Think choppy, not smooth.",
+        "descKo": "66.87을 기록한 S&P 500 지수는 다소 과매수 상태에 머물러 있습니다. 상승세는 견조하며 강세론자들이 시장 주도권을 유지하고 있으나, 일직선 형태의 상승을 기대하기는 어렵습니다. 매끄러운 상승보다는 등락이 반복되는 흐름을 예상해야 합니다.",
+        "date": "2026-09-22",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-09-23/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment Indicator and Stock Positioning",
+        "titleKo": "투자 심리 지표 및 주식 포지셔닝",
+        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator has slipped to -0.9. After similar readings, the S&P 500 has historically averaged a 0.5% gain over the following month.",
+        "descKo": "골드만삭스의 미국 주식 심리 지표가 -0.9로 하락했습니다. 과거 유사한 수치를 기록했을 당시, S&P 500 지수는 다음 달 평균 0.5%의 상승률을 보였습니다.",
+        "date": "2026-09-22",
+        "sourceUrl": "https://www.isabelnet.com/u-s-equity-sentiment-indicator/",
+        "image": "/isabelnet-charts/2026-09-23/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Mega-Cap Growth and Large-Cap Tech Positioning",
+        "titleKo": "메가캡 성장주 및 대형 기술주 포지셔닝",
+        "desc": "Positioning in mega-cap growth and large-cap Tech has eased from its highs but remains modestly overweight, at the 61st percentile.",
+        "descKo": "메가캡 성장주와 대형 기술주에 대한 포지셔닝은 고점 대비 완화되었으나, 여전히 61% 분위 수준으로 완만한 비중 확대 상태를 유지하고 있습니다.",
+        "date": "2026-09-22",
+        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
+        "image": "/isabelnet-charts/2026-09-23/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "With insider buys and sells now in balance, the Insider Transactions Ratio has drifted back to neutral. For now, insiders aren’t sending investors a clear message.",
+        "descKo": "내부자의 매수와 매도가 균형을 이루면서 내부자 거래 비율이 중립 수준으로 복귀했습니다. 현재로서는 내부자들이 투자자들에게 뚜렷한 신호를 보내지 않고 있습니다.",
+        "date": "2026-09-22",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-09-23/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자 vs 체계적 투자 포지셔닝",
+        "desc": "Systematic strategies remain very bullish, with positioning in the 88th percentile. Discretionary investors have turned more cautious, slipping to the 19th percentile and staying underweight, leaving ample of room to add exposure.",
+        "descKo": "체계적 전략은 88% 분위의 포지셔닝을 유지하며 매우 낙관적인 전망을 보이고 있습니다. 반면 재량적 투자자들은 신중한 태도로 돌아서며 19% 분위로 하락해 비중 축소 상태를 유지하고 있어, 향후 익스포저를 확대할 여력이 충분합니다.",
+        "date": "2026-09-22",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-09-23/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-22",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-02",
         "sourceUrl": "https://www.isabelnet.com/nasdaq-100-futures-positioning/",
         "image": "/isabelnet-charts/2026-09-03/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-02",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 지표 분석",
-        "desc": "At 74.31, the S&P 500 is overbought. Bulls still run the show and nothing has broken technically, but don’t bet on a smooth ride from here.",
-        "descKo": "S&P 500 지수의 기술적 점수가 74.31을 기록하며 과매수 구간에 진입했다. 상승 추세가 견조하고 기술적으로 훼손된 부분은 없으나, 향후 변동성 없는 순탄한 흐름을 기대하기는 어려운 상황이다.",
-        "date": "2026-09-01",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-09-02/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Average Monthly Performance Under President Trump",
-        "titleKo": "트럼프 행정부 시기 S&P 500의 월별 평균 수익률",
-        "desc": "September seasonality is flashing green. Under President Trump, U.S. stocks have closed higher in September in four out of five years, giving bulls reason to smile.",
-        "descKo": "9월 계절성이 긍정적인 신호를 보내고 있다. 트럼프 전 대통령 재임 기간 동안 미국 증시는 5년 중 4번이나 9월에 상승 마감했으며, 이는 강세론자들에게 기대감을 주는 요소다.",
-        "date": "2026-09-01",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-average-monthly-performance-and-how-often-each-month-is-higher/",
-        "image": "/isabelnet-charts/2026-09-02/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – Monthly Return Stats for the S&P 500",
-        "titleKo": "계절성 분석 – S&P 500 월간 수익률 통계",
-        "desc": "Call it the September drag. Since 1964, the S&P 500 has lost an average 0.7% in the month and finished higher in just 46% of Septembers. Can the market defy the script in 2026?",
-        "descKo": "소위 '9월의 저주'가 우려된다. 1964년 이후 S&P 500은 9월에 평균 0.7% 하락했으며, 상승 마감한 비중은 46%에 불과했다. 과연 2026년에는 시장이 이러한 통념을 깰 수 있을 것인가?",
-        "date": "2026-09-01",
-        "sourceUrl": "https://www.isabelnet.com/seasonality-monthly-return-stats-for-the-sp-500/",
-        "image": "/isabelnet-charts/2026-09-02/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Insider buying and selling are back in equilibrium, pushing the Insider Transactions Ratio back to neutral. For now, insiders are giving investors no clear message.",
-        "descKo": "내부자 매수와 매도가 다시 균형을 찾으면서 내부자 거래 비율이 중립 수준으로 회귀했다. 현재로서는 내부자들이 투자자들에게 명확한 신호를 주지 않고 있다.",
-        "date": "2026-09-01",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-09-02/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Crypto Fund Flows",
-        "titleKo": "가상자산 펀드 자금 유입",
-        "desc": "Last week, cryptocurrency funds saw their biggest weekly inflows since May, driven largely by U.S. spot Bitcoin and Ethereum ETFs. Institutional money is back, and so is the risk appetite.",
-        "descKo": "지난주 가상자산 펀드로 유입된 자금 규모가 5월 이후 최대치를 기록했다. 이는 주로 미국 현물 비트코인 및 이더리움 ETF가 견인했다. 기관 자금이 복귀하며 위험 선호 심리도 다시 살아나고 있다.",
-        "date": "2026-09-01",
-        "sourceUrl": "https://www.isabelnet.com/crypto-fund-flows/",
-        "image": "/isabelnet-charts/2026-09-02/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
