@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-24",
+    "charts": [
+      {
+        "title": "S&P 500 Earnings vs. Their Long-Term Trend",
+        "titleKo": "S&P 500 기업 이익과 장기 추세의 괴리",
+        "desc": "Consensus forward earnings for the S&P 500 are now about 50% above their long-term growth trend. That does not mean the market has reached an immediate top, but it’s the kind of excess that often shows up late in the cycle.",
+        "descKo": "S&P 500의 컨센서스 포워드 이익이 현재 장기 성장 추세를 약 50% 상회하고 있다. 이것이 시장의 즉각적인 고점을 의미하는 것은 아니나, 사이클 후반부에 흔히 나타나는 과열 징후 중 하나다.",
+        "date": "2026-09-23",
+        "sourceUrl": "https://www.isabelnet.com/deviation-of-earnings-above-below-long-term-growth-trend/",
+        "image": "/isabelnet-charts/2026-09-24/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Truck Tonnage vs. S&P 500 Index",
+        "titleKo": "트럭 물동량 지수와 S&P 500 지수의 상관관계",
+        "desc": "The Truck Tonnage Index fell 0.5% in August. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.67 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
+        "descKo": "8월 트럭 물동량 지수가 0.5% 하락했다. 미국 화물의 72.7%를 담당하는 트럭은 미국 경제의 바로미터 역할을 한다. 차트를 보면 역사적으로 미국 증시는 실물 경제의 규모 및 확장과 궤를 같이하며 상승해왔다(2002년 이후 R² = 0.67). 트럭 물동량 지수가 미국 증시의 선행 지표는 아니지만, 미국 증시가 실물 경제의 팽창과 수축을 어떻게 따라왔는지 잘 보여준다.",
+        "date": "2026-09-23",
+        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-09-24/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary Positioning vs. Earning Growth",
+        "titleKo": "경기소비재 투자 포지션과 이익 성장",
+        "desc": "Discretionary investors are still positioned cautiously relative to the strength of earnings growth. With revisions still supportive and macro risks contained, more cash could move into stocks.",
+        "descKo": "경기소비재 투자자들은 여전히 견조한 이익 성장세 대비 신중한 포지션을 유지하고 있다. 실적 전망치가 여전히 우호적이고 거시경제적 리스크가 제한적인 상황에서, 추가적인 자금이 주식 시장으로 유입될 가능성이 있다.",
+        "date": "2026-09-23",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-investors-equity-positioning-vs-sp-500-eps-revision-ratio/",
+        "image": "/isabelnet-charts/2026-09-24/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Global Market Implied Equity Risk Premiums",
+        "titleKo": "글로벌 시장의 내재 자기자본 위험 프리미엄(ERP)",
+        "desc": "In the U.S. and Japan, the equity risk premium has been squeezed so hard that stocks barely compensate investors for taking on extra risk versus bonds. That makes equities a tougher sell and raises the odds of investor frustration.",
+        "descKo": "미국과 일본의 자기자본 위험 프리미엄이 지나치게 압축되면서, 주식 투자가 채권 대비 추가 위험을 감수할 만큼의 보상을 제공하지 못하고 있다. 이는 주식의 매력을 떨어뜨리고 투자자의 피로감을 높이는 요인이 된다.",
+        "date": "2026-09-23",
+        "sourceUrl": "https://www.isabelnet.com/global-market-implied-equity-risk-premiums/",
+        "image": "/isabelnet-charts/2026-09-24/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI World Sector/Style Valuations",
+        "titleKo": "MSCI 세계 섹터 및 스타일별 밸류에이션",
+        "desc": "Valuations are rich across sectors and styles, leaving investors with almost no cushion. A slight turn in mood could push prices lower, with few supports below.",
+        "descKo": "모든 섹터와 스타일 전반에 걸쳐 밸류에이션이 높아 투자자들에게 안전마진이 거의 없는 상태다. 투자 심리가 조금만 위축되어도 하방 지지선이 부족한 상황에서 주가가 하락할 수 있다.",
+        "date": "2026-09-23",
+        "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
+        "image": "/isabelnet-charts/2026-09-24/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-23",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-03",
         "sourceUrl": "https://www.isabelnet.com/volatility-average-vix-vs-short-term-rates-levels/",
         "image": "/isabelnet-charts/2026-09-04/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-03",
-    "charts": [
-      {
-        "title": "S&P 500 Valuation – The Shiller CAPE Since 1881",
-        "titleKo": "S&P 500 밸류에이션: 1881년 이후의 쉴러 CAPE",
-        "desc": "The S&P 500’s CAPE ratio has climbed to levels seen only in the market’s priciest episodes, when the next decade typically delivered negative real returns. History says this time is unlikely to be an exception.",
-        "descKo": "S&P 500의 CAPE 비율이 과거 시장 고평가 시기에만 나타났던 수준까지 상승했다. 당시 향후 10년간 실질 수익률은 통상적으로 마이너스를 기록했다. 역사적 데이터를 볼 때 이번에도 예외가 아닐 가능성이 높다.",
-        "date": "2026-09-02",
-        "sourceUrl": "https://www.isabelnet.com/real-sp-500-vs-valuation-cape-10/",
-        "image": "/isabelnet-charts/2026-09-03/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 – 10 Best September Returns Ever",
-        "titleKo": "S&P 500: 역대 최고의 9월 수익률 TOP 10",
-        "desc": "September is historically the worst month for U.S. stocks, but midterm election years have delivered some of the strongest Septembers on record. All four of the best September returns ever occurred in midterm years.",
-        "descKo": "9월은 역사적으로 미국 주식 시장에서 가장 부진한 달이지만, 중간선거가 있는 해에는 유독 강세를 보였다. 역대 9월 수익률 상위 4개 기록 모두 중간선거가 있었던 해에 나왔다.",
-        "date": "2026-09-02",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-10-best-september-returns-ever/",
-        "image": "/isabelnet-charts/2026-09-03/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 vs. G10 Excess Liquidity Leading Indicator",
-        "titleKo": "S&P 500 vs. G10 초과 유동성 선행 지표",
-        "desc": "G10 excess liquidity is still in negative territory, and that’s bad news for U.S. stocks over the next three to six months. As the liquidity backdrop fades, equities lose a crucial support.",
-        "descKo": "G10 국가들의 초과 유동성이 여전히 마이너스권에 머물러 있으며, 이는 향후 3~6개월간 미국 증시에 악재로 작용할 전망이다. 유동성 환경이 악화됨에 따라 주식 시장은 중요한 지지 기반을 잃고 있다.",
-        "date": "2026-09-02",
-        "sourceUrl": "https://www.isabelnet.com/msci-world-yoy-vs-vp-global-excess-liquidity-leading-indicator/",
-        "image": "/isabelnet-charts/2026-09-03/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "ISM Manufacturing Index vs. S&P 500 Index",
-        "titleKo": "ISM 제조업 지수 vs. S&P 500 지수",
-        "desc": "U.S. manufacturing cooled slightly in August. The ISM Manufacturing Index slipped to 54.6, below expectations of 55.6 and marking an eighth straight month of expansion. Growth is still on solid footing. The chart shows the correlation between the U.S. ISM Manufacturing Index and the S&P 500 index year-over-year percent change, since 2011.",
-        "descKo": "8월 미국 제조업 경기가 다소 둔화됐다. ISM 제조업 지수는 예상치인 55.6을 밑도는 54.6을 기록했으나, 8개월 연속 확장세를 유지하며 견고한 성장세를 보였다. 해당 차트는 2011년 이후 미국 ISM 제조업 지수와 S&P 500 지수의 전년 대비 등락률 간 상관관계를 보여준다.",
-        "date": "2026-09-02",
-        "sourceUrl": "https://www.isabelnet.com/ism-manufacturing-index-vs-sp-500-index/",
-        "image": "/isabelnet-charts/2026-09-03/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Leveraged Fund Positions in NASDAQ-100 Futures",
-        "titleKo": "나스닥 100 선물 레버리지 펀드 포지션",
-        "desc": "Bears are piling into Nasdaq‑100 futures. Short positions have surged 35% since mid‑June and are now near record levels, setting up a sharp squeeze if momentum turns.",
-        "descKo": "나스닥 100 선물에 매도 포지션이 집중되고 있다. 숏 포지션은 6월 중순 이후 35% 급증하며 역대 최고 수준에 근접했으며, 시장 모멘텀이 전환될 경우 급격한 숏 스퀴즈가 발생할 가능성이 있다.",
-        "date": "2026-09-02",
-        "sourceUrl": "https://www.isabelnet.com/nasdaq-100-futures-positioning/",
-        "image": "/isabelnet-charts/2026-09-03/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
