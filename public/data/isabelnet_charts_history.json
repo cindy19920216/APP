@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-25",
+    "charts": [
+      {
+        "title": "Seasonality – S&P 500 Average Monthly Returns Since 1950",
+        "titleKo": null,
+        "desc": "September has earned its reputation as the S&P 500’s worst month, the only one with a negative average return since 1950. Then comes the final quarter, historically one of the market’s most rewarding periods.",
+        "descKo": null,
+        "date": "2026-09-24",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-09-25/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Small Cap Stocks – S&P 600 / S&P 500",
+        "titleKo": null,
+        "desc": "Pressure is mounting on U.S. small caps. The S&P 600 has broken below its 50-day moving average, ending a run of outperformance that began in late 2025 after nearly five years of lagging the S&P 500.",
+        "descKo": null,
+        "date": "2026-09-24",
+        "sourceUrl": "https://www.isabelnet.com/u-s-small-cap-stocks-sp-600-sp-500/",
+        "image": "/isabelnet-charts/2026-09-25/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Core PCE Inflation Forecast",
+        "titleKo": null,
+        "desc": "Goldman Sachs sees U.S. core PCE cooling to 2.2% year-over-year by Q4 2027, and that makes a string of additional rate hikes beyond today’s pricing hard to justify.",
+        "descKo": null,
+        "date": "2026-09-24",
+        "sourceUrl": "https://www.isabelnet.com/u-s-inflation-expectations-u-s-5-year-breakeven-and-u-s-core-pce-price-index/",
+        "image": "/isabelnet-charts/2026-09-25/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation Percentile – Shiller P/E and U.S. 10-Year Yield",
+        "titleKo": null,
+        "desc": "The Shiller P/E says US equities are expensive. The 10‑year U.S. Treasury yield, by comparison, is back around its historical average. Is it time to favor bonds over equities?",
+        "descKo": null,
+        "date": "2026-09-24",
+        "sourceUrl": "https://www.isabelnet.com/average-valuation-percentile-equity-bond-credit/",
+        "image": "/isabelnet-charts/2026-09-25/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Volatility Divergence – VIX vs. MOVE",
+        "titleKo": null,
+        "desc": "Bond traders are hedging for sharp moves in U.S. rates, while equity investors still expect a relatively quiet stock market. That divergence isn’t automatically bearish, but it’s a flashing yellow light.",
+        "descKo": null,
+        "date": "2026-09-24",
+        "sourceUrl": "https://www.isabelnet.com/volatility-divergence-vix-vs-move/",
+        "image": "/isabelnet-charts/2026-09-25/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-24",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-04",
         "sourceUrl": "https://www.isabelnet.com/how-survey-responders-think-the-sp-500-will-perform-over-the-year-ahead/",
         "image": "/isabelnet-charts/2026-09-05/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-04",
-    "charts": [
-      {
-        "title": "Cumulative Bull vs. Bear Markets (Points)",
-        "titleKo": "강세장 vs 약세장 누적 수익률(포인트)",
-        "desc": "Bear markets don’t just trim gains. They can erase most of the inflation-adjusted upside from an entire bull run. Which is why a late-cycle drop is never just noise.",
-        "descKo": "약세장은 단순히 수익을 일부 줄이는 데 그치지 않는다. 강세장 동안 쌓아 올린 물가 조정 수익의 대부분을 지워버릴 수 있다. 이것이 바로 사이클 후반기의 하락을 단순한 소음으로 치부해서는 안 되는 이유다.",
-        "date": "2026-09-03",
-        "sourceUrl": "https://www.isabelnet.com/cumulative-bull-vs-bear-markets/",
-        "image": "/isabelnet-charts/2026-09-04/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Percent of S&P 500 Stocks with Dividends > 10-Year Treasury Yield",
-        "titleKo": "S&P 500 편입 종목 중 배당수익률이 10년물 국채 금리를 상회하는 종목 비중",
-        "desc": "The income trade has reversed. In July 2016, 63.4% of S&P 500 stocks yielded more than the 10-year U.S. Treasury. Today, fewer than 4.5% do, leaving Treasuries with higher yields than almost every blue-chip stock.",
-        "descKo": "인컴 투자 환경이 역전되었다. 2016년 7월에는 S&P 500 종목의 63.4%가 10년물 미 국채보다 높은 배당수익률을 기록했으나, 현재는 4.5% 미만에 불과하다. 사실상 거의 모든 우량주보다 국채의 수익률이 더 높은 상황이다.",
-        "date": "2026-09-03",
-        "sourceUrl": "https://www.isabelnet.com/of-sp-500-stocks-with-a-dividend-yield-above-stated-levels/",
-        "image": "/isabelnet-charts/2026-09-04/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary Positioning vs. Earning Growth",
-        "titleKo": "경기소비재 포지셔닝 vs 이익 성장률",
-        "desc": "Discretionary positioning is lagging earnings growth, which means the rally isn’t done yet. If revisions stay supportive and macro risks stay in check, expect more cash to move into equities.",
-        "descKo": "경기소비재 섹터의 포지셔닝이 이익 성장률을 따라가지 못하고 있으며, 이는 랠리가 아직 끝나지 않았음을 의미한다. 실적 전망치가 견조하게 유지되고 거시경제적 위험이 통제된다면, 주식 시장으로의 자금 유입은 더욱 확대될 전망이다.",
-        "date": "2026-09-03",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investors-equity-positioning-vs-sp-500-eps-revision-ratio/",
-        "image": "/isabelnet-charts/2026-09-04/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Rebased to Sept 1 = 100 of Each Midterm Years",
-        "titleKo": "중간선거 연도 9월 1일 기준 S&P 500 지수 재산출(100=기준)",
-        "desc": "Midterm years tend to weigh on stocks, and September deserves extra care. Since WWII, the S&P 500 has fallen an average of 1.5% from Sept. 1 to its low, which tends to arrive in early October.",
-        "descKo": "중간선거가 있는 해에는 주식 시장이 압박을 받는 경향이 있으며, 특히 9월은 각별한 주의가 필요하다. 제2차 세계대전 이후 S&P 500은 9월 1일부터 10월 초순에 나타나는 저점까지 평균 1.5% 하락했다.",
-        "date": "2026-09-03",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-price-forecast-2/",
-        "image": "/isabelnet-charts/2026-09-04/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Volatility – VIX Index Average",
-        "titleKo": "변동성 – VIX 지수 평균",
-        "desc": "Summer calm often gives way to autumn volatility. Are markets braced for a rougher ride ahead?",
-        "descKo": "여름의 평온함은 종종 가을의 변동성으로 이어진다. 시장은 앞으로 다가올 거친 흐름에 대비하고 있는가?",
-        "date": "2026-09-03",
-        "sourceUrl": "https://www.isabelnet.com/volatility-average-vix-vs-short-term-rates-levels/",
-        "image": "/isabelnet-charts/2026-09-04/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
