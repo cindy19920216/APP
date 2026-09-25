@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-26",
+    "charts": [
+      {
+        "title": "S&P 500 – Aggregate Net Profit Margin, 1999-2026, Against Its Long-Run Average",
+        "titleKo": "S&P 500 – 1999~2026년 기업 순이익률, 장기 평균 대비 추이",
+        "desc": "S&P 500 margins have moved up and stayed up, sitting around 60% above the long-term average. The question isn’t if that’s lofty, but how long today’s structural tailwinds can keep margins from sliding back toward the mean.",
+        "descKo": "S&P 500 기업의 이익률은 장기 평균을 60% 상회하는 높은 수준을 유지하고 있다. 관건은 현재의 이익률이 고평가 상태인지 여부가 아니라, 구조적인 순풍이 언제까지 이익률의 평균 회귀를 막아낼 수 있을지 여부다.",
+        "date": "2026-09-25",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-vs-peaks-in-real-profit-margins/",
+        "image": "/isabelnet-charts/2026-09-26/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 – 투자자 심리",
+        "desc": "With the NAAIM Exposure Index at 88.12, active managers are comfortable staying long, keeping U.S. equity exposure elevated and maintaining an optimistic outlook. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "NAAIM 익스포저 지수가 88.12를 기록하며 액티브 매니저들이 미국 주식 비중을 높게 유지하는 등 낙관적인 전망을 견지하고 있다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 회원사들이 보고한 미국 주식 보유 비중의 2주 이동평균을 나타낸다.",
+        "date": "2026-09-25",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-09-26/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus Hyperscaler Capex Estimates",
+        "titleKo": "하이퍼스케일러 자본적지출(Capex) 컨센서스 전망",
+        "desc": "Capex estimates continue to surprise to the upside. Hyperscaler spending is now set to exceed $1.1 trillion in 2027, pointing to a trajectory that looks more like a new era than a standard investment cycle.",
+        "descKo": "자본적지출 전망치가 연이어 시장 예상을 웃돌고 있다. 2027년 하이퍼스케일러의 투자 규모가 1조 1,000억 달러를 넘어설 것으로 예상되면서, 단순한 투자 주기를 넘어선 새로운 시대적 흐름을 예고하고 있다.",
+        "date": "2026-09-25",
+        "sourceUrl": "https://www.isabelnet.com/global-nonfinancial-equities-earnings-per-share-growth-and-capex-growth/",
+        "image": "/isabelnet-charts/2026-09-26/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자자 심리",
+        "desc": "At 35, the Fear & Greed Index is stuck in fear territory, but not panic. For U.S. stocks, that leaves room to edge higher if the headlines improve.",
+        "descKo": "공포·탐욕 지수가 35를 기록하며 공포 영역에 머물러 있으나 공황 상태는 아니다. 미국 증시는 향후 뉴스 흐름이 개선될 경우 추가 상승할 여력이 있다.",
+        "date": "2026-09-25",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-09-26/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Average 1-Month S&P 500 Return vs. Change in 10-Year U.S. Treasury Yields",
+        "titleKo": "S&P 500의 1개월 평균 수익률 vs. 미국 10년물 국채 금리 변동",
+        "desc": "Fast-rising U.S. Treasury yields tend to crush the most expensive growth stocks. A sudden 50 basis point jump in the 10-year over a month is a near-term risk.",
+        "descKo": "미국 국채 금리의 급격한 상승은 고평가된 성장주에 큰 부담으로 작용한다. 10년물 국채 금리가 한 달 사이 50bp 급등하는 것은 단기적인 위험 요소다.",
+        "date": "2026-09-25",
+        "sourceUrl": "https://www.isabelnet.com/average-1-month-sp-500-return-vs-change-in-10-year-u-s-treasury-yields/",
+        "image": "/isabelnet-charts/2026-09-26/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-25",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-08",
         "sourceUrl": "https://www.isabelnet.com/gold-and-u-s-dollar-futures-positions/",
         "image": "/isabelnet-charts/2026-09-09/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-05",
-    "charts": [
-      {
-        "title": "S&P 500 Shiller CAPE Ratio – Average Real Returns Over the Following 10 Years, by Starting CAPE",
-        "titleKo": "S&P 500 쉴러 CAPE 비율: 시작 시점의 CAPE에 따른 향후 10년 평균 실질 수익률",
-        "desc": "With the CAPE ratio now above 40, the setup for the next decade looks grim. In past episodes at the current level, US equities went on to deliver negative real returns, averaging roughly −2.6% a year.",
-        "descKo": "현재 CAPE 비율이 40을 상회하면서 향후 10년 전망은 어두워 보인다. 과거 비슷한 수준을 기록했던 시기, 미국 주식은 연평균 약 -2.6%의 실질 수익률을 기록했다.",
-        "date": "2026-09-04",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cape-valuations/",
-        "image": "/isabelnet-charts/2026-09-05/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Index Performance After The First Fed Rate Hike",
-        "titleKo": "연준의 첫 금리 인상 이후 S&P 500 지수 성과",
-        "desc": "Historically, the S&P 500 has weathered the Fed’s first rate hike better than investors might expect. Following an initial 25 bp move, the index often stumbles early but, in every cycle since 1990, has been higher a year later.",
-        "descKo": "역사적으로 S&P 500 지수는 투자자들의 우려보다 연준의 첫 금리 인상을 잘 견뎌왔다. 25bp의 첫 인상 이후 지수는 초기에는 흔들리는 경향이 있으나, 1990년 이후 모든 사이클에서 1년 뒤 지수는 더 높은 수준을 기록했다.",
-        "date": "2026-09-04",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-performance-after-the-first-fed-rate-hike/",
-        "image": "/isabelnet-charts/2026-09-05/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포와 탐욕 지수: 투자자 심리",
-        "desc": "The Fear & Greed Index is sitting at 35, putting the market firmly in fear territory but not at panic levels. That leaves room for U.S. stocks to edge higher if the headlines turn more supportive.",
-        "descKo": "공포와 탐욕 지수가 35를 기록하며 시장은 공포 국면에 머물러 있으나 패닉 수준은 아니다. 시장 분위기가 우호적으로 개선될 경우 미국 증시는 완만한 상승세를 보일 여지가 있다.",
-        "date": "2026-09-04",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-09-05/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 익스포저 지수: 투자자 심리",
-        "desc": "After hitting a new +2-year high at 102.7 last week, the NAAIM Exposure Index fell sharply to 85.6. Even so, active managers remain heavily exposed to equities and firmly bullish on U.S. stocks. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "지난주 102.7로 2년여 만에 최고치를 기록했던 NAAIM 익스포저 지수가 85.6으로 급락했다. 그럼에도 액티브 매니저들은 여전히 주식 비중을 높게 유지하며 미국 증시에 대해 강한 낙관론을 견지하고 있다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원사들의 미국 주식 노출도 2주 평균을 추적한다.",
-        "date": "2026-09-04",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-09-05/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Survey – Where Do You Expect the S&P 500 Index to Be in the Next 12 Months?",
-        "titleKo": "설문: 향후 12개월 S&P 500 지수 전망은?",
-        "desc": "Half of BCA’s clients see the S&P 500 up 10% or more over the next year, backed by AI-fueled earnings, light corporate leverage and good-old FOMO. Just 13% brace for a double-digit drop.",
-        "descKo": "BCA 고객의 절반은 AI가 주도하는 실적 성장과 낮은 기업 부채, FOMO(소외되는 것에 대한 두려움) 심리에 힘입어 향후 1년간 S&P 500 지수가 10% 이상 상승할 것으로 내다봤다. 두 자릿수 하락을 예상한 비중은 13%에 불과하다.",
-        "date": "2026-09-04",
-        "sourceUrl": "https://www.isabelnet.com/how-survey-responders-think-the-sp-500-will-perform-over-the-year-ahead/",
-        "image": "/isabelnet-charts/2026-09-05/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
