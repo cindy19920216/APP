@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-09-30",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 지표 분석",
+        "desc": "At 75.84, the S&P 500 is technically overbought. Momentum favors the bulls and key supports are intact, but expect a choppy ride rather than a straight line higher.",
+        "descKo": "75.84를 기록한 S&P 500 지수는 기술적으로 과매수 구간에 진입했다. 상승 모멘텀이 우세하고 주요 지지선은 견고하지만, 일직선 상승보다는 변동성 장세가 예상된다.",
+        "date": "2026-09-29",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-09-30/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance When Up YTD Between 10-20% at the End of September",
+        "titleKo": "9월 말 기준 연초 대비 10~20% 상승 시 S&P 500 성과",
+        "desc": "When the S&P 500 is up 10% to 20% YTD by late September, Q4 tends to be bullish, with an 86% success rate and a median 5.5% gain, a good reason for bulls to smile.",
+        "descKo": "S&P 500이 9월 말까지 연초 대비 10~20% 상승했을 경우, 4분기는 86%의 성공률과 중간값 기준 5.5%의 수익률을 기록하며 강세를 보이는 경향이 있어 매수세에 긍정적인 신호로 작용한다.",
+        "date": "2026-09-29",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-when-up-ytd-between-10-20-at-the-end-of-september/",
+        "image": "/isabelnet-charts/2026-09-30/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus EPS Growth Estimates",
+        "titleKo": "컨센서스 기반 EPS 성장 전망",
+        "desc": "Wall Street’s earnings bet: S&P 500 profits up 33% in 2026, 15% in 2027. Small caps could steal the show with 31% growth this year and 50% next year.",
+        "descKo": "월스트리트는 S&P 500 기업들의 이익이 2026년 33%, 2027년 15% 성장할 것으로 전망한다. 중소형주가 올해 31%, 내년 50%의 성장률을 기록하며 시장의 주도권을 잡을 가능성이 있다.",
+        "date": "2026-09-29",
+        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
+        "image": "/isabelnet-charts/2026-09-30/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026 and 2027",
+        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
+        "desc": "Goldman Sachs is still calling for the S&P 500 to hit 8,000 in three months, 8,300 in six, and 8,700 within a year, arguing that earnings growth, not valuations, will power the next leg higher.",
+        "descKo": "골드만삭스는 S&P 500이 3개월 내 8,000, 6개월 내 8,300, 1년 내 8,700에 도달할 것으로 전망하며, 밸류에이션이 아닌 실적 성장이 향후 추가 상승을 견인할 것이라고 분석했다.",
+        "date": "2026-09-29",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-09-30/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
+        "titleKo": "수익률 곡선으로 산출한 미국 경기 침체 확률",
+        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 12.3%, leaving the expansion narrative firmly in play. For now, the cycle still has legs.",
+        "descKo": "수익률 곡선을 통해 산출한 향후 12개월 내 미국 경기 침체 확률은 12.3%로, 경기 확장 국면은 여전히 유효하다. 현재로서 경기 순환은 당분간 지속될 전망이다.",
+        "date": "2026-09-29",
+        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
+        "image": "/isabelnet-charts/2026-09-30/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-29",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-10",
         "sourceUrl": "https://www.isabelnet.com/vix-seasonal-composite/",
         "image": "/isabelnet-charts/2026-09-11/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-10",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 73.33, the S&P 500 is slightly overbought. Bulls remain in control and the technical picture is intact, but the path ahead is likely to be bumpy rather than smooth.",
-        "descKo": "73.33을 기록 중인 S&P 500은 다소 과매수 상태입니다. 상승세가 시장을 주도하며 기술적 지표는 견고하나, 향후 시장의 흐름은 평탄하기보다 변동성이 클 것으로 전망됩니다.",
-        "date": "2026-09-09",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-09-10/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Around First Fed Rate Hikes vs. Speed of Hikes",
-        "titleKo": "연준의 첫 금리 인상 시기 및 속도와 S&P 500의 상관관계",
-        "desc": "In fast tightening cycles, the S&P 500 typically struggles in the 12 months post-first hike; in slow or no cycles, it tends to rally. Near term, stocks stay shaky until investors believe in a “slow-hike” or “one-and-done” Fed.",
-        "descKo": "급격한 긴축 국면에서 S&P 500은 첫 금리 인상 후 12개월 동안 부진을 겪는 경향이 있는 반면, 완만한 긴축이나 동결 기조에서는 반등하는 경향이 있습니다. 단기적으로는 연준의 '완만한 금리 인상'이나 '일회성 인상'에 대한 시장의 신뢰가 형성되기 전까지 주가는 불안정한 흐름을 보일 것입니다.",
-        "date": "2026-09-09",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-around-first-fed-rate-hikes-vs-speed-of-hikes/",
-        "image": "/isabelnet-charts/2026-09-10/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자자와 체계적 투자자의 주식 포지셔닝 비교",
-        "desc": "Systematic strategies are still leaning bullish, sitting in the 85th percentile and firmly overweight. Discretionary investors are more cautious, back to neutral at the 47th percentile, with room to add risk.",
-        "descKo": "체계적 전략은 여전히 낙관론을 유지하며 85퍼센타일 수준에서 확실한 비중 확대 전략을 취하고 있습니다. 반면 재량적 투자자들은 47퍼센타일의 중립 수준으로 복귀하며 신중한 태도를 보이고 있어, 추가적인 위험 자산 편입 여력이 남아 있습니다.",
-        "date": "2026-09-09",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-09-10/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Forward P/E Ratio and Subsequent 5-Year Returns",
-        "titleKo": "S&P 500 선행 주가수익비율(Forward P/E)과 향후 5년 수익률",
-        "desc": "With U.S. equities still trading as if nothing can go wrong, the next five years are likely to deliver thinner returns. The businesses are outstanding, but price still matters. Overpay, and even the best stocks can disappoint.",
-        "descKo": "미국 주식 시장이 여전히 낙관론에 취해 있는 상황에서 향후 5년간의 수익률은 낮아질 가능성이 큽니다. 기업들의 실적은 뛰어나지만 가격은 여전히 중요합니다. 지나치게 높은 가격에 매수한다면 최고의 우량주라도 실망스러운 결과를 가져올 수 있습니다.",
-        "date": "2026-09-09",
-        "sourceUrl": "https://www.isabelnet.com/forward-p-e-ratio-and-subsequent-5-year-annualized-returns/",
-        "image": "/isabelnet-charts/2026-09-10/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Temporary Help Services Jobs vs. Real GDP and U.S. Recessions",
-        "titleKo": "임시 인력 서비스업 고용 지표와 실질 GDP 및 미국 경기 침체",
-        "desc": "Temporary Help Services Jobs stand at 1.46% YoY in August. The relationship between Temporary Help Services jobs and the macroeconomy is complex. Declines in Temporary Help Services Jobs are often considered a leading indicator of a potential recession (red line at -3.5%), but they do not always guarantee one, as other economic factors can impact the labor market and job growth. However, when Temporary Help Services Jobs were below -3.5% YoY in 2001, 2007 and 2020, a recession was on the horizon in the United States.",
-        "descKo": "8월 임시 인력 서비스업 고용 지표는 전년 동기 대비 1.46% 증가했습니다. 임시직 고용과 거시 경제의 관계는 복잡합니다. 임시직 고용의 감소는 종종 경기 침체의 선행 지표(적색선 -3.5%)로 간주되지만, 다른 경제 요인들이 노동 시장과 고용 성장에 영향을 미칠 수 있어 항상 경기 침체를 보장하지는 않습니다. 다만 2001년, 2007년, 2020년과 같이 임시직 고용이 전년 대비 -3.5% 미만으로 떨어졌을 당시에는 미국에 경기 침체가 닥쳤습니다.",
-        "date": "2026-09-09",
-        "sourceUrl": "https://www.isabelnet.com/temporary-help-services-vs-real-gdp-and-u-s-recession/",
-        "image": "/isabelnet-charts/2026-09-10/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
