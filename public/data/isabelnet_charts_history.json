@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-01",
+    "charts": [
+      {
+        "title": "S&P 500 and Predecessors, Calendar-Year Price Returns Since 1928",
+        "titleKo": "S&P 500 및 전신 지수의 1928년 이후 연간 가격 수익률",
+        "desc": "Since 1928, the S&P 500 and its predecessors have finished the year up in 73% of calendar years. Risk is always there, but staying structurally bearish means consistently betting against a three-in-four odds of positive return.",
+        "descKo": "1928년 이후 S&P 500과 그 전신 지수는 전체 연도의 73%에서 상승 마감했다. 리스크는 항상 존재하지만, 구조적으로 약세론을 고수하는 것은 4번 중 3번꼴인 긍정적 수익률의 가능성에 지속적으로 맞서는 것과 같다.",
+        "date": "2026-09-30",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-return-vs-nonfarm-payrolls/",
+        "image": "/isabelnet-charts/2026-10-01/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Index Average Monthly Returns",
+        "titleKo": "계절성 – S&P 500 지수 평균 월간 수익률",
+        "desc": "October has a strong track record in midterm election years, averaging a 3% gain since 1950 and finishing higher nearly 74% of the time. With investors already leaning bearish, that seasonal tailwind could help fuel a year-end rally.",
+        "descKo": "10월은 중간선거가 있는 해에 1950년 이후 평균 3%의 상승률을 기록했고 약 74%의 확률로 상승 마감하는 등 강력한 이력을 보여왔다. 투자자들의 심리가 이미 약세로 기울어진 가운데, 이러한 계절적 순풍은 연말 랠리를 견인하는 데 일조할 수 있다.",
+        "date": "2026-09-30",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-index-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-10-01/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Contribution to Consensus S&P 500 EPS Growth",
+        "titleKo": "S&P 500 컨센서스 EPS 성장률 기여도",
+        "desc": "Strong 2026 earnings growth has helped bring down the S&P 500’s forward P/E multiple. Consensus expects growth to cool in 2027 and 2028, but slower earnings growth alone is not a sell signal.",
+        "descKo": "2026년의 강력한 이익 성장은 S&P 500의 선행 주가수익비율(P/E)을 낮추는 데 기여했다. 시장 컨센서스는 2027년과 2028년에는 성장세가 둔화될 것으로 예상하지만, 이익 성장 속도가 느려지는 것 자체가 곧 매도 신호는 아니다.",
+        "date": "2026-09-30",
+        "sourceUrl": "https://www.isabelnet.com/consensus-eps-growth-expectations/",
+        "image": "/isabelnet-charts/2026-10-01/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "GS Financial Conditions Index",
+        "titleKo": "골드만삭스(GS) 금융상황지수",
+        "desc": "U.S. financial conditions excluding equities have tightened, but the broader picture is still easy, more growth-friendly than restrictive.",
+        "descKo": "주식을 제외한 미국의 금융 상황은 긴축되었으나, 전반적인 상황은 여전히 완화적이며 제약적이기보다는 성장을 뒷받침하는 수준이다.",
+        "date": "2026-09-30",
+        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
+        "image": "/isabelnet-charts/2026-10-01/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Implied Probability of S&P 500 Drawdown",
+        "titleKo": "S&P 500 낙폭(Drawdown)의 내재 확률",
+        "desc": "Drawdown risk for the S&P 500 has increased recently, amid rising yields, looming rate hikes, and weak market breadth.",
+        "descKo": "금리 상승, 금리 인상 가능성, 시장 폭(Market Breadth)의 약화 속에서 최근 S&P 500의 낙폭 위험이 커졌다.",
+        "date": "2026-09-30",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-drawdown-and-12-month-forward-p-e/",
+        "image": "/isabelnet-charts/2026-10-01/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-09-30",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-11",
         "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
         "image": "/isabelnet-charts/2026-09-12/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-11",
-    "charts": [
-      {
-        "title": "S&P 500 – September Average Monthly Return",
-        "titleKo": "S&P 500 – 9월 월간 평균 수익률",
-        "desc": "Since 1928, September has been the only month to post an average loss, falling 1.1%, or 1.5% in midterm years. Its second half also contains the calendar’s weakest two-week stretch. Could history repeat?",
-        "descKo": "1928년 이후 9월은 평균 손실을 기록한 유일한 달로, 평균 1.1%, 중간선거가 있는 해에는 1.5% 하락했다. 9월 하반기는 연중 가장 약세를 보이는 2주간에 해당한다. 역사가 되풀이될지 주목된다.",
-        "date": "2026-09-10",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-historical-september-monthly-total-returns/",
-        "image": "/isabelnet-charts/2026-09-11/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Index – Trend Channel",
-        "titleKo": "S&P 500 지수 – 추세 채널",
-        "desc": "After a relentless rally since 2009, the S&P 500’s secular bull market looks mature, the long-term trend channel signaling rising risks beneath the surface momentum.",
-        "descKo": "2009년 이후 거침없는 랠리를 이어온 S&P 500의 장기 강세장은 성숙기에 접어든 것으로 보인다. 장기 추세 채널은 표면적인 모멘텀 이면에 잠재된 위험이 커지고 있음을 시사한다.",
-        "date": "2026-09-10",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-long-term-trend-and-expected-returns/",
-        "image": "/isabelnet-charts/2026-09-11/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Earnings Growth – Mag 7 and S&P 500 ex-Mag 7",
-        "titleKo": "이익 성장 – 매그니피센트 7과 S&P 500(매그니피센트 7 제외)",
-        "desc": "The Magnificent Seven are headed for 57% earnings growth this year, compared with 23% for the rest of the S&P 500. With tech still running hot, fading them feels like a losing bet.",
-        "descKo": "매그니피센트 7 종목들의 올해 이익 성장률은 57%로 예상되는 반면, 나머지 S&P 500 종목들은 23%에 그칠 전망이다. 기술주가 여전히 강세를 보이는 상황에서 이들을 배제하는 것은 위험한 투자로 여겨진다.",
-        "date": "2026-09-10",
-        "sourceUrl": "https://www.isabelnet.com/eps-earnings-per-share-growth-forecast/",
-        "image": "/isabelnet-charts/2026-09-11/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Median Short Interest Across U.S. Stocks",
-        "titleKo": "미국 주식 전체의 중앙값 공매도 잔고",
-        "desc": "Since 2022, traders have gradually piled into bearish bets on U.S. stocks, leaving the market vulnerable to a sharp short squeeze if momentum turns.",
-        "descKo": "2022년 이후 트레이더들은 미국 주식에 대한 약세 베팅을 점진적으로 늘려왔으며, 이는 모멘텀이 반전될 경우 시장이 급격한 숏스퀴즈에 취약해질 수 있음을 의미한다.",
-        "date": "2026-09-10",
-        "sourceUrl": "https://www.isabelnet.com/russell-3000-single-stocks-plus-etfs-shorts/",
-        "image": "/isabelnet-charts/2026-09-11/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality of the VIX Index",
-        "titleKo": "VIX 지수의 계절성",
-        "desc": "Middle East tensions, surging oil prices, higher yields and a U.S. midterm election are all flashing warning signs, but 2026 has so far defied the usual seasonal jump in volatility.",
-        "descKo": "중동 긴장 고조, 유가 급등, 금리 상승, 미국 중간선거 등이 모두 경고 신호를 보내고 있으나, 2026년 현재까지는 일반적인 계절적 변동성 확대 현상이 나타나지 않고 있다.",
-        "date": "2026-09-10",
-        "sourceUrl": "https://www.isabelnet.com/vix-seasonal-composite/",
-        "image": "/isabelnet-charts/2026-09-11/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
