@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-02",
+    "charts": [
+      {
+        "title": "S&P 500 Monthly Performance in Midterm Election Years",
+        "titleKo": "중간선거가 있는 해의 S&P 500 월간 수익률",
+        "desc": "Since 1950, October has been the best month for midterm years, averaging a 3% gain and finishing higher 74% of the time. Is it time to be bullish? Bearish sentiment already dominates, setting up a potential year-end rally.",
+        "descKo": "1950년 이후 10월은 중간선거가 있는 해에 평균 3%의 수익률을 기록하며 74%의 확률로 상승 마감했다. 강세론으로 돌아설 시점인가? 현재 시장을 지배하는 약세 심리는 연말 랠리의 가능성을 뒷받침하고 있다.",
+        "date": "2026-10-01",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-performance-in-year-1-after-three-consecutive-20-gains/",
+        "image": "/isabelnet-charts/2026-10-02/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
+        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행지표)",
+        "desc": "U.S. heavy truck sales fell in August to 413K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
+        "descKo": "8월 미국 대형 트럭 판매량은 연율 환산 기준 41만 3천 대를 기록했다. 대형 트럭 판매량은 경기 침체 전 정점을 찍고 하락하는 경향이 있어, 미국 경제의 전반적인 건전성을 파악하는 선행지표로 활용된다.",
+        "date": "2026-10-01",
+        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
+        "image": "/isabelnet-charts/2026-10-02/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuations – 12-Month Forward P/E Ranges (MSCI Regions)",
+        "titleKo": "밸류에이션 – 12개월 선행 주가수익비율(MSCI 지역별)",
+        "desc": "U.S. and global stocks still look expensive, but earnings are growing fast enough to support those valuations. As long as profits keep beating expectations, the premium is the price of admission, not a reason to sell.",
+        "descKo": "미국 및 글로벌 증시는 여전히 고평가 상태이나, 이익 성장이 이를 뒷받침하고 있다. 기업 실적이 시장 예상치를 상회하는 한, 현재의 프리미엄은 매도 사유가 아닌 시장 참여를 위한 비용으로 간주된다.",
+        "date": "2026-10-01",
+        "sourceUrl": "https://www.isabelnet.com/valuation-12-month-forward-p-e-ranges-msci-regions/",
+        "image": "/isabelnet-charts/2026-10-02/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – S&P 500 NTM P/E",
+        "titleKo": "밸류에이션 – S&P 500 12개월 선행 주가수익비율",
+        "desc": "Trading at 15 times forward earnings versus 19 for the benchmark, the S&P 500 equal-weight index still isn’t a bargain, but the discount makes it look more attractive.",
+        "descKo": "S&P 500 동일가중지수는 벤치마크 지수의 19배 대비 낮은 15배 수준에서 거래되고 있다. 여전히 저평가 영역은 아니나, 벤치마크 대비 할인된 가격은 투자 매력을 높이는 요소다.",
+        "date": "2026-10-01",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
+        "image": "/isabelnet-charts/2026-10-02/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Volatility Divergence – VIX vs. MOVE",
+        "titleKo": "변동성 괴리 – VIX vs. MOVE",
+        "desc": "Bond traders are more defensive on U.S. rates, while equity investors remain confident that stocks will stay relatively calm. That growing disconnect is not necessarily a bearish signal, but it is a warning worth monitoring.",
+        "descKo": "채권 시장은 미국 금리에 대해 방어적인 태도를 보이는 반면, 주식 투자자들은 시장의 상대적 안정을 확신하고 있다. 이러한 괴리는 반드시 약세 신호라고 볼 수는 없으나, 주의 깊게 지켜봐야 할 경고등이다.",
+        "date": "2026-10-01",
+        "sourceUrl": "https://www.isabelnet.com/volatility-divergence-vix-vs-move/",
+        "image": "/isabelnet-charts/2026-10-02/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-01",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-14",
         "sourceUrl": "https://www.isabelnet.com/sp-500-performance-around-narrowing-market-breadth-episodes/",
         "image": "/isabelnet-charts/2026-09-15/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-12",
-    "charts": [
-      {
-        "title": "Valuation – S&P 500 PEG Ratio",
-        "titleKo": "밸류에이션 – S&P 500 PEG 비율",
-        "desc": "Fwd P/E? Rich. PEG? Cheap, because long-term earnings-growth estimates are the highest since 1995. That low PEG is just blockbuster growth expectation. A recession or an AI-spending slowdown could quickly turn that narrative.",
-        "descKo": "선행 PER은 높지만, 장기 이익 성장 전망치가 1995년 이래 최고 수준을 기록하면서 PEG 비율은 저평가 국면을 나타내고 있음. 낮은 PEG 비율은 기록적인 성장 기대감을 반영한 결과이나, 경기 침체나 AI 관련 지출이 둔화될 경우 이러한 낙관론은 빠르게 반전될 수 있음.",
-        "date": "2026-09-11",
-        "sourceUrl": "https://www.isabelnet.com/valuation-percentile-for-europe-u-k-and-u-s/",
-        "image": "/isabelnet-charts/2026-09-12/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Technical Composite",
-        "titleKo": "S&P 500 기술적 복합 지표",
-        "desc": "A composite of technical breadth measures is screaming oversold on the S&P 500, boosting the odds of a reflexive rally. Setups like this can flip quickly once buyers return.",
-        "descKo": "S&P 500의 기술적 등락비율(breadth)을 종합한 결과 과매도 신호가 강하게 나타나며 기술적 반등 가능성이 커짐. 이와 같은 지표는 매수세가 유입될 경우 빠르게 국면 전환이 가능함.",
-        "date": "2026-09-11",
-        "sourceUrl": "https://www.isabelnet.com/valuations-sp-500-nasdaq-and-tsx-composite/",
-        "image": "/isabelnet-charts/2026-09-12/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Forward P/E Ratio and Forward EPS",
-        "titleKo": "S&P 500 선행 PER 및 선행 EPS",
-        "desc": "Sustainable bull markets are driven by corporate earnings and fundamentals, not just hope. Vibes can lift prices for a while, but profits are what keep the rally going.",
-        "descKo": "지속 가능한 강세장은 단순한 기대감이 아닌 기업 이익과 펀더멘털에 의해 뒷받침됨. 투자 심리는 단기적으로 주가를 끌어올릴 수 있으나, 랠리를 유지하는 원동력은 결국 기업의 수익성임.",
-        "date": "2026-09-11",
-        "sourceUrl": "https://www.isabelnet.com/earnings-expectations-sp-500-index-and-12-month-forward-eps/",
-        "image": "/isabelnet-charts/2026-09-12/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 – 투자 심리",
-        "desc": "With the Fear & Greed Index at 36, fear dominates but not panic, giving U.S. equities room to edge higher if headlines turn supportive.",
-        "descKo": "공포·탐욕 지수가 36을 기록하며 공포 심리가 우세하지만 패닉 수준은 아님. 호재성 뉴스가 유입될 경우 미국 증시는 추가 상승 여력을 확보할 수 있음.",
-        "date": "2026-09-11",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-09-12/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 익스포저 지수 – 투자 심리",
-        "desc": "After hitting a new +2-year high at 102.7 two weeks ago, the NAAIM Exposure Index sits at 87.19. Active managers stay heavily exposed to equities and bullish on U.S. stocks. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "2주 전 2년 만의 최고치인 102.7을 기록했던 NAAIM 익스포저 지수는 현재 87.19를 나타냄. 액티브 매니저들은 여전히 높은 수준의 주식 비중을 유지하며 미국 증시를 낙관하고 있음. NAAIM 익스포저 지수는 미국 액티브 투자 관리자 협회 회원들이 보고한 2주 평균 미국 주식 익스포저를 추적함.",
-        "date": "2026-09-11",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-09-12/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
