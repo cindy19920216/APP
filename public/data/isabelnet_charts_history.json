@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-06",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "At 54.05, the Greed and Fear Index remains firmly in neutral territory, far from both panic and euphoria. If prices hold as investors turn more defensive, that rising caution could create a good entry point in the weeks ahead.",
+        "descKo": "공포·탐욕 지수가 54.05를 기록하며 패닉이나 과열과는 거리가 먼 중립 구간에 머물러 있다. 투자자들이 방어적인 태세를 취하면서 가격이 유지된다면, 이러한 신중함이 향후 몇 주간 좋은 진입 시점을 제공할 수 있다.",
+        "date": "2026-10-05",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-10-06/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance After A >10% Q2 Quarter",
+        "titleKo": "2분기 10% 이상 상승 이후 S&P 500 성과",
+        "desc": "History is on the bulls’ side. Since 1950, when the S&P 500 rose more than 10% in Q2, Q4 ended in the green, with an average return of 6.1%. Bulls could hardly ask for a better backdrop.",
+        "descKo": "역사적 통계는 강세론자의 손을 들어주고 있다. 1950년 이후 S&P 500이 2분기에 10% 이상 상승했을 때, 4분기는 평균 6.1%의 수익률을 기록하며 항상 상승 마감했다. 강세론자들에게 이보다 더 좋은 배경은 없을 것이다.",
+        "date": "2026-10-05",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-10-q2-quarter/",
+        "image": "/isabelnet-charts/2026-10-06/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "GS Financial Conditions Index",
+        "titleKo": "골드만삭스 금융 상황 지수",
+        "desc": "U.S. financial conditions excluding equities have tightened meaningfully, but the broader backdrop remains accommodative and is still supporting growth rather than restraining activity.",
+        "descKo": "주식을 제외한 미국 금융 상황은 상당히 긴축되었으나, 전반적인 환경은 여전히 완화적이며 경제 활동을 억제하기보다 성장을 뒷받침하고 있다.",
+        "date": "2026-10-05",
+        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
+        "image": "/isabelnet-charts/2026-10-06/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning rose to the 60th percentile, a modest overweight. The trade is far from crowded, leaving room for investors to take on more risk.",
+        "descKo": "통합 주식 포지셔닝이 60퍼센타일 수준까지 상승하며 완만한 비중 확대 상태를 나타냈다. 시장이 과밀한 상태와는 거리가 멀어 투자자들이 위험을 추가로 감수할 여력이 남아있다.",
+        "date": "2026-10-05",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-10-06/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Index P/E Valuations vs. History",
+        "titleKo": "미국 주가 지수 주가수익비율(P/E) 역사적 비교",
+        "desc": "Risk appetite remains strong. The Nasdaq 100 and Russell 2000 trade at 23 times forward earnings, while the S&P 500 trades at 19 times. The market is not cheap, but that has done little to slow the flow of money into equities.",
+        "descKo": "위험 선호 심리가 여전히 강하다. 나스닥 100과 러셀 2000은 선행 주가수익비율(P/E) 23배, S&P 500은 19배에 거래되고 있다. 시장이 저렴한 수준은 아니나, 이것이 주식 시장으로의 자금 유입을 늦추지는 못하고 있다.",
+        "date": "2026-10-05",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
+        "image": "/isabelnet-charts/2026-10-06/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-03",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-16",
         "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
         "image": "/isabelnet-charts/2026-09-17/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-16",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 68.63, the S&P 500 remains slightly overbought. Bulls are still in control and the trend stays healthy, but expect the next leg higher to be choppy, not smooth.",
-        "descKo": "S&P 500 지수는 68.63으로 다소 과매수 상태에 머물러 있습니다. 상승세가 여전히 시장을 주도하며 견조한 흐름을 보이고 있으나, 다음 상승 국면은 순탄치 않고 변동성이 클 것으로 예상됩니다.",
-        "date": "2026-09-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-09-16/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance on the Day of the FOMC Meeting",
-        "titleKo": "FOMC 당일 S&P 500 성과",
-        "desc": "U.S. stocks have struggled on FOMC days this year. Can this week break the pattern?",
-        "descKo": "올해 미국 증시는 FOMC 당일마다 고전을 면치 못했습니다. 이번 주에는 이러한 패턴을 깰 수 있을지 주목됩니다.",
-        "date": "2026-09-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-by-president-from-reagan-to-trump/",
-        "image": "/isabelnet-charts/2026-09-16/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자 vs 체계적 투자 포지셔닝",
-        "desc": "Systematic strategies continue to lean bullish, sitting in the 86th percentile and firmly overweight. Discretionary investors, by contrast, are underweight again at the 34th percentile, with ample room to add risk.",
-        "descKo": "체계적 투자 전략은 86백분위수로 확고한 비중 확대 기조를 유지하며 강세장을 견인하고 있습니다. 반면 재량적 투자자들은 34백분위수로 다시 비중을 축소한 상태여서, 추가적인 리스크 투입 여력은 충분합니다.",
-        "date": "2026-09-15",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-09-16/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are buying again, pushing the Insider Transactions Ratio into bullish territory and adding fuel to the bull case.",
-        "descKo": "기업 내부자들의 매수세가 재개되면서 내부자 거래 비율이 강세 영역으로 진입했고, 이는 상승론에 힘을 실어주고 있습니다.",
-        "date": "2026-09-15",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-09-16/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Bond Positioning",
-        "titleKo": "채권 포지셔닝",
-        "desc": "Bond positioning has sunk to the 5th percentile. If history rhymes, yields are near a short-term peak.",
-        "descKo": "채권 포지셔닝이 5백분위수까지 하락했습니다. 과거의 사례가 반복된다면, 국채 금리는 단기 고점에 근접한 것으로 풀이됩니다.",
-        "date": "2026-09-15",
-        "sourceUrl": "https://www.isabelnet.com/return-u-s-corporate-bonds/",
-        "image": "/isabelnet-charts/2026-09-16/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
