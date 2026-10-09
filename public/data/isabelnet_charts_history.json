@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-09",
+    "charts": [
+      {
+        "title": "S&P 500 Up 10% to 20% YTD at the End of September",
+        "titleKo": "9월 말 기준 S&P 500 지수 연초 대비 10~20% 상승",
+        "desc": "History is giving the bulls a reason to stay optimistic. When the S&P 500 is up 10% to 20% by late September, it has finished the quarter higher 86% of the time, with an average gain of 5.3%.",
+        "descKo": "역사적 데이터가 강세론자들에게 낙관론을 유지할 근거를 제공하고 있다. 9월 말까지 S&P 500 지수가 10~20% 상승했을 경우, 분기 말까지 추가 상승할 확률은 86%였으며 평균 상승폭은 5.3%였다.",
+        "date": "2026-10-08",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-total-returns-after-crossing-into-the-9th-and-10th-deciles-of-valuation/",
+        "image": "/isabelnet-charts/2026-10-09/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Performance Based on Congress Makeup – Average S&P 500 Index Annual Return",
+        "titleKo": "의회 구성에 따른 S&P 500 지수 평균 연간 수익률",
+        "desc": "Since 1951, U.S. stocks have averaged annual gains of 13.7% under a Republican president and 17% under a Democratic president when Congress was divided. Investors have welcomed the gridlock, which keeps sweeping policy shifts in check.",
+        "descKo": "1951년 이후 미국 증시는 의회가 분열된 상태에서 공화당 대통령 재임 시 평균 13.7%, 민주당 대통령 재임 시 평균 17%의 연간 수익률을 기록했다. 투자자들은 급격한 정책 변화를 억제하는 이러한 교착 상태를 긍정적으로 평가해 왔다.",
+        "date": "2026-10-08",
+        "sourceUrl": "https://www.isabelnet.com/performance-based-on-congress-makeup-average-sp-500-index-annual-return-and-average-gdp/",
+        "image": "/isabelnet-charts/2026-10-09/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Forecast of Gold Prices",
+        "titleKo": "금 가격 전망",
+        "desc": "Goldman Sachs is sticking with its $5,400 gold target for the end of 2027. Rising rates could make the climb bumpier, but the bullish outlook may put a floor under pullbacks.",
+        "descKo": "골드만삭스는 2027년 말 금 목표가를 5,400달러로 유지했다. 금리 상승이 상승세를 저해할 수 있으나, 강세 전망이 조정 국면에서 하단을 지지할 것으로 보인다.",
+        "date": "2026-10-08",
+        "sourceUrl": "https://www.isabelnet.com/total-etf-holdings-of-gold/",
+        "image": "/isabelnet-charts/2026-10-09/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S.-Listed ETF Cumulative Flows by Year",
+        "titleKo": "미국 상장 ETF 연도별 누적 자금 유입액",
+        "desc": "More than $1.5 trillion has flowed into U.S.-listed ETFs so far this year, a record for this point in the calendar. If the buying continues, inflows could reach $2.3 trillion by year-end, according to model-based projections.",
+        "descKo": "올해 들어 현재까지 미국 상장 ETF에 1조 5천억 달러 이상이 유입되며 연중 최고치를 경신했다. 모델 기반 예측에 따르면, 이러한 매수세가 지속될 경우 연말까지 유입액은 2조 3천억 달러에 달할 전망이다.",
+        "date": "2026-10-08",
+        "sourceUrl": "https://www.isabelnet.com/cross-asset-etf-flows/",
+        "image": "/isabelnet-charts/2026-10-09/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Implied Correlation",
+        "titleKo": "S&P 500 내재 상관계수",
+        "desc": "The S&P 500 is pushing higher, but not all stocks are participating equally. As correlations fade, investors are paying closer attention to fundamentals again.",
+        "descKo": "S&P 500 지수가 상승세를 이어가고 있으나 모든 종목이 동일하게 움직이는 것은 아니다. 상관계수가 낮아짐에 따라 투자자들은 다시 개별 기업의 펀더멘털에 주목하고 있다.",
+        "date": "2026-10-08",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-realized-3-month-average-stock-correlation/",
+        "image": "/isabelnet-charts/2026-10-09/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-08",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-21",
         "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
         "image": "/isabelnet-charts/2026-09-22/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-19",
-    "charts": [
-      {
-        "title": "Valuation – S&P 500 Trailing P/E: Current vs. Average Bull-Market Extremes",
-        "titleKo": "밸류에이션 – S&P 500 트레일링 PER: 현재 수준과 과거 강세장 고점 비교",
-        "desc": "At 26 times trailing earnings, the S&P 500 stands well above its historical average and many previous bull-market peaks, leaving little room for bad news. But that multiple alone does not make a crash inevitable.",
-        "descKo": "S&P 500의 트레일링 PER이 26배에 달하며 과거 평균 및 다수의 이전 강세장 고점을 크게 상회하고 있어 악재를 견딜 여력이 부족한 상태다. 그러나 이 멀티플 수치만으로 시장 붕괴가 필연적이라고 단정할 수는 없다.",
-        "date": "2026-09-18",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-trailing-4q-pe/",
-        "image": "/isabelnet-charts/2026-09-19/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Days in a Row without a 1% Drop",
-        "titleKo": "S&P 500 1% 이상 하락 없이 지속된 거래일수",
-        "desc": "Thirty-five trading days without a 1% decline have left the S&P 500 unusually calm. Historically, stretches of such low volatility have been more common in powerful bull markets than before major selloffs.",
-        "descKo": "35거래일 동안 1% 이상의 하락이 나타나지 않으면서 S&P 500은 이례적인 진정세를 보이고 있다. 역사적으로 이러한 저변동성 국면은 대규모 매도세 이전보다는 강력한 강세장에서 더 빈번하게 관찰되었다.",
-        "date": "2026-09-18",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-days-in-a-row-without-a-1-drop/",
-        "image": "/isabelnet-charts/2026-09-19/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 – 투자자 심리",
-        "desc": "At 29, the Fear & Greed Index still points to fear, not panic. For U.S. equities, that leaves the door open to further gains if the headlines turn friendlier.",
-        "descKo": "공포·탐욕 지수가 29를 기록하며 패닉이 아닌 공포 구간을 가리키고 있다. 미국 증시 입장에서 이는 향후 뉴스 흐름이 우호적으로 바뀔 경우 추가 상승의 여지가 남아있음을 의미한다.",
-        "date": "2026-09-18",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-09-19/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 노출 지수 – 투자자 심리",
-        "desc": "After hitting a new two-year high of 102.7 three weeks ago, the NAAIM Exposure Index has since dropped to 71.92. Active managers have sharply cut their exposure to U.S. equities as sentiment turns more cautious. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "3주 전 2년래 최고치인 102.7을 기록했던 NAAIM 노출 지수가 71.92까지 하락했다. 투자 심리가 신중해짐에 따라 액티브 매니저들은 미국 주식 비중을 급격히 축소했다. NAAIM 노출 지수는 전미액티브투자매니저협회 회원들이 보고한 미국 주식 노출도의 2주 평균을 추적한다.",
-        "date": "2026-09-18",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-09-19/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도 – S&P 500 전체 시가총액 대비 상위 10개 기업 비중",
-        "desc": "A handful of giants now dominate the S&P 500. The 10 largest stocks account for 40% of the index’s weight and 38% of its earnings, lifting valuations and making the market more vulnerable to sudden swings.",
-        "descKo": "현재 소수의 거대 기업이 S&P 500을 장악하고 있다. 상위 10개 종목이 지수 비중의 40%, 이익의 38%를 차지하고 있어 밸류에이션이 높아졌으며, 시장은 급격한 변동성에 더 취약해진 상황이다.",
-        "date": "2026-09-18",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-09-19/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
