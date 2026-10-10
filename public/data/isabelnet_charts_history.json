@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-10",
+    "charts": [
+      {
+        "title": "Investor Psychology Cycle",
+        "titleKo": "투자자 심리 사이클",
+        "desc": "Panic can push markets too far, too fast, creating opportunities for contrarians willing to buy when fear peaks. Euphoria is the other side of the trade, and often signals that it’s time to sell.",
+        "descKo": "공포는 시장을 지나치게 과도하고 빠르게 하락시켜, 공포가 극에 달했을 때 매수하는 역발상 투자자들에게 기회를 제공한다. 반면 환희는 정반대의 매매 신호로, 종종 매도 시점이 임박했음을 시사한다.",
+        "date": "2026-10-09",
+        "sourceUrl": "https://www.isabelnet.com/investor-psychology-cycle/",
+        "image": "/isabelnet-charts/2026-10-10/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Yearly Performance During Bull Markets",
+        "titleKo": "강세장 기간 S&P 500 연간 수익률",
+        "desc": "Age alone is no reason to call time on a bull market. Bull markets that reach year four have more often than not delivered another strong year, averaging 18.9% and giving bulls a new reason to smile.",
+        "descKo": "강세장이 오래 지속되었다는 이유만으로 시장의 끝을 예단할 수는 없다. 4년 차에 접어든 강세장은 상당수 추가적인 강세를 보이며 평균 18.9%의 수익률을 기록했고, 이는 강세론자들에게 새로운 기대를 안겨주었다.",
+        "date": "2026-10-09",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-yearly-performance-during-bull-markets-2/",
+        "image": "/isabelnet-charts/2026-10-10/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 - 투자자 심리",
+        "desc": "At 38, the Fear & Greed Index remains in fear territory, not panic. Better news could help U.S. stocks push higher.",
+        "descKo": "공포·탐욕 지수가 38을 기록하며 '공포' 구간에 머물러 있으나 패닉 상태는 아니다. 긍정적인 소식이 뒷받침된다면 미국 증시는 추가 상승할 가능성이 있다.",
+        "date": "2026-10-09",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-10-10/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 - 투자자 심리",
+        "desc": "With the NAAIM Exposure Index at 86.76, active managers remain firmly bullish on U.S. stocks, keeping equity exposure high without reaching euphoric levels. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "NAAIM 익스포저 지수가 86.76을 기록하며, 액티브 매니저들은 미국 주식에 대해 여전히 확고한 강세 전망을 유지하고 있다. 이는 환희 수준에 도달하지는 않았으나 높은 주식 비중을 유지하고 있음을 보여준다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원들이 보고한 미국 주식 보유 비중의 2주 평균치를 추적한다.",
+        "date": "2026-10-09",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-10-10/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식 시장 집중도 - S&P 500 내 상위 10개 기업의 시가총액 비중",
+        "desc": "A handful of giants now dominate the S&P 500. The 10 largest stocks make up 40% of the index and 37% of its earnings, pushing valuations higher and leaving investors more exposed to a narrow group of companies.",
+        "descKo": "소수의 거대 기업이 현재 S&P 500 지수를 주도하고 있다. 상위 10개 종목이 지수 전체의 40%, 전체 이익의 37%를 차지하면서 밸류에이션을 끌어올리고 있으며, 투자자들은 특정 소수 종목에 대한 노출도가 높아진 상태다.",
+        "date": "2026-10-09",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-10-10/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-09",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-22",
         "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
         "image": "/isabelnet-charts/2026-09-23/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-22",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "At 55.08, the Greed and Fear Index indicates a neutral investor mood, far from panic selling or euphoric buying, even as sentiment has shifted somewhat toward bearishness.",
-        "descKo": "공포·탐욕 지수는 55.08로 중립 수준을 기록했습니다. 투매나 과열 매수와는 거리가 있으며, 투자 심리가 다소 약세로 기울었음에도 여전히 중립적인 상태를 유지하고 있습니다.",
-        "date": "2026-09-21",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-09-22/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance in Midterm Years",
-        "titleKo": "중간선거 연도 S&P 500 성과",
-        "desc": "September has often been challenging for U.S. stocks in midterm years. But October and November have historically been the best months, with risk appetite usually returning as election uncertainty fades and year-end approaches.",
-        "descKo": "중간선거가 있는 해의 9월은 미국 증시에 종종 어려운 시기였습니다. 그러나 역사적으로 10월과 11월은 가장 성과가 좋은 달이었으며, 선거 불확실성이 해소되고 연말이 다가옴에 따라 위험 선호 심리가 회복되는 경향을 보였습니다.",
-        "date": "2026-09-21",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-performance-during-midterm-election-years/",
-        "image": "/isabelnet-charts/2026-09-22/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning slipped to the 48th percentile, close to neutral. With positioning still far from extreme, investors have room to add risk.",
-        "descKo": "통합 주식 포지셔닝은 48번째 백분위수로 하락하며 중립 수준에 근접했습니다. 포지션이 여전히 극단적인 수준과는 거리가 있어, 투자자들은 위험 자산을 확대할 여력이 있는 것으로 분석됩니다.",
-        "date": "2026-09-21",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-09-22/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "2026년 및 2027년 S&P 500 가격 목표",
-        "desc": "With S&P 500 targets of 8,000, 8,300, and 8,700 over the next 3, 6, and 12 months, Goldman Sachs sees earnings, not valuations, as the fuel for further upside.",
-        "descKo": "골드만삭스는 향후 3개월, 6개월, 12개월 S&P 500 목표치를 각각 8,000, 8,300, 8,700으로 제시하며, 추가 상승의 동력으로 밸류에이션이 아닌 기업 실적을 지목했습니다.",
-        "date": "2026-09-21",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-09-22/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Largecap Equity Positioning and Earnings Growth",
-        "titleKo": "대형주 포지셔닝 및 실적 성장",
-        "desc": "Large-cap equity positioning sits at the 65th percentile, modestly overweight but still cautious given the strength of earnings growth.",
-        "descKo": "대형주 포지셔닝은 65번째 백분위수를 기록하고 있습니다. 완만한 비중 확대 상태이나, 탄탄한 실적 성장세를 고려할 때 여전히 신중한 접근이 필요한 수준입니다.",
-        "date": "2026-09-21",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
-        "image": "/isabelnet-charts/2026-09-22/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
