@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-13",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "At 56.28, the Greed and Fear Index remains in neutral territory, far from panic or euphoria. If markets hold steady through earnings season, investors could get a window to add exposure in the weeks ahead.",
+        "descKo": "공포·탐욕 지수가 56.28을 기록하며 공황이나 과열과는 거리가 먼 중립 구간에 머물러 있습니다. 기업 실적 발표 기간 동안 시장이 안정세를 유지한다면, 향후 몇 주간 투자자들이 주식 비중을 확대할 기회가 올 수 있습니다.",
+        "date": "2026-10-12",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-10-13/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 – Length of Bull Markets and When They Started",
+        "titleKo": "S&P 500 – 강세장의 지속 기간 및 시작 시점",
+        "desc": "Born in October 2022, this bull market is now four years old. Bulls are smiling: over the past 50 years, every bull market to reach this age lasted at least five years, with an average ultimate length of eight years.",
+        "descKo": "2022년 10월 시작된 이번 강세장은 현재 4년 차에 접어들었습니다. 지난 50년간 이 정도 연차에 도달한 강세장은 모두 최소 5년 이상 지속되었으며, 평균적으로 8년 동안 상승세가 이어졌다는 점이 투자자들에게 긍정적 신호입니다.",
+        "date": "2026-10-12",
+        "sourceUrl": "https://www.isabelnet.com/length-of-bull-markets-and-when-they-started/",
+        "image": "/isabelnet-charts/2026-10-13/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning eased to the 56th percentile, a modest overweight. As the trade is far from crowded, investors still have room to add risk.",
+        "descKo": "통합 주식 포지셔닝은 56퍼센타일로 완화되며 완만한 비중 확대 수준을 보이고 있습니다. 시장이 과밀 상태가 아니므로 투자자들은 여전히 위험 자산을 추가할 여력이 있습니다.",
+        "date": "2026-10-12",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-10-13/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment Indicator and Stock Positioning",
+        "titleKo": "심리 지표 및 주식 포지셔닝",
+        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator has slipped to -1.3. Historically, similar readings have been followed by an average 2.0% gain for the S&P 500 over the next month.",
+        "descKo": "골드만삭스의 미국 주식 심리 지표가 -1.3으로 하락했습니다. 과거 사례를 볼 때, 유사한 수치를 기록한 이후 한 달간 S&P 500 지수는 평균 2.0% 상승했습니다.",
+        "date": "2026-10-12",
+        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
+        "image": "/isabelnet-charts/2026-10-13/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "CTAs Exposure to Equities",
+        "titleKo": "CTA의 주식 익스포저",
+        "desc": "CTA positioning has pulled back materially, but remains elevated across most major indexes. The S&P 500 sits at the 87th percentile and the Nasdaq-100 at the 69th percentile. The Russell 2000 has fallen to the 35th percentile.",
+        "descKo": "CTA(상품거래자문가)의 포지셔닝은 크게 축소되었으나 주요 지수 전반에서는 여전히 높은 수준을 유지하고 있습니다. S&P 500은 87퍼센타일, 나스닥 100은 69퍼센타일에 위치해 있으며, 러셀 2000은 35퍼센타일로 하락했습니다.",
+        "date": "2026-10-12",
+        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
+        "image": "/isabelnet-charts/2026-10-13/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-10",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-23",
         "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
         "image": "/isabelnet-charts/2026-09-24/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-23",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 66.87, the S&P 500 remains slightly overbought. Bulls haven’t lost control and the uptrend is fine, but don’t expect a straight line higher from here. Think choppy, not smooth.",
-        "descKo": "66.87을 기록한 S&P 500 지수는 다소 과매수 상태에 머물러 있습니다. 상승세는 견조하며 강세론자들이 시장 주도권을 유지하고 있으나, 일직선 형태의 상승을 기대하기는 어렵습니다. 매끄러운 상승보다는 등락이 반복되는 흐름을 예상해야 합니다.",
-        "date": "2026-09-22",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-09-23/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment Indicator and Stock Positioning",
-        "titleKo": "투자 심리 지표 및 주식 포지셔닝",
-        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator has slipped to -0.9. After similar readings, the S&P 500 has historically averaged a 0.5% gain over the following month.",
-        "descKo": "골드만삭스의 미국 주식 심리 지표가 -0.9로 하락했습니다. 과거 유사한 수치를 기록했을 당시, S&P 500 지수는 다음 달 평균 0.5%의 상승률을 보였습니다.",
-        "date": "2026-09-22",
-        "sourceUrl": "https://www.isabelnet.com/u-s-equity-sentiment-indicator/",
-        "image": "/isabelnet-charts/2026-09-23/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Mega-Cap Growth and Large-Cap Tech Positioning",
-        "titleKo": "메가캡 성장주 및 대형 기술주 포지셔닝",
-        "desc": "Positioning in mega-cap growth and large-cap Tech has eased from its highs but remains modestly overweight, at the 61st percentile.",
-        "descKo": "메가캡 성장주와 대형 기술주에 대한 포지셔닝은 고점 대비 완화되었으나, 여전히 61% 분위 수준으로 완만한 비중 확대 상태를 유지하고 있습니다.",
-        "date": "2026-09-22",
-        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
-        "image": "/isabelnet-charts/2026-09-23/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "With insider buys and sells now in balance, the Insider Transactions Ratio has drifted back to neutral. For now, insiders aren’t sending investors a clear message.",
-        "descKo": "내부자의 매수와 매도가 균형을 이루면서 내부자 거래 비율이 중립 수준으로 복귀했습니다. 현재로서는 내부자들이 투자자들에게 뚜렷한 신호를 보내지 않고 있습니다.",
-        "date": "2026-09-22",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-09-23/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자 vs 체계적 투자 포지셔닝",
-        "desc": "Systematic strategies remain very bullish, with positioning in the 88th percentile. Discretionary investors have turned more cautious, slipping to the 19th percentile and staying underweight, leaving ample of room to add exposure.",
-        "descKo": "체계적 전략은 88% 분위의 포지셔닝을 유지하며 매우 낙관적인 전망을 보이고 있습니다. 반면 재량적 투자자들은 신중한 태도로 돌아서며 19% 분위로 하락해 비중 축소 상태를 유지하고 있어, 향후 익스포저를 확대할 여력이 충분합니다.",
-        "date": "2026-09-22",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-09-23/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
