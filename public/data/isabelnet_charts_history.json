@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-15",
+    "charts": [
+      {
+        "title": "S&P 500’s Average Annualized Return over the Next 10 Years, by Starting CAPE",
+        "titleKo": "CAPE 비율에 따른 S&P 500의 향후 10년 연평균 수익률",
+        "desc": "High starting valuations have often meant leaner returns. When the CAPE ratio was above 30, stocks gained just 1.4% a year on average over the following decade. With the CAPE now at 41.8, could stocks trail bonds for another decade?",
+        "descKo": "높은 밸류에이션은 낮은 수익률로 이어지는 경향이 있다. CAPE 비율이 30을 상회했을 때, 이후 10년간 주식의 연평균 수익률은 1.4%에 그쳤다. 현재 CAPE가 41.8인 상황에서, 향후 10년간 주식이 채권보다 낮은 성과를 기록할 가능성이 제기된다.",
+        "date": "2026-10-14",
+        "sourceUrl": "https://www.isabelnet.com/forward-10-year-real-returns-and-cape-valuations/",
+        "image": "/isabelnet-charts/2026-10-15/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Pullbacks and Returns a Year Off the Lows for the S&P 500 Index Based on the 4-Year Presidential Cycle",
+        "titleKo": "대통령 임기 4년 주기에 따른 S&P 500 지수의 조정폭 및 저점 1년 후 수익률",
+        "desc": "Since 1950, the S&P 500 has fallen an average of 17.5% during midterm years, the deepest swoon in the presidential cycle. But the market’s low has been a launchpad: one year later, stocks have always been higher, up 31.7% on average.",
+        "descKo": "1950년 이후 S&P 500은 대통령 임기 중간선거 해에 평균 17.5% 하락하며 가장 큰 조정을 겪었다. 그러나 시장의 저점은 반등의 발판이 되었다. 저점 기록 1년 후 주가는 항상 상승했으며, 평균 31.7%의 수익률을 보였다.",
+        "date": "2026-10-14",
+        "sourceUrl": "https://www.isabelnet.com/pullbacks-and-returns-a-year-off-the-lows-for-the-sp-500-index-based-on-the-4-year-presidential-cycle/",
+        "image": "/isabelnet-charts/2026-10-15/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Equity Risk Premium",
+        "titleKo": "S&P 500 주식 위험 프리미엄",
+        "desc": "Investors have little room for error. With the equity risk premium at its lowest level in more than two decades, U.S. stocks offer less reward for the risks investors take.",
+        "descKo": "투자자들에게 허용된 실수의 여지는 크지 않다. 주식 위험 프리미엄이 20여 년 만에 최저 수준으로 떨어지면서, 현재 미국 주식은 투자자가 감수하는 위험 대비 낮은 보상을 제공하고 있다.",
+        "date": "2026-10-14",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-equity-risk-premium-5/",
+        "image": "/isabelnet-charts/2026-10-15/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Global Sector Fund Flows",
+        "titleKo": "글로벌 섹터 펀드 자금 흐름",
+        "desc": "Over the past year, investors have poured into tech funds as AI euphoria, surging chip stocks and rising earnings forecasts strengthened the bull case. How much longer can the momentum last?",
+        "descKo": "지난 1년 동안 AI 열풍과 반도체주 급등, 실적 전망치 상향으로 강세론이 힘을 얻으며 투자자들의 자금이 기술주 펀드로 쏠렸다. 이러한 모멘텀이 얼마나 더 지속될지 주목된다.",
+        "date": "2026-10-14",
+        "sourceUrl": "https://www.isabelnet.com/annual-equity-flows/",
+        "image": "/isabelnet-charts/2026-10-15/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment – Risk Appetite and Expected U.S. Equity Market Performance",
+        "titleKo": "투자 심리 – 위험 선호도와 미국 주식 시장의 기대 수익률",
+        "desc": "U.S. equity fund managers are taking on more risk again after September’s decline, but they remain cautious about near-term returns, with rates, fiscal policy and geopolitics clouding the outlook.",
+        "descKo": "미국 주식 펀드 매니저들은 9월 하락장 이후 다시 위험 노출도를 높이고 있으나, 금리와 재정 정책, 지정학적 리스크 등 불확실성이 지속되면서 단기 수익률에 대해서는 여전히 신중한 태도를 유지하고 있다.",
+        "date": "2026-10-14",
+        "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
+        "image": "/isabelnet-charts/2026-10-15/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-14",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-25",
         "sourceUrl": "https://www.isabelnet.com/average-1-month-sp-500-return-vs-change-in-10-year-u-s-treasury-yields/",
         "image": "/isabelnet-charts/2026-09-26/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-25",
-    "charts": [
-      {
-        "title": "Seasonality – S&P 500 Average Monthly Returns Since 1950",
-        "titleKo": "계절성 – 1950년 이후 S&P 500 월별 평균 수익률",
-        "desc": "September has earned its reputation as the S&P 500’s worst month, the only one with a negative average return since 1950. Then comes the final quarter, historically one of the market’s most rewarding periods.",
-        "descKo": "9월은 1950년 이후 평균 수익률이 마이너스인 유일한 달로, S&P 500 최악의 달이라는 오명을 얻었다. 그 뒤를 잇는 4분기는 역사적으로 시장에서 가장 수익률이 좋은 시기 중 하나다.",
-        "date": "2026-09-24",
-        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-average-monthly-returns/",
-        "image": "/isabelnet-charts/2026-09-25/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Small Cap Stocks – S&P 600 / S&P 500",
-        "titleKo": "미국 소형주 – S&P 600 / S&P 500",
-        "desc": "Pressure is mounting on U.S. small caps. The S&P 600 has broken below its 50-day moving average, ending a run of outperformance that began in late 2025 after nearly five years of lagging the S&P 500.",
-        "descKo": "미국 소형주에 대한 압박이 커지고 있다. S&P 600 지수가 50일 이동평균선을 하회하며, 거의 5년간 S&P 500에 뒤처지다 2025년 말부터 이어온 상대적 강세 흐름이 끝났다.",
-        "date": "2026-09-24",
-        "sourceUrl": "https://www.isabelnet.com/u-s-small-cap-stocks-sp-600-sp-500/",
-        "image": "/isabelnet-charts/2026-09-25/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Core PCE Inflation Forecast",
-        "titleKo": "미국 근원 PCE 인플레이션 전망",
-        "desc": "Goldman Sachs sees U.S. core PCE cooling to 2.2% year-over-year by Q4 2027, and that makes a string of additional rate hikes beyond today’s pricing hard to justify.",
-        "descKo": "골드만삭스는 미국 근원 PCE(개인소비지출) 상승률이 2027년 4분기까지 전년 대비 2.2%로 둔화될 것으로 전망하며, 이는 현재 시장이 반영한 수준을 넘어서는 추가 금리 인상을 정당화하기 어렵게 만든다.",
-        "date": "2026-09-24",
-        "sourceUrl": "https://www.isabelnet.com/u-s-inflation-expectations-u-s-5-year-breakeven-and-u-s-core-pce-price-index/",
-        "image": "/isabelnet-charts/2026-09-25/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation Percentile – Shiller P/E and U.S. 10-Year Yield",
-        "titleKo": "밸류에이션 백분위 – Shiller P/E와 미국 10년물 국채금리",
-        "desc": "The Shiller P/E says US equities are expensive. The 10‑year U.S. Treasury yield, by comparison, is back around its historical average. Is it time to favor bonds over equities?",
-        "descKo": "Shiller P/E 기준으로 보면 미국 주식은 비싸다. 반면 미국 10년물 국채금리는 역사적 평균 수준으로 되돌아왔다. 이제 주식보다 채권을 선호할 때가 된 걸까?",
-        "date": "2026-09-24",
-        "sourceUrl": "https://www.isabelnet.com/average-valuation-percentile-equity-bond-credit/",
-        "image": "/isabelnet-charts/2026-09-25/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Volatility Divergence – VIX vs. MOVE",
-        "titleKo": "변동성 디버전스 – VIX vs. MOVE",
-        "desc": "Bond traders are hedging for sharp moves in U.S. rates, while equity investors still expect a relatively quiet stock market. That divergence isn’t automatically bearish, but it’s a flashing yellow light.",
-        "descKo": "채권 트레이더들은 미국 금리의 급격한 변동에 대비해 헤지에 나서고 있는 반면, 주식 투자자들은 여전히 비교적 잠잠한 증시를 예상하고 있다. 이 괴리가 곧바로 약세 신호는 아니지만, 경계해야 할 노란 신호등이다.",
-        "date": "2026-09-24",
-        "sourceUrl": "https://www.isabelnet.com/volatility-divergence-vix-vs-move/",
-        "image": "/isabelnet-charts/2026-09-25/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
