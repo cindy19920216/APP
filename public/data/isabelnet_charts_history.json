@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-14",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "At 81.39, the S&P 500 is firmly in overbought territory. Momentum still favors the bulls and supports are intact, but the climb may not be smooth.",
+        "descKo": "81.39를 기록한 S&P 500은 확실한 과매수 구간에 진입했다. 모멘텀은 여전히 강세장을 가리키고 있고 지지선도 견고하나, 상승세가 순탄치 않을 수 있다.",
+        "date": "2026-10-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-10-14/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance 1-Year After Midterm Elections",
+        "titleKo": "중간선거 이후 1년간 S&P 500 성과",
+        "desc": "Midterm elections have been a reliable tailwind for stocks: the S&P 500 has risen over the following year every time since 1950, averaging a 14.8% gain. No doubt, bulls have history on their side.",
+        "descKo": "중간선거는 증시에 확실한 순풍으로 작용해 왔다. 1950년 이후 S&P 500은 중간선거 이듬해에 매번 상승했으며, 평균 14.8%의 수익률을 기록했다. 강세론자들이 역사를 등에 업고 있다는 점은 의심할 여지가 없다.",
+        "date": "2026-10-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-1-year-after-midterm-elections/",
+        "image": "/isabelnet-charts/2026-10-14/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders are buying, pushing the Insider Transactions Ratio further into bullish territory and adding fuel to the rally.",
+        "descKo": "기업 내부자들이 주식 매수에 나서면서 내부자 거래 비율이 강세 영역으로 더욱 깊게 진입하며 랠리에 힘을 보태고 있다.",
+        "date": "2026-10-13",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-10-14/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026 and 2027",
+        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
+        "desc": "Goldman Sachs still sees the S&P 500 climbing to 8,000 by year-end, 8,300 in six months and 8,700 within a year. Earnings growth, not higher valuations, is expected to drive the next leg higher.",
+        "descKo": "골드만삭스는 S&P 500이 연말 8,000, 6개월 후 8,300, 1년 내 8,700까지 상승할 것으로 전망한다. 밸류에이션 상승이 아닌 이익 성장이 향후 추가 상승을 견인할 것으로 예상된다.",
+        "date": "2026-10-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-10-14/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자와 체계적 투자자의 주식 포지셔닝",
+        "desc": "Systematic strategies remain overweight, with positioning at the 85th percentile. Discretionary investors are still cautious, modestly underweight at the 32nd percentile, leaving significant room to add risk.",
+        "descKo": "체계적 전략은 85 백분위수의 포지션을 유지하며 비중 확대 상태를 지속하고 있다. 반면 재량적 투자자들은 32 백분위수로 완만한 비중 축소 상태를 보이며 여전히 신중한 태도를 취하고 있어, 위험 자산을 추가할 여력이 상당하다.",
+        "date": "2026-10-13",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-10-14/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-13",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-24",
         "sourceUrl": "https://www.isabelnet.com/volatility-divergence-vix-vs-move/",
         "image": "/isabelnet-charts/2026-09-25/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-24",
-    "charts": [
-      {
-        "title": "S&P 500 Earnings vs. Their Long-Term Trend",
-        "titleKo": "S&P 500 기업 이익과 장기 추세의 괴리",
-        "desc": "Consensus forward earnings for the S&P 500 are now about 50% above their long-term growth trend. That does not mean the market has reached an immediate top, but it’s the kind of excess that often shows up late in the cycle.",
-        "descKo": "S&P 500의 컨센서스 포워드 이익이 현재 장기 성장 추세를 약 50% 상회하고 있다. 이것이 시장의 즉각적인 고점을 의미하는 것은 아니나, 사이클 후반부에 흔히 나타나는 과열 징후 중 하나다.",
-        "date": "2026-09-23",
-        "sourceUrl": "https://www.isabelnet.com/deviation-of-earnings-above-below-long-term-growth-trend/",
-        "image": "/isabelnet-charts/2026-09-24/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Truck Tonnage vs. S&P 500 Index",
-        "titleKo": "트럭 물동량 지수와 S&P 500 지수의 상관관계",
-        "desc": "The Truck Tonnage Index fell 0.5% in August. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.67 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
-        "descKo": "8월 트럭 물동량 지수가 0.5% 하락했다. 미국 화물의 72.7%를 담당하는 트럭은 미국 경제의 바로미터 역할을 한다. 차트를 보면 역사적으로 미국 증시는 실물 경제의 규모 및 확장과 궤를 같이하며 상승해왔다(2002년 이후 R² = 0.67). 트럭 물동량 지수가 미국 증시의 선행 지표는 아니지만, 미국 증시가 실물 경제의 팽창과 수축을 어떻게 따라왔는지 잘 보여준다.",
-        "date": "2026-09-23",
-        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
-        "image": "/isabelnet-charts/2026-09-24/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary Positioning vs. Earning Growth",
-        "titleKo": "경기소비재 투자 포지션과 이익 성장",
-        "desc": "Discretionary investors are still positioned cautiously relative to the strength of earnings growth. With revisions still supportive and macro risks contained, more cash could move into stocks.",
-        "descKo": "경기소비재 투자자들은 여전히 견조한 이익 성장세 대비 신중한 포지션을 유지하고 있다. 실적 전망치가 여전히 우호적이고 거시경제적 리스크가 제한적인 상황에서, 추가적인 자금이 주식 시장으로 유입될 가능성이 있다.",
-        "date": "2026-09-23",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investors-equity-positioning-vs-sp-500-eps-revision-ratio/",
-        "image": "/isabelnet-charts/2026-09-24/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Global Market Implied Equity Risk Premiums",
-        "titleKo": "글로벌 시장의 내재 자기자본 위험 프리미엄(ERP)",
-        "desc": "In the U.S. and Japan, the equity risk premium has been squeezed so hard that stocks barely compensate investors for taking on extra risk versus bonds. That makes equities a tougher sell and raises the odds of investor frustration.",
-        "descKo": "미국과 일본의 자기자본 위험 프리미엄이 지나치게 압축되면서, 주식 투자가 채권 대비 추가 위험을 감수할 만큼의 보상을 제공하지 못하고 있다. 이는 주식의 매력을 떨어뜨리고 투자자의 피로감을 높이는 요인이 된다.",
-        "date": "2026-09-23",
-        "sourceUrl": "https://www.isabelnet.com/global-market-implied-equity-risk-premiums/",
-        "image": "/isabelnet-charts/2026-09-24/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "MSCI World Sector/Style Valuations",
-        "titleKo": "MSCI 세계 섹터 및 스타일별 밸류에이션",
-        "desc": "Valuations are rich across sectors and styles, leaving investors with almost no cushion. A slight turn in mood could push prices lower, with few supports below.",
-        "descKo": "모든 섹터와 스타일 전반에 걸쳐 밸류에이션이 높아 투자자들에게 안전마진이 거의 없는 상태다. 투자 심리가 조금만 위축되어도 하방 지지선이 부족한 상황에서 주가가 하락할 수 있다.",
-        "date": "2026-09-23",
-        "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
-        "image": "/isabelnet-charts/2026-09-24/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
