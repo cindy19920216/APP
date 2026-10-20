@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-20",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "At 54.87, the Greed and Fear Index remains in neutral territory. Panic and euphoria are both in short supply, but a strong earnings season could give investors reason to increase their exposure in the weeks ahead.",
+        "descKo": "공포·탐욕 지수가 54.87을 기록하며 중립 구간에 머물러 있습니다. 시장에 공포나 과열 기운은 부족하지만, 강력한 실적 시즌이 이어질 경우 향후 몇 주간 투자자들이 비중을 확대할 명분이 될 수 있습니다.",
+        "date": "2026-10-19",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-10-20/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026 and 2027",
+        "titleKo": "S&P 500 2026년 및 2027년 목표가",
+        "desc": "Goldman Sachs is sticking with its S&P 500 targets of 8,000 by year-end and 8,700 over the next 12 months. It expects earnings growth, not multiple expansion, to drive the rally.",
+        "descKo": "골드만삭스가 S&P 500 지수의 연말 목표치 8,000포인트와 향후 12개월 목표치 8,700포인트를 유지했습니다. 골드만삭스는 밸류에이션 확장보다는 기업의 실적 성장이 상승세를 견인할 것으로 내다봤습니다.",
+        "date": "2026-10-19",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-10-20/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning slipped to the 51st percentile but remains modestly overweight. With the trade still far from crowded, investors have room to add risk.",
+        "descKo": "통합 주식 포지셔닝이 51퍼센타일로 하락했으나 여전히 완만한 비중 확대(Overweight) 상태를 유지하고 있습니다. 아직 시장이 과열되지 않은 만큼 투자자들은 위험 자산을 추가할 여력이 있습니다.",
+        "date": "2026-10-19",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-10-20/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Corporate insiders are turning more cautious: the Insider Transactions Ratio has slipped back into bearish territory as buying interest dries up.",
+        "descKo": "기업 내부자들이 신중한 태도로 돌아서고 있습니다. 매수세가 위축되면서 내부자 거래 비율이 약세 영역으로 다시 하락했습니다.",
+        "date": "2026-10-19",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-10-20/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 – Margin Debt Expansion vs. Contraction",
+        "titleKo": "S&P 500 – 마진 부채의 확대와 축소",
+        "desc": "Margin debt continues to roll over after climbing into the danger zone. That’s not the kind of turn bulls want to see, especially as risks across the market mount.",
+        "descKo": "위험 구간까지 치솟았던 마진 부채가 하락세로 돌아섰습니다. 시장 전반의 리스크가 커지는 가운데, 이는 강세론자들이 원치 않는 신호입니다.",
+        "date": "2026-10-19",
+        "sourceUrl": "https://www.isabelnet.com/margin-debt-expansion-vs-contraction/",
+        "image": "/isabelnet-charts/2026-10-20/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-17",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-09-30",
         "sourceUrl": "https://www.isabelnet.com/sp-500-drawdown-and-12-month-forward-p-e/",
         "image": "/isabelnet-charts/2026-10-01/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-09-30",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 지표 분석",
-        "desc": "At 75.84, the S&P 500 is technically overbought. Momentum favors the bulls and key supports are intact, but expect a choppy ride rather than a straight line higher.",
-        "descKo": "75.84를 기록한 S&P 500 지수는 기술적으로 과매수 구간에 진입했다. 상승 모멘텀이 우세하고 주요 지지선은 견고하지만, 일직선 상승보다는 변동성 장세가 예상된다.",
-        "date": "2026-09-29",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-09-30/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance When Up YTD Between 10-20% at the End of September",
-        "titleKo": "9월 말 기준 연초 대비 10~20% 상승 시 S&P 500 성과",
-        "desc": "When the S&P 500 is up 10% to 20% YTD by late September, Q4 tends to be bullish, with an 86% success rate and a median 5.5% gain, a good reason for bulls to smile.",
-        "descKo": "S&P 500이 9월 말까지 연초 대비 10~20% 상승했을 경우, 4분기는 86%의 성공률과 중간값 기준 5.5%의 수익률을 기록하며 강세를 보이는 경향이 있어 매수세에 긍정적인 신호로 작용한다.",
-        "date": "2026-09-29",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-when-up-ytd-between-10-20-at-the-end-of-september/",
-        "image": "/isabelnet-charts/2026-09-30/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "컨센서스 기반 EPS 성장 전망",
-        "desc": "Wall Street’s earnings bet: S&P 500 profits up 33% in 2026, 15% in 2027. Small caps could steal the show with 31% growth this year and 50% next year.",
-        "descKo": "월스트리트는 S&P 500 기업들의 이익이 2026년 33%, 2027년 15% 성장할 것으로 전망한다. 중소형주가 올해 31%, 내년 50%의 성장률을 기록하며 시장의 주도권을 잡을 가능성이 있다.",
-        "date": "2026-09-29",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-09-30/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs is still calling for the S&P 500 to hit 8,000 in three months, 8,300 in six, and 8,700 within a year, arguing that earnings growth, not valuations, will power the next leg higher.",
-        "descKo": "골드만삭스는 S&P 500이 3개월 내 8,000, 6개월 내 8,300, 1년 내 8,700에 도달할 것으로 전망하며, 밸류에이션이 아닌 실적 성장이 향후 추가 상승을 견인할 것이라고 분석했다.",
-        "date": "2026-09-29",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-09-30/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
-        "titleKo": "수익률 곡선으로 산출한 미국 경기 침체 확률",
-        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 12.3%, leaving the expansion narrative firmly in play. For now, the cycle still has legs.",
-        "descKo": "수익률 곡선을 통해 산출한 향후 12개월 내 미국 경기 침체 확률은 12.3%로, 경기 확장 국면은 여전히 유효하다. 현재로서 경기 순환은 당분간 지속될 전망이다.",
-        "date": "2026-09-29",
-        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
-        "image": "/isabelnet-charts/2026-09-30/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
