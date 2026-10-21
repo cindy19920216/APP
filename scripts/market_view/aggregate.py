@@ -2,6 +2,7 @@
 - 하우스·시장별 1표, 기준일(리포트일 우선)부터 7일 유효, 최신 의견이 이전 의견을 대체
 - 같은 기준일이면 단기 > 12개월, 국가 명시 > EM/DM
 - 중립은 약세, EM은 한국 표, DM은 미국 표
+- 우선순위가 같은 의견끼리 방향이 엇갈리면 표로 세지 않고 '확인 필요'로 보낸다
 """
 from datetime import date
 
@@ -51,12 +52,14 @@ def select_votes(opinions: list[Opinion], market: str, as_of: date) -> tuple[lis
 
     votes = []
     for ops in candidates.values():
-        ops.sort(key=lambda o: (
-            -_effective_date(o).toordinal(),
-            _HORIZON_RANK.get(o.horizon, 2),
-            0 if o.scope == "country" else 1,
-        ))
-        votes.append(ops[0])
+        rank = lambda o: (-_effective_date(o).toordinal(), _HORIZON_RANK.get(o.horizon, 2),
+                          0 if o.scope == "country" else 1)
+        ops.sort(key=rank)
+        top = [o for o in ops if rank(o) == rank(ops[0])]
+        if len({to_vote_stance(o) for o in top}) > 1:
+            review += top   # 같은 날·같은 기간·같은 범위에서 의견이 엇갈리면 세지 않고 사람이 확인
+        else:
+            votes.append(ops[0])
     votes.sort(key=lambda o: o.house)
     return votes, review
 

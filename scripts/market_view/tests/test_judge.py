@@ -127,3 +127,35 @@ def test_summarize_reasons_swallows_any_error(monkeypatch):
     monkeypatch.setattr(judge, "complete_json", boom)
     ops = judge.parse_opinions(json.dumps([item()]), ART)
     assert judge.summarize_reasons(ops, "KR") == []
+
+
+def test_judge_batch_maps_ids_to_articles(monkeypatch):
+    a1 = Article("u1", "Goldman Sachs raises S&P 500 target to 8,000", "Reuters", date(2026, 10, 21), "", None, "US")
+    a2 = Article("u2", "골드만삭스 \"코스피 비중축소\"", "한경", date(2026, 10, 20), "", None, "KR")
+    seen = {}
+    def fake(system, user, providers=None):
+        seen["user"] = user
+        return json.dumps([
+            dict(item(market="US", quote="Goldman Sachs raises S&P 500 target to 8,000"), id=1),
+            dict(item(stance="bear", quote="코스피 비중축소", report_date=None), id=2),
+            dict(item(), id=9),
+            item(),
+        ]), "x"
+    monkeypatch.setattr(judge, "complete_json", fake)
+    ops = judge.judge_batch([a1, a2])
+    assert [(o.url, o.market, o.stance, o.article_date) for o in ops] == [
+        ("u1", "US", "bull", date(2026, 10, 21)), ("u2", "KR", "bear", date(2026, 10, 20))]
+    assert all(o.confidence == 0.9 for o in ops)
+    assert "[1]" in seen["user"] and "[2]" in seen["user"] and "Reuters" in seen["user"]
+
+
+def test_judge_batch_quote_checked_against_its_own_article(monkeypatch):
+    a1 = Article("u1", "Goldman Sachs raises S&P 500 target", "R", date(2026, 10, 21), "", None, "US")
+    a2 = Article("u2", "Morgan Stanley cuts S&P 500 target", "R", date(2026, 10, 21), "", None, "US")
+    monkeypatch.setattr(judge, "complete_json", lambda s, u, providers=None: (json.dumps(
+        [dict(item(market="US", quote="Morgan Stanley cuts S&P 500 target"), id=1)]), "x"))
+    assert judge.judge_batch([a1, a2])[0].confidence < 0.6
+
+
+def test_batch_prompt_mentions_ids():
+    assert '"id"' in judge.SYSTEM_PROMPT

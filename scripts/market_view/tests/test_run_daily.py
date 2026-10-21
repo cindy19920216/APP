@@ -17,9 +17,14 @@ def opinion_for(a, house, stance="bull"):
     return Opinion(house, a.market_hint, stance, "country", "short", None, a.published, "q", "s", 0.9, a.url)
 
 
-def run(tmp_path, arts, judge):
+def per_article(judge):
+    """기사 하나씩 판정하는 가짜 함수를 묶음 판정 함수 모양으로 감싼다."""
+    return lambda batch: [o for a in batch for o in judge(a)]
+
+
+def run(tmp_path, arts, judge, batch_size=1):
     return run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site",
-                          collect_fn=lambda d: arts, judge_fn=judge,
+                          collect_fn=lambda d: arts, judge_fn=per_article(judge), batch_size=batch_size,
                           fill_fn=lambda a: a, reasons_fn=lambda v, m: ["근거"], pause=0)
 
 
@@ -93,7 +98,7 @@ def test_reasons_crash_does_not_kill_run(tmp_path: Path):
     def bad_reasons(v, m):
         raise TypeError("boom")
     rc = run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site", collect_fn=lambda d: [art(1)],
-                        judge_fn=lambda a: [opinion_for(a, "UBS")], fill_fn=lambda a: a,
+                        judge_fn=per_article(lambda a: [opinion_for(a, "UBS")]), fill_fn=lambda a: a,
                         reasons_fn=bad_reasons, pause=0)
     assert rc == 0 and (tmp_path / "site" / "index.html").exists()
 
@@ -102,3 +107,19 @@ def test_default_paths_point_into_herencia_repo():
     from market_view import config
     assert config.SITE_DIR.as_posix().endswith("public/market-view")
     assert config.DATA_DIR.as_posix().endswith("scripts/market_view/data")
+
+
+def test_articles_judged_in_batches(tmp_path: Path):
+    sizes = []
+    def judge(batch):
+        sizes.append(len(batch))
+        return [opinion_for(a, "UBS") for a in batch]
+    run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site",
+                   collect_fn=lambda d: [art(i) for i in range(5)], judge_fn=judge, batch_size=2,
+                   fill_fn=lambda a: a, reasons_fn=lambda v, m: [], pause=0)
+    assert sizes == [2, 2, 1]
+
+
+def test_failed_batch_counts_each_article(tmp_path: Path):
+    run(tmp_path, [art(1), art(2), art(3)], lambda a: (_ for _ in ()).throw(ValueError("x")), batch_size=3)
+    assert "실패 3건" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")

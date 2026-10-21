@@ -1,4 +1,4 @@
-from market_view.houses import normalize_house
+from market_view.houses import find_house, normalize_house
 
 
 def test_variants_map_to_one_house():
@@ -33,3 +33,12 @@ def test_short_alias_as_word_in_longer_name():
 def test_bare_surname_does_not_attribute():
     assert normalize_house("Russell Wilson Capital") is None
     assert normalize_house("Mike Wilson") == "Morgan Stanley"
+
+
+def test_find_house_in_headline():
+    assert find_house("Goldman Sachs raises S&P 500 target to 8,000") == "Goldman Sachs"
+    assert find_house('골드만삭스 "코스피 1만2000 유지"') == "Goldman Sachs"
+    assert find_house("UBS upgrades Korean equities") == "UBS"
+    assert find_house("JP모간, 코스피 목표 상향") == "JPMorgan"
+    assert find_house("Nvidia shares rise on AI demand") is None
+    assert find_house("GS건설 주가 급등") is None
