@@ -35,7 +35,8 @@ def test_normal_flow_writes_page_and_data(tmp_path: Path):
     html = (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
     assert "강세 100%" in html and "근거" in html
     assert len(json.loads((tmp_path / "data" / "opinions" / "2026-10-21.json").read_text(encoding="utf-8"))) == 2
-    assert len(json.loads((tmp_path / "data" / "history.json").read_text(encoding="utf-8"))) == 2
+    hist = json.loads((tmp_path / "data" / "history.json").read_text(encoding="utf-8"))
+    assert [(r["market"], r["bull"], r["breakdown"]) for r in hist] == [("ALL", 2, {"KR": [1, 0], "US": [1, 0]})]
 
 
 def test_partial_failure_counted(tmp_path: Path):

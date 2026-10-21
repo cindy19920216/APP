@@ -110,3 +110,20 @@ def test_conflict_at_lower_rank_does_not_matter():
     long_b = op(house="UBS", stance="bull", horizon="12m", url="l2")
     votes, review = select_votes([long_a, short, long_b], "KR", AS_OF)
     assert [v.url for v in votes] == ["s"] and review == []
+
+
+def test_combined_sums_both_markets_with_breakdown():
+    from market_view.aggregate import summarize_combined
+    ops = [op(house="A", market="US", stance="bull"), op(house="B", market="US", stance="bull"),
+           op(house="A", market="KR", stance="bear"), op(house="C", market="KR", scope="DM", stance="bull")]
+    d = summarize_combined(ops, AS_OF, ["r"])
+    assert d.market == "ALL"
+    assert (d.bull, d.bear, d.ratio) == (3, 1, 0.75)
+    assert d.breakdown == {"US": (3, 0), "KR": (0, 1)}
+    assert d.reasons == ["r"] and len(d.votes) == 4
+
+
+def test_combined_empty():
+    from market_view.aggregate import summarize_combined
+    d = summarize_combined([], AS_OF, [])
+    assert d.ratio is None and "의견 없음" in d.badges and d.breakdown == {"US": (0, 0), "KR": (0, 0)}

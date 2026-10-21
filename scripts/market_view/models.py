@@ -58,3 +58,4 @@ class MarketDay:
     reasons: list[str] = field(default_factory=list)
     votes: list[Opinion] = field(default_factory=list)
     needs_review: list[Opinion] = field(default_factory=list)
+    breakdown: dict[str, tuple[int, int]] = field(default_factory=dict)   # 시장별 (강세, 약세) 표 수

@@ -159,7 +159,8 @@ def summarize_reasons(votes: list[Opinion], market: str) -> list[str]:
         return []
     lines = "\n".join(f"- {v.house} ({'강세' if v.stance == 'bull' else '약세'}): {v.summary}" for v in votes)
     try:
-        raw, _ = complete_json(REASONS_PROMPT, f"시장: {market}\n{lines}")
+        label = {"ALL": "한국·미국 주식시장", "KR": "한국 증시", "US": "미국 증시"}.get(market, market)
+        raw, _ = complete_json(REASONS_PROMPT, f"시장: {label}\n{lines}")
         data = _extract_json(raw)
     except Exception:
         return []

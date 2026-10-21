@@ -8,7 +8,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from . import config
-from .aggregate import select_votes, summarize_day
+from .aggregate import summarize_combined
 from .collect import KST, collect, fill_text
 from .corrections import apply_corrections, load_corrections
 from .judge import judge_batch, summarize_reasons
@@ -60,16 +60,14 @@ def main(as_of: date | None = None, data_dir: Path = config.DATA_DIR, site_dir: 
 
     opinions = apply_corrections(load_recent_opinions(as_of, config.VALID_DAYS, data),
                                  load_corrections(data / "corrections.csv"))
-    today = {}
-    for m in ("KR", "US"):
-        votes, _ = select_votes(opinions, m, as_of)
-        try:
-            reasons = [] if stale else reasons_fn(votes, m)
-        except Exception:
-            reasons = []
-        today[m] = summarize_day(opinions, m, as_of, reasons)
-        if not stale:
-            upsert_history(today[m], data)
+    votes = summarize_combined(opinions, as_of, []).votes
+    try:
+        reasons = [] if stale else reasons_fn(votes, "ALL")
+    except Exception:
+        reasons = []
+    today = summarize_combined(opinions, as_of, reasons)
+    if not stale:
+        upsert_history(today, data)
 
     status = {"collected": len(articles), "failed": failed, "stale": stale,
               "updated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")}
