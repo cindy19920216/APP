@@ -18,7 +18,8 @@ class UnparsableResponse(Exception):
     """AI 응답에서 JSON을 찾지 못함 — 판정 실패로 센다."""
 
 SYSTEM_PROMPT = """너는 주식 시장 뉴스에서 '외국계' 전문가의 시장 전망만 뽑아내는 분석가다.
-기사에 나온 의견을 아래 규칙대로 JSON 배열로만 출력한다. 설명 문장은 쓰지 않는다. 해당 의견이 없으면 [] 를 출력한다.
+기사 여러 개가 [1], [2] 처럼 번호와 함께 주어진다(대부분 제목만 있다). 각 기사에 나온 의견을 아래 규칙대로
+JSON 배열로만 출력한다. 설명 문장은 쓰지 않는다. 해당 의견이 없으면 [] 를 출력한다.
 
 [대상]
 - 외국계만: 해외 IB 증권사(Goldman Sachs, Morgan Stanley, JPMorgan 등), 해외 자산운용사(BlackRock, PIMCO 등),
@@ -31,6 +32,7 @@ SYSTEM_PROMPT = """너는 주식 시장 뉴스에서 '외국계' 전문가의 �
 - 지수/시장 전반 의견만. 개별 종목 의견은 제외.
 
 [항목 필드]
+- id: 의견이 나온 기사의 번호(숫자).
 - house: 하우스 이름(영문 정식 명칭). 독립 전략가는 소속(예: Fundstrat) 또는 본인 이름.
 - market: "KR"(한국 증시) 또는 "US"(미국 증시).
 - scope: 한국·코스피·코스닥 또는 미국·S&P 500·나스닥을 직접 언급 = "country",
@@ -45,12 +47,13 @@ SYSTEM_PROMPT = """너는 주식 시장 뉴스에서 '외국계' 전문가의 �
 - horizon: 수 주~수 개월 단기 전망 = "short", 12개월·연말 목표 = "12m", 알 수 없음 = "unknown".
   같은 하우스가 단기 의견과 12개월 의견을 함께 내면 항목을 두 개로 나눠 각각 표기한다.
 - report_date: 기사에 원 리포트 발표일이 명시된 경우에만 "YYYY-MM-DD", 아니면 null.
-- quote: 판정 근거가 된 기사 원문 문장을 그대로(번역하지 말 것), 한 문장.
+- quote: 판정 근거가 된 기사 원문(제목 또는 본문)을 그대로 옮긴 부분(번역하지 말 것).
+  제목만으로 방향을 알 수 없으면(예: "골드만, 코스피 전망 발표") stance를 "unclear"로 한다.
 - summary: 한국어 한 줄 요약. 밸류에이션, EPS, 비중확대 같은 주식 용어는 그대로 쓴다.
 - confidence: 0~1 사이 숫자. 기사에서 의견이 명확할수록 높게.
 
 [출력 예]
-[{"house": "Goldman Sachs", "market": "KR", "stance": "bull", "scope": "country", "horizon": "12m",
+[{"id": 1, "house": "Goldman Sachs", "market": "KR", "stance": "bull", "scope": "country", "horizon": "12m",
   "report_date": null, "quote": "...", "summary": "코스피 12개월 목표치 상향", "confidence": 0.9}]"""
 
 REASONS_PROMPT = """아래는 오늘 집계된 외국계 전문가 의견 요약이다. 강세/약세 논리 중 가장 많이 언급된 근거를
@@ -85,48 +88,70 @@ def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
-def parse_opinions(raw: str, article: Article, source: str | None = None) -> list[Opinion]:
-    """AI 응답을 검증해 Opinion으로 바꾼다. source를 주면 인용문이 실제로 원문에 있는지 확인한다."""
+def _to_opinion(d: dict, article: Article, src: str | None) -> Opinion | None:
+    house = normalize_house(str(d.get("house", "")))
+    conf = d.get("confidence")
+    if (house is None or d.get("market") not in MARKETS or d.get("stance") not in STANCES
+            or d.get("scope") not in SCOPES or d.get("horizon") not in HORIZONS
+            or isinstance(conf, bool) or not isinstance(conf, (int, float))):
+        return None
+    conf = float(conf)
+    quote = str(d.get("quote", ""))
+    report_date = _parse_date(d.get("report_date"))
+    if report_date and report_date > article.published:
+        report_date = None   # 기사보다 미래 날짜는 잘못 읽은 것 -> 기사 날짜 사용
+    if report_date and article.published - report_date > timedelta(days=MAX_REPORT_AGE_DAYS):
+        conf = min(conf, REVIEW_CONFIDENCE)
+    if src is not None and _norm(quote) not in src:
+        conf = min(conf, REVIEW_CONFIDENCE)   # 원문에 없는 인용 -> 확인 필요
+    return Opinion(
+        house=house, market=d["market"], stance=d["stance"], scope=d["scope"], horizon=d["horizon"],
+        report_date=report_date, article_date=article.published,
+        quote=quote[:MAX_QUOTE_CHARS], summary=str(d.get("summary", "")),
+        confidence=conf, url=article.url,
+    )
+
+
+def _items(raw: str) -> list:
     data = _extract_json(raw)
     if isinstance(data, dict):
         data = [data]
     if not isinstance(data, list):
         raise UnparsableResponse(str(raw)[:200])
+    return [d for d in data if isinstance(d, dict)]
+
+
+def parse_opinions(raw: str, article: Article, source: str | None = None) -> list[Opinion]:
+    """기사 하나에 대한 AI 응답을 검증해 Opinion으로 바꾼다. source를 주면 인용문이 원문에 있는지 확인한다."""
     src = _norm(source) if source else None
+    return [o for d in _items(raw) if (o := _to_opinion(d, article, src))]
+
+
+def _source_text(a: Article) -> str:
+    return f"{a.title}\n{(a.text or a.snippet or '')[:MAX_BODY_CHARS]}"
+
+
+def judge_batch(articles: list[Article]) -> list[Opinion]:
+    """기사 여러 개를 한 번에 판정. 모든 제공자가 실패하면 AllProvidersFailed를 그대로 던진다."""
+    parts = []
+    for i, a in enumerate(articles, 1):
+        body = (a.text or a.snippet or "")[:MAX_BODY_CHARS]
+        parts.append(f"[{i}] 날짜: {a.published.isoformat()} | 출처: {a.source}\n제목: {a.title}"
+                     + (f"\n{body}" if body else ""))
+    raw, _ = complete_json(SYSTEM_PROMPT, "\n\n".join(parts))
     out = []
-    for d in data:
-        if not isinstance(d, dict):
+    for d in _items(raw):
+        i = d.get("id")
+        if isinstance(i, bool) or not isinstance(i, int) or not 1 <= i <= len(articles):
             continue
-        house = normalize_house(str(d.get("house", "")))
-        conf = d.get("confidence")
-        if (house is None or d.get("market") not in MARKETS or d.get("stance") not in STANCES
-                or d.get("scope") not in SCOPES or d.get("horizon") not in HORIZONS
-                or isinstance(conf, bool) or not isinstance(conf, (int, float))):
-            continue
-        conf = float(conf)
-        quote = str(d.get("quote", ""))
-        report_date = _parse_date(d.get("report_date"))
-        if report_date and report_date > article.published:
-            report_date = None   # 기사보다 미래 날짜는 잘못 읽은 것 -> 기사 날짜 사용
-        if report_date and article.published - report_date > timedelta(days=MAX_REPORT_AGE_DAYS):
-            conf = min(conf, REVIEW_CONFIDENCE)
-        if src is not None and _norm(quote) not in src:
-            conf = min(conf, REVIEW_CONFIDENCE)   # 원문에 없는 인용 -> 확인 필요
-        out.append(Opinion(
-            house=house, market=d["market"], stance=d["stance"], scope=d["scope"], horizon=d["horizon"],
-            report_date=report_date, article_date=article.published,
-            quote=quote[:MAX_QUOTE_CHARS], summary=str(d.get("summary", "")),
-            confidence=conf, url=article.url,
-        ))
+        a = articles[i - 1]
+        if o := _to_opinion(d, a, _norm(_source_text(a))):
+            out.append(o)
     return out
 
 
 def judge_article(article: Article) -> list[Opinion]:
-    """AI 판정. 모든 제공자가 실패하면 AllProvidersFailed를 그대로 던진다."""
-    body = (article.text or article.snippet or "")[:MAX_BODY_CHARS]
-    user = f"기사 날짜: {article.published.isoformat()}\n출처: {article.source}\n제목: {article.title}\n\n{body}"
-    raw, _ = complete_json(SYSTEM_PROMPT, user)
-    return parse_opinions(raw, article, source=f"{article.title}\n{body}")
+    return judge_batch([article])
 
 
 def summarize_reasons(votes: list[Opinion], market: str) -> list[str]:
@@ -134,7 +159,8 @@ def summarize_reasons(votes: list[Opinion], market: str) -> list[str]:
         return []
     lines = "\n".join(f"- {v.house} ({'강세' if v.stance == 'bull' else '약세'}): {v.summary}" for v in votes)
     try:
-        raw, _ = complete_json(REASONS_PROMPT, f"시장: {market}\n{lines}")
+        label = {"ALL": "한국·미국 주식시장", "KR": "한국 증시", "US": "미국 증시"}.get(market, market)
+        raw, _ = complete_json(REASONS_PROMPT, f"시장: {label}\n{lines}")
         data = _extract_json(raw)
     except Exception:
         return []

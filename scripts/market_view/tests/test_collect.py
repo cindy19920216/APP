@@ -7,6 +7,7 @@ from market_view import collect as c
 from market_view.models import Article
 
 FIX = (Path(__file__).parent / "fixtures" / "bing_kr.xml").read_text(encoding="utf-8")
+GN = (Path(__file__).parent / "fixtures" / "gnews.xml").read_text(encoding="utf-8")
 
 
 def test_parse_feed_fields_and_kst_date():
@@ -25,10 +26,39 @@ def test_dedupe_and_recent_only():
     assert [a.url for a in arts] == ["https://www.hankyung.com/article/1"]
 
 
-def test_feed_url_lang():
-    assert "setlang=ko" in c.feed_url("골드만삭스 코스피", "ko")
-    assert "setlang=en" in c.feed_url("Goldman Sachs KOSPI", "en")
-    assert "format=rss" in c.feed_url("x", "en")
+def test_feed_url_is_google_news():
+    ko = c.feed_url("골드만삭스 코스피", "ko")
+    assert ko.startswith("https://news.google.com/rss/search?q=") and "ceid=KR:ko" in ko and "when%3A2d" in ko
+    assert "ceid=US:en" in c.feed_url("Goldman Sachs KOSPI", "en")
+
+
+def test_parse_google_news_strips_source_suffix():
+    a = c.parse_feed(GN, "US")[0]
+    assert a.title == "Goldman Sachs raises S&P 500 target to 8,000"
+    assert a.source == "Reuters"
+    assert a.url == "https://news.google.com/rss/articles/AAA?oc=5"
+    assert a.published == date(2026, 10, 21)
+
+
+def test_same_title_from_two_outlets_deduped_and_house_filter():
+    arts = c.dedupe_recent(c.parse_feed(GN, "US"), date(2026, 10, 21), days=2)
+    assert [a.source for a in arts] == ["Reuters", "CNBC"]
+    assert [a.title for a in c.with_house_in_title(arts)] == ["Goldman Sachs raises S&P 500 target to 8,000"]
+
+
+def test_queries_cover_houses_both_markets():
+    qs = c.build_queries()
+    assert ("Goldman Sachs S&P 500", "US", "en") in qs
+    assert ("Goldman Sachs KOSPI", "KR", "en") in qs
+    assert ("골드만삭스 코스피", "KR", "ko") in qs
+    assert len(qs) >= 40
+
+
+def test_google_links_skip_body_fetch(monkeypatch):
+    called = []
+    monkeypatch.setattr(c.requests, "get", lambda *a, **k: called.append(a) or None)
+    a = Article("https://news.google.com/rss/articles/AAA", "t", "s", date(2026, 10, 21), "", None, "US")
+    assert c.fill_text(a).text is None and called == []
 
 
 def test_fill_text_survives_network_error(monkeypatch):

@@ -12,30 +12,26 @@ VALID_DAYS = 7           # 하우스 의견 유효기간(일)
 FEW_VOTES = 3            # 표가 이보다 적으면 '의견 적음'
 SPLIT_LOW, SPLIT_HIGH = 0.45, 0.55   # 이 범위면 '의견 갈림'
 
-# ---------- 수집 (Bing News RSS) ----------
-# (검색어, 대상 시장, 언어). 한국 증시는 국내 기사가 부족할 수 있어 영문 해외 기사도 찾는다.
-QUERIES = [
-    ("골드만삭스 코스피", "KR", "ko"),
-    ("모건스탠리 코스피", "KR", "ko"),
-    ("JP모간 코스피", "KR", "ko"),
-    ("외국계 증권사 코스피 목표", "KR", "ko"),
-    ("블랙록 신흥국 비중", "KR", "ko"),
+# ---------- 수집 (Google News RSS) ----------
+# 하우스별 검색어: (영문 이름, 한국어 이름 또는 None). collect.build_queries가 미국·한국 검색어로 펼친다.
+HOUSE_QUERY_NAMES = [
+    ("Goldman Sachs", "골드만삭스"), ("Morgan Stanley", "모건스탠리"), ("JPMorgan", "JP모간"),
+    ("Bank of America", "뱅크오브아메리카"), ("Citi", "씨티"), ("UBS", "UBS"), ("Barclays", "바클레이즈"),
+    ("Nomura", "노무라"), ("HSBC", "HSBC"), ("Macquarie", "맥쿼리"), ("CLSA", "CLSA"),
+    ("Deutsche Bank", "도이치"), ("Wells Fargo", None), ("Jefferies", None), ("BlackRock", "블랙록"),
+    ("Fundstrat", None), ("Yardeni", None), ("PIMCO", None),
+]
+# 하우스 이름이 없는 일반 검색어 (제목에 하우스 이름이 있는 기사만 남는다)
+EXTRA_QUERIES = [
+    ("외국계 코스피 전망", "KR", "ko"),
     ("신흥국 비중확대", "KR", "ko"),
-    ("Goldman Sachs KOSPI", "KR", "en"),
-    ("Morgan Stanley Korea equities", "KR", "en"),
-    ("JPMorgan KOSPI target", "KR", "en"),
     ("emerging markets stocks overweight", "KR", "en"),
-    ("Goldman Sachs S&P 500 target", "US", "en"),
-    ("Morgan Stanley Wilson stocks", "US", "en"),
-    ("JPMorgan S&P 500 strategist", "US", "en"),
     ("strategist S&P 500 outlook", "US", "en"),
-    ("BlackRock US equities overweight", "US", "en"),
-    ("Fundstrat Tom Lee S&P", "US", "en"),
-    ("Yardeni S&P 500", "US", "en"),
     ("developed markets equities overweight", "US", "en"),
 ]
 RECENT_DAYS = 2          # 이 기간(일) 안의 기사만 판정
 REQUEST_PAUSE = 1.0      # 요청 사이 대기(초)
+MAX_ARTICLES_PER_RUN = 400   # 한 번에 판정할 기사 상한 (무료 AI 한도 보호)
 MIN_TEXT_CHARS = 300     # 본문이 이보다 짧으면 추출 실패로 보고 제목+요약으로 판정
 USER_AGENT = "Mozilla/5.0 (market-view daily bot)"
 
@@ -58,4 +54,5 @@ PROVIDERS = [
 ]
 RATE_LIMIT_WAIT = 30.0   # 429 응답에 대기 시간이 없을 때 기다릴 시간(초)
 RATE_LIMIT_WAIT_MAX = 90.0
+BATCH_SIZE = 20          # AI 한 번에 판정할 기사 수 (제목 위주라 묶어도 짧다)
 LLM_PAUSE = 4.0          # 호출 사이 대기(초) — 무료 등급 분당 요청 한도 대비

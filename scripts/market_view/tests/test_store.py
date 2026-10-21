@@ -26,13 +26,13 @@ def test_window_excludes_old_files(tmp_path: Path):
 
 
 def test_history_upsert_same_day_once(tmp_path: Path):
-    d = MarketDay(date(2026, 10, 21), "KR", 2, 1, 2 / 3, ["의견 적음"], ["r"], [op()], [])
+    d = MarketDay(date(2026, 10, 21), "KR", 2, 1, 2 / 3, ["의견 적음"], ["r"], [op()], [], {"KR": (2, 1)})
     upsert_history(d, tmp_path)
     upsert_history(d, tmp_path)
     h = load_history(tmp_path)
     assert len(h) == 1
     assert h[0] == {"date": "2026-10-21", "market": "KR", "bull": 2, "bear": 1, "ratio": 2 / 3,
-                    "badges": ["의견 적음"], "reasons": ["r"]}
+                    "badges": ["의견 적음"], "reasons": ["r"], "breakdown": {"KR": [2, 1]}}
 
 
 def test_history_empty_when_missing(tmp_path: Path):

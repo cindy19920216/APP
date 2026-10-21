@@ -31,7 +31,8 @@ def load_history(root: Path) -> list[dict]:
 
 def upsert_history(entry: MarketDay, root: Path) -> None:
     row = {"date": entry.date.isoformat(), "market": entry.market, "bull": entry.bull, "bear": entry.bear,
-           "ratio": entry.ratio, "badges": entry.badges, "reasons": entry.reasons}
+           "ratio": entry.ratio, "badges": entry.badges, "reasons": entry.reasons,
+           "breakdown": {m: list(v) for m, v in entry.breakdown.items()}}
     rows = [r for r in load_history(root) if (r["date"], r["market"]) != (row["date"], row["market"])]
     rows.append(row)
     rows.sort(key=lambda r: (r["date"], r["market"]))

@@ -59,3 +59,21 @@ def normalize_house(name: str) -> str | None:
         if len(alias) <= _SHORT_MAX_LEN and alias in tokens:
             return canon
     return None
+
+
+# 한국어 기사 제목에서 약칭 뒤에 붙는 조사 (예: "UBS는", "JP모간의")
+_PARTICLES = {"는", "은", "이", "가", "의", "도", "와", "과", "에", "측", "에서", "로", "증권"}
+
+
+def find_house(text: str) -> str | None:
+    """기사 제목 같은 문장에 언급된 외국계 하우스를 찾는다(수집 단계 거르기용)."""
+    k = _key(text or "")
+    for alias, canon in _ALIASES:
+        if len(alias) > _SHORT_MAX_LEN and alias in k:
+            return canon
+    for tok in _tokens(text or ""):
+        for alias, canon in _ALIASES:
+            if len(alias) <= _SHORT_MAX_LEN and tok.startswith(alias) and (
+                    tok == alias or tok[len(alias):] in _PARTICLES):
+                return canon
+    return None

@@ -1,5 +1,6 @@
-"""뉴스 수집: Bing News RSS 검색 결과 -> Article, 본문은 trafilatura로 추출.
-본문 추출이 실패해도 예외를 던지지 않고 text=None으로 둔다(제목+요약으로 판정)."""
+"""뉴스 수집: Google News RSS 검색 결과 -> Article.
+Google News 링크로는 본문을 가져올 수 없어 제목으로 판정한다(본문이 있는 다른 링크는 trafilatura로 추출).
+하우스별 검색어로 모은 뒤, 제목에 외국계 하우스 이름이 있는 기사만 AI 판정에 보낸다."""
 import time
 import urllib.parse
 import urllib.robotparser
@@ -11,15 +12,27 @@ import requests
 import trafilatura
 
 from . import config
+from .houses import find_house
 from .models import Article
 
 KST = timezone(timedelta(hours=9))
 
 
 def feed_url(query: str, lang: str) -> str:
-    cc = "kr" if lang == "ko" else "us"
-    return ("https://www.bing.com/news/search?q=" + urllib.parse.quote(query)
-            + f"&format=rss&setlang={lang}&cc={cc}")
+    q = urllib.parse.quote(f"{query} when:{config.RECENT_DAYS}d")
+    loc = "hl=ko&gl=KR&ceid=KR:ko" if lang == "ko" else "hl=en-US&gl=US&ceid=US:en"
+    return f"https://news.google.com/rss/search?q={q}&{loc}"
+
+
+def build_queries() -> list[tuple[str, str, str]]:
+    """(검색어, 대상 시장, 언어). 하우스마다 미국·한국 검색어를 만들고, EM/DM 일반 검색어를 더한다."""
+    qs = []
+    for en, ko in config.HOUSE_QUERY_NAMES:
+        qs.append((f"{en} S&P 500", "US", "en"))
+        qs.append((f"{en} KOSPI", "KR", "en"))
+        if ko:
+            qs.append((f"{ko} 코스피", "KR", "ko"))
+    return qs + config.EXTRA_QUERIES
 
 
 def _real_url(link: str) -> str:
@@ -40,12 +53,18 @@ def parse_feed(xml: str, market: str) -> list[Article]:
         published = _kst_date(e.get("published", ""))
         if not published or not e.get("link"):
             continue
+        src = e.get("source")
+        source = ((src.get("title") if isinstance(src, dict) else None) or e.get("news_source") or "").strip()
+        title = e.get("title", "").strip()
+        if source and title.endswith(f" - {source}"):   # Google News는 제목 끝에 " - 언론사"를 붙인다
+            title = title[: -len(source) - 3].strip()
+        snippet = e.get("summary", "").strip()
         out.append(Article(
             url=_real_url(e.link),
-            title=e.get("title", "").strip(),
-            source=(e.get("news_source") or "").strip(),
+            title=title,
+            source=source,
             published=published,
-            snippet=e.get("summary", "").strip(),
+            snippet="" if snippet.startswith("<a ") else snippet,
             text=None,
             market_hint=market,
         ))
@@ -65,16 +84,20 @@ def dedupe_recent(articles: list[Article], as_of: date, days: int) -> list[Artic
     return out
 
 
+def with_house_in_title(articles: list[Article]) -> list[Article]:
+    return [a for a in articles if find_house(a.title)]
+
+
 def collect(as_of: date) -> list[Article]:
     found = []
-    for query, market, lang in config.QUERIES:
+    for query, market, lang in build_queries():
         try:
             r = requests.get(feed_url(query, lang), headers={"User-Agent": config.USER_AGENT}, timeout=20)
             found += parse_feed(r.text, market)
         except requests.RequestException:
             pass
         time.sleep(config.REQUEST_PAUSE)
-    return dedupe_recent(found, as_of, config.RECENT_DAYS)
+    return with_house_in_title(dedupe_recent(found, as_of, config.RECENT_DAYS))[: config.MAX_ARTICLES_PER_RUN]
 
 
 _robots_cache: dict[str, urllib.robotparser.RobotFileParser | None] = {}
@@ -99,6 +122,8 @@ def _robots_allows(url: str) -> bool:
 
 
 def fill_text(article: Article, timeout: float = 15) -> Article:
+    if urllib.parse.urlparse(article.url).netloc == "news.google.com":   # 본문으로 이어지지 않는 링크
+        return article
     if not _robots_allows(article.url):
         return article
     try:

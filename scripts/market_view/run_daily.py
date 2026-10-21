@@ -8,10 +8,10 @@ from datetime import date, datetime
 from pathlib import Path
 
 from . import config
-from .aggregate import select_votes, summarize_day
+from .aggregate import summarize_combined
 from .collect import KST, collect, fill_text
 from .corrections import apply_corrections, load_corrections
-from .judge import judge_article, summarize_reasons
+from .judge import judge_batch, summarize_reasons
 from .models import Opinion
 from .render import render_page
 from .store import (load_history, load_judged, load_recent_opinions, save_judged, save_opinions,
@@ -31,8 +31,8 @@ def _merge_today(new: list[Opinion], data: Path, as_of: date) -> list[Opinion]:
 
 
 def main(as_of: date | None = None, data_dir: Path = config.DATA_DIR, site_dir: Path = config.SITE_DIR,
-         collect_fn=collect, judge_fn=judge_article, fill_fn=fill_text, reasons_fn=summarize_reasons,
-         pause: float = config.LLM_PAUSE) -> int:
+         collect_fn=collect, judge_fn=judge_batch, fill_fn=fill_text, reasons_fn=summarize_reasons,
+         pause: float = config.LLM_PAUSE, batch_size: int = config.BATCH_SIZE) -> int:
     as_of = as_of or datetime.now(KST).date()
     data, site = data_dir, site_dir
 
@@ -40,15 +40,17 @@ def main(as_of: date | None = None, data_dir: Path = config.DATA_DIR, site_dir: 
     judged = load_judged(data)
     todo = [a for a in articles if a.url not in judged]
     found, ok, failed = [], 0, 0
-    for i, a in enumerate(todo):
-        if i and pause:
+    for start in range(0, len(todo), batch_size):
+        batch = todo[start:start + batch_size]
+        if start and pause:
             time.sleep(pause)
         try:
-            found += judge_fn(fill_fn(a))
-            judged[a.url] = as_of.isoformat()
-            ok += 1
-        except Exception:   # AllProvidersFailed, UnparsableResponse, 그 밖의 오류 모두 실패로 센다
-            failed += 1
+            found += judge_fn([fill_fn(a) for a in batch])
+            for a in batch:
+                judged[a.url] = as_of.isoformat()
+            ok += len(batch)
+        except Exception:   # AllProvidersFailed, UnparsableResponse, 그 밖의 오류: 묶음의 기사 모두 실패로 센다
+            failed += len(batch)
     save_judged(judged, as_of, config.VALID_DAYS, data)
     # 수집이 0건이거나(차단·네트워크 장애) 판정이 전부 실패하면 '갱신 실패'
     stale = not articles or (ok == 0 and failed > 0)
@@ -58,16 +60,14 @@ def main(as_of: date | None = None, data_dir: Path = config.DATA_DIR, site_dir: 
 
     opinions = apply_corrections(load_recent_opinions(as_of, config.VALID_DAYS, data),
                                  load_corrections(data / "corrections.csv"))
-    today = {}
-    for m in ("KR", "US"):
-        votes, _ = select_votes(opinions, m, as_of)
-        try:
-            reasons = [] if stale else reasons_fn(votes, m)
-        except Exception:
-            reasons = []
-        today[m] = summarize_day(opinions, m, as_of, reasons)
-        if not stale:
-            upsert_history(today[m], data)
+    votes = summarize_combined(opinions, as_of, []).votes
+    try:
+        reasons = [] if stale else reasons_fn(votes, "ALL")
+    except Exception:
+        reasons = []
+    today = summarize_combined(opinions, as_of, reasons)
+    if not stale:
+        upsert_history(today, data)
 
     status = {"collected": len(articles), "failed": failed, "stale": stale,
               "updated_at": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")}
