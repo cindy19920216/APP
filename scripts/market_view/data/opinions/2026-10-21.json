@@ -50,5 +50,18 @@
   "stance": "bull",
   "summary": "AI 투자 우려에 따른 주식 조정은 매수 기회이다.",
   "url": "https://www.msn.com/en-us/news/other/strategist-tom-lee-says-he-s-buying-the-ai-stock-dip-and-cisco-holds-the-key/ar-AA2fDyyt"
+ },
+ {
+  "article_date": "2026-10-20",
+  "confidence": 0.95,
+  "horizon": "short",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley MS chief U.S. equity strategist Mike Wilson says the correction in the average American stock is nearly over",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "미국 주식 시장의 조정이 거의 끝나간다고 분석",
+  "url": "https://www.msn.com/en-us/money/top-stocks/morgan-stanley-s-mike-wilson-says-market-correction-nearly-over-sees-s-p-500-hitting-8-500/ar-AA2fFrNJ"
  }
 ]
