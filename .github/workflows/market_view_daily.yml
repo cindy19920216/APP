@@ -1,0 +1,55 @@
+name: 외국계 시각 강세/약세 판정 일일 갱신
+
+on:
+  schedule:
+    # 22:15 UTC = 07:15 KST (다음날) — 외신 뉴스 작업(07:00 KST)과 겹치지 않게
+    - cron: '15 22 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: market-view-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 의존성 설치
+        run: pip install -r scripts/market_view/requirements.txt
+
+      - name: 테스트
+        working-directory: scripts/market_view
+        run: python -m pytest -q
+
+      - name: 뉴스 수집 + AI 판정 + 페이지 생성
+        # AI가 전부 실패해도(반환 1) 남은 7일치 의견으로 만든 페이지를 커밋하도록 계속 진행
+        continue-on-error: true
+        working-directory: scripts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m market_view.run_daily
+
+      - name: 변경사항 있으면 commit + push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scripts/market_view/data public/market-view
+          if git diff --cached --quiet; then
+            echo "변경된 내용 없음, 커밋 생략"
+          else
+            git commit -m "market-view: 외국계 시각 판정 $(TZ=Asia/Seoul date +'%Y-%m-%d') (자동)"
+            git pull --rebase
+            git push
+          fi

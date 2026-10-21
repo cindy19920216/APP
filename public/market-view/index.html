@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>외국계 시각</title><style>
+:root{--bg:#fafaf8;--fg:#1d1d1b;--muted:#6b6b66;--card:#fff;--line:#e4e4df;--bull:#1f7a3a;--bear:#b3261e;--warn:#8a5a00;--warnbg:#fff3d6}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ececea;--muted:#9a9a94;--card:#1e1e1c;--line:#33332f;--bull:#5cc27a;--bear:#ff7b72;--warn:#ffcf70;--warnbg:#3a2e12}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+main{max-width:640px;margin:0 auto;padding:12px 16px 40px}
+h1{font-size:18px;margin:4px 0 12px}.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;font-size:15px}
+.tabs button[aria-selected=true]{border-color:var(--fg);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.verdict{font-size:22px;font-weight:700}.bull{color:var(--bull)}.bear{color:var(--bear)}.muted{color:var(--muted);font-size:13px}
+.badge{display:inline-block;background:var(--warnbg);color:var(--warn);border-radius:6px;padding:1px 8px;font-size:12px;margin:4px 4px 0 0}
+ol{margin:8px 0 0;padding-left:20px}.periods{display:flex;gap:6px;margin-bottom:6px}
+.periods button{padding:4px 10px;border:1px solid var(--line);background:none;color:var(--fg);border-radius:8px}
+.periods button[aria-pressed=true]{border-color:var(--fg);font-weight:700}
+.op{border-top:1px solid var(--line);padding:8px 0}.op:first-child{border-top:0}
+.op q{display:block;font-style:italic;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+details summary{cursor:pointer;font-weight:600}footer{color:var(--muted);font-size:12px;text-align:center;margin-top:16px}
+a{color:inherit}
+</style></head>
+<body><main>
+<h1>외국계 시각 · 2026-10-21</h1>
+<div class="tabs"><button data-m="KR">한국</button><button data-m="US">미국</button></div>
+<section data-m="KR"><div class="card"><div class="verdict">의견 없음</div><span class=badge>의견 없음</span></div><div class="card"><div class="periods" data-m="KR"><button data-p="day">일</button><button data-p="week">주</button><button data-p="month">월</button></div><canvas id="chart-KR" height="180"></canvas></div><div class="card"><b>전문가별 의견</b><div class="muted">유효한 의견이 없습니다.</div></div></section><section data-m="US"><div class="card"><div class="verdict"><span class="bull">강세 100%</span> / <span class="bear">약세 0%</span></div><div class="muted">유효 2표 (강세 2 · 약세 0)</div><span class=badge>의견 적음</span><ol><li>AI 투자 우려에 따른 주식 조정은 매수 기회</li><li>미국 주식 조정이 거의 끝났음</li><li>S&amp;P 500 지수 상승 전망</li></ol></div><div class="card"><div class="periods" data-m="US"><button data-p="day">일</button><button data-p="week">주</button><button data-p="month">월</button></div><canvas id="chart-US" height="180"></canvas></div><div class="card"><b>전문가별 의견</b><div class="op"><b>Fundstrat</b> · <span class="bull">강세</span> · <span class="muted">2026-10-20</span> <a href="https://www.msn.com/en-us/news/other/strategist-tom-lee-says-he-s-buying-the-ai-stock-dip-and-cisco-holds-the-key/ar-AA2fDyyt" target="_blank" rel="noopener">🔗</a><div>AI 투자 우려에 따른 주식 조정은 매수 기회이다.</div><q>Strategist Tom Lee says investors should not shrink from the pullback in stocks surrounding AI investment fears.</q></div><div class="op"><b>Morgan Stanley</b> · <span class="bull">강세</span> · <span class="muted">2026-10-20</span> <a href="https://www.msn.com/en-us/money/top-stocks/morgan-stanley-s-mike-wilson-says-market-correction-nearly-over-sees-s-p-500-hitting-8-500/ar-AA2fFrNJ" target="_blank" rel="noopener">🔗</a><div>모건스탠리는 미국 주식 조정이 거의 끝났으며 S&amp;P 500 지수가 2027년 중반까지 8,500에 도달할 것으로 전망</div><q>Morgan Stanley MS chief U.S. equity strategist Mike Wilson says the correction in the average American stock is nearly over, with the S&amp;P 500 potentially climbing to 8,500 by mid-2027.</q></div></div></section>
+<footer>오늘 수집 10건 / 실패 0건 · 갱신 2026-10-21 (첫 생성)<br>참고 자료이며 매매 신호가 아닙니다.</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const H = [{"badges": ["의견 없음"], "bear": 0, "bull": 0, "date": "2026-10-21", "market": "KR", "ratio": null, "reasons": []}, {"badges": ["의견 적음"], "bear": 0, "bull": 2, "date": "2026-10-21", "market": "US", "ratio": 1.0, "reasons": ["AI 투자 우려에 따른 주식 조정은 매수 기회", "미국 주식 조정이 거의 끝났음", "S&P 500 지수 상승 전망"]}];
+function show(m){document.querySelectorAll('section[data-m]').forEach(s=>s.hidden=s.dataset.m!==m);
+ document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.m===m));}
+function bucket(rows,p){if(p==='day')return rows.slice(-30).map(r=>[r.date,r.ratio]);
+ const g={};rows.forEach(r=>{if(r.ratio==null)return;const d=new Date(r.date);let k;
+  if(p==='month')k=r.date.slice(0,7);else{const t=new Date(d);t.setDate(d.getDate()-((d.getDay()+6)%7));k=t.toISOString().slice(0,10);}
+  (g[k]=g[k]||[]).push(r.ratio);});
+ return Object.keys(g).sort().slice(-26).map(k=>[k,g[k].reduce((a,b)=>a+b,0)/g[k].length]);}
+const charts={};
+function draw(m,p){const rows=H.filter(r=>r.market===m);const pts=bucket(rows,p);const el=document.getElementById('chart-'+m);
+ if(charts[m])charts[m].destroy();if(typeof Chart==='undefined')return;
+ charts[m]=new Chart(el,{type:'line',data:{labels:pts.map(x=>x[0]),datasets:[{data:pts.map(x=>x[1]==null?null:Math.round(x[1]*100)),spanGaps:true,tension:.25,borderWidth:2,pointRadius:2}]},
+  options:{plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+'%'}}}}});
+ document.querySelectorAll('.periods[data-m="'+m+'"] button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===p));}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.m));
+document.querySelectorAll('.periods button').forEach(b=>b.onclick=()=>draw(b.parentElement.dataset.m,b.dataset.p));
+show('KR');['KR','US'].forEach(m=>draw(m,'day'));
+</script>
+</body></html>

@@ -115,6 +115,18 @@ git push origin main
 README.md "변경 이력" 섹션(2026-07-23~08-04)을 2026-08-05에 그대로 이관. 새 항목은
 작업이 끝날 때마다 맨 위(최신순)에 추가한다.
 
+### 2026-10-21
+- **외국계 시각 강세/약세 판정 페이지 추가 (`/market-view/index.html`)** — 매일 07:15 KST
+  GitHub Actions(`market_view_daily.yml`)가 Bing News RSS에서 외국계 하우스(IB·운용사·
+  독립 전략가)의 한국·미국 증시 의견 기사를 모으고, 무료 AI(Gemini → Gemini Flash-Lite
+  → Groq → GitHub Models 순 폴백)로 강세/약세를 판정·집계해 정적 페이지
+  `public/market-view/index.html`을 생성한다. 집계 규칙: 하우스·시장별 1표, 리포트일
+  기준 7일 유효(최신 의견이 대체), 단기 의견 우선, 중립=약세, EM→한국/DM→미국,
+  확신도 낮음·원문에 없는 인용·범위 밖 의견은 "확인 필요"로 분리. 코드·테스트(78개)는
+  `scripts/market_view/`, 판정 기록·사람 수정 파일은 `scripts/market_view/data/`.
+  Next.js 코드·설정·npm 의존성 변경 없음. 설계 문서는 원본 작업 폴더(mini_rag)
+  `docs/superpowers/specs/2026-10-21-market-view-design.md`.
+
 ### 2026-08-04
 - **KOSPI200 매매신호를 이산 투표에서 앙상블 가중치 모델로 재설계** — 기존
   `computeApproxSignalDetail`은 6개 지표를 각각 -1/0/+1로 이산화해 단순 합산(±2

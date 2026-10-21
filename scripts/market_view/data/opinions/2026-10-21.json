@@ -1,0 +1,54 @@
+[
+ {
+  "article_date": "2026-10-20",
+  "confidence": 0.95,
+  "horizon": "12m",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley MS chief U.S. equity strategist Mike Wilson says the correction in the average American stock is nearly over, with the S&P 500 potentially climbing to 8,500 by mid-2027.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "모건스탠리는 미국 주식 조정이 거의 끝났으며 S&P 500 지수가 2027년 중반까지 8,500에 도달할 것으로 전망",
+  "url": "https://www.msn.com/en-us/money/top-stocks/morgan-stanley-s-mike-wilson-says-market-correction-nearly-over-sees-s-p-500-hitting-8-500/ar-AA2fFrNJ"
+ },
+ {
+  "article_date": "2026-10-20",
+  "confidence": 0.95,
+  "horizon": "12m",
+  "house": "Fundstrat",
+  "market": "US",
+  "quote": "Fundstrat head of research Tom Lee expects the S&P 500 to reach 8,400 by year-end, dismissing market fears as “excessive pessimism.”",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "S&P 500 연말 목표치 8,400 도달 예상",
+  "url": "https://www.msn.com/en-us/news/other/tom-lee-predicts-s-p-500-at-8400-by-year-end-says-midterm-elections-could-trigger-risk-on-rally-in-tech-stocks-and-crypto-we-are-in-an-unprecedented-time/ar-AA2fDTEC"
+ },
+ {
+  "article_date": "2026-10-20",
+  "confidence": 0.95,
+  "horizon": "12m",
+  "house": "Fundstrat",
+  "market": "US",
+  "quote": "Despite recent pullbacks, he believes the S&P 500 could reach a range of 8,200 to 8,400 by year-end, a level 9.22% above current levels.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "S&P 500 연말 8,200~8,400 도달 전망",
+  "url": "https://www.kucoin.com/news/flash/fundstrat-s-tom-lee-predicts-s-p-500-to-reach-8-400-by-year-end-amid-midterm-election-optimism"
+ },
+ {
+  "article_date": "2026-10-20",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "Fundstrat",
+  "market": "US",
+  "quote": "Strategist Tom Lee says investors should not shrink from the pullback in stocks surrounding AI investment fears.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "AI 투자 우려에 따른 주식 조정은 매수 기회이다.",
+  "url": "https://www.msn.com/en-us/news/other/strategist-tom-lee-says-he-s-buying-the-ai-stock-dip-and-cisco-holds-the-key/ar-AA2fDyyt"
+ }
+]
