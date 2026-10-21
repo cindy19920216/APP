@@ -1,7 +1,9 @@
 from datetime import date
 
 from market_view.models import MarketDay, Opinion
-from market_view.render import render_page
+import pytest
+
+from market_view.render import render_page, signal
 
 D = date(2026, 10, 21)
 STATUS = {"collected": 12, "failed": 1, "stale": False, "updated_at": "2026-10-21 07:05 KST"}
@@ -24,14 +26,71 @@ def page(d=None, history=(), status=STATUS):
     return render_page(d or day(), list(history), status)
 
 
-def test_verdict_percentages():
+def test_count_line():
     html = page(day(ratio=0.62, bull=62, bear=38))
-    assert "강세 62%" in html and "약세 38%" in html
+    assert "강세 62 · 약세 38 (62%)" in html
 
 
-def test_breakdown_line():
-    html = page(day(breakdown={"US": (5, 1), "KR": (0, 0)}))
-    assert "미국 강세 5 · 약세 1" in html and "한국 표 없음" in html
+def test_title_is_todays_view():
+    html = page()
+    assert "<title>오늘의 뷰</title>" in html and "오늘의 뷰 · 2026-10-21" in html and "외국계 시각" not in html
+
+
+@pytest.mark.parametrize("ratio,cls,label", [(0.86, "green", "좋음"), (0.61, "green", "좋음"), (0.6, "yellow", "중립"),
+                                             (0.5, "yellow", "중립"), (0.4, "yellow", "중립"), (0.39, "red", "나쁨"),
+                                             (None, "off", "오늘은 의견 없음")])
+def test_signal_thresholds(ratio, cls, label):
+    assert signal(ratio) == (cls, label)
+
+
+def test_big_light_lit_for_verdict():
+    html = page(day(ratio=0.86, bull=6, bear=1))
+    assert '<div class="lamp big green">' in html and ">좋음<" in html
+
+
+def test_breakdown_and_reasons_removed():
+    html = page()
+    assert "표 없음" not in html and "금리 인하 기대" not in html and "미국 강세" not in html
+
+
+def test_order_light_then_experts_then_chart():
+    html = page(day(votes=[op()]))
+    assert html.index('class="lamp big') < html.index("전문가별 의견") < html.index('id="chart"')
+
+
+def test_row_shows_reason_and_source_link():
+    html = page(day(votes=[op(reason="금리 하락 영향", source_url="https://real.com/a")]))
+    assert '<div class="rs">금리 하락 영향</div>' in html and 'href="https://real.com/a"' in html
+
+
+def test_row_falls_back_to_url_without_source():
+    assert 'href="https://ex.com/a"' in page(day(votes=[op()]))
+
+
+def test_empty_reason_line_omitted():
+    assert 'class="rs"' not in page(day(votes=[op()]))
+
+
+def test_row_lamps_by_stance():
+    html = page(day(votes=[op(), op(house="UBS", stance="bear"), op(house="Citi", stance="neutral")],
+                    review=[op(house="Nomura", stance="unclear")]))
+    assert '<div class="lamp green"' in html and '<div class="lamp red"' in html
+    assert '<div class="lamp yellow"' in html and '<div class="lamp off"' in html
+
+
+def test_review_row_shows_title_vs_body_judgment():
+    html = page(day(review=[op(stance="bull", body_stance="bear")]))
+    assert "제목 판단 강세 · 본문 판단 약세" in html
+
+
+def test_reason_is_escaped():
+    html = page(day(votes=[op(reason="<script>x</script> & y")]))
+    assert "<script>x" not in html and "&amp; y" in html
+
+
+def test_chart_has_guide_lines():
+    html = page()
+    assert "[60,40]" in html.replace(" ", "")
 
 
 def test_no_market_tabs():
@@ -63,11 +122,10 @@ def test_quote_is_escaped():
 def test_rows_flag_market_and_review_section():
     html = page(day(votes=[op(), op(house="UBS", market="KR", stance="neutral"), op(house="Citi", market="KR", scope="DM")],
                     review=[op(house="Nomura", stance="unclear")]))
-    assert '<span class="mk">미국</span> <b>Goldman Sachs</b>' in html
-    assert '<span class="mk">한국</span> <b>UBS</b>' in html and "약세(중립)" in html
-    assert '<span class="mk">미국</span> <b>Citi</b>' in html   # DM 의견은 미국 표
-    assert "🇺🇸" not in html
-    assert "확인 필요 (1)" in html and "https://ex.com/a" in html
+    assert "<b>Goldman Sachs</b> <span class=\"muted\">미국 · 10-21</span>" in html
+    assert "<b>UBS</b> <span class=\"muted\">한국 · 10-21</span>" in html
+    assert "<b>Citi</b> <span class=\"muted\">미국 · 10-21</span>" in html   # DM 의견은 미국 표
+    assert "확인 필요 (1)" in html and "전문가별 의견 (3)" in html
 
 
 def test_disclaimer_and_mobile_meta():

@@ -34,7 +34,7 @@ def test_normal_flow_writes_page_and_data(tmp_path: Path):
     judge = lambda a: [opinion_for(a, "Goldman Sachs" if a.market_hint == "KR" else "Fundstrat")]
     assert run(tmp_path, arts, judge) == 0
     html = (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
-    assert "강세 100%" in html
+    assert "강세 2 · 약세 0 (100%)" in html
     assert len(json.loads((tmp_path / "data" / "opinions" / "2026-10-21.json").read_text(encoding="utf-8"))) == 2
     hist = json.loads((tmp_path / "data" / "history.json").read_text(encoding="utf-8"))
     assert [(r["market"], r["bull"], r["breakdown"]) for r in hist] == [("ALL", 2, {"KR": [1, 0], "US": [1, 0]})]
@@ -70,7 +70,7 @@ def test_corrections_applied(tmp_path: Path):
     (tmp_path / "data" / "corrections.csv").write_text(
         "url,house,market,stance,note\nhttps://ex.com/1,UBS,KR,bear,오판\n", encoding="utf-8")
     run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS", "bull")])
-    assert "약세 100%" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
+    assert "강세 0 · 약세 1 (0%)" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
 
 
 def test_no_articles_collected_marks_stale(tmp_path: Path):
@@ -101,7 +101,7 @@ def test_enrich_crash_does_not_fail_run(tmp_path: Path):
         raise RuntimeError("network down")
     rc = run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS")], enrich_fn=bad)
     html = (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
-    assert rc == 0 and "UBS" in html and "강세 100%" in html
+    assert rc == 0 and "UBS" in html and "(100%)" in html
 
 
 def test_enriched_reason_saved_and_rendered(tmp_path: Path):
