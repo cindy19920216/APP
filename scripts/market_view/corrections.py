@@ -1,5 +1,5 @@
 """사람이 적은 수정(data/corrections.csv)을 AI 판정보다 우선 적용한다.
-(url, house, market)이 같으면 stance를 바꾸고, stance가 'drop'이면 그 의견을 뺀다.
+(url, house, market)이 같으면 stance를 바꾸고(url은 원래 기사 주소 source_url이어도 된다), stance가 'drop'이면 그 의견을 뺀다.
 손으로 고치는 파일이라 잘못된 줄은 경고만 찍고 건너뛴다."""
 import csv
 from dataclasses import replace
@@ -41,8 +41,10 @@ def apply_corrections(opinions: list[Opinion], corrections: list[dict]) -> list[
     out = []
     for op in opinions:
         stance = fixes.get((op.url, op.house, op.market))
+        if stance is None and op.source_url:
+            stance = fixes.get((op.source_url, op.house, op.market))
         if stance is None:
             out.append(op)
-        elif stance != "drop":
-            out.append(replace(op, stance=stance, confidence=1.0))
+        elif stance != "drop":   # 사람이 고친 판정이 본문 판단보다 우선
+            out.append(replace(op, stance=stance, confidence=1.0, body_stance=""))
     return out

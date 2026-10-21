@@ -55,3 +55,15 @@ def test_bad_header_does_not_crash(tmp_path: Path):
     p = tmp_path / "c.csv"
     p.write_text("link,firm\nu1,GS\n", encoding="utf-8")
     assert apply_corrections([op()], load_corrections(p))[0].stance == "bull"
+
+
+def test_correction_matches_source_url():
+    o = op(url="https://news.google.com/rss/articles/X", source_url="https://real.com/a")
+    rows = [{"url": "https://real.com/a", "house": o.house, "market": o.market, "stance": "bear"}]
+    assert apply_corrections([o], rows)[0].stance == "bear"
+
+
+def test_correction_clears_body_stance():
+    o = op(stance="bull", body_stance="bear")
+    rows = [{"url": o.url, "house": o.house, "market": o.market, "stance": "bull"}]
+    assert apply_corrections([o], rows)[0].body_stance == ""

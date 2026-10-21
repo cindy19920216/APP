@@ -12,7 +12,7 @@ from .aggregate import summarize_combined
 from .collect import KST, collect, fill_text
 from .corrections import apply_corrections, load_corrections
 from .judge import judge_batch, summarize_reasons
-from .models import Opinion
+from .models import Opinion, opinion_key
 from .render import render_page
 from .store import (load_history, load_judged, load_recent_opinions, save_judged, save_opinions,
                     upsert_history)
@@ -23,7 +23,7 @@ def _merge_today(new: list[Opinion], data: Path, as_of: date) -> list[Opinion]:
     old = [Opinion.from_dict(d) for d in json.loads(p.read_text(encoding="utf-8"))] if p.exists() else []
     seen, out = set(), []
     for o in old + new:
-        key = (o.url, o.house, o.market, o.horizon, o.scope)
+        key = opinion_key(o)
         if key not in seen:
             seen.add(key)
             out.append(o)

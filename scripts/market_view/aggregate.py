@@ -2,6 +2,7 @@
 - 하우스·시장별 1표, 기준일(리포트일 우선)부터 7일 유효, 최신 의견이 이전 의견을 대체
 - 같은 기준일이면 단기 > 12개월, 국가 명시 > EM/DM
 - 중립은 약세, EM은 한국 표, DM은 미국 표
+- 본문 판단(body_stance)이 제목 판단과 다르면 '확인 필요'
 - 우선순위가 같은 의견끼리 방향이 엇갈리면 표로 세지 않고 '확인 필요'로 보낸다
 """
 from datetime import date
@@ -33,7 +34,8 @@ def _effective_date(op: Opinion) -> date:
 
 
 def _needs_review(op: Opinion) -> bool:
-    return to_vote_stance(op) is None or op.confidence < config.MIN_CONFIDENCE or op.scope == "other"
+    return (to_vote_stance(op) is None or op.confidence < config.MIN_CONFIDENCE or op.scope == "other"
+            or bool(op.body_stance and op.body_stance != op.stance))   # 본문 판단이 제목 판단과 다름
 
 
 def select_votes(opinions: list[Opinion], market: str, as_of: date) -> tuple[list[Opinion], list[Opinion]]:
