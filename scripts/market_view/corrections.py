@@ -46,5 +46,7 @@ def apply_corrections(opinions: list[Opinion], corrections: list[dict]) -> list[
         if stance is None:
             out.append(op)
         elif stance != "drop":   # 사람이 고친 판정이 본문 판단보다 우선
+            if op.body_stance and op.body_stance != stance:   # 본문 기반 코멘트·근거가 고친 판정과 어긋나면 제목 요약으로 되돌린다
+                op = replace(op, summary=op.title_summary or op.summary, reason="")
             out.append(replace(op, stance=stance, confidence=1.0, body_stance=""))
     return out

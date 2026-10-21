@@ -26,7 +26,7 @@ def answer(comment="증시를 누르던 부담이 줄어드는 중이라고 봄.
 
 
 def run(ops, llm=None, resolve=lambda u: "https://real.com/a", fetch=lambda u: BODY, **kw):
-    return enrich(ops, resolve=resolve, fetch=fetch, llm=llm or answer(), **kw)
+    return enrich(ops, resolve=resolve, fetch=fetch, llm=llm or answer(), **{"pause": 0, **kw})
 
 
 def test_success_sets_comment_reason_body_stance():
@@ -102,3 +102,41 @@ def test_input_not_mutated():
     ops = [op()]
     run(ops)
     assert ops[0].summary == "원래 요약" and not ops[0].enriched
+
+
+def test_unexpected_error_on_one_url_does_not_lose_others():
+    def fetch(u):
+        if u == "https://bad.com":
+            raise ValueError("weird page")
+        return BODY
+    out = run([op(url="https://bad.com"), op(url="https://good.com", house="Citi")],
+              resolve=lambda u: u, fetch=fetch)
+    by = {o.url: o for o in out}
+    assert by["https://bad.com"].enrich_tries == 1 and not by["https://bad.com"].enriched
+    assert by["https://good.com"].enriched and by["https://good.com"].reason
+
+
+def test_short_evidence_rejected():
+    [o] = run([op()], llm=answer(evidence="yields"))
+    assert o.reason == "" and o.enrich_tries == 1
+
+
+def test_prompt_does_not_reveal_title_stance():
+    seen = []
+    def llm(system, user):
+        seen.append(user)
+        return answer()(system, user)
+    run([op(stance="bull")], llm=llm)
+    assert "bull" not in seen[0] and "제목 기준" not in seen[0]
+
+
+def test_pause_between_ai_calls(monkeypatch):
+    sleeps = []
+    monkeypatch.setattr("market_view.enrich.time.sleep", lambda s: sleeps.append(s))
+    run([op(), op(house="Citi")], pause=4.0)
+    assert sleeps == [4.0]
+
+
+def test_title_summary_kept_when_comment_replaces_it():
+    [o] = run([op()])
+    assert o.title_summary == "원래 요약" and o.summary != "원래 요약"

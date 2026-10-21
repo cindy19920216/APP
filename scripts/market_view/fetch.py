@@ -33,9 +33,9 @@ def resolve_url(url: str, decoder=None) -> str | None:
         raise TemporaryFailure(str(e)) from e
     if r.get("success") and r.get("decoded_url"):
         return r["decoded_url"]
-    if str(r.get("message", "")).startswith("Request error"):   # 디코더가 네트워크 오류를 메시지로 돌려줌
-        raise TemporaryFailure(r["message"])
-    return None
+    if r.get("message") == "Invalid Google News URL format.":   # 이 경우만 다시 해도 소용없다
+        return None
+    raise TemporaryFailure(str(r.get("message")))   # 네트워크 오류·Google 요청 제한·빈 응답
 
 
 def fetch_body(url: str, get=requests.get) -> str | None:
@@ -49,5 +49,5 @@ def fetch_body(url: str, get=requests.get) -> str | None:
         raise TemporaryFailure(f"HTTP {r.status_code}")
     if r.status_code != 200:   # 401·402·403·404·410 등: 유료·차단·없는 기사
         return None
-    text = trafilatura.extract(r.text)
+    text = trafilatura.extract(r.content)   # 바이트로 넘겨 meta charset(euc-kr 등)을 trafilatura가 읽게 한다
     return text if text and len(text) >= config.MIN_TEXT_CHARS else None

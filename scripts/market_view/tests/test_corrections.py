@@ -67,3 +67,17 @@ def test_correction_clears_body_stance():
     o = op(stance="bull", body_stance="bear")
     rows = [{"url": o.url, "house": o.house, "market": o.market, "stance": "bull"}]
     assert apply_corrections([o], rows)[0].body_stance == ""
+
+
+def test_correction_against_body_reverts_body_text():
+    o = op(stance="bull", body_stance="bear", summary="하락을 예상함.", reason="실적 둔화 우려.", title_summary="목표치 상향")
+    rows = [{"url": o.url, "house": o.house, "market": o.market, "stance": "bull"}]
+    [c] = apply_corrections([o], rows)
+    assert c.summary == "목표치 상향" and c.reason == ""
+
+
+def test_correction_agreeing_with_body_keeps_body_text():
+    o = op(stance="bull", body_stance="bear", summary="하락을 예상함.", reason="실적 둔화 우려.", title_summary="목표치 상향")
+    rows = [{"url": o.url, "house": o.house, "market": o.market, "stance": "bear"}]
+    [c] = apply_corrections([o], rows)
+    assert c.summary == "하락을 예상함." and c.reason == "실적 둔화 우려."

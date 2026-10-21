@@ -37,6 +37,7 @@ class Opinion:
     source_url: str = ""      # Google News 주소를 푼 원래 기사 주소 (화면 링크용)
     enriched: bool = False    # 근거 보강이 끝났는지 (성공 또는 다시 시도하지 않는 실패)
     enrich_tries: int = 0     # 일시 실패 횟수
+    title_summary: str = ""   # 근거 보강이 summary를 바꾸기 전의 제목 기반 요약 (사람이 본문 판단을 뒤집으면 되돌린다)
 
     def to_dict(self) -> dict:
         d = asdict(self)
