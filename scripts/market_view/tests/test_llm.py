@@ -1,4 +1,4 @@
-import httpx
+import httpx2 as httpx  # openai 3.x는 httpx2를 쓴다
 import openai
 import pytest
 
