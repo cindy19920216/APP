@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-22",
+    "charts": [
+      {
+        "title": "10-Year U.S. Treasury Yield",
+        "titleKo": "미국 10년물 국채 금리",
+        "desc": "Bond yields can surge, but they rarely stay at their highs. Since 1990, every peak has been followed by a pullback.",
+        "descKo": "국채 금리는 급등할 수 있으나 고점에 계속 머무는 경우는 드물다. 1990년 이후 모든 고점 기록 이후에는 항상 하락세가 뒤따랐다.",
+        "date": "2026-10-21",
+        "sourceUrl": "https://www.isabelnet.com/forecast-nominal-10-year-u-s-treasury-yield/",
+        "image": "/isabelnet-charts/2026-10-22/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Forward P/E Ratio and Subsequent 5-Year Returns",
+        "titleKo": "S&P 500 선행 주가수익비율(Forward P/E)과 향후 5년 수익률",
+        "desc": "With U.S. equities priced for perfection, the next five years could deliver slimmer returns. The businesses are exceptional, but price still matters. Even great stocks can disappoint when investors pay too much.",
+        "descKo": "미국 주식 시장이 완벽함을 전제로 가격이 형성된 만큼, 향후 5년은 수익률이 낮아질 수 있다. 기업들의 실적은 뛰어나지만 가격은 여전히 중요하다. 아무리 우량한 주식이라도 과도한 비용을 지불하면 투자자들을 실망시킬 수 있다.",
+        "date": "2026-10-21",
+        "sourceUrl": "https://www.isabelnet.com/forward-p-e-ratio-and-subsequent-5-year-annualized-returns/",
+        "image": "/isabelnet-charts/2026-10-22/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Implied Correlation",
+        "titleKo": "S&P 500 내재 상관계수",
+        "desc": "The S&P 500 is climbing, but not every stock is along for the ride. As correlations fall, investors are getting more selective and looking harder at fundamentals.",
+        "descKo": "S&P 500 지수는 상승하고 있으나 모든 종목이 동반 상승하는 것은 아니다. 상관계수가 하락함에 따라 투자자들은 더욱 선별적인 태도를 보이며 기업의 펀더멘털을 면밀히 분석하고 있다.",
+        "date": "2026-10-21",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-realized-3-month-average-stock-correlation/",
+        "image": "/isabelnet-charts/2026-10-22/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Valuation – S&P 500 Forward P/E Multiple",
+        "titleKo": "밸류에이션 – S&P 500 선행 P/E 멀티플",
+        "desc": "Since October 2025, rising earnings estimates have pulled the S&P 500’s forward P/E down from 23 to 19, despite rising prices. The multiple is now at its 10-year average. Cooler, yes. Cheap, not yet.",
+        "descKo": "2025년 10월 이후, 주가 상승에도 불구하고 이익 전망치가 상향 조정되면서 S&P 500의 선행 P/E는 23배에서 19배로 낮아졌다. 현재 멀티플은 10년 평균 수준이다. 과열은 식었지만, 아직 저평가 구간은 아니다.",
+        "date": "2026-10-21",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-forward-p-e-ratio-3/",
+        "image": "/isabelnet-charts/2026-10-22/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "New York Fed GDP Nowcast",
+        "titleKo": "뉴욕 연준 GDP 나우캐스트(Nowcast)",
+        "desc": "The New York Fed trimmed its Q4 2026 U.S. GDP Nowcast to 2.82% from 2.83%, leaving the growth outlook virtually unchanged.",
+        "descKo": "뉴욕 연준은 2026년 4분기 미국 GDP 나우캐스트 전망치를 기존 2.83%에서 2.82%로 소폭 하향 조정했으나, 성장 전망에는 사실상 변화가 없다.",
+        "date": "2026-10-21",
+        "sourceUrl": "https://www.isabelnet.com/new-york-fed-gdp-nowcast/",
+        "image": "/isabelnet-charts/2026-10-22/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-21",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-02",
         "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
         "image": "/isabelnet-charts/2026-10-03/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-02",
-    "charts": [
-      {
-        "title": "S&P 500 Monthly Performance in Midterm Election Years",
-        "titleKo": "중간선거가 있는 해의 S&P 500 월간 수익률",
-        "desc": "Since 1950, October has been the best month for midterm years, averaging a 3% gain and finishing higher 74% of the time. Is it time to be bullish? Bearish sentiment already dominates, setting up a potential year-end rally.",
-        "descKo": "1950년 이후 10월은 중간선거가 있는 해에 평균 3%의 수익률을 기록하며 74%의 확률로 상승 마감했다. 강세론으로 돌아설 시점인가? 현재 시장을 지배하는 약세 심리는 연말 랠리의 가능성을 뒷받침하고 있다.",
-        "date": "2026-10-01",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-performance-in-year-1-after-three-consecutive-20-gains/",
-        "image": "/isabelnet-charts/2026-10-02/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Heavy Truck Sales and Recessions (Leading Indicator)",
-        "titleKo": "미국 대형 트럭 판매량과 경기 침체(선행지표)",
-        "desc": "U.S. heavy truck sales fell in August to 413K (annualized). Before recessions, heavy trucks sales tend to peak and then decline, providing insights into the overall health of the U.S. economy as a leading economic indicator.",
-        "descKo": "8월 미국 대형 트럭 판매량은 연율 환산 기준 41만 3천 대를 기록했다. 대형 트럭 판매량은 경기 침체 전 정점을 찍고 하락하는 경향이 있어, 미국 경제의 전반적인 건전성을 파악하는 선행지표로 활용된다.",
-        "date": "2026-10-01",
-        "sourceUrl": "https://www.isabelnet.com/u-s-heavy-trucks-sales-vs-recessions/",
-        "image": "/isabelnet-charts/2026-10-02/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuations – 12-Month Forward P/E Ranges (MSCI Regions)",
-        "titleKo": "밸류에이션 – 12개월 선행 주가수익비율(MSCI 지역별)",
-        "desc": "U.S. and global stocks still look expensive, but earnings are growing fast enough to support those valuations. As long as profits keep beating expectations, the premium is the price of admission, not a reason to sell.",
-        "descKo": "미국 및 글로벌 증시는 여전히 고평가 상태이나, 이익 성장이 이를 뒷받침하고 있다. 기업 실적이 시장 예상치를 상회하는 한, 현재의 프리미엄은 매도 사유가 아닌 시장 참여를 위한 비용으로 간주된다.",
-        "date": "2026-10-01",
-        "sourceUrl": "https://www.isabelnet.com/valuation-12-month-forward-p-e-ranges-msci-regions/",
-        "image": "/isabelnet-charts/2026-10-02/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation – S&P 500 NTM P/E",
-        "titleKo": "밸류에이션 – S&P 500 12개월 선행 주가수익비율",
-        "desc": "Trading at 15 times forward earnings versus 19 for the benchmark, the S&P 500 equal-weight index still isn’t a bargain, but the discount makes it look more attractive.",
-        "descKo": "S&P 500 동일가중지수는 벤치마크 지수의 19배 대비 낮은 15배 수준에서 거래되고 있다. 여전히 저평가 영역은 아니나, 벤치마크 대비 할인된 가격은 투자 매력을 높이는 요소다.",
-        "date": "2026-10-01",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
-        "image": "/isabelnet-charts/2026-10-02/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Volatility Divergence – VIX vs. MOVE",
-        "titleKo": "변동성 괴리 – VIX vs. MOVE",
-        "desc": "Bond traders are more defensive on U.S. rates, while equity investors remain confident that stocks will stay relatively calm. That growing disconnect is not necessarily a bearish signal, but it is a warning worth monitoring.",
-        "descKo": "채권 시장은 미국 금리에 대해 방어적인 태도를 보이는 반면, 주식 투자자들은 시장의 상대적 안정을 확신하고 있다. 이러한 괴리는 반드시 약세 신호라고 볼 수는 없으나, 주의 깊게 지켜봐야 할 경고등이다.",
-        "date": "2026-10-01",
-        "sourceUrl": "https://www.isabelnet.com/volatility-divergence-vix-vs-move/",
-        "image": "/isabelnet-charts/2026-10-02/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
