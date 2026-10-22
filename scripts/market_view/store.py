@@ -3,7 +3,7 @@ import json
 from datetime import date, timedelta
 from pathlib import Path
 
-from .models import MarketDay, Opinion
+from .models import MarketDay, Opinion, opinion_key
 
 
 def _write(path: Path, obj) -> None:
@@ -48,3 +48,15 @@ def load_judged(root: Path) -> dict[str, str]:
 def save_judged(judged: dict[str, str], as_of: date, keep_days: int, root: Path) -> None:
     cutoff = (as_of - timedelta(days=keep_days)).isoformat()
     _write(root / "judged.json", {u: d for u, d in judged.items() if d >= cutoff})
+
+def update_opinions(updated: list[Opinion], as_of: date, days: int, root: Path) -> None:
+    """최근 days일 파일에서 같은 의견(opinion_key)을 updated 것으로 바꿔 쓴다. 바뀐 게 없는 파일은 그대로 둔다."""
+    new = {opinion_key(o): o for o in updated}
+    for i in range(days):
+        p = root / "opinions" / f"{(as_of - timedelta(days=i)).isoformat()}.json"
+        if not p.exists():
+            continue
+        ops = [Opinion.from_dict(d) for d in json.loads(p.read_text(encoding="utf-8"))]
+        out = [new.get(opinion_key(o), o) for o in ops]
+        if out != ops:
+            _write(p, [o.to_dict() for o in out])

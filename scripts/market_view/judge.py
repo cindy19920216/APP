@@ -49,12 +49,12 @@ JSON 배열로만 출력한다. 설명 문장은 쓰지 않는다. 해당 의견
 - report_date: 기사에 원 리포트 발표일이 명시된 경우에만 "YYYY-MM-DD", 아니면 null.
 - quote: 판정 근거가 된 기사 원문(제목 또는 본문)을 그대로 옮긴 부분(번역하지 말 것).
   제목만으로 방향을 알 수 없으면(예: "골드만, 코스피 전망 발표") stance를 "unclear"로 한다.
-- summary: 한국어 한 줄 요약. 밸류에이션, EPS, 비중확대 같은 주식 용어는 그대로 쓴다.
+- summary: 한국어 한 줄 요약. 음슴체(~봄, ~했음)로 자연스럽게 쓰고 번역투는 피한다. 밸류에이션, EPS, 비중확대 같은 주식 용어는 그대로 쓴다.
 - confidence: 0~1 사이 숫자. 기사에서 의견이 명확할수록 높게.
 
 [출력 예]
 [{"id": 1, "house": "Goldman Sachs", "market": "KR", "stance": "bull", "scope": "country", "horizon": "12m",
-  "report_date": null, "quote": "...", "summary": "코스피 12개월 목표치 상향", "confidence": 0.9}]"""
+  "report_date": null, "quote": "...", "summary": "코스피 12개월 목표치를 올렸음", "confidence": 0.9}]"""
 
 REASONS_PROMPT = """아래는 오늘 집계된 외국계 전문가 의견 요약이다. 강세/약세 논리 중 가장 많이 언급된 근거를
 최대 3줄로 정리해 JSON 문자열 배열로만 출력한다. 주식 용어는 그대로 쓴다. 예: ["금리 인하 기대 확대", "반도체 EPS 상향", "밸류에이션 부담 지적"]"""

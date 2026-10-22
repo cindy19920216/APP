@@ -1,4 +1,5 @@
 import json
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
@@ -22,10 +23,10 @@ def per_article(judge):
     return lambda batch: [o for a in batch for o in judge(a)]
 
 
-def run(tmp_path, arts, judge, batch_size=1):
+def run(tmp_path, arts, judge, batch_size=1, enrich_fn=lambda ops: []):
     return run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site",
                           collect_fn=lambda d: arts, judge_fn=per_article(judge), batch_size=batch_size,
-                          fill_fn=lambda a: a, reasons_fn=lambda v, m: ["근거"], pause=0)
+                          enrich_fn=enrich_fn, pause=0)
 
 
 def test_normal_flow_writes_page_and_data(tmp_path: Path):
@@ -33,7 +34,7 @@ def test_normal_flow_writes_page_and_data(tmp_path: Path):
     judge = lambda a: [opinion_for(a, "Goldman Sachs" if a.market_hint == "KR" else "Fundstrat")]
     assert run(tmp_path, arts, judge) == 0
     html = (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
-    assert "강세 100%" in html and "근거" in html
+    assert "강세 2 · 약세 0 (100%)" in html
     assert len(json.loads((tmp_path / "data" / "opinions" / "2026-10-21.json").read_text(encoding="utf-8"))) == 2
     hist = json.loads((tmp_path / "data" / "history.json").read_text(encoding="utf-8"))
     assert [(r["market"], r["bull"], r["breakdown"]) for r in hist] == [("ALL", 2, {"KR": [1, 0], "US": [1, 0]})]
@@ -69,7 +70,7 @@ def test_corrections_applied(tmp_path: Path):
     (tmp_path / "data" / "corrections.csv").write_text(
         "url,house,market,stance,note\nhttps://ex.com/1,UBS,KR,bear,오판\n", encoding="utf-8")
     run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS", "bull")])
-    assert "약세 100%" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
+    assert "강세 0 · 약세 1 (0%)" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
 
 
 def test_no_articles_collected_marks_stale(tmp_path: Path):
@@ -95,13 +96,40 @@ def test_already_judged_url_not_rejudged(tmp_path: Path):
     assert calls == ["https://ex.com/1", "https://ex.com/2"]
 
 
-def test_reasons_crash_does_not_kill_run(tmp_path: Path):
-    def bad_reasons(v, m):
-        raise TypeError("boom")
-    rc = run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site", collect_fn=lambda d: [art(1)],
-                        judge_fn=per_article(lambda a: [opinion_for(a, "UBS")]), fill_fn=lambda a: a,
-                        reasons_fn=bad_reasons, pause=0)
-    assert rc == 0 and (tmp_path / "site" / "index.html").exists()
+def test_enrich_crash_does_not_fail_run(tmp_path: Path):
+    def bad(ops):
+        raise RuntimeError("network down")
+    rc = run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS")], enrich_fn=bad)
+    html = (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
+    assert rc == 0 and "UBS" in html and "(100%)" in html
+
+
+def test_enriched_reason_saved_and_rendered(tmp_path: Path):
+    seen = []
+    def enrich_fn(ops):
+        seen.extend(ops)
+        return [replace(o, reason="금리 하락 영향", enriched=True) for o in ops]
+    run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS")], enrich_fn=enrich_fn)
+    assert [o.house for o in seen] == ["UBS"]
+    data = json.loads((tmp_path / "data" / "opinions" / "2026-10-21.json").read_text(encoding="utf-8"))
+    assert data[0]["reason"] == "금리 하락 영향" and data[0]["enriched"] is True
+
+
+def test_body_mismatch_moves_vote_to_review(tmp_path: Path):
+    enrich_fn = lambda ops: [replace(o, body_stance="bear", enriched=True) for o in ops]
+    run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS", "bull")], enrich_fn=enrich_fn)
+    hist = json.loads((tmp_path / "data" / "history.json").read_text(encoding="utf-8"))
+    assert hist[0]["bull"] == 0
+    assert "확인 필요 (1)" in (tmp_path / "site" / "index.html").read_text(encoding="utf-8")
+
+
+def test_enrich_gets_uncorrected_opinions(tmp_path: Path):
+    (tmp_path / "data").mkdir()
+    (tmp_path / "data" / "corrections.csv").write_text(
+        "url,house,market,stance,note\nhttps://ex.com/1,UBS,KR,bear,오판\n", encoding="utf-8")
+    seen = []
+    run(tmp_path, [art(1)], lambda a: [opinion_for(a, "UBS", "bull")], enrich_fn=lambda ops: seen.extend(ops) or [])
+    assert [o.stance for o in seen] == ["bull"]
 
 
 def test_default_paths_point_into_herencia_repo():
@@ -117,7 +145,7 @@ def test_articles_judged_in_batches(tmp_path: Path):
         return [opinion_for(a, "UBS") for a in batch]
     run_daily.main(as_of=D, data_dir=tmp_path / "data", site_dir=tmp_path / "site",
                    collect_fn=lambda d: [art(i) for i in range(5)], judge_fn=judge, batch_size=2,
-                   fill_fn=lambda a: a, reasons_fn=lambda v, m: [], pause=0)
+                   enrich_fn=lambda ops: [], pause=0)
     assert sizes == [2, 2, 1]
 
 
