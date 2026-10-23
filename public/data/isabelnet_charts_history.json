@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-23",
+    "charts": [
+      {
+        "title": "U.S. 10-Year Real Yield",
+        "titleKo": null,
+        "desc": "The U.S. 10-year real yield is well above its 1.6% average since 1990. Rising earnings may keep stocks from falling, but higher real yields are limiting multiple expansion and leave valuations exposed if growth disappoints.",
+        "descKo": null,
+        "date": "2026-10-22",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-and-u-s-10-year-real-yield/",
+        "image": "/isabelnet-charts/2026-10-23/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": null,
+        "desc": "The S&P 500 has become top-heavy. Its 10 largest stocks now account for 40% of the index and 37% of its earnings, leaving the benchmark increasingly at the mercy of a few companies.",
+        "descKo": null,
+        "date": "2026-10-22",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-10-23/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI AC World EPS",
+        "titleKo": null,
+        "desc": "Earnings are holding up, and analysts still see room to lift estimates. The Street is betting AI can boost margins without sending capex soaring.",
+        "descKo": null,
+        "date": "2026-10-22",
+        "sourceUrl": "https://www.isabelnet.com/msci-world-eps-and-south-korea-exports/",
+        "image": "/isabelnet-charts/2026-10-23/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Gold and Copper Prices",
+        "titleKo": null,
+        "desc": "Goldman Sachs is sticking to its $5,400 gold forecast for the end of 2027. Rising demand and tight supply are keeping the upside case alive for gold and copper.",
+        "descKo": null,
+        "date": "2026-10-22",
+        "sourceUrl": "https://www.isabelnet.com/u-s-10-year-yields-vs-copper-gold-ratio/",
+        "image": "/isabelnet-charts/2026-10-23/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Probability of U.S. Recession Calculated from the Yield Curve",
+        "titleKo": null,
+        "desc": "The probability of U.S. recession in 12 months, calculated from the yield curve, stands at 11.4%, leaving the expansion narrative firmly in play. For now, the cycle still has legs.",
+        "descKo": null,
+        "date": "2026-10-22",
+        "sourceUrl": "https://www.isabelnet.com/probability-of-u-s-recession-calculated-from-the-yield-curve/",
+        "image": "/isabelnet-charts/2026-10-23/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-22",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-05",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
         "image": "/isabelnet-charts/2026-10-06/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-03",
-    "charts": [
-      {
-        "title": "S&P 500 CAPE Ratio vs. Subsequent 10 Year Annualized Real Return",
-        "titleKo": "S&P 500 쉴러 CAPE 비율과 향후 10년 연평균 실질 수익률",
-        "desc": "The S&P 500 is trading at a Shiller CAPE level seen only during the market’s most expensive episodes. History points to real annualized returns of between -3.8% and -1.4% over the next 10 years.",
-        "descKo": "S&P 500 지수가 시장 역사상 가장 고평가되었던 시기에나 볼 수 있었던 수준의 쉴러 CAPE 비율에서 거래되고 있다. 과거 데이터를 보면 향후 10년간 연평균 실질 수익률은 -3.8%에서 -1.4% 사이가 될 것으로 전망된다.",
-        "date": "2026-10-02",
-        "sourceUrl": "https://www.isabelnet.com/valuation-real-sp-500-index-with-recessions-and-sp-500-shiller-cape-ratio/",
-        "image": "/isabelnet-charts/2026-10-03/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Quarterly Returns Based on the Four-Year Presidential Cycle",
-        "titleKo": "대통령 임기 4년 주기에 따른 S&P 500 분기별 수익률",
-        "desc": "Bulls are still smiling. Historically, the S&P 500 has found its sweet spot from the fourth quarter of a president’s second year through the second quarter of the third year, a roughly nine-month window.",
-        "descKo": "강세론자들의 기대가 여전하다. 역사적으로 S&P 500은 대통령 임기 2년 차 4분기부터 3년 차 2분기까지 약 9개월 동안 가장 좋은 성과를 보였다.",
-        "date": "2026-10-02",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-quarterly-returns-based-on-the-four-year-presidential-cycle/",
-        "image": "/isabelnet-charts/2026-10-03/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수로 본 투자 심리",
-        "desc": "At 28, the Fear & Greed Index is still in fear territory, but not panic. If the headlines improve, U.S. stocks have room to move higher.",
-        "descKo": "공포·탐욕 지수가 28을 기록하며 여전히 공포 영역에 머물러 있으나 공황 상태는 아니다. 뉴스 흐름이 개선될 경우 미국 증시는 추가 상승 여력을 갖추고 있다.",
-        "date": "2026-10-02",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-10-03/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 노출 지수로 본 투자 심리",
-        "desc": "At 76.99, the NAAIM Exposure Index signals a modest pullback in active managers’ appetite for U.S. equities, but not a loss of conviction. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "NAAIM 노출 지수가 76.99를 기록하며 액티브 펀드 매니저들의 미국 주식 선호도가 소폭 하락했음을 나타냈으나, 시장에 대한 확신이 꺾인 것은 아니다. 전미 액티브 투자매니저협회(NAAIM) 노출 지수는 회원들이 보고한 미국 주식 보유 비중의 2주 평균치를 추적한다.",
-        "date": "2026-10-02",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-10-03/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도: S&P 500 내 시가총액 상위 10개 기업 비중",
-        "desc": "The S&P 500 has become a market of giants. Its 10 largest stocks now represent 40% of the index and 37% of its earnings, pushing valuations higher while making the market more fragile.",
-        "descKo": "S&P 500은 거대 기업 중심의 시장이 되었다. 상위 10개 종목이 지수 전체 시가총액의 40%, 이익의 37%를 차지하면서 밸류에이션을 높이는 동시에 시장의 취약성을 키우고 있다.",
-        "date": "2026-10-02",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-10-03/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
