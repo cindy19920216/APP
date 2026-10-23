@@ -1,0 +1,41 @@
+[
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.9,
+  "horizon": "short",
+  "house": "UBS",
+  "market": "US",
+  "quote": "UBS portfolio manager: S&P 500 could hit 9,500 by June 2027 on AI, longevity, energy boom",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "AI, 고령화, 에너지 붐을 바탕으로 2027년 6월까지 S&P 500이 9,500에 도달할 수 있다고 전망",
+  "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5RTnpyaW9LV3dRQkpMem5NVm12NEpLS1pVeFlUeVdTTVpieDFkanZTV18zSFRZM2oxbm9WZEY1THRkZlRWamNsLWlGLVpLQUY0TmhkOTl0eWg1ZnFvel9zUDR1ckxUbFNFMlNGYzlxZmlJVVVFQWZjamNkZw?oc=5"
+ },
+ {
+  "article_date": "2026-10-22",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "JPMorgan",
+  "market": "US",
+  "quote": "JPMorgan says AI stock selling may be nearing its limit as positioning resets",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "미국 증시에서 AI 관련 주식의 매도세가 포지셔닝 재조정과 함께 한계에 도달하고 있을 수 있음",
+  "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQYU5FdEJhREdmY2dCTG9KMVkzdFJjVUpsZlBJQXdFRGlKZjF1ZmRhSTFPeFh1Y1VBYm1wb1hnRmFsTEdCQl8xZFJLOEFGMkxiVlV0Q0kxRWlpX2l6TGtZLXU4UkNsQ0tMbzdpNkFVajltbk1IN0kwWkhTVXZTUm1xRVNOWFNQdw?oc=5"
+ },
+ {
+  "article_date": "2026-10-22",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "JPMorgan",
+  "market": "US",
+  "quote": "JPMorgan: The sell-off in US stocks may be nearing its end, with semiconductors serving as a key barometer.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "미국 주식의 매도세가 마무리 국면에 접어들 수 있으며 반도체가 핵심 지표 역할을 함",
+  "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQcUpsSGNUOUI0TW84b3BtLWNEWm9SZXVmMW1CbVpUZzRyb3JSUzFIaHpWSUlGYUtfSHgwa1B0NUc3TjlyS0RDVXZqV0lnMmZEV1J5M29abXR0SW9CZUYwdWt5RmJDTzBPZm1PaExpbU9zSzdnSi1yOXNUb1d4eGdIRWZNUGtkN3hZSV9uSllGQzN5UzJoMDhN?oc=5"
+ }
+]
