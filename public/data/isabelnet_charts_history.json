@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-24",
+    "charts": [
+      {
+        "title": "S&P 500 and Predecessors, Calendar-Year Price Returns Since 1928",
+        "titleKo": "1928년 이후 S&P 500 및 전신 지수의 연간 수익률",
+        "desc": "The S&P 500 and its predecessors have finished higher in 73% of years since 1928. Risk never disappears, but staying bearish means fighting a long-standing tailwind.",
+        "descKo": "S&P 500과 그 전신 지수는 1928년 이후 전체 기간 중 73%의 해에 상승 마감했다. 리스크는 결코 사라지지 않지만, 약세론을 고수하는 것은 장기간 지속된 우상향 흐름에 역행하는 것과 같다.",
+        "date": "2026-10-23",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-return-vs-nonfarm-payrolls/",
+        "image": "/isabelnet-charts/2026-10-24/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Truck Tonnage vs. S&P 500 Index",
+        "titleKo": "트럭 물동량 지수와 S&P 500 지수의 상관관계",
+        "desc": "The Truck Tonnage Index The Truck Tonnage Index increased 0.8% in September. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.67 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
+        "descKo": "9월 트럭 물동량 지수가 0.8% 상승했다. 트럭은 미국 화물 운송의 72.7%를 담당하며 미국 경제의 바로미터 역할을 한다. 차트는 미국 주식시장이 역사적으로 실물 경제의 규모 및 확장과 궤를 같이해 왔음을 보여준다(2002년 이후 결정계수 R² = 0.67). 트럭 물동량 지수가 주식시장의 선행 지표는 아니지만, 미국 시장이 실물 경제의 팽창과 수축을 어떻게 따라가는지 잘 보여준다.",
+        "date": "2026-10-23",
+        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-10-24/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Five-Year Credit-Default Swaps on Hyperscalers and Chipmakers",
+        "titleKo": "하이퍼스케일러 및 반도체 기업의 5년 만기 신용부도스왑(CDS)",
+        "desc": "The AI boom is pushing credit risk to new highs. The race to build is becoming a race to borrow. And protection against default keeps getting more expensive.",
+        "descKo": "AI 붐이 신용 리스크를 새로운 고점으로 끌어올리고 있다. 설비 투자 경쟁이 차입 경쟁으로 변모하면서 채무불이행 대비 비용도 계속 상승하는 추세다.",
+        "date": "2026-10-23",
+        "sourceUrl": "https://www.isabelnet.com/bank-credit-default-swaps/",
+        "image": "/isabelnet-charts/2026-10-24/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수로 본 투자 심리",
+        "desc": "With the Fear & Greed Index at 20, the market remains fearful. Some traders are stepping back, while others see a chance to buy the dip. Pessimism this heavy can leave room for a bounce.",
+        "descKo": "공포·탐욕 지수가 20을 기록하며 시장은 여전히 공포 국면에 머물러 있다. 일부 트레이더들은 발을 빼고 있으나, 다른 이들은 저가 매수의 기회로 보고 있다. 이처럼 비관론이 팽배할 경우 반등의 여지가 생길 수 있다.",
+        "date": "2026-10-23",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-10-24/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Central Bank Gold Demand Nowcast",
+        "titleKo": "중앙은행 금 매입 수요 나우캐스트",
+        "desc": "Gold buying by central banks has eased, but official-sector demand remains historically strong, helping diversify reserves and support prices.",
+        "descKo": "중앙은행들의 금 매입세는 다소 완화되었으나, 공공 부문의 수요는 여전히 역사적으로 강력한 수준을 유지하며 외환보유액 다변화와 금값 지지를 견인하고 있다.",
+        "date": "2026-10-23",
+        "sourceUrl": "https://www.isabelnet.com/central-bank-asset-purchases-coming-back/",
+        "image": "/isabelnet-charts/2026-10-24/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-23",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-06",
         "sourceUrl": "https://www.isabelnet.com/ism-manufacturing-index-and-ism-prices-paid-index-leading-indicator/",
         "image": "/isabelnet-charts/2026-10-07/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-06",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "At 54.05, the Greed and Fear Index remains firmly in neutral territory, far from both panic and euphoria. If prices hold as investors turn more defensive, that rising caution could create a good entry point in the weeks ahead.",
-        "descKo": "공포·탐욕 지수가 54.05를 기록하며 패닉이나 과열과는 거리가 먼 중립 구간에 머물러 있다. 투자자들이 방어적인 태세를 취하면서 가격이 유지된다면, 이러한 신중함이 향후 몇 주간 좋은 진입 시점을 제공할 수 있다.",
-        "date": "2026-10-05",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-10-06/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance After A >10% Q2 Quarter",
-        "titleKo": "2분기 10% 이상 상승 이후 S&P 500 성과",
-        "desc": "History is on the bulls’ side. Since 1950, when the S&P 500 rose more than 10% in Q2, Q4 ended in the green, with an average return of 6.1%. Bulls could hardly ask for a better backdrop.",
-        "descKo": "역사적 통계는 강세론자의 손을 들어주고 있다. 1950년 이후 S&P 500이 2분기에 10% 이상 상승했을 때, 4분기는 평균 6.1%의 수익률을 기록하며 항상 상승 마감했다. 강세론자들에게 이보다 더 좋은 배경은 없을 것이다.",
-        "date": "2026-10-05",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-after-a-10-q2-quarter/",
-        "image": "/isabelnet-charts/2026-10-06/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "GS Financial Conditions Index",
-        "titleKo": "골드만삭스 금융 상황 지수",
-        "desc": "U.S. financial conditions excluding equities have tightened meaningfully, but the broader backdrop remains accommodative and is still supporting growth rather than restraining activity.",
-        "descKo": "주식을 제외한 미국 금융 상황은 상당히 긴축되었으나, 전반적인 환경은 여전히 완화적이며 경제 활동을 억제하기보다 성장을 뒷받침하고 있다.",
-        "date": "2026-10-05",
-        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
-        "image": "/isabelnet-charts/2026-10-06/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning rose to the 60th percentile, a modest overweight. The trade is far from crowded, leaving room for investors to take on more risk.",
-        "descKo": "통합 주식 포지셔닝이 60퍼센타일 수준까지 상승하며 완만한 비중 확대 상태를 나타냈다. 시장이 과밀한 상태와는 거리가 멀어 투자자들이 위험을 추가로 감수할 여력이 남아있다.",
-        "date": "2026-10-05",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-10-06/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S. Equity Index P/E Valuations vs. History",
-        "titleKo": "미국 주가 지수 주가수익비율(P/E) 역사적 비교",
-        "desc": "Risk appetite remains strong. The Nasdaq 100 and Russell 2000 trade at 23 times forward earnings, while the S&P 500 trades at 19 times. The market is not cheap, but that has done little to slow the flow of money into equities.",
-        "descKo": "위험 선호 심리가 여전히 강하다. 나스닥 100과 러셀 2000은 선행 주가수익비율(P/E) 23배, S&P 500은 19배에 거래되고 있다. 시장이 저렴한 수준은 아니나, 이것이 주식 시장으로의 자금 유입을 늦추지는 못하고 있다.",
-        "date": "2026-10-05",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
-        "image": "/isabelnet-charts/2026-10-06/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
