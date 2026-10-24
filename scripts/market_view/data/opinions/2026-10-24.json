@@ -1,0 +1,80 @@
+[
+ {
+  "article_date": "2026-10-24",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "Goldman Sachs",
+  "market": "US",
+  "quote": "Goldman Sachs sees US stocks dip on tech earnings and macro shifts",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "골드만삭스, 기술주 실적과 거시경제 변화로 미국 증시 단기 하락 전망",
+  "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPNjV1TWI4b1ZEcnZ2YTVUMW5zZnJCUG10TUZxa255RjFkbjcyd3BSdW1FWjZvYW1yTWxEQWduVDdUWjVDSjY1LURkWmFxLUhUc0k4T2dmRmVQbVVfUFlnd0tmdzZFTU9GNmdSS0ZPellPdkE1M19tREhpLWVvOG45aFNCZHpEUTlyb0NoMi1pbHNJdjllMkU3azNQNkNsS3A3RGFoMTZwTEJOSTNYX0VXaklKWjMxYVJGU2E3M3NmTDRHQmluVF9z?oc=5"
+ },
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "JPMorgan",
+  "market": "US",
+  "quote": "Selling pressure on AI infrastructure stocks may not have subsided. JPMorgan warns: insufficient retail investor appetite for bottom-fishing and the ebb of share buyback funds are exacerbating market ",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "개인투자자의 저가 매수세 부족과 자사주 매입 자금 감소로 AI 인프라주 및 증시 하방 압력이 지속될 것이라고 경고",
+  "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbFdULS1XVkhhRHBiOHREa0FEeFItdTMtZ3RDMHRxSXNBNFctWDJsQzdCMmgtNUdSaWVOOURsbEctUTNMQmVWMUNJekYwbzNPX1JSRUN2OGVMUXNrRlN0N1VQMUFlM3V5dHZPalpham1NQXhwNHFpTVFOTzY1aUNCajE1cV9jdmVZTmc0bnBPRnpqQklkZlNIYm00Ty13em5BWkFTdDlaVVE1bDNXQ2pr?oc=5"
+ },
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.9,
+  "horizon": "unknown",
+  "house": "UBS",
+  "market": "US",
+  "quote": "UBS maintains attractive view on global equities as AI spending supports earnings",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "AI 지출에 따른 실적 성장을 근거로 글로벌 주식에 대해 매력적인 시각을 유지",
+  "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQRWZadXNvT09LbmxEMTZ4VFVLZmI5T0NiVElXSVROWVJkMlJQaVFNbURZOXk5bWpPSjVPLW03MHg2T1F4QzRNelpkTFJNNjRpMFh4YkNDYnMyeHhFV0puQkMxdEdzUlAtOUJZTVROZGhFaVYwV2RPOEl4aWE4TktnTGRjNzdrbHdBdzJLU0tlUHBBSTE2MVFQanpDdEI5NHdUcGcw?oc=5"
+ },
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.9,
+  "horizon": "unknown",
+  "house": "UBS",
+  "market": "US",
+  "quote": "UBS keeps Attractive rating on global equities as AI drives earnings growth",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "AI가 주도하는 실적 성장을 이유로 글로벌 주식에 대해 Attractive 등급을 유지",
+  "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQOEUtNXBZMXY5VTJtME95OU9BcGpJaVpraWswbEZxZXNwUnYydUtpMnluSlQwWjk2VDktNzdzREVIQng5bFJTUklyUW5qRllWekFyZDFOQWVHcFF2YWkxRF9yek1QYWZjbmdDbGlYTndNUUFyMnpsYk1MRk5QeVh5TDFHVUFDZ3dVWFJfb3gtbWFqemVmNUhfSFA1azliNHRFeVBpOHVnVm1TUXpSOTB6dlVlLUFveUpXeGNJ?oc=5"
+ },
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.8,
+  "horizon": "unknown",
+  "house": "Deutsche Bank",
+  "market": "US",
+  "quote": "S&P 500: AI and energy shocks weigh on equities – Deutsche Bank",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "AI 및 에너지 충격이 S&P 500 등 주식 시장에 하방 압력을 가함",
+  "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPcm4tWmlPVVoySTdtVmp1OFg3elZhV2szem1CbFJOTTRfWXFNRmVTSDBJMUFBRl9jandNcDd5c3dQSG1zVGRLSHpuOTlaVmtXcVFlUHVrUFprbDdMNkVLMHFSYi0xUHp1RTk5TG9jbmxTd1M5SFpNUFJJSUJ3b0RmNXVvWkFRMzZrX2V2RDBpLVhxNEVfdkNxaXVyeFdaZVQ3RzF6QQ?oc=5"
+ },
+ {
+  "article_date": "2026-10-23",
+  "confidence": 0.8,
+  "horizon": "unknown",
+  "house": "Deutsche Bank",
+  "market": "US",
+  "quote": "S&P 500: How are AI and energy shocks weighing on equities? – Deutsche Bank",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "AI와 에너지 충격이 주식 시장에 부담을 주는 요인으로 작용",
+  "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQLU5EMWZmVk9IQXVxenBVc2ZFVlU1WkxxdkRIRU5iY1NHY2l3aFNXYlNTUENCaEFUYnFVR0Fvc1dCb3hBSjUwa0JTSmZiQmp5MWxsdEF4TmItc1NYMnhnTGNRVVhtLS1qV3ZfNHdXaTdFQTctU2QzUU5NdkUxOXpoRTVoLWduQUlVT1dQZ0loT0F1azdoRlBpcFFBMTlyUUdCUzVVNGNjTGZHNmFfUHFCVHFTbUw3dGtLeUE5dnBGNXRfNVBSeklN?oc=5"
+ }
+]
