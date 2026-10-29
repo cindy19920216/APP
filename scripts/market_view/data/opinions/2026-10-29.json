@@ -1,0 +1,93 @@
+[
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.9,
+  "horizon": "short",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley warns the S&P 500 could drop 8% before kicking off a fresh rally",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "S&P 500이 반등 전 8% 하락할 수 있다고 경고",
+  "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQNzE0SE90WVBuN3dWbEhBdXhCRmhOTGxPdGs1ZFhOYmtRY3UtWkVGd2ZmSENWMmlRTUpOSV9TNXAyb3hzXzVDRW1FSC1oeThObEExTUFUaWQ3UHluRkJHcXl0M1V4WDhVTVZYQWdaemUwN0xmaVBZQW0yMnBtSGFES1k1LWU5YXNoaWEtQTZacmZQMUJYYXd1QjAydnJJcXRIV2c?oc=5"
+ },
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.9,
+  "horizon": "short",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley warns that U.S. stocks could fall another 8%, but are poised to rebound once three major risks are cleared.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "미국 주식이 추가로 8% 하락할 수 있으나 3대 리스크 해소 시 반등 전망",
+  "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQM01DV0k3TUdqT2xNc2xsUUtLQmVkalFrV1dYRDR4ejBxVWJoVzhTTlFCYklMT0E5WkxGZWVxVGVwRUVmT3AybUNsSGYzT3ZPc0lUQ0ZpSUZNX0JKM18yYUpXdzNNWEVtM1ZkX1VoX0lDR1R1eDREZFBNcGZhblNya0VGdXY2WlNpckdZOUFNTS1ZdV9GR3MycXV0c2JGdjFi?oc=5"
+ },
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.85,
+  "horizon": "12m",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley Warns US Stocks Could Fall Another 8%, Keeps Year-End Target Intact",
+  "report_date": null,
+  "scope": "country",
+  "stance": "neutral",
+  "summary": "미국 주식 단기 8% 하락 경고에도 연말 목표치는 유지",
+  "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE94b2d4NGZ0S21kcUNGckg1ekM0ZDJxSWprbjhYd0tSQ2dJSnRvTlRCQVptMEt2VEFvYjRUMmZrSGk4bk1wZFlleWF1VUphREo3N183RQ?oc=5"
+ },
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.8,
+  "horizon": "short",
+  "house": "Morgan Stanley",
+  "market": "US",
+  "quote": "Morgan Stanley Sees US Market Correction Nearing End.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "미국 증시 조정이 막바지에 달했다고 전망",
+  "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPaTdUeUJHbFFSYVZqeVdJN3lLeGFyWjRTVnhuVlFnZmtEb0JXVzJyZllUUy12bHV3VjVRNkRpMl9YVGx5NWR3QzlQbUxLdHZ5R1BDT3VzXzJ1V0pWU2lMSk9CZGpoajI1OE9ZUDN1aXhNX1A4NDJwdWp2MUZPT0NiVl9PZVZHbVE4Q3FqTGlnN19yMUZQS0phbkhiYTl4MXd4c2lSTUJURTRxNXZhT045alJTSTYyRE50REdocWpkSWEyd1BVN0xn0gHPAUFVX3lxTE1XOVJ4LUFSWjVwLXVXWU1iM0tpMm9xd3BHclJZYjdxWVNTSXVKRkpMYnE4OEdyNHNpQjRlSEZqZkR3LWt6VFJ6RC15QnY2cU1Lc3FxSUp3R2lTVEZwa1lGalQyVGlsQWdDUTg4YUdSZ0ZIN19Hdzl5NTdWSTItRUd0ZnhCQXBoZW0yU0Z2blRHYTZWVXdudUh0UC15X21rSFFVaXV2NTA1YV9LekJ3MG90M2dJcVd0MjFYTkpOdkYtMGFSQ3RzNjk1VlBsY0hQTQ?oc=5"
+ },
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.8,
+  "horizon": "unknown",
+  "house": "Citi",
+  "market": "US",
+  "quote": "Current macro conditions point to an attractive entry for stocks – Citi Wealth",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "현재의 거시경제 조건이 주식 매수의 매력적인 진입점을 가리킨다고 분석",
+  "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNUk1VeS1TMDdNZHVpQ1VvNmRhbDB6QlJBZFVUM2ZrUjdwaUEzRTAwZ1hMbUFBNlRKSjU0YTRBNnVqNy0weDNtQkxmeEttMlZDVGU2dVZJeGI3Ti1NQmVjNDdoWWYwNXBmRG5qMXNSTHl0cnU5bmFOcGFYVzJieUFjNjBUcGpRZHZuQmpRV0ZKazFZNGluLXU2c3pOcHRPRHFuZ0JMT2dCY2FRM0g4Z0JNTWVmX0M?oc=5"
+ },
+ {
+  "article_date": "2026-10-29",
+  "confidence": 0.7,
+  "horizon": "unknown",
+  "house": "Yardeni",
+  "market": "US",
+  "quote": "Yardeni Research | Possible Bad News and Good Buying Opportunities Ahead",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "향후 잠재적 악재 속에서도 좋은 매수 기회가 올 것으로 전망",
+  "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOWng3WHRWczBRSUhrcFZsQkFmRTl3TlRlOEdCeTQxZ3RrWlIxeHcxWkV1dG4yTEZJVDh0Ukx6Qm01dU1XeTZrUms1OWxnb082UXdyY3Q3TUtvNU1JREpiQm5ja2FVSGFMejVnUUlMTTJQSWRfSXFQZEdCOFotRTFBX1Uwei15NXRuWkxSWnloZUlISFhsejdCX3U3NUJzLVFQeGc?oc=5"
+ },
+ {
+  "article_date": "2026-10-28",
+  "confidence": 0.9,
+  "horizon": "unknown",
+  "house": "HSBC",
+  "market": "US",
+  "quote": "HSBC cuts global equities to 'neutral' on ME, AI risks",
+  "report_date": null,
+  "scope": "other",
+  "stance": "neutral",
+  "summary": "중동 및 AI 리스크를 이유로 글로벌 주식에 대한 투자의견을 Neutral로 하향",
+  "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb2pOSlBOWTRhWXNTdDY5VlY3WlRZN0toRGtxem0zUU1NYmtNYXprUm1TLWlVLXc4alN5WUh3ZjY5UUVqRUtRb1lpaUt4eWtNRFVuN0prUGluTmlhb3g5QmNZbjNJVFdtMWd2U04ta1FGbm5qSnQ4NW9xc09RQ1h3REtDYUgxUmVkUFgxZS03SzZVVG00YXZFOWxXSk40clpzLTlHcnRDVW56TDNDQ0FvR09PV0ZqZGMxZ0FDUktpYkJ0Y0NEdnhV0gHHAUFVX3lxTFBvak5KUE5ZNGFZc1N0NjlWVjdaVFk3S2hEa3F6bTNRTU1ia01hemtSbVMtaVUtdzhqU3lZSHdmNjlRRWpFS1FvWWlpS3h5a01EVW43SmtQaW5OaWFveDlCY1luM0lUV20xZ3ZTTi1rUUZubmpKdDg1b3FzT1FDWHdES0NhSDFSZWRQWDFlLTdLNlVUbTRhdkU5bFdKTjRyWnMtOUdydENVbnpMM0NDQW9HT09XRmpkYzFnQUNSS2liQnRjQ0R2eFU?oc=5"
+ }
+]
