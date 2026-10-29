@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-29",
+    "charts": [
+      {
+        "title": "S&P 500 Performance from the October 26 Close to December 31, by Market Regime",
+        "titleKo": "시장 국면별 S&P 500의 10월 26일 종가 대비 연말 수익률",
+        "desc": "In the nine midterm years since 1951 when the S&P 500 was up year to date on October 26, it rose through year-end every single time, gaining an average of 6.14%.",
+        "descKo": "1951년 이후 S&P 500 지수가 10월 26일 시점에 연초 대비 상승세를 보였던 9번의 중간선거 해에는 예외 없이 연말까지 상승했으며, 평균 6.14%의 수익률을 기록했다.",
+        "date": "2026-10-28",
+        "sourceUrl": "https://www.isabelnet.com/secular-bull-and-secular-bear-markets/",
+        "image": "/isabelnet-charts/2026-10-29/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Average Performance per Day",
+        "titleKo": "S&P 500 일평균 수익률 현황",
+        "desc": "The calendar favors the bulls: October 28 has historically been the S&P 500’s best day of the year. Will the Fed spoil the party today?",
+        "descKo": "통계적으로 강세장에 우호적인 날이 존재한다. 역사적으로 10월 28일은 S&P 500 지수가 연중 가장 높은 수익률을 기록했던 날이다. 과연 오늘 연준이 이 분위기에 찬물을 끼얹을 것인가?",
+        "date": "2026-10-28",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-single-day-average-returns/",
+        "image": "/isabelnet-charts/2026-10-29/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Ownership of the U.S. Equity Market",
+        "titleKo": "미국 주식 시장 보유 현황",
+        "desc": "U.S. households now own 42% of the U.S. equity market. But that ownership is heavily concentrated, with nearly 90% in the hands of the wealthiest 10%.",
+        "descKo": "현재 미국 가계가 보유한 미국 주식 시장 비중은 42%에 달한다. 하지만 상위 10% 부유층이 전체 보유액의 90% 가까이를 차지할 정도로 소유가 극도로 집중되어 있다.",
+        "date": "2026-10-28",
+        "sourceUrl": "https://www.isabelnet.com/ownership-breakdown-of-the-u-s-equity-market-share-of-corporate-equity-market/",
+        "image": "/isabelnet-charts/2026-10-29/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – Average Path of the S&P 500 Through a Year Since 1928, With Midterm and Non-Midterm Years",
+        "titleKo": "계절성 - 1928년 이후 중간선거 해와 비중간선거 해를 구분한 S&P 500의 연간 평균 경로",
+        "desc": "Averages mask wide dispersion, but if history is any guide, the S&P 500 is entering into a seasonally strong period.",
+        "descKo": "평균 수치는 큰 편차를 가리지만, 과거의 사례를 참고한다면 S&P 500은 계절적으로 강세를 보이는 시기에 진입하고 있다.",
+        "date": "2026-10-28",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-average-daily-path-for-sp-500-since-1928-and-volatility/",
+        "image": "/isabelnet-charts/2026-10-29/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "CTAs Exposure to Bonds",
+        "titleKo": "CTA의 채권 노출도",
+        "desc": "CTAs are still keeping their distance from rates risk. Bond allocations sit at the 7th percentile, leaving fixed income firmly out of favor.",
+        "descKo": "CTA는 여전히 금리 리스크를 회피하고 있다. 채권 비중은 7퍼센타일 수준에 머물러 있으며, 이는 채권 자산이 투자 대상에서 확실히 외면받고 있음을 시사한다.",
+        "date": "2026-10-28",
+        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-bonds/",
+        "image": "/isabelnet-charts/2026-10-29/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-28",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-09",
         "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
         "image": "/isabelnet-charts/2026-10-10/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-09",
-    "charts": [
-      {
-        "title": "S&P 500 Up 10% to 20% YTD at the End of September",
-        "titleKo": "9월 말 기준 S&P 500 지수 연초 대비 10~20% 상승",
-        "desc": "History is giving the bulls a reason to stay optimistic. When the S&P 500 is up 10% to 20% by late September, it has finished the quarter higher 86% of the time, with an average gain of 5.3%.",
-        "descKo": "역사적 데이터가 강세론자들에게 낙관론을 유지할 근거를 제공하고 있다. 9월 말까지 S&P 500 지수가 10~20% 상승했을 경우, 분기 말까지 추가 상승할 확률은 86%였으며 평균 상승폭은 5.3%였다.",
-        "date": "2026-10-08",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-total-returns-after-crossing-into-the-9th-and-10th-deciles-of-valuation/",
-        "image": "/isabelnet-charts/2026-10-09/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Performance Based on Congress Makeup – Average S&P 500 Index Annual Return",
-        "titleKo": "의회 구성에 따른 S&P 500 지수 평균 연간 수익률",
-        "desc": "Since 1951, U.S. stocks have averaged annual gains of 13.7% under a Republican president and 17% under a Democratic president when Congress was divided. Investors have welcomed the gridlock, which keeps sweeping policy shifts in check.",
-        "descKo": "1951년 이후 미국 증시는 의회가 분열된 상태에서 공화당 대통령 재임 시 평균 13.7%, 민주당 대통령 재임 시 평균 17%의 연간 수익률을 기록했다. 투자자들은 급격한 정책 변화를 억제하는 이러한 교착 상태를 긍정적으로 평가해 왔다.",
-        "date": "2026-10-08",
-        "sourceUrl": "https://www.isabelnet.com/performance-based-on-congress-makeup-average-sp-500-index-annual-return-and-average-gdp/",
-        "image": "/isabelnet-charts/2026-10-09/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Forecast of Gold Prices",
-        "titleKo": "금 가격 전망",
-        "desc": "Goldman Sachs is sticking with its $5,400 gold target for the end of 2027. Rising rates could make the climb bumpier, but the bullish outlook may put a floor under pullbacks.",
-        "descKo": "골드만삭스는 2027년 말 금 목표가를 5,400달러로 유지했다. 금리 상승이 상승세를 저해할 수 있으나, 강세 전망이 조정 국면에서 하단을 지지할 것으로 보인다.",
-        "date": "2026-10-08",
-        "sourceUrl": "https://www.isabelnet.com/total-etf-holdings-of-gold/",
-        "image": "/isabelnet-charts/2026-10-09/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "U.S.-Listed ETF Cumulative Flows by Year",
-        "titleKo": "미국 상장 ETF 연도별 누적 자금 유입액",
-        "desc": "More than $1.5 trillion has flowed into U.S.-listed ETFs so far this year, a record for this point in the calendar. If the buying continues, inflows could reach $2.3 trillion by year-end, according to model-based projections.",
-        "descKo": "올해 들어 현재까지 미국 상장 ETF에 1조 5천억 달러 이상이 유입되며 연중 최고치를 경신했다. 모델 기반 예측에 따르면, 이러한 매수세가 지속될 경우 연말까지 유입액은 2조 3천억 달러에 달할 전망이다.",
-        "date": "2026-10-08",
-        "sourceUrl": "https://www.isabelnet.com/cross-asset-etf-flows/",
-        "image": "/isabelnet-charts/2026-10-09/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Implied Correlation",
-        "titleKo": "S&P 500 내재 상관계수",
-        "desc": "The S&P 500 is pushing higher, but not all stocks are participating equally. As correlations fade, investors are paying closer attention to fundamentals again.",
-        "descKo": "S&P 500 지수가 상승세를 이어가고 있으나 모든 종목이 동일하게 움직이는 것은 아니다. 상관계수가 낮아짐에 따라 투자자들은 다시 개별 기업의 펀더멘털에 주목하고 있다.",
-        "date": "2026-10-08",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-realized-3-month-average-stock-correlation/",
-        "image": "/isabelnet-charts/2026-10-09/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
