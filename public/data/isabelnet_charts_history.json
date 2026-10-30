@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-30",
+    "charts": [
+      {
+        "title": "The Cost of Calling a Bubble Early: S&P 500 vs. T-bills",
+        "titleKo": "거품론을 조기에 제기한 대가: S&P 500과 단기 국채(T-bills) 비교",
+        "desc": "Seven years ago, many serious investors warned that the market was in a bubble. Since October 2019, $100,000 in the S&P 500 has grown to about $287,000. The same amount held in cash would be about $121,000.",
+        "descKo": "7년 전 다수의 주요 투자자들은 시장이 거품 상태라고 경고했다. 2019년 10월 이후 S&P 500에 투자한 10만 달러는 약 28만 7,000달러로 불어났다. 반면 같은 금액을 현금으로 보유했다면 약 12만 1,000달러에 그쳤을 것이다.",
+        "date": "2026-10-29",
+        "sourceUrl": "https://www.isabelnet.com/bubbles-history-of-credit-investors-biggest-perceived-risks/",
+        "image": "/isabelnet-charts/2026-10-30/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Median Performance Around First Fed Rate Hikes",
+        "titleKo": "연준 첫 금리 인상 전후의 S&P 500 중간값 성과",
+        "desc": "U.S. stocks often struggle for about four months after the first rate hike, then rebound. 2026 appears to be following the same pattern.",
+        "descKo": "미국 증시는 첫 금리 인상 후 약 4개월간 부진을 겪다가 반등하는 경향이 있다. 2026년 역시 이러한 패턴을 따르는 것으로 보인다.",
+        "date": "2026-10-29",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-median-performance-around-first-fed-rate-hikes/",
+        "image": "/isabelnet-charts/2026-10-30/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Gold",
+        "titleKo": "금(Gold)",
+        "desc": "Gold’s selloff goes beyond ETF selling, with rising yields and a stronger U.S. dollar pointing to a broader repricing.",
+        "descKo": "금값 하락은 단순히 ETF 매도세를 넘어선 수준이다. 국채 금리 상승과 달러 강세가 복합적으로 작용하며 더 넓은 범위의 가격 재조정을 시사하고 있다.",
+        "date": "2026-10-29",
+        "sourceUrl": "https://www.isabelnet.com/etf-gold-holdings/",
+        "image": "/isabelnet-charts/2026-10-30/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Share of U.S. Household Financial Asset Portfolio vs. S&P 500 Cyclically-Adjusted P/E Ratio",
+        "titleKo": "미국 가계 금융 자산 내 주식 비중과 S&P 500 경기조정 주가수익비율(CAPE)",
+        "desc": "With everyone crowded into equities and valuations stretched, there’s little cushion left. History doesn’t call for a crash, but it shows that markets priced for perfection have little room for surprises.",
+        "descKo": "모두가 주식 시장으로 몰리고 밸류에이션이 높아진 상황에서 완충 지대는 거의 남지 않았다. 역사가 반드시 폭락을 예고하는 것은 아니지만, 완벽함을 전제로 가격이 형성된 시장은 예상치 못한 변수에 취약하다는 점을 시사한다.",
+        "date": "2026-10-29",
+        "sourceUrl": "https://www.isabelnet.com/valuation-cape-ratio-and-subsequent-10-year-average-annualized-returns/",
+        "image": "/isabelnet-charts/2026-10-30/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. 2-Year Yield Around First Fed Rate Hikes",
+        "titleKo": "연준 첫 금리 인상 전후의 미국 2년물 국채 금리",
+        "desc": "U.S. yields often rise ahead of the first rate hike. In modest tightening cycles, they tend to peak soon after. In more sustained ones, they keep climbing.",
+        "descKo": "미국 국채 금리는 첫 금리 인상을 앞두고 상승하는 경향이 있다. 완만한 긴축 사이클에서는 인상 직후 정점을 찍는 편이나, 긴축이 지속될 경우 상승세가 유지된다.",
+        "date": "2026-10-29",
+        "sourceUrl": "https://www.isabelnet.com/u-s-2-year-government-bond-yield/",
+        "image": "/isabelnet-charts/2026-10-30/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-29",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-12",
         "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
         "image": "/isabelnet-charts/2026-10-13/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-10",
-    "charts": [
-      {
-        "title": "Investor Psychology Cycle",
-        "titleKo": "투자자 심리 사이클",
-        "desc": "Panic can push markets too far, too fast, creating opportunities for contrarians willing to buy when fear peaks. Euphoria is the other side of the trade, and often signals that it’s time to sell.",
-        "descKo": "공포는 시장을 지나치게 과도하고 빠르게 하락시켜, 공포가 극에 달했을 때 매수하는 역발상 투자자들에게 기회를 제공한다. 반면 환희는 정반대의 매매 신호로, 종종 매도 시점이 임박했음을 시사한다.",
-        "date": "2026-10-09",
-        "sourceUrl": "https://www.isabelnet.com/investor-psychology-cycle/",
-        "image": "/isabelnet-charts/2026-10-10/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Yearly Performance During Bull Markets",
-        "titleKo": "강세장 기간 S&P 500 연간 수익률",
-        "desc": "Age alone is no reason to call time on a bull market. Bull markets that reach year four have more often than not delivered another strong year, averaging 18.9% and giving bulls a new reason to smile.",
-        "descKo": "강세장이 오래 지속되었다는 이유만으로 시장의 끝을 예단할 수는 없다. 4년 차에 접어든 강세장은 상당수 추가적인 강세를 보이며 평균 18.9%의 수익률을 기록했고, 이는 강세론자들에게 새로운 기대를 안겨주었다.",
-        "date": "2026-10-09",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-yearly-performance-during-bull-markets-2/",
-        "image": "/isabelnet-charts/2026-10-10/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 - 투자자 심리",
-        "desc": "At 38, the Fear & Greed Index remains in fear territory, not panic. Better news could help U.S. stocks push higher.",
-        "descKo": "공포·탐욕 지수가 38을 기록하며 '공포' 구간에 머물러 있으나 패닉 상태는 아니다. 긍정적인 소식이 뒷받침된다면 미국 증시는 추가 상승할 가능성이 있다.",
-        "date": "2026-10-09",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-10-10/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 익스포저 지수 - 투자자 심리",
-        "desc": "With the NAAIM Exposure Index at 86.76, active managers remain firmly bullish on U.S. stocks, keeping equity exposure high without reaching euphoric levels. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "NAAIM 익스포저 지수가 86.76을 기록하며, 액티브 매니저들은 미국 주식에 대해 여전히 확고한 강세 전망을 유지하고 있다. 이는 환희 수준에 도달하지는 않았으나 높은 주식 비중을 유지하고 있음을 보여준다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원들이 보고한 미국 주식 보유 비중의 2주 평균치를 추적한다.",
-        "date": "2026-10-09",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-10-10/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도 - S&P 500 내 상위 10개 기업의 시가총액 비중",
-        "desc": "A handful of giants now dominate the S&P 500. The 10 largest stocks make up 40% of the index and 37% of its earnings, pushing valuations higher and leaving investors more exposed to a narrow group of companies.",
-        "descKo": "소수의 거대 기업이 현재 S&P 500 지수를 주도하고 있다. 상위 10개 종목이 지수 전체의 40%, 전체 이익의 37%를 차지하면서 밸류에이션을 끌어올리고 있으며, 투자자들은 특정 소수 종목에 대한 노출도가 높아진 상태다.",
-        "date": "2026-10-09",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-10-10/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
