@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-10-31",
+    "charts": [
+      {
+        "title": "18 AI Buildout Names = 33.6% of the S&P 500",
+        "titleKo": "S&P 500 지수 내 AI 관련주 18개 종목 비중 33.6% 차지",
+        "desc": "If the AI complex falls 20% while everything else holds steady, the S&P 500 would drop 6.7%. The other 485 stocks would need to rise 10.1% just to keep the index flat. That’s a lot of weight for the rest of the market to carry.",
+        "descKo": "AI 관련주가 20% 하락하고 여타 종목이 보합세를 유지할 경우 S&P 500 지수는 6.7% 하락하게 된다. 지수 하락을 방어하려면 나머지 485개 종목이 10.1% 상승해야 한다. 시장의 나머지 종목들이 감당하기엔 과도한 비중이다.",
+        "date": "2026-10-30",
+        "sourceUrl": "https://www.isabelnet.com/aaii-net-bullish-sentiment-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-10-31/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수로 본 투자 심리",
+        "desc": "With the NAAIM Exposure Index at 76.84, active managers appear cautious but far from bearish, keeping substantial exposure to U.S. stocks. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "NAAIM 익스포저 지수가 76.84를 기록하며, 액티브 매니저들은 신중한 태도를 보이면서도 미국 주식에 대해 상당한 익스포저를 유지하고 있다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원들이 보고한 미국 주식 익스포저의 2주 평균치를 추적한다.",
+        "date": "2026-10-30",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-10-31/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포와 탐욕 지수로 본 투자 심리",
+        "desc": "The Fear & Greed Index sits at 34, signaling fear, not panic. Better news could send U.S. stocks higher.",
+        "descKo": "공포와 탐욕 지수는 34로 '공포' 구간에 위치해 있으나 패닉 수준은 아니다. 호재가 유입될 경우 미국 증시는 상승세를 보일 수 있다.",
+        "date": "2026-10-30",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-10-31/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – Monthly Return Stats for the S&P 500",
+        "titleKo": "계절성 – S&P 500 월간 수익률 통계",
+        "desc": "November has typically been a bright spot for U.S. stocks, with an average gain of 1.6%. Seasonal flows, holiday-spending optimism and year-end positioning could help extend the market’s appetite for risk.",
+        "descKo": "11월은 미국 증시에서 평균 1.6% 상승을 기록하며 통상 강세를 보이는 시기다. 계절적 자금 흐름과 연말 소비 시즌에 대한 낙관론, 연말 포트폴리오 재조정이 시장의 위험 선호 심리를 견인할 수 있다.",
+        "date": "2026-10-30",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-monthly-return-stats-for-the-sp-500/",
+        "image": "/isabelnet-charts/2026-10-31/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Smoothed U.S. Recession Probabilities",
+        "titleKo": "평활화된 미국 경기 침체 확률",
+        "desc": "The probability of U.S. recession stands at 0.62%. When this recession indicator exceeds 5% (red line), history suggests that the probability of recession increases significantly. The chart shows the smoothed U.S. recession probabilities indicatoron a log scale. Smoothed U.S. recession probabilities are obtained from a dynamic-factor markov-switching model applied to four monthly coincident variables: real personal income excluding transfer payments, index of industrial production, non-farm payroll employment, and real manufacturing & trade sales.",
+        "descKo": "미국 경기 침체 확률은 0.62%를 기록 중이다. 과거 사례를 보면 이 지표가 5%(붉은 선)를 초과할 경우 경기 침체 가능성이 유의미하게 높아진다. 차트는 로그 스케일로 산출된 평활화된 경기 침체 확률 지표를 나타낸다. 해당 지표는 실질 개인 소득(이전 지출 제외), 산업 생산 지수, 비농업 부문 고용자 수, 실질 제조 및 무역 판매라는 4가지 월간 동행 지표에 동적 요인 마르코프 스위칭 모델을 적용하여 산출된다.",
+        "date": "2026-10-30",
+        "sourceUrl": "https://www.isabelnet.com/smoothed-u-s-recession-probabilities/",
+        "image": "/isabelnet-charts/2026-10-31/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-30",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-13",
         "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
         "image": "/isabelnet-charts/2026-10-14/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-13",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "At 56.28, the Greed and Fear Index remains in neutral territory, far from panic or euphoria. If markets hold steady through earnings season, investors could get a window to add exposure in the weeks ahead.",
-        "descKo": "공포·탐욕 지수가 56.28을 기록하며 공황이나 과열과는 거리가 먼 중립 구간에 머물러 있습니다. 기업 실적 발표 기간 동안 시장이 안정세를 유지한다면, 향후 몇 주간 투자자들이 주식 비중을 확대할 기회가 올 수 있습니다.",
-        "date": "2026-10-12",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-10-13/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 – Length of Bull Markets and When They Started",
-        "titleKo": "S&P 500 – 강세장의 지속 기간 및 시작 시점",
-        "desc": "Born in October 2022, this bull market is now four years old. Bulls are smiling: over the past 50 years, every bull market to reach this age lasted at least five years, with an average ultimate length of eight years.",
-        "descKo": "2022년 10월 시작된 이번 강세장은 현재 4년 차에 접어들었습니다. 지난 50년간 이 정도 연차에 도달한 강세장은 모두 최소 5년 이상 지속되었으며, 평균적으로 8년 동안 상승세가 이어졌다는 점이 투자자들에게 긍정적 신호입니다.",
-        "date": "2026-10-12",
-        "sourceUrl": "https://www.isabelnet.com/length-of-bull-markets-and-when-they-started/",
-        "image": "/isabelnet-charts/2026-10-13/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning eased to the 56th percentile, a modest overweight. As the trade is far from crowded, investors still have room to add risk.",
-        "descKo": "통합 주식 포지셔닝은 56퍼센타일로 완화되며 완만한 비중 확대 수준을 보이고 있습니다. 시장이 과밀 상태가 아니므로 투자자들은 여전히 위험 자산을 추가할 여력이 있습니다.",
-        "date": "2026-10-12",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-10-13/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment Indicator and Stock Positioning",
-        "titleKo": "심리 지표 및 주식 포지셔닝",
-        "desc": "Goldman Sachs’ U.S. Equity Sentiment Indicator has slipped to -1.3. Historically, similar readings have been followed by an average 2.0% gain for the S&P 500 over the next month.",
-        "descKo": "골드만삭스의 미국 주식 심리 지표가 -1.3으로 하락했습니다. 과거 사례를 볼 때, 유사한 수치를 기록한 이후 한 달간 S&P 500 지수는 평균 2.0% 상승했습니다.",
-        "date": "2026-10-12",
-        "sourceUrl": "https://www.isabelnet.com/sentiment-indicator-and-stock-positioning/",
-        "image": "/isabelnet-charts/2026-10-13/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "CTAs Exposure to Equities",
-        "titleKo": "CTA의 주식 익스포저",
-        "desc": "CTA positioning has pulled back materially, but remains elevated across most major indexes. The S&P 500 sits at the 87th percentile and the Nasdaq-100 at the 69th percentile. The Russell 2000 has fallen to the 35th percentile.",
-        "descKo": "CTA(상품거래자문가)의 포지셔닝은 크게 축소되었으나 주요 지수 전반에서는 여전히 높은 수준을 유지하고 있습니다. S&P 500은 87퍼센타일, 나스닥 100은 69퍼센타일에 위치해 있으며, 러셀 2000은 35퍼센타일로 하락했습니다.",
-        "date": "2026-10-12",
-        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
-        "image": "/isabelnet-charts/2026-10-13/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
