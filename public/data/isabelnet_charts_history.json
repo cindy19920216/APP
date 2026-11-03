@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-03",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 - 미국 시장 공포·탐욕 지수",
+        "desc": "At56.95,theGreedandFearIndexsitsinneutralterritory,showinglittlesignofpanicoreuphoria.Themarketlooksoversoldinthenearterm,leavingroomforareflexivebounceafterthemidtermelection.",
+        "descKo": "공포·탐욕 지수는 56.95로 중립 구간에 머물며 패닉이나 과열의 징후를 보이지 않고 있다. 단기적으로는 시장이 과매도 상태여서 중간선거 이후 반등의 여지가 남아 있다.",
+        "date": "2026-11-02",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-11-03/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Index Average Monthly Returns",
+        "titleKo": "계절성 - S&P 500 지수 평균 월간 수익률",
+        "desc": "As bears freeze, U.S. stocks catch fire in November: the strongest month on average since 1950, the best past 10 years, the second best in midterm years, and still shining over the past 20 years.",
+        "descKo": "약세장이 물러가고 미국 증시가 11월에 강세를 보이고 있다. 1950년 이후 평균적으로 가장 수익률이 높았던 달이며, 지난 10년간 최고의 실적을 기록했고, 중간선거가 있는 해에는 두 번째로 좋은 성과를 냈다. 최근 20년간의 흐름 또한 견조하다.",
+        "date": "2026-11-02",
+        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-index-average-monthly-returns/",
+        "image": "/isabelnet-charts/2026-11-03/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning remains close to neutral, at the 44th percentile, leaving investors room to add risk if sentiment improves.",
+        "descKo": "통합 주식 포지셔닝은 44퍼센타일 수준으로 중립에 가까운 상태를 유지하고 있어, 투자 심리가 개선될 경우 위험 자산을 확대할 여력이 남아 있다.",
+        "date": "2026-11-02",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-11-03/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026 and 2027",
+        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
+        "desc": "Goldman Sachs is sticking with its S&P 500 targets: 8,000 by year-end and 8,700 over the next 12 months. Earnings growth, rather than valuation expansion, is expected to carry the market higher.",
+        "descKo": "골드만삭스가 S&P 500 목표치를 연말 8,000포인트, 향후 12개월 8,700포인트로 유지했다. 밸류에이션 확장보다는 실적 성장이 시장 상승을 견인할 것으로 예상된다.",
+        "date": "2026-11-02",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-11-03/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consensus Hyperscaler Capex Estimates",
+        "titleKo": "하이퍼스케일러 설비투자(Capex) 컨센서스 전망",
+        "desc": "Hyperscaler capex has held fairly steady this earnings season, breaking from the faster pace of recent quarters. Analysts expect spending to reach $808 billion in 2026, $1.163 trillion in 2027, and $1.289 trillion in 2028.",
+        "descKo": "이번 실적 시즌 동안 하이퍼스케일러의 설비투자 규모는 최근 분기의 가파른 증가세에서 벗어나 상당히 안정적인 모습을 보였다. 애널리스트들은 관련 지출이 2026년 8,080억 달러, 2027년 1조 1,630억 달러, 2028년 1조 2,890억 달러에 이를 것으로 전망한다.",
+        "date": "2026-11-02",
+        "sourceUrl": "https://www.isabelnet.com/global-nonfinancial-equities-earnings-per-share-growth-and-capex-growth/",
+        "image": "/isabelnet-charts/2026-11-03/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-10-31",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-14",
         "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
         "image": "/isabelnet-charts/2026-10-15/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-14",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "At 81.39, the S&P 500 is firmly in overbought territory. Momentum still favors the bulls and supports are intact, but the climb may not be smooth.",
-        "descKo": "81.39를 기록한 S&P 500은 확실한 과매수 구간에 진입했다. 모멘텀은 여전히 강세장을 가리키고 있고 지지선도 견고하나, 상승세가 순탄치 않을 수 있다.",
-        "date": "2026-10-13",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-10-14/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Performance 1-Year After Midterm Elections",
-        "titleKo": "중간선거 이후 1년간 S&P 500 성과",
-        "desc": "Midterm elections have been a reliable tailwind for stocks: the S&P 500 has risen over the following year every time since 1950, averaging a 14.8% gain. No doubt, bulls have history on their side.",
-        "descKo": "중간선거는 증시에 확실한 순풍으로 작용해 왔다. 1950년 이후 S&P 500은 중간선거 이듬해에 매번 상승했으며, 평균 14.8%의 수익률을 기록했다. 강세론자들이 역사를 등에 업고 있다는 점은 의심할 여지가 없다.",
-        "date": "2026-10-13",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-1-year-after-midterm-elections/",
-        "image": "/isabelnet-charts/2026-10-14/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are buying, pushing the Insider Transactions Ratio further into bullish territory and adding fuel to the rally.",
-        "descKo": "기업 내부자들이 주식 매수에 나서면서 내부자 거래 비율이 강세 영역으로 더욱 깊게 진입하며 랠리에 힘을 보태고 있다.",
-        "date": "2026-10-13",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-10-14/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs still sees the S&P 500 climbing to 8,000 by year-end, 8,300 in six months and 8,700 within a year. Earnings growth, not higher valuations, is expected to drive the next leg higher.",
-        "descKo": "골드만삭스는 S&P 500이 연말 8,000, 6개월 후 8,300, 1년 내 8,700까지 상승할 것으로 전망한다. 밸류에이션 상승이 아닌 이익 성장이 향후 추가 상승을 견인할 것으로 예상된다.",
-        "date": "2026-10-13",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-10-14/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자와 체계적 투자자의 주식 포지셔닝",
-        "desc": "Systematic strategies remain overweight, with positioning at the 85th percentile. Discretionary investors are still cautious, modestly underweight at the 32nd percentile, leaving significant room to add risk.",
-        "descKo": "체계적 전략은 85 백분위수의 포지션을 유지하며 비중 확대 상태를 지속하고 있다. 반면 재량적 투자자들은 32 백분위수로 완만한 비중 축소 상태를 보이며 여전히 신중한 태도를 취하고 있어, 위험 자산을 추가할 여력이 상당하다.",
-        "date": "2026-10-13",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-10-14/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
