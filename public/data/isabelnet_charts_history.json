@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-04",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 점수",
+        "desc": "The S&P 500’s technical reading eased to 53.53, back to neutral territory. A rally is still possible, but a sharper pullback could open the door to further losses. Until sentiment turns, caution remains the better call.",
+        "descKo": "S&P 500의 기술적 지표가 53.53으로 하락하며 중립 구간으로 복귀했다. 추가 상승 가능성은 남아있으나, 급격한 조정 발생 시 하락세가 심화될 수 있다. 시장 심리가 개선될 때까지는 신중한 접근이 요구된다.",
+        "date": "2026-11-03",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-11-04/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Various S&P 500 Index 6-Month Returns",
+        "titleKo": "S&P 500 지수 6개월 수익률 추이",
+        "desc": "From November through April, Wall Street gets a seasonal tailwind: the market’s so-called “best six months.” Holiday shopping, year-end bonus season and tax considerations help push stocks higher.",
+        "descKo": "11월부터 4월까지는 월가에서 이른바 '최고의 6개월'이라 불리는 계절적 순풍이 부는 시기다. 연말 쇼핑 시즌과 보너스 지급, 세금 관련 요인들이 증시 상승을 견인한다.",
+        "date": "2026-11-03",
+        "sourceUrl": "https://www.isabelnet.com/sell-in-may-various-sp-500-index-6-month-returns/",
+        "image": "/isabelnet-charts/2026-11-04/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI AC World EPS",
+        "titleKo": "MSCI AC 세계 지수 EPS",
+        "desc": "Earnings estimates for 2027 and 2028 are holding firm, with analysts still seeing room for upgrades.",
+        "descKo": "2027년 및 2028년 주당순이익(EPS) 전망치가 견조하게 유지되고 있으며, 분석가들은 여전히 실적 상향 조정 가능성을 열어두고 있다.",
+        "date": "2026-11-03",
+        "sourceUrl": "https://www.isabelnet.com/msci-world-eps-and-south-korea-exports/",
+        "image": "/isabelnet-charts/2026-11-04/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Buying and selling have come back into balance, pushing the Insider Transactions Ratio into neutral territory. Corporate insiders are sitting on the sidelines, showing little conviction in either direction.",
+        "descKo": "매수와 매도가 균형을 되찾으면서 내부자 거래 비율이 중립 영역에 진입했다. 기업 내부자들은 관망세를 보이며 향후 방향성에 대해 확신을 드러내지 않고 있다.",
+        "date": "2026-11-03",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-11-04/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Discretionary vs. Systematic Equity Positioning",
+        "titleKo": "재량적 투자 vs 체계적 투자 전략의 주식 비중",
+        "desc": "Systematic strategies remain firmly overweight, with positioning in the 79th percentile. Discretionary investors are more cautious, still underweight in the 21st percentile and with ample room to add risk.",
+        "descKo": "체계적 투자 전략은 79% 수준의 비중을 유지하며 여전히 비중 확대 상태를 보이고 있다. 반면 재량적 투자자들은 21% 수준의 비중 축소 상태를 유지하며 리스크 확대에 신중한 태도를 보이고 있다.",
+        "date": "2026-11-03",
+        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
+        "image": "/isabelnet-charts/2026-11-04/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-03",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-15",
         "sourceUrl": "https://www.isabelnet.com/sp-500-trailing-4-quarter-roe/",
         "image": "/isabelnet-charts/2026-10-16/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-15",
-    "charts": [
-      {
-        "title": "S&P 500’s Average Annualized Return over the Next 10 Years, by Starting CAPE",
-        "titleKo": "CAPE 비율에 따른 S&P 500의 향후 10년 연평균 수익률",
-        "desc": "High starting valuations have often meant leaner returns. When the CAPE ratio was above 30, stocks gained just 1.4% a year on average over the following decade. With the CAPE now at 41.8, could stocks trail bonds for another decade?",
-        "descKo": "높은 밸류에이션은 낮은 수익률로 이어지는 경향이 있다. CAPE 비율이 30을 상회했을 때, 이후 10년간 주식의 연평균 수익률은 1.4%에 그쳤다. 현재 CAPE가 41.8인 상황에서, 향후 10년간 주식이 채권보다 낮은 성과를 기록할 가능성이 제기된다.",
-        "date": "2026-10-14",
-        "sourceUrl": "https://www.isabelnet.com/forward-10-year-real-returns-and-cape-valuations/",
-        "image": "/isabelnet-charts/2026-10-15/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Pullbacks and Returns a Year Off the Lows for the S&P 500 Index Based on the 4-Year Presidential Cycle",
-        "titleKo": "대통령 임기 4년 주기에 따른 S&P 500 지수의 조정폭 및 저점 1년 후 수익률",
-        "desc": "Since 1950, the S&P 500 has fallen an average of 17.5% during midterm years, the deepest swoon in the presidential cycle. But the market’s low has been a launchpad: one year later, stocks have always been higher, up 31.7% on average.",
-        "descKo": "1950년 이후 S&P 500은 대통령 임기 중간선거 해에 평균 17.5% 하락하며 가장 큰 조정을 겪었다. 그러나 시장의 저점은 반등의 발판이 되었다. 저점 기록 1년 후 주가는 항상 상승했으며, 평균 31.7%의 수익률을 보였다.",
-        "date": "2026-10-14",
-        "sourceUrl": "https://www.isabelnet.com/pullbacks-and-returns-a-year-off-the-lows-for-the-sp-500-index-based-on-the-4-year-presidential-cycle/",
-        "image": "/isabelnet-charts/2026-10-15/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Equity Risk Premium",
-        "titleKo": "S&P 500 주식 위험 프리미엄",
-        "desc": "Investors have little room for error. With the equity risk premium at its lowest level in more than two decades, U.S. stocks offer less reward for the risks investors take.",
-        "descKo": "투자자들에게 허용된 실수의 여지는 크지 않다. 주식 위험 프리미엄이 20여 년 만에 최저 수준으로 떨어지면서, 현재 미국 주식은 투자자가 감수하는 위험 대비 낮은 보상을 제공하고 있다.",
-        "date": "2026-10-14",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-equity-risk-premium-5/",
-        "image": "/isabelnet-charts/2026-10-15/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Global Sector Fund Flows",
-        "titleKo": "글로벌 섹터 펀드 자금 흐름",
-        "desc": "Over the past year, investors have poured into tech funds as AI euphoria, surging chip stocks and rising earnings forecasts strengthened the bull case. How much longer can the momentum last?",
-        "descKo": "지난 1년 동안 AI 열풍과 반도체주 급등, 실적 전망치 상향으로 강세론이 힘을 얻으며 투자자들의 자금이 기술주 펀드로 쏠렸다. 이러한 모멘텀이 얼마나 더 지속될지 주목된다.",
-        "date": "2026-10-14",
-        "sourceUrl": "https://www.isabelnet.com/annual-equity-flows/",
-        "image": "/isabelnet-charts/2026-10-15/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Sentiment – Risk Appetite and Expected U.S. Equity Market Performance",
-        "titleKo": "투자 심리 – 위험 선호도와 미국 주식 시장의 기대 수익률",
-        "desc": "U.S. equity fund managers are taking on more risk again after September’s decline, but they remain cautious about near-term returns, with rates, fiscal policy and geopolitics clouding the outlook.",
-        "descKo": "미국 주식 펀드 매니저들은 9월 하락장 이후 다시 위험 노출도를 높이고 있으나, 금리와 재정 정책, 지정학적 리스크 등 불확실성이 지속되면서 단기 수익률에 대해서는 여전히 신중한 태도를 유지하고 있다.",
-        "date": "2026-10-14",
-        "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
-        "image": "/isabelnet-charts/2026-10-15/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
