@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-05",
+    "charts": [
+      {
+        "title": "S&P 500 Earnings vs. Their Long-Term Trend",
+        "titleKo": "S&P 500 기업 이익과 장기 추세 비교",
+        "desc": "Inflation-adjusted S&P 500 earnings are now at the top of a two-standard-deviation channel that has contained them for 90 years. This isn’t a market-top call, but it is a warning light.",
+        "descKo": "물가를 반영한 S&P 500 기업 이익이 지난 90년간 유지되어 온 2표준편차 채널의 상단에 도달했다. 이는 시장 고점을 단정하는 신호는 아니나, 주의가 필요한 경고등임은 분명하다.",
+        "date": "2026-11-04",
+        "sourceUrl": "https://www.isabelnet.com/deviation-of-earnings-above-below-long-term-growth-trend/",
+        "image": "/isabelnet-charts/2026-11-05/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Best Six Months of the Year Starting in Midterm Years for S&P 500",
+        "titleKo": "중간선거 해, S&P 500의 연중 최강 6개월 시작",
+        "desc": "Bulls have reason to smile. November through April has been the S&P 500’s strongest six-month stretch. In midterm years, the run has been even better: stocks have climbed in all 19 periods since 1950, posting a median gain of 15.2%.",
+        "descKo": "강세론자들이 미소 지을 근거가 있다. 11월부터 4월까지는 전통적으로 S&P 500의 상승세가 가장 강한 6개월이었다. 특히 중간선거가 있던 해에는 1950년 이후 19번 모두 주가가 상승했으며, 중앙값 기준 15.2%의 수익률을 기록했다.",
+        "date": "2026-11-04",
+        "sourceUrl": "https://www.isabelnet.com/best-six-months-of-the-year-starting-in-midterm-years-for-sp-500/",
+        "image": "/isabelnet-charts/2026-11-05/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
+        "titleKo": "주식시장 집중도: S&P 500 전체 시가총액 대비 상위 10개 기업 비중",
+        "desc": "The S&P 500 is increasingly top-heavy: its 10 largest stocks make up 39% of the index and 37% of its earnings, leaving the benchmark more exposed to a small group of companies.",
+        "descKo": "S&P 500의 상위 쏠림 현상이 심화되고 있다. 상위 10개 종목이 지수 전체 시가총액의 39%, 전체 이익의 37%를 차지하면서 벤치마크 지수가 소수 기업의 실적에 더 크게 노출되고 있다.",
+        "date": "2026-11-04",
+        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
+        "image": "/isabelnet-charts/2026-11-05/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 – 12 Months After Each Midterm Election",
+        "titleKo": "S&P 500: 중간선거 이후 12개월간의 흐름",
+        "desc": "U.S. stocks have historically posted double-digit gains in the 12 months after midterm elections. But with the market so concentrated, another positive post-midterm year, the 22nd in a row, may depend on just a handful of stocks.",
+        "descKo": "미국 증시는 역사적으로 중간선거 이후 12개월 동안 두 자릿수 수익률을 기록해 왔다. 그러나 시장 집중도가 극에 달한 현 상황에서 22년 연속 상승세를 이어갈 수 있을지는 소수 대형주의 성과에 달려 있다.",
+        "date": "2026-11-04",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-in-two-other-rough-midterm-years/",
+        "image": "/isabelnet-charts/2026-11-05/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Cumulative S&P 500 EPS Growth Surprise During the Earnings Season",
+        "titleKo": "어닝 시즌 중 S&P 500 누적 EPS 서프라이즈",
+        "desc": "S&P 500 earnings are still beating estimates in Q3 2026, but the size of upside surprises has cooled after a stronger first half.",
+        "descKo": "2026년 3분기 S&P 500 기업들의 실적은 여전히 시장 예상치를 웃돌고 있으나, 상반기의 강력했던 모습과 비교하면 어닝 서프라이즈의 폭은 다소 둔화되었다.",
+        "date": "2026-11-04",
+        "sourceUrl": "https://www.isabelnet.com/annual-sp-500-eps-growth-through-2022/",
+        "image": "/isabelnet-charts/2026-11-05/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-04",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-16",
         "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
         "image": "/isabelnet-charts/2026-10-17/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-16",
-    "charts": [
-      {
-        "title": "S&P 500 Equity Risk Premium",
-        "titleKo": "S&P 500 주식 위험 프리미엄",
-        "desc": "The equity risk premium has turned negative, putting U.S. stocks in a tricky situation: higher risk for lower expected returns. That’s a tough pitch, especially if earnings or sentiment falter.",
-        "descKo": "주식 위험 프리미엄이 마이너스로 전환되면서 미국 증시는 낮은 기대 수익률 대비 높은 위험이라는 난처한 상황에 직면했다. 특히 기업 실적이나 투자 심리가 흔들릴 경우, 매력적인 투자처로 보기 어렵다.",
-        "date": "2026-10-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-equity-risk-premium-and-sp-bear-base-bull-targets/",
-        "image": "/isabelnet-charts/2026-10-16/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Performance Based on Congress Makeup – Average S&P 500 Annual Return",
-        "titleKo": "의회 구성에 따른 성과 – S&P 500 연평균 수익률",
-        "desc": "Since 1951, U.S. stocks have generally performed better under Republican-led Congresses than under Democratic-led ones. The best annual returns came when Congress was split, averaging 15.1%, as gridlock limited major policy shifts.",
-        "descKo": "1951년 이후 미국 증시는 대체로 민주당 주도 의회보다 공화당 주도 의회에서 더 나은 성과를 보였다. 가장 높은 연평균 수익률은 15.1%를 기록한 의회 분점 상황에서 나타났는데, 이는 정체로 인해 주요 정책 변화가 제한되었기 때문이다.",
-        "date": "2026-10-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-20-year-annualized-return/",
-        "image": "/isabelnet-charts/2026-10-16/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
-        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합",
-        "desc": "The S&P 500 Cycle Composite points to a constructive year-end. After the early-year correction, much of the usual midterm-year weakness may already be behind the market.",
-        "descKo": "S&P 500 사이클 종합 지표는 연말까지의 긍정적인 흐름을 예고하고 있다. 연초 조정을 거치면서 중간 선거 연도의 통상적인 약세 요인은 이미 상당 부분 시장에 반영된 것으로 보인다.",
-        "date": "2026-10-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
-        "image": "/isabelnet-charts/2026-10-16/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 – Short Interest in SPY U.S. Equity ETF",
-        "titleKo": "S&P 500 – SPY 미국 주식 ETF의 공매도 잔고",
-        "desc": "Short interest in SPY (S&P 500 ETF) remains near historic lows, suggesting investors are positioned for gains, not a sharp reversal. That leaves little short-covering fuel to power the next rally.",
-        "descKo": "SPY(S&P 500 ETF)의 공매도 잔고가 사상 최저치 수준을 유지하고 있다. 이는 투자자들이 급격한 반전보다는 상승세를 기대하고 있다는 뜻이지만, 향후 추가 랠리를 견인할 공매도 청산 매수세는 부족한 상황이다.",
-        "date": "2026-10-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-short-interest-on-the-spy-etf/",
-        "image": "/isabelnet-charts/2026-10-16/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Return on Equity (ROE)",
-        "titleKo": "S&P 500 자기자본이익률(ROE)",
-        "desc": "S&P500ROEisrising,butinvestorsarebeginningtoquestionwhethertoday’sexceptionalreturnsaresustainable.Fornow,earningsexpectationsremainsupportive.",
-        "descKo": "S&P 500의 ROE가 상승하고 있으나, 투자자들 사이에서는 현재의 이례적인 수익성이 지속 가능할지에 대한 의문이 제기되고 있다. 현재까지는 실적 기대치가 이를 뒷받침하고 있다.",
-        "date": "2026-10-15",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-trailing-4-quarter-roe/",
-        "image": "/isabelnet-charts/2026-10-16/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
