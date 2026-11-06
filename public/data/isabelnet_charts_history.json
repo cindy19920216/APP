@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-06",
+    "charts": [
+      {
+        "title": "Average S&P 500 Total Return Following Midterm Election Day",
+        "titleKo": "중간선거일 이후 S&P 500의 평균 총수익률",
+        "desc": "Since 1874, U.S. stocks have averaged a 6% gain in the three months after a midterm election and a 14% gain in the year after. Once the vote is behind investors, the uncertainty discount tends to fade.",
+        "descKo": "1874년 이후 미국 증시는 중간선거 이후 3개월간 평균 6%, 1년 뒤에는 14%의 수익률을 기록했다. 투표가 끝나 불확실성이 해소되면 투자자들의 불안 심리로 인한 할인 요인이 사라지는 경향이 있기 때문이다.",
+        "date": "2026-11-05",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-midterm-returns-after-two-consecutive-negative-quarters/",
+        "image": "/isabelnet-charts/2026-11-06/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Returns Following Midterms That Left a Republican President Facing a Democratic Congress",
+        "titleKo": "공화당 대통령과 민주당 의회 구성 시 S&P 500 수익률",
+        "desc": "Bulls may have the wind at their backs. The S&P 500 rose in all seven periods when a Republican president faced a Democratic Congress, averaging gains of 17.5% after six months and 15.5% after a year.",
+        "descKo": "강세론자들에게 우호적인 환경이 조성될 수 있다. 과거 공화당 대통령과 민주당 의회가 공존했던 7번의 사례에서 S&P 500은 모두 상승했으며, 6개월 후 평균 17.5%, 1년 후 평균 15.5%의 수익률을 기록했다.",
+        "date": "2026-11-05",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-following-midterms-that-left-a-republican-president-facing-a-democratic-congress/",
+        "image": "/isabelnet-charts/2026-11-06/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
+        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합 지표",
+        "desc": "After the early-year pullback, the S&P 500 Cycle Composite for 2026 points to a year-end rally, giving bulls plenty of reason to stay optimistic.",
+        "descKo": "연초 조정을 거친 후 2026년 S&P 500 사이클 종합 지표는 연말 랠리를 가리키고 있으며, 이는 강세론자들이 낙관론을 유지할 충분한 근거를 제공한다.",
+        "date": "2026-11-05",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
+        "image": "/isabelnet-charts/2026-11-06/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Gold Model",
+        "titleKo": "금 가격 모델",
+        "desc": "Using a model that incorporates real yields, the dollar, the S&P 500, and copper, gold now appears to be trading under its fair value. That gives the bulls a cautious edge.",
+        "descKo": "실질 금리, 달러화, S&P 500, 구리 가격을 반영한 모델을 분석한 결과, 현재 금은 적정 가치보다 낮은 수준에서 거래되고 있다. 이는 강세론자들에게 신중한 우위를 제공한다.",
+        "date": "2026-11-05",
+        "sourceUrl": "https://www.isabelnet.com/gold-prices-forecast-vs-forwards/",
+        "image": "/isabelnet-charts/2026-11-06/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "CTAs Exposure to Equities",
+        "titleKo": "CTA의 주식 익스포저",
+        "desc": "CTAs remain heavily positioned in the S&P 500, at the 82nd percentile. They’re closer to neutral in the Nasdaq-100 at the 55th percentile, and notably subdued in the Russell 2000 at the 29th percentile.",
+        "descKo": "CTA(원자재거래자문사)의 S&P 500 익스포저는 82퍼센타일로 여전히 높은 수준이다. 나스닥 100에 대해서는 55퍼센타일로 중립에 가까우며, 러셀 2000에 대해서는 29퍼센타일로 눈에 띄게 낮은 수준을 보이고 있다.",
+        "date": "2026-11-05",
+        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
+        "image": "/isabelnet-charts/2026-11-06/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-05",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-19",
         "sourceUrl": "https://www.isabelnet.com/margin-debt-expansion-vs-contraction/",
         "image": "/isabelnet-charts/2026-10-20/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-17",
-    "charts": [
-      {
-        "title": "S&P 500 Earnings vs. Their Long-Term Trend",
-        "titleKo": "S&P 500 기업 이익과 장기 추세 비교",
-        "desc": "Consensus earnings estimates for the S&P 500 are now roughly 50% above their long-term growth trend. That alone doesn’t signal a market top, but it’s a familiar late-cycle warning sign.",
-        "descKo": "현재 S&P 500의 컨센서스 이익 추정치는 장기 성장 추세를 약 50% 상회하고 있다. 이것이 곧 시장 고점을 의미하는 것은 아니나, 전형적인 경기 후반부의 경고 신호로 해석된다.",
-        "date": "2026-10-16",
-        "sourceUrl": "https://www.isabelnet.com/deviation-of-earnings-above-below-long-term-growth-trend/",
-        "image": "/isabelnet-charts/2026-10-17/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "NAAIM Exposure Index – Investor Sentiment​",
-        "titleKo": "NAAIM 익스포저 지수 – 투자 심리",
-        "desc": "Active managers have trimmed their exposure to US equities, with the NAAIM Exposure Index slipping to 74.53, its lowest level in four weeks. But they haven’t turned bearish. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
-        "descKo": "액티브 매니저들이 미국 주식 비중을 축소하면서 NAAIM 익스포저 지수가 74.53으로 하락해 4주 만에 최저치를 기록했다. 다만 이들이 약세장으로 돌아선 것은 아니다. 전미액티브투자매니저협회(NAAIM) 익스포저 지수는 회원들이 보고한 미국 주식 비중의 2주 이동평균을 추적한다.",
-        "date": "2026-10-16",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
-        "image": "/isabelnet-charts/2026-10-17/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수 – 투자 심리",
-        "desc": "With the Fear & Greed Index at 32, fear remains high. Some traders are spooked, while others see a buying opportunity. That kind of pessimism can set the stage for a rebound.",
-        "descKo": "공포·탐욕 지수가 32를 기록하며 여전히 높은 수준의 공포감이 감돌고 있다. 일부 트레이더들은 불안을 느끼는 반면, 다른 이들은 이를 매수 기회로 보고 있다. 이러한 비관론은 반등의 발판이 될 수 있다.",
-        "date": "2026-10-16",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-10-17/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Annual Cloud Capex",
-        "titleKo": "연간 클라우드 자본지출(Capex)",
-        "desc": "J.P. Morgan projects cloud capex will climb to $967 billion in 2026 and $1.425 trillion in 2027 driven by surging AI demand, before flattening out from 2028 to 2030.",
-        "descKo": "JP모건은 폭발적인 AI 수요에 힘입어 클라우드 자본지출이 2026년 9,670억 달러, 2027년 1조 4,250억 달러까지 증가한 뒤 2028년부터 2030년 사이에는 둔화될 것으로 전망했다.",
-        "date": "2026-10-16",
-        "sourceUrl": "https://www.isabelnet.com/annual-cloud-capex/",
-        "image": "/isabelnet-charts/2026-10-17/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Equity Market Concentration – Market Capitalization of 10 Largest Companies as Share of S&P 500 Total",
-        "titleKo": "주식 시장 집중도 – S&P 500 내 상위 10개 기업의 시가총액 비중",
-        "desc": "The S&P 500 has become a market of giants. Its 10 largest stocks make up 41% of the index and 38% of its earnings, leaving investors increasingly reliant on a narrow group of companies.",
-        "descKo": "S&P 500은 거대 기업 중심의 시장이 되었다. 상위 10개 종목이 지수의 41%, 전체 이익의 38%를 차지하면서 투자자들의 특정 소수 기업에 대한 의존도가 심화되고 있다.",
-        "date": "2026-10-16",
-        "sourceUrl": "https://www.isabelnet.com/equity-market-concentration-market-capitalization-of-10-largest-companies-as-share-of-sp-500-total/",
-        "image": "/isabelnet-charts/2026-10-17/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
