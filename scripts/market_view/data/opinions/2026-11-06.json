@@ -1,0 +1,67 @@
+[
+ {
+  "article_date": "2026-11-05",
+  "confidence": 0.7,
+  "horizon": "unknown",
+  "house": "Goldman Sachs",
+  "market": "KR",
+  "quote": "SK하이닉스·삼성전자, 미국 중간선거 후 주가 폭락...골드만삭스 \"지나친 비관\"",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "골드만삭스는 한국 증시(메모리 반도체 등)의 주가 하락에 대해 지나친 비관이라고 평가함",
+  "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5ZQnM0eWtLRXlrY3FZQV9waFkyX1lHaGJEek9kV092anhRSkp0T29BV0JSTF9XVm1Pa19sTWJMU3F0clF3cFBrY2tR?oc=5"
+ },
+ {
+  "article_date": "2026-11-05",
+  "confidence": 0.9,
+  "horizon": "short",
+  "house": "Fundstrat",
+  "market": "US",
+  "quote": "Tom Lee Says Democratic Sweep Could Fuel 15% to 20% Tech Rally",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "민주당 압승이 기술주 15~20% 랠리를 촉진할 수 있다고 전망",
+  "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQcE5GNVVCTXZDcE1sYWNyQjFDYWtCRWk3Y24yYVdlSXpnZm9GaGpFa2lPYzVIbGVYbUdPY3JMblRvdHluVW5tTDVENUJkN3NnUmVKMERyUEtSd3NkalVfS0I2N2VPUGlubXlfamx5UEtaV1M0c3JmYVNEd2xLQzFROWZuNFREVEhNNm5TMlNybjV2b1M2RHBwSmNB?oc=5"
+ },
+ {
+  "article_date": "2026-11-05",
+  "confidence": 0.9,
+  "horizon": "short",
+  "house": "Fundstrat",
+  "market": "US",
+  "quote": "Tom Lee Calls AI Selloff an 'Overreaction,' Predicts 20% Tech Rally",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "AI 매도세를 과잉반응으로 진단하며 20% 기술주 랠리를 예측",
+  "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxQeUhYT0c1N1ZjMkVpZXc3eWhuZk1ocUNFOXdtWGZ2QThMcEVoZkFTRkhxVnZ1RlhfRUpDQW05NkkxbXFqdWw5Sl9xT2RpamxSLTZfMmphdGJMUmRDTGZ2TElYazVHOUhVVHdoclhpRWJHNWtMYllvMXVOOG1LZzAyWERKdFVfTzBQc0ZfVS03Sk9FZUFjMGx4Qm5OX3MwcFk2eHJPTlFnRXliYm81TnBtNVUxX015VGRlM1pxc20tZWdraWhNTUhHT1hDT1pxZ0ZSU3NjUVVHMGZGVFJ6dU1PNmdWYlVVUlBMczR4cjVuZy1FMlJqekFMeHNuVGxqSnZmZ2ljTC05ek9xRWQ4SzlvMFdEYlFUNnBfdXJlQi16cw?oc=5"
+ },
+ {
+  "article_date": "2026-11-05",
+  "confidence": 0.9,
+  "horizon": "12m",
+  "house": "Yardeni",
+  "market": "US",
+  "quote": "Ed Yardeni on his 7,900 S&P 500 year-end target: 'Santa is coming'",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "S&P 500 연말 목표치 7,900을 유지하며 긍정적 전망 제시",
+  "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNQXRvOGFTZzhOM3dQNGRsMDRCcmRCaGl3bXFfek1VdHNISWdpT1YwU2hPY0F0eTNDZzlNRUJhVkFtcGFKNkpPZG1ZN2hUaUJkOVdyT294dGltaWliYXBkdlRUV3FpQXpNaEJBTm9DZTdZQUplUFdfbHhiWldlcGdfTUpTNU5tOU84LTRUYVhQT1pabnU2NlBsUzlHOE8yTzEwamcxUE02NA?oc=5"
+ },
+ {
+  "article_date": "2026-11-05",
+  "confidence": 0.8,
+  "horizon": "unknown",
+  "house": "Yardeni",
+  "market": "US",
+  "quote": "Ed Yardeni Says Slowing AI Boom Is Actually Bullish for Big Tech",
+  "report_date": null,
+  "scope": "other",
+  "stance": "bull",
+  "summary": "AI 붐의 둔화가 오히려 빅테크에 강세 요인이라고 평가",
+  "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOQVRYZkYwMzhqMGlZYVZqOFV2SmFDdHBmbEhKREZTaHV2MkpKTjZuRUQ3ZmdvVE1qYm41RFRpdGtVNUM5aVNjMFdtVV9Pa2VGTGdqdmxCdDNoMUNfWXlHcWJ1LUFqeUYxbU5Jak9wbENvTDBJSXdOSks3RjAyNU1XVlZvUmpFWHFMY3RzN2ZSeDU2R2xk?oc=5"
+ }
+]
