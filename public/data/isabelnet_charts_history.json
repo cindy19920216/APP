@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-07",
+    "charts": [
+      {
+        "title": "S&P 500 Price Return in the 3 Months Before Each Midterm Election vs. the 6 and 12 Months After",
+        "titleKo": "중간선거 직전 3개월 대비 이후 6개월 및 12개월간 S&P 500 수익률",
+        "desc": "Bulls have a reason to smile: the post-midterm rally has been remarkably reliable. Since 1950, the S&P 500 has been higher 6 and 12 months after all 19 midterm elections. Can it make it 20?",
+        "descKo": "상승론자들에게는 미소 지을 이유가 있다. 중간선거 이후의 랠리는 매우 높은 신뢰도를 보여왔기 때문이다. 1950년 이후 S&P 500 지수는 19번의 모든 중간선거 이후 6개월 및 12개월 시점에 상승세를 기록했다. 이번에도 20번째 기록을 이어갈 수 있을까.",
+        "date": "2026-11-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-price-return-vs-2021-eps-revisions/",
+        "image": "/isabelnet-charts/2026-11-07/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Various Declines per Year",
+        "titleKo": "연도별 S&P 500 하락 사례",
+        "desc": "The S&P 500 is now facing its second pullback of at least 5% this year. Even after yesterday’s sharp selloff, the decline remains relatively modest. What matters is how investors handle the turbulence and stay the course.",
+        "descKo": "S&P 500은 올해 들어 최소 5% 이상의 하락을 두 번째로 겪고 있다. 어제의 급격한 매도세에도 불구하고 하락 폭은 여전히 비교적 완만한 수준이다. 중요한 것은 투자자들이 이러한 변동성에 어떻게 대응하며 원칙을 지키느냐는 점이다.",
+        "date": "2026-11-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-market-corrections/",
+        "image": "/isabelnet-charts/2026-11-07/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 - 투자 심리",
+        "desc": "With the Fear & Greed Index at 21, fear is gripping the market. Such deep pessimism can leave room for a bounce, if sentiment improves.",
+        "descKo": "공포·탐욕 지수가 21을 기록하며 시장에 공포감이 확산하고 있다. 이러한 극도의 비관론은 투자 심리가 개선될 경우 반등의 여지를 남겨둔다.",
+        "date": "2026-11-06",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-11-07/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 - 투자 심리",
+        "desc": "Caution is creeping in, but active managers remain heavily invested in U.S. stocks, with the NAAIM Exposure Index at 78.62. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "신중론이 고개를 들고 있지만, NAAIM 익스포저 지수가 78.62를 기록하는 등 액티브 매니저들은 여전히 미국 주식 비중을 높게 유지하고 있다. 전미 액티브 투자매니저협회(NAAIM) 익스포저 지수는 NAAIM 회원들이 보고한 미국 주식 보유 비중의 2주 평균치를 추적한다.",
+        "date": "2026-11-06",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-11-07/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Hyperscaler Capex Estimates by Year",
+        "titleKo": "연도별 하이퍼스케일러 자본지출(Capex) 추정치",
+        "desc": "Are investors underestimating the AI capex cycle? This isn’t a temporary surge. It is a structural multiyear sprint for the silicon, power, and capacity required to scale.",
+        "descKo": "투자자들이 AI 자본지출 사이클을 과소평가하고 있는 것은 아닐까. 이는 일시적인 급등이 아니다. 확장에 필요한 반도체, 전력, 설비 역량을 확보하기 위한 구조적이고 장기적인 질주다.",
+        "date": "2026-11-06",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-consensus-quarterly-earnings-actual-and-consensus-estimates/",
+        "image": "/isabelnet-charts/2026-11-07/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-06",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-20",
         "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
         "image": "/isabelnet-charts/2026-10-21/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-20",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
-        "desc": "At 54.87, the Greed and Fear Index remains in neutral territory. Panic and euphoria are both in short supply, but a strong earnings season could give investors reason to increase their exposure in the weeks ahead.",
-        "descKo": "공포·탐욕 지수가 54.87을 기록하며 중립 구간에 머물러 있습니다. 시장에 공포나 과열 기운은 부족하지만, 강력한 실적 시즌이 이어질 경우 향후 몇 주간 투자자들이 비중을 확대할 명분이 될 수 있습니다.",
-        "date": "2026-10-19",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-10-20/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "S&P 500 2026년 및 2027년 목표가",
-        "desc": "Goldman Sachs is sticking with its S&P 500 targets of 8,000 by year-end and 8,700 over the next 12 months. It expects earnings growth, not multiple expansion, to drive the rally.",
-        "descKo": "골드만삭스가 S&P 500 지수의 연말 목표치 8,000포인트와 향후 12개월 목표치 8,700포인트를 유지했습니다. 골드만삭스는 밸류에이션 확장보다는 기업의 실적 성장이 상승세를 견인할 것으로 내다봤습니다.",
-        "date": "2026-10-19",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-10-20/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning slipped to the 51st percentile but remains modestly overweight. With the trade still far from crowded, investors have room to add risk.",
-        "descKo": "통합 주식 포지셔닝이 51퍼센타일로 하락했으나 여전히 완만한 비중 확대(Overweight) 상태를 유지하고 있습니다. 아직 시장이 과열되지 않은 만큼 투자자들은 위험 자산을 추가할 여력이 있습니다.",
-        "date": "2026-10-19",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-10-20/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Corporate insiders are turning more cautious: the Insider Transactions Ratio has slipped back into bearish territory as buying interest dries up.",
-        "descKo": "기업 내부자들이 신중한 태도로 돌아서고 있습니다. 매수세가 위축되면서 내부자 거래 비율이 약세 영역으로 다시 하락했습니다.",
-        "date": "2026-10-19",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-10-20/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 – Margin Debt Expansion vs. Contraction",
-        "titleKo": "S&P 500 – 마진 부채의 확대와 축소",
-        "desc": "Margin debt continues to roll over after climbing into the danger zone. That’s not the kind of turn bulls want to see, especially as risks across the market mount.",
-        "descKo": "위험 구간까지 치솟았던 마진 부채가 하락세로 돌아섰습니다. 시장 전반의 리스크가 커지는 가운데, 이는 강세론자들이 원치 않는 신호입니다.",
-        "date": "2026-10-19",
-        "sourceUrl": "https://www.isabelnet.com/margin-debt-expansion-vs-contraction/",
-        "image": "/isabelnet-charts/2026-10-20/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
