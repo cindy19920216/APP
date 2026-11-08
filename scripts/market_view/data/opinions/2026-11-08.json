@@ -1,0 +1,67 @@
+[
+ {
+  "article_date": "2026-11-07",
+  "confidence": 0.85,
+  "horizon": "short",
+  "house": "Goldman Sachs",
+  "market": "US",
+  "quote": "Goldman Sachs Panic Gauge Hits Extreme, Signaling Potential Mid-Term Rebound for US Stocks",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "골드만삭스 공포지표가 극단치에 도달함에 따라 미국 증시의 중기적 반등 가능성 시사",
+  "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5ydEpyNkRxVklXUU1CMjI5SXJNby1SREhaR1pkNUNnOWE5cXRhVHhLSXRYNVRCNnJKdnpOTTNMdktHdWhObGhOQW92YWk3SWw2Y0FtMHQ0V3B0dFN4eDd5RGdGbWtaSjhubWM4eG9SbWhleTVCTVE?oc=5"
+ },
+ {
+  "article_date": "2026-11-07",
+  "confidence": 0.9,
+  "horizon": "12m",
+  "house": "JPMorgan",
+  "market": "US",
+  "quote": "JPMorgan: The momentum crash is a mid-cycle correction within the AI supercycle; maintains S&P 500 target at 8,000 points.",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "모멘텀 급락을 AI 슈퍼사이클 내 중간 조정으로 판단하며 S&P 500 목표치 8,000포인트 유지",
+  "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNT0ZuSml4T1BfVDZzdlpZWFIxb1FwU1JqNUI4T1dpU0JXX1oxU3ZIZHlnRUhtNTc2Y2ExZGlrWlJpbEduc0x5Mjk4TFY4RnA1VE9uVmoyQWZudUpGdFoxNkxNZWtPeERpQjFFbUoxWlJTbFEwMkJmNU1sNmRjUXFWbzFLcjlZR19NMzE0NHhPNzhHaGdybWhsX2dZLTA2V3JGVjVObHdB?oc=5"
+ },
+ {
+  "article_date": "2026-11-07",
+  "confidence": 0.8,
+  "horizon": "short",
+  "house": "Barclays",
+  "market": "US",
+  "quote": "Barclays Flags Fragile US Stock Rebound, Warns of Fresh Crypto Selling",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bear",
+  "summary": "미국 증시 반등이 취약하다고 경고",
+  "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBxNHo4STdNWXFDWjB1QUd1ZUZxR25td1BjUWYzalQ1Y0hMMUhobUw0bHFmb05KVDFDMnNfMU02eHlscEEwTXdBZ0g3N0ZRUHY2VGFxUzJyeHBMYnYtcElfVkgtaXl3Y2F0QWxQdk9TZnhNeEhhU3c?oc=5"
+ },
+ {
+  "article_date": "2026-11-07",
+  "confidence": 0.9,
+  "horizon": "unknown",
+  "house": "Nomura",
+  "market": "KR",
+  "quote": "日 노무라 급락장에도 \"코스피, 1만 간다\"...기대 안 접은 이유는",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "급락장 속에서도 코스피 1만 전망 유지",
+  "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE15VTNUV0NfUUlETnNBQ0UzaTdNWmxvSnBlVko4ZmtMU3h3enBGU0xkQUJFRUVfbTZ6TzhhVE9FeVM3WlpkbmJFWUN3R1hWZw?oc=5"
+ },
+ {
+  "article_date": "2026-11-07",
+  "confidence": 0.9,
+  "horizon": "unknown",
+  "house": "Yardeni",
+  "market": "US",
+  "quote": "AI Selloff Has Investors Panicking, But Ed Yardeni Says It’s Time To Start Buying — ‘Beware Period Is Over’",
+  "report_date": null,
+  "scope": "country",
+  "stance": "bull",
+  "summary": "AI 관련 매도세에 따른 공포 속에서 지금이 매수 타이밍이며 경계 시기는 끝났다고 언급.",
+  "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOOFZTRlI2NzQ2aE5rZzU5aFJLOExSRUIwY29VU3k3cmgwZzBlTWpqdEFqUWJxY3ZaZ0FFX3RuTUMwZ3NtOWNITlVUT2RSdG1PdXMzZm5qUUxqUEhiX1NqTnNmSmZNLWV1QmNYSS1wNXlRWFAyR0FyNU1LNE95WHB6OFU2MVFMcy1YY0hqNmtlNHpYSkZuT3R4dGRCQ1p5dmNxbDFPc095em5JbXVvd25HOEE2Y2FWVjI4TlE4elhFLW5RMlFQbFVWdlF6ZWh5YkpnWlR0VlJlbldhZjR4RGc5RnFMR3dLODNIR2M0ZDJDZnhvZWl3Ti1UYTVNd0UwSVNoeGxLZWduX2JLVWhuSnc?oc=5"
+ }
+]
