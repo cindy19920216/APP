@@ -12,7 +12,7 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
 
 // ─── 상수 ────────────────────────────────────────────────
-// COMPOSITE_BOUNDS = [31, 47, 59, 68] (step4_check_dist 기준)
+// COMPOSITE_BOUNDS = [31, 47, 59, 68] (scripts/economic_index/update_weights.py 분포 기준)
 const ZONE_COLORS = [
   { from: 0,  to: 31, color: '#E24B4A', label: '위기' },
   { from: 31, to: 47, color: '#E2844A', label: '둔화' },

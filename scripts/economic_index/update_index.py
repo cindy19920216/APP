@@ -75,7 +75,7 @@ def fetch_series(series_id: str) -> pd.DataFrame:
 
 def load_weights() -> dict:
     if not WEIGHTS_FILE.exists():
-        raise RuntimeError(f'{WEIGHTS_FILE} 없음 — 최초 1회는 INDEX_PYTHON/step2_regression.py 결과를 수동으로 넣어야 함')
+        raise RuntimeError(f'{WEIGHTS_FILE} 없음 — scripts/economic_index/update_weights.py --save 먼저 실행')
     data = json.loads(WEIGHTS_FILE.read_text(encoding='utf-8'))
     return data['weights']
 

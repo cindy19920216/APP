@@ -135,7 +135,7 @@ export async function GET() {
       });
     }
 
-    // 2. 종합지수 시계열 (composite_index.csv — step3_plot.py 출력)
+    // 2. 종합지수 시계열 (composite_index.csv — scripts/economic_index/update_index.py 출력)
     const compositeHistory = readCompositeCsv(path.join(DATA_DIR, 'composite_index.csv'));
     const latestComposite  = compositeHistory.length > 0
       ? compositeHistory[compositeHistory.length - 1].value
