@@ -127,3 +127,14 @@ def test_combined_empty():
     from market_view.aggregate import summarize_combined
     d = summarize_combined([], AS_OF, [])
     assert d.ratio is None and "의견 없음" in d.badges and d.breakdown == {"US": (0, 0), "KR": (0, 0)}
+
+
+def test_body_stance_mismatch_goes_to_review():
+    votes, review = select_votes([op(stance="bull", body_stance="bear")], "KR", AS_OF)
+    assert votes == [] and len(review) == 1
+
+
+def test_body_stance_same_or_empty_still_votes():
+    for bs in ("", "bull"):
+        votes, _ = select_votes([op(stance="bull", body_stance=bs)], "KR", AS_OF)
+        assert len(votes) == 1

@@ -1,5 +1,6 @@
 feedparser
 requests
 trafilatura
+googlenewsdecoder==0.2.2
 openai
 pytest

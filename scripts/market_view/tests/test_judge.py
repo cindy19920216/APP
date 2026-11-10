@@ -159,3 +159,7 @@ def test_judge_batch_quote_checked_against_its_own_article(monkeypatch):
 
 def test_batch_prompt_mentions_ids():
     assert '"id"' in judge.SYSTEM_PROMPT
+
+
+def test_summary_style_is_eumseumche():
+    assert "음슴체" in judge.SYSTEM_PROMPT

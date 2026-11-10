@@ -35,6 +35,11 @@ MAX_ARTICLES_PER_RUN = 400   # 한 번에 판정할 기사 상한 (무료 AI 한
 MIN_TEXT_CHARS = 300     # 본문이 이보다 짧으면 추출 실패로 보고 제목+요약으로 판정
 USER_AGENT = "Mozilla/5.0 (market-view daily bot)"
 
+# ---------- 근거 보강 (화면에 나갈 의견만 본문을 읽는다) ----------
+ENRICH_MAX_PER_RUN = 20  # 한 번 실행에 보강할 의견 상한 (무료 AI 한도 보호)
+ENRICH_MAX_TRIES = 3     # 일시 실패를 이만큼 겪으면 더 시도하지 않는다
+ENRICH_TIMEOUT = 15      # 주소 풀기·본문 요청 시간 제한(초)
+
 # ---------- 무료 AI 제공자 (위에서부터 순서대로 시도) ----------
 # 모두 OpenAI 호환 엔드포인트. 확인일 2026-10-21:
 #  - Gemini: ai.google.dev/api/compatibility (무료 등급은 Flash 계열)

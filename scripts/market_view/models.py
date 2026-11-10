@@ -32,6 +32,12 @@ class Opinion:
     summary: str
     confidence: float
     url: str
+    reason: str = ""          # 본문 기반 근거 1~2줄 (근거 보강 단계)
+    body_stance: str = ""     # 본문만 보고 다시 판단한 방향. 제목 판단과 다르면 '확인 필요'
+    source_url: str = ""      # Google News 주소를 푼 원래 기사 주소 (화면 링크용)
+    enriched: bool = False    # 근거 보강이 끝났는지 (성공 또는 다시 시도하지 않는 실패)
+    enrich_tries: int = 0     # 일시 실패 횟수
+    title_summary: str = ""   # 근거 보강이 summary를 바꾸기 전의 제목 기반 요약 (사람이 본문 판단을 뒤집으면 되돌린다)
 
     def to_dict(self) -> dict:
         d = asdict(self)
@@ -45,6 +51,11 @@ class Opinion:
         d["report_date"] = date.fromisoformat(d["report_date"]) if d.get("report_date") else None
         d["article_date"] = date.fromisoformat(d["article_date"])
         return cls(**d)
+
+
+def opinion_key(op: Opinion) -> tuple:
+    """같은 의견인지 가리는 열쇠 (날짜별 파일 병합·갱신에 쓴다)."""
+    return (op.url, op.house, op.market, op.horizon, op.scope)
 
 
 @dataclass

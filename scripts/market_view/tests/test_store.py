@@ -2,7 +2,9 @@ from datetime import date
 from pathlib import Path
 
 from market_view.models import MarketDay, Opinion
-from market_view.store import load_history, load_recent_opinions, save_opinions, upsert_history
+from dataclasses import replace
+
+from market_view.store import load_history, load_recent_opinions, save_opinions, update_opinions, upsert_history
 
 
 def op(**kw):
@@ -37,3 +39,16 @@ def test_history_upsert_same_day_once(tmp_path: Path):
 
 def test_history_empty_when_missing(tmp_path: Path):
     assert load_history(tmp_path) == []
+
+
+def test_update_opinions_rewrites_matching_entry_in_its_own_file(tmp_path: Path):
+    old, new = op(url="u19", article_date=date(2026, 10, 19)), op(url="u21")
+    save_opinions(date(2026, 10, 19), [old], tmp_path)
+    save_opinions(date(2026, 10, 21), [new], tmp_path)
+    f21 = tmp_path / "opinions" / "2026-10-21.json"
+    before = f21.read_text(encoding="utf-8")
+    mtime = f21.stat().st_mtime_ns
+    update_opinions([replace(old, reason="근거", enriched=True)], date(2026, 10, 21), 7, tmp_path)
+    got = load_recent_opinions(date(2026, 10, 21), 7, tmp_path)
+    assert [(o.url, o.reason) for o in got] == [("u19", "근거"), ("u21", "")]
+    assert f21.read_text(encoding="utf-8") == before and f21.stat().st_mtime_ns == mtime
