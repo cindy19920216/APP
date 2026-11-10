@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-10",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "At 54.89, the Greed and Fear Index is neutral despite last week’s sharp sell-off. But short-term oversold conditions could set the stage for a relief bounce.",
+        "descKo": "지난주 급격한 매도세에도 불구하고 공포·탐욕 지수는 54.89로 중립 수준을 유지하고 있다. 다만 단기 과매도 국면이 기술적 반등의 발판이 될 수 있다는 분석이 나온다.",
+        "date": "2026-11-09",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-11-10/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Price Target for 2026 and 2027",
+        "titleKo": "2026년 및 2027년 S&P 500 가격 전망",
+        "desc": "Last week’s sharp sell-off hasn’t shaken Goldman Sachs’ S&P 500 outlook. The bank still sees the index at 8,000 by year-end and 8,700 over the next 12 months, with earnings growth, not multiple expansion, pushing the market higher.",
+        "descKo": "지난주 급락장에도 골드만삭스의 S&P 500 전망은 흔들림이 없다. 골드만삭스는 멀티플 확장보다는 실적 성장이 시장 상승을 견인할 것으로 보며, 연말 8,000포인트, 향후 12개월 내 8,700포인트 도달 전망을 유지했다.",
+        "date": "2026-11-09",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
+        "image": "/isabelnet-charts/2026-11-10/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝 현황",
+        "desc": "Consolidated equity positioning is now underweight, plunging from the 44th to the 20th percentile. It’s one of the steepest weekly declines on record.",
+        "descKo": "통합 주식 포지셔닝이 44백분위수에서 20백분위수로 급락하며 비중 축소(underweight) 구간으로 진입했다. 이는 역대 가장 가파른 주간 하락폭 중 하나다.",
+        "date": "2026-11-09",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-11-10/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Forecast of Gold Prices",
+        "titleKo": "금 가격 전망",
+        "desc": "GoldmanSachshaslowereditsyear-endgoldforecastto$4,150from$4,650anditsend-2027targetto$4,800from$5,400,asahawkishFedandcoolingspeculativedemandputthenear-termoutlookunderpressure.",
+        "descKo": "골드만삭스는 미 연준의 매파적 기조와 투기적 수요 둔화로 단기 전망이 압박을 받음에 따라 연말 금 가격 전망치를 기존 4,650달러에서 4,150달러로, 2027년 말 목표치를 5,400달러에서 4,800달러로 하향 조정했다.",
+        "date": "2026-11-09",
+        "sourceUrl": "https://www.isabelnet.com/total-etf-holdings-of-gold/",
+        "image": "/isabelnet-charts/2026-11-10/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Weekly Announced Buybacks",
+        "titleKo": "S&P 500 주간 자사주 매입 발표",
+        "desc": "S&P 500 buyback announcements have rebounded sharply over the past three months. Corporate America’s appetite for repurchases remains strong, providing ongoing support for stocks.",
+        "descKo": "S&P 500 기업들의 자사주 매입 발표가 최근 3개월간 급격히 반등했다. 미국 기업들의 자사주 매입 수요가 여전히 견조하며, 이는 증시에 지속적인 지지 요인이 되고 있다.",
+        "date": "2026-11-09",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-weekly-announced-buybacks/",
+        "image": "/isabelnet-charts/2026-11-10/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-07",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-21",
         "sourceUrl": "https://www.isabelnet.com/new-york-fed-gdp-nowcast/",
         "image": "/isabelnet-charts/2026-10-22/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-21",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수와 기술적 점수(Technical Score)",
-        "desc": "The S&P 500’s technical reading eased to 70.49 as investors rotated from growth into value, broadening market participation.",
-        "descKo": "투자자들이 성장주에서 가치주로 자금을 옮기며 시장 참여 폭이 넓어지는 가운데, S&P 500의 기술적 점수는 70.49로 낮아졌다.",
-        "date": "2026-10-20",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-10-21/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Returns During Midterm Election Years",
-        "titleKo": "중간선거가 있는 해의 S&P 500 수익률",
-        "desc": "S&P 500 usually rallies after midterms, with gains building from months after the election into the next year.",
-        "descKo": "S&P 500은 통상 중간선거 이후 강세를 보이는데, 선거 이후 몇 달에서 다음 해까지 상승세가 이어지는 경향이 있다.",
-        "date": "2026-10-20",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-during-midterm-election-years-since-1974/",
-        "image": "/isabelnet-charts/2026-10-21/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적(Discretionary) vs. 시스템적(Systematic) 주식 포지셔닝",
-        "desc": "Systematic strategies are still overweight, with positioning in the 86th percentile. Discretionary investors are much more cautious, underweight at the 24th percentile and leaving plenty of room to add risk.",
-        "descKo": "시스템적 전략은 포지셔닝이 86번째 백분위에 달하며 여전히 비중확대(overweight) 상태다. 반면 재량적 투자자들은 훨씬 신중한 태도를 보이며 24번째 백분위의 비중축소(underweight) 상태로, 리스크를 더 늘릴 여지가 충분히 남아 있다.",
-        "date": "2026-10-20",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-10-21/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Risk Appetite Indicator Level and Momentum Factors",
-        "titleKo": "위험선호지표(Risk Appetite Indicator) 수준과 모멘텀 요인",
-        "desc": "Goldman Sachs’ Risk Appetite Indicator has retreated from extreme levels and now sits just below neutral. Market participants have turned more cautious.",
-        "descKo": "골드만삭스의 위험선호지표가 극단적인 수준에서 후퇴해 현재 중립선 바로 아래에 머물고 있다. 시장 참여자들이 한층 더 신중한 태도로 돌아섰다.",
-        "date": "2026-10-20",
-        "sourceUrl": "https://www.isabelnet.com/risk-appetite-index/",
-        "image": "/isabelnet-charts/2026-10-21/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Valuation – S&P 500 NTM P/E",
-        "titleKo": "밸류에이션 – S&P 500 향후 12개월 주가수익비율(NTM P/E)",
-        "desc": "The equal-weight index trades at 16 times forward earnings, versus 19 times for the benchmark. It’s no bargain, but the valuation gap may give investors a more attractive entry point.",
-        "descKo": "동일가중지수는 향후 실적 기준 16배에 거래되는 반면, 벤치마크 지수는 19배 수준이다. 결코 저가는 아니지만, 이 밸류에이션 격차가 투자자들에게 더 매력적인 진입 시점을 제공할 수 있다.",
-        "date": "2026-10-20",
-        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-ntm-p-e/",
-        "image": "/isabelnet-charts/2026-10-21/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
