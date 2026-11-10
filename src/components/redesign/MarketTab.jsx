@@ -265,6 +265,25 @@ function CommoditiesCard({ commod, onSelect }) {
   );
 }
 
+// ─── 외국계 시각 카드 ──────────────────────────
+function ForeignViewCard() {
+  return (
+    <button
+      style={S.fgCard}
+      onClick={() => window.open('/market-view', '_blank', 'noopener')}
+    >
+      <div style={S.fgLeft}>
+        <div style={S.fgTopRow}>
+          <span style={S.fgTag}>외국계 시각</span>
+          <i className="ti ti-external-link" style={{ color: '#444', fontSize: 13 }} />
+        </div>
+        <div style={{ marginTop: 8, fontSize: 13, color: '#ccc' }}>국내외 증권사 강세/약세 판정</div>
+        <div style={S.fgSub}>매일 자동 갱신 · 탭해서 보기</div>
+      </div>
+    </button>
+  );
+}
+
 // ─── 빅테크 뉴스 카드 ──────────────────────────
 function NewsCard({ newsData, expandedNews, setExpandedNews }) {
   if (newsData.length === 0) return null;
@@ -356,6 +375,7 @@ export default function MarketTab() {
           <CommoditiesCard commod={commod} onSelect={setSelectedInstrument} />
         </div>
 
+        <ForeignViewCard />
         <NewsCard newsData={newsData} expandedNews={expandedNews} setExpandedNews={setExpandedNews} />
 
         {showPanicBoom && (
@@ -400,6 +420,7 @@ export default function MarketTab() {
       <IndicesCard indices={indices} marketLoading={marketLoading} onSelect={setSelectedInstrument} />
       <FxCard fx={fx} onSelect={setSelectedInstrument} />
       <CommoditiesCard commod={commod} onSelect={setSelectedInstrument} />
+      <ForeignViewCard />
       <NewsCard newsData={newsData} expandedNews={expandedNews} setExpandedNews={setExpandedNews} />
       <div style={{ height: 20 }} />
     </div>
