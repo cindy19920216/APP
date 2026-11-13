@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-13",
+    "charts": [
+      {
+        "title": "Average S&P 500 Return 12 Months After the Midterm Election, by Results",
+        "titleKo": "중간선거 결과별 S&P 500 지수 12개월 평균 수익률",
+        "desc": "In the year after midterm elections, stocks gained an average of 15.5% when a Republican held the White House and Democrats controlled Congress. The S&P 500 rose in all 19 cycles, with gains across every political configuration.",
+        "descKo": "중간선거 이후 1년간 공화당이 집권하고 민주당이 의회를 장악했을 때 주가는 평균 15.5% 상승했다. S&P 500 지수는 지난 19번의 선거 주기 모두 상승세를 보였으며, 어떤 정치적 조합에서도 수익률은 플러스였다.",
+        "date": "2026-11-12",
+        "sourceUrl": "https://www.isabelnet.com/u-s-election-hedges-sp-500-option-volumes/",
+        "image": "/isabelnet-charts/2026-11-13/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Sentiment – Risk Appetite and Expected U.S. Equity Market Performance",
+        "titleKo": "투자 심리 – 위험 선호도와 미국 주식시장 기대 수익률",
+        "desc": "Risk appetite for U.S. equities has picked up in November as fund managers reassess the post-midterm political landscape. But they’re not reaching for risk: defensive stocks remain in favor.",
+        "descKo": "11월 들어 펀드 매니저들이 중간선거 이후의 정치적 지형을 재평가하면서 미국 주식에 대한 위험 선호도가 높아졌다. 다만 공격적인 위험 추구보다는 방어주에 대한 선호가 여전히 우세하다.",
+        "date": "2026-11-12",
+        "sourceUrl": "https://www.isabelnet.com/risk-appetite-and-expected-u-s-equity-market-performance/",
+        "image": "/isabelnet-charts/2026-11-13/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI ACWI Aggregate Earnings Growth",
+        "titleKo": "MSCI ACWI 전체 기업 이익 성장률",
+        "desc": "Corporate profits are still surging. As earnings season winds down, global earnings growth looks set to hold at 33% in Q3. The rally is broadening beyond tech, energy and materials, and Europe is gaining on the U.S..",
+        "descKo": "기업 수익이 지속적으로 급증하고 있다. 실적 시즌이 마무리되는 가운데 3분기 글로벌 기업 이익 성장률은 33% 수준을 유지할 것으로 보인다. 랠리는 기술, 에너지, 소재 업종을 넘어 확대되고 있으며 유럽 시장이 미국을 추격하고 있다.",
+        "date": "2026-11-12",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-yoy-earnings-growth/",
+        "image": "/isabelnet-charts/2026-11-13/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Implied Correlation",
+        "titleKo": "S&P 500 내재 상관계수",
+        "desc": "Correlation across S&P 500 stocks bounced from an unusually low level but remained subdued, as investors focused more closely on fundamentals.",
+        "descKo": "S&P 500 구성 종목 간 상관계수는 이례적인 저점 수준에서 반등했으나, 투자자들이 펀더멘털에 더욱 집중함에 따라 여전히 낮은 수준을 유지했다.",
+        "date": "2026-11-12",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-realized-3-month-average-stock-correlation/",
+        "image": "/isabelnet-charts/2026-11-13/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Temporary Help Services Jobs vs. Real GDP and U.S. Recessions",
+        "titleKo": "임시직 서비스업 고용과 실질 GDP 및 미국 경기침체",
+        "desc": "Temporary Help Services Jobs stand at 3.03% YoY in October. The relationship between Temporary Help Services jobs and the macroeconomy is complex. Declines in Temporary Help Services Jobs are often considered a leading indicator of a potential recession (red line at -3.5%), but they do not always guarantee one, as other economic factors can impact the labor market and job growth. However, when Temporary Help Services Jobs were below -3.5% YoY in 2001, 2007 and 2020, a recession was on the horizon in the United States.",
+        "descKo": "10월 임시직 서비스업 고용은 전년 대비 3.03% 증가했다. 임시직 고용과 거시경제의 상관관계는 복합적이다. 임시직 고용의 감소(-3.5% 선)는 흔히 잠재적 경기침체의 선행지표로 간주되지만, 노동시장과 고용 성장에 영향을 미치는 다른 경제 요인들로 인해 항상 경기침체를 보장하는 것은 아니다. 다만 2001년, 2007년, 2020년 당시 임시직 고용이 전년 대비 -3.5% 이하로 떨어졌을 때 미국에는 경기침체가 닥쳤다.",
+        "date": "2026-11-12",
+        "sourceUrl": "https://www.isabelnet.com/temporary-help-services-vs-real-gdp-and-u-s-recession/",
+        "image": "/isabelnet-charts/2026-11-13/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-12",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-26",
         "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
         "image": "/isabelnet-charts/2026-10-27/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-24",
-    "charts": [
-      {
-        "title": "S&P 500 and Predecessors, Calendar-Year Price Returns Since 1928",
-        "titleKo": "1928년 이후 S&P 500 및 전신 지수의 연간 수익률",
-        "desc": "The S&P 500 and its predecessors have finished higher in 73% of years since 1928. Risk never disappears, but staying bearish means fighting a long-standing tailwind.",
-        "descKo": "S&P 500과 그 전신 지수는 1928년 이후 전체 기간 중 73%의 해에 상승 마감했다. 리스크는 결코 사라지지 않지만, 약세론을 고수하는 것은 장기간 지속된 우상향 흐름에 역행하는 것과 같다.",
-        "date": "2026-10-23",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-return-vs-nonfarm-payrolls/",
-        "image": "/isabelnet-charts/2026-10-24/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Truck Tonnage vs. S&P 500 Index",
-        "titleKo": "트럭 물동량 지수와 S&P 500 지수의 상관관계",
-        "desc": "The Truck Tonnage Index The Truck Tonnage Index increased 0.8% in September. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.67 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
-        "descKo": "9월 트럭 물동량 지수가 0.8% 상승했다. 트럭은 미국 화물 운송의 72.7%를 담당하며 미국 경제의 바로미터 역할을 한다. 차트는 미국 주식시장이 역사적으로 실물 경제의 규모 및 확장과 궤를 같이해 왔음을 보여준다(2002년 이후 결정계수 R² = 0.67). 트럭 물동량 지수가 주식시장의 선행 지표는 아니지만, 미국 시장이 실물 경제의 팽창과 수축을 어떻게 따라가는지 잘 보여준다.",
-        "date": "2026-10-23",
-        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
-        "image": "/isabelnet-charts/2026-10-24/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Five-Year Credit-Default Swaps on Hyperscalers and Chipmakers",
-        "titleKo": "하이퍼스케일러 및 반도체 기업의 5년 만기 신용부도스왑(CDS)",
-        "desc": "The AI boom is pushing credit risk to new highs. The race to build is becoming a race to borrow. And protection against default keeps getting more expensive.",
-        "descKo": "AI 붐이 신용 리스크를 새로운 고점으로 끌어올리고 있다. 설비 투자 경쟁이 차입 경쟁으로 변모하면서 채무불이행 대비 비용도 계속 상승하는 추세다.",
-        "date": "2026-10-23",
-        "sourceUrl": "https://www.isabelnet.com/bank-credit-default-swaps/",
-        "image": "/isabelnet-charts/2026-10-24/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Fear & Greed Index – Investor Sentiment",
-        "titleKo": "공포·탐욕 지수로 본 투자 심리",
-        "desc": "With the Fear & Greed Index at 20, the market remains fearful. Some traders are stepping back, while others see a chance to buy the dip. Pessimism this heavy can leave room for a bounce.",
-        "descKo": "공포·탐욕 지수가 20을 기록하며 시장은 여전히 공포 국면에 머물러 있다. 일부 트레이더들은 발을 빼고 있으나, 다른 이들은 저가 매수의 기회로 보고 있다. 이처럼 비관론이 팽배할 경우 반등의 여지가 생길 수 있다.",
-        "date": "2026-10-23",
-        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
-        "image": "/isabelnet-charts/2026-10-24/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Central Bank Gold Demand Nowcast",
-        "titleKo": "중앙은행 금 매입 수요 나우캐스트",
-        "desc": "Gold buying by central banks has eased, but official-sector demand remains historically strong, helping diversify reserves and support prices.",
-        "descKo": "중앙은행들의 금 매입세는 다소 완화되었으나, 공공 부문의 수요는 여전히 역사적으로 강력한 수준을 유지하며 외환보유액 다변화와 금값 지지를 견인하고 있다.",
-        "date": "2026-10-23",
-        "sourceUrl": "https://www.isabelnet.com/central-bank-asset-purchases-coming-back/",
-        "image": "/isabelnet-charts/2026-10-24/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
