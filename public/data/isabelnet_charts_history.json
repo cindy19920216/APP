@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-14",
+    "charts": [
+      {
+        "title": "10-Year U.S. Treasury Real Return, Annualized, by Inflation Level and Direction",
+        "titleKo": "인플레이션 수준과 방향에 따른 미국 10년물 국채 실질 수익률",
+        "desc": "When inflation was 4% and falling, U.S. Treasury bonds delivered nearly 8% a year in real returns. The picture changes when inflation is high and rising. It’s not just the level of inflation that matters. It’s the direction.",
+        "descKo": "인플레이션이 4%를 기록하며 하락세였을 때, 미국 국채는 연간 8%에 육박하는 실질 수익률을 기록했습니다. 하지만 물가가 높고 상승세일 때는 상황이 달라집니다. 중요한 것은 인플레이션의 절대적 수준뿐만이 아니라 그 방향성입니다.",
+        "date": "2026-11-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-ntm-earnings-yield-gap-earnings-yield-gap-vs-inflation-and-u-s-treasury-yield/",
+        "image": "/isabelnet-charts/2026-11-14/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Performance on Friday the 13th since 1928",
+        "titleKo": "1928년 이후 13일의 금요일 S&P 500 성과",
+        "desc": "That’s a fun twist on the superstition. But Friday the 13th in November has often been a rough ride for U.S. stocks. Will this year be different?",
+        "descKo": "미신을 활용한 흥미로운 분석입니다. 11월의 13일의 금요일은 그간 미국 증시에 거친 흐름을 보인 경우가 많았습니다. 올해는 다를까요?",
+        "date": "2026-11-13",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-performance-on-friday-the-13th-since-1928/",
+        "image": "/isabelnet-charts/2026-11-14/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수(Fear & Greed Index) – 투자 심리",
+        "desc": "The Fear & Greed Index sits at 41, leaving sentiment near neutral. With neither panic nor euphoria in the air, positive news could push U.S. stocks higher.",
+        "descKo": "공포·탐욕 지수가 41을 기록하며 투자 심리가 중립 수준에 머물고 있습니다. 시장에 패닉이나 과도한 낙관론이 없는 상황에서, 긍정적인 뉴스 유입은 미국 증시를 상승세로 이끌 수 있습니다.",
+        "date": "2026-11-13",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-11-14/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 – 투자 심리",
+        "desc": "Active managers have cut their exposure to U.S. equities, pushing the NAAIM Exposure Index down to 72.90, its lowest level in nearly two months. The mood is cautious, not bearish. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "액티브 펀드 매니저들이 미국 주식 비중을 축소하면서 NAAIM 익스포저 지수가 약 두 달 만에 최저치인 72.90까지 하락했습니다. 이는 약세장으로 돌아선 것이 아닌 신중한 태도로 풀이됩니다. NAAIM 익스포저 지수는 미국 액티브 투자운용사 협회(NAAIM) 회원들이 보고한 미국 주식 보유 비중의 2주 이동평균을 추적합니다.",
+        "date": "2026-11-13",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-11-14/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 CAPE Ratio, U.S. Household Allocations to Equities and Cash Rates",
+        "titleKo": "S&P 500 쉴러 CAPE 비율, 미국 가계 주식 비중 및 현금 금리",
+        "desc": "The Shiller CAPE puts U.S. stocks back in the stratosphere. Investors may enjoy the ride up, but historically, rich valuations can mean lower future returns and more room for losses.",
+        "descKo": "쉴러 CAPE 비율은 미국 증시가 다시 고평가 영역에 진입했음을 시사합니다. 투자자들은 현재의 상승세를 즐길 수 있으나, 역사적으로 높은 밸류에이션은 향후 수익률 저하와 손실 가능성 확대를 의미할 수 있습니다.",
+        "date": "2026-11-13",
+        "sourceUrl": "https://www.isabelnet.com/valuation-u-s-market-capitalization-to-gdp-and-cyclically-adjusted-p-e-shiller-cape/",
+        "image": "/isabelnet-charts/2026-11-14/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-13",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-27",
         "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
         "image": "/isabelnet-charts/2026-10-28/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-27",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자자 심리 – 미국 시장 탐욕/공포 지수",
-        "desc": "At 53.30, the Greed and Fear Index is neutral, with little sign of either panic or euphoria. If the market holds up through earnings season, investors could start adding risk in the weeks ahead.",
-        "descKo": "탐욕과 공포 지수는 53.30으로 중립 수준에 머물러 있으며, 패닉이나 과열의 징후는 뚜렷하지 않다. 실적 시즌 동안 시장이 버텨준다면, 앞으로 몇 주간 투자자들이 리스크를 다시 늘리기 시작할 수 있다.",
-        "date": "2026-10-26",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-10-27/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Index Returns in October",
-        "titleKo": "10월 S&P 500 지수 수익률",
-        "desc": "October’s final week has often been kind to U.S. stocks. Late-month lows are nothing new, and deeply bearish sentiment could set the stage for another buying opportunity.",
-        "descKo": "10월 마지막 주는 미국 증시에 우호적이었던 경우가 많았다. 월말 저점은 새삼스러운 일이 아니며, 극도로 비관적인 심리가 오히려 또 한 번의 매수 기회를 만들어낼 수 있다.",
-        "date": "2026-10-26",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-returns-in-october/",
-        "image": "/isabelnet-charts/2026-10-27/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "At the 41st percentile, consolidated equity positioning is neutral for now, with room to add risk if sentiment improves.",
-        "descKo": "통합 주식 포지셔닝은 41번째 백분위수로 현재 중립 수준이며, 투자심리가 개선될 경우 리스크를 더 늘릴 여지가 있다.",
-        "date": "2026-10-26",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-10-27/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "2026년과 2027년 S&P 500 목표주가",
-        "desc": "Goldman Sachs is holding to its S&P 500 targets: 8,000 by year-end and 8,700 over the next 12 months. Earnings growth, not multiple expansion, is expected to power the rally.",
-        "descKo": "골드만삭스는 S&P 500 목표치를 연말 8,000, 향후 12개월 8,700으로 유지하고 있다. 이번 상승을 이끄는 동력은 밸류에이션 멀티플 확장이 아니라 이익 성장이 될 것으로 전망된다.",
-        "date": "2026-10-26",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-10-27/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Largecap MCG & Tech Positioning and Earnings Growth",
-        "titleKo": "대형 메가캡 성장주(MCG) 및 기술주 포지셔닝과 이익 성장",
-        "desc": "Tech positioning remains well below what expected earnings growth would suggest. That gap leaves room for a catch-up trade.",
-        "descKo": "기술주 포지셔닝은 기대되는 이익 성장률에 비해 여전히 크게 낮은 수준이다. 이 격차는 향후 순환매(catch-up trade) 가능성의 여지를 남긴다.",
-        "date": "2026-10-26",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-investor-positioning/",
-        "image": "/isabelnet-charts/2026-10-27/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
