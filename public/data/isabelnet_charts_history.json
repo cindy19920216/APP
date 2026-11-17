@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-17",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "Last week’s rally lifted the broader market, and sentiment remains neutral, with the Greed and Fear Index at 55.08. With short-term indicators still oversold, the rebound may not be over.",
+        "descKo": "지난주 증시 랠리로 시장 전반이 상승했으나, 공포·탐욕 지수는 55.08로 중립 수준을 유지하고 있다. 단기 지표상 여전히 과매도 구간에 머물러 있어 반등세가 이어질 가능성이 있다.",
+        "date": "2026-11-16",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-11-17/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Returns – Major IPOs Since Google in 2004",
+        "titleKo": "수익률 – 2004년 구글 이후 주요 기업공개(IPO)",
+        "desc": "Anthropic may go public later this week. The first-day pop can be thrilling. The first year, far less so: major IPOs have suffered average drawdowns of more than 55% since 2004.",
+        "descKo": "앤스로픽이 이번 주 후반 상장할 것으로 예상된다. 상장 첫날의 급등세는 매력적일 수 있으나, 1년 후 상황은 다르다. 2004년 이후 주요 IPO 종목들은 첫해 평균 55% 이상의 하락세를 겪었다.",
+        "date": "2026-11-16",
+        "sourceUrl": "https://www.isabelnet.com/returns-major-ipos-since-google-in-2004/",
+        "image": "/isabelnet-charts/2026-11-17/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidated equity positioning edged up from the 20th to the 26th percentile, but remains firmly underweight, leaving room to add risk if sentiment improves.",
+        "descKo": "통합 주식 포지셔닝은 백분위 20에서 26으로 소폭 상승했으나, 여전히 비중 축소 상태를 유지하고 있어 투자 심리 개선 시 위험 자산을 확대할 여력이 있다.",
+        "date": "2026-11-16",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-11-17/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Mega-Cap Growth and Large-Cap Tech Positioning",
+        "titleKo": "메가캡 성장주 및 대형 기술주 포지셔닝",
+        "desc": "Mega-cap growth and large-cap Tech positioning has climbed from the 7th to the 26th percentile, but remains modestly underweight. Better news could draw more risk back into the trade.",
+        "descKo": "메가캡 성장주와 대형 기술주 포지셔닝은 백분위 7에서 26으로 상승했으나, 여전히 완만한 비중 축소 상태다. 호재가 유입될 경우 해당 섹터로의 위험 자산 유입이 다시 증가할 수 있다.",
+        "date": "2026-11-16",
+        "sourceUrl": "https://www.isabelnet.com/mega-cap-growth-tech-positioning/",
+        "image": "/isabelnet-charts/2026-11-17/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "MSCI World Sector/Style Valuations",
+        "titleKo": "MSCI 세계 섹터·스타일 밸류에이션",
+        "desc": "Many sectors and investment styles still command rich valuations. Global tech is the exception, trading below its historical range and cheaper than other sectors.",
+        "descKo": "다수의 섹터와 투자 스타일은 여전히 높은 밸류에이션을 기록 중이다. 다만 글로벌 기술주는 역사적 범위보다 낮은 가격에 거래되고 있어 타 섹터 대비 저평가된 예외적인 모습을 보이고 있다.",
+        "date": "2026-11-16",
+        "sourceUrl": "https://www.isabelnet.com/valuation-msci-u-s-p-e-ratio/",
+        "image": "/isabelnet-charts/2026-11-17/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-14",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-28",
         "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-bonds/",
         "image": "/isabelnet-charts/2026-10-29/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-28",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수와 기술적 점수(Technical Score)",
-        "desc": "The S&P 500’s technical reading eased to 58.32. The market can rally from here, but a deeper correction could bring further losses. For now, caution makes sense until market sentiment improves.",
-        "descKo": "S&P 500의 기술적 지표(Technical Score)가 58.32로 낮아졌다. 시장이 여기서 다시 반등할 수도 있지만, 더 깊은 조정이 온다면 추가 손실로 이어질 수 있다. 지금은 시장 심리가 개선되기 전까지 신중한 태도가 합리적이다.",
-        "date": "2026-10-27",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-10-28/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 vs. G10 Excess Liquidity Leading Indicator",
-        "titleKo": "S&P 500과 G10 초과 유동성 선행지표(Excess Liquidity Leading Indicator) 비교",
-        "desc": "G10 excess liquidity remains negative, leaving U.S. stocks without a crucial source of support over the next three to six months. That’s unlikely to change unless monetary policy eases or animal spirits return.",
-        "descKo": "G10 초과 유동성은 여전히 마이너스 상태로, 향후 3~6개월간 미국 증시가 핵심적인 지지 요인 없이 움직일 가능성을 시사한다. 통화정책이 완화되거나 시장의 낙관적 투자심리(animal spirits)가 되살아나지 않는 한 이러한 상황이 바뀌기는 어려워 보인다.",
-        "date": "2026-10-27",
-        "sourceUrl": "https://www.isabelnet.com/msci-world-yoy-vs-vp-global-excess-liquidity-leading-indicator/",
-        "image": "/isabelnet-charts/2026-10-28/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율(Insider Transactions Ratio)",
-        "desc": "The Insider Transactions Ratio is back in neutral territory, with buying and selling roughly balanced. Corporate insiders are largely on the sidelines, with little conviction about what comes next.",
-        "descKo": "내부자 거래 비율이 다시 중립 구간으로 돌아와 매수와 매도가 대체로 균형을 이루고 있다. 기업 내부자들은 대부분 관망세를 유지하며, 앞으로의 방향에 대해 확신을 갖지 못하고 있는 것으로 보인다.",
-        "date": "2026-10-27",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-10-28/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus EPS Growth Estimates",
-        "titleKo": "EPS 성장률 컨센서스 전망(Consensus EPS Growth Estimates)",
-        "desc": "U.S. small-cap earnings are expected to climb 34% in 2026 and 48% in 2027, putting them on track to outpace the S&P 500, where growth is forecast to slow from 33% to 16%.",
-        "descKo": "미국 소형주(small-cap)의 실적은 2026년 34%, 2027년 48% 성장할 것으로 전망되며, 이는 성장률이 33%에서 16%로 둔화될 것으로 예상되는 S&P 500을 앞지를 것으로 보인다.",
-        "date": "2026-10-27",
-        "sourceUrl": "https://www.isabelnet.com/eps-growth-and-consensus/",
-        "image": "/isabelnet-charts/2026-10-28/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "CTAs Exposure to Equities",
-        "titleKo": "CTA의 주식 노출도(CTAs Exposure to Equities)",
-        "desc": "CTA positioning remains relatively elevated across most major indexes. The S&P 500 sits at the 87th percentile, the Nasdaq-100 at the 66th percentile, and the Russell 2000 at the 30th percentile.",
-        "descKo": "CTA(추세추종형 펀드)의 포지셔닝은 대부분의 주요 지수에서 비교적 높은 수준을 유지하고 있다. S&P 500은 87번째 백분위수(percentile), Nasdaq-100은 66번째 백분위수, Russell 2000은 30번째 백분위수에 위치해 있다.",
-        "date": "2026-10-27",
-        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
-        "image": "/isabelnet-charts/2026-10-28/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
