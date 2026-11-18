@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-18",
+    "charts": [
+      {
+        "title": "S&P 500 Index and Technical Score",
+        "titleKo": "S&P 500 지수 및 기술적 지표 분석",
+        "desc": "The S&P 500’s technical reading improved last week, reaching 47.39. The rebound could continue, but caution still makes sense until the market shows more strength.",
+        "descKo": "지난주 S&P 500의 기술적 지표는 47.39로 개선되었다. 반등세가 이어질 수 있으나, 시장이 더 확실한 강세를 보일 때까지는 신중한 접근이 필요하다.",
+        "date": "2026-11-17",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
+        "image": "/isabelnet-charts/2026-11-18/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Weekly Announced Buybacks",
+        "titleKo": "S&P 500 기업 주간 자사주 매입 발표",
+        "desc": "Buyback announcements from S&P 500 firms have spiked over the past three months. Corporate America’s hunger for its own shares is providing a steady floor for stock prices.",
+        "descKo": "최근 3개월간 S&P 500 기업들의 자사주 매입 발표가 급증했다. 기업들의 자사주 매입 선호 현상이 주가 하방을 견고하게 지지하고 있다.",
+        "date": "2026-11-17",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-weekly-announced-buybacks/",
+        "image": "/isabelnet-charts/2026-11-18/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Performance – MCG & Tech Ratio to the Rest of the S&P 500",
+        "titleKo": "성과 분석 – S&P 500 내 MCG 및 기술주 비중 대비 성과",
+        "desc": "The relative performance of MCG & Tech has dipped slightly below its long-run trend. Since this level has triggered five sharp rebounds since 2024, the odds still favor an overweight position.",
+        "descKo": "MCG(메가캡 성장주) 및 기술주의 상대적 성과가 장기 추세선 아래로 소폭 하락했다. 2024년 이후 이 구간에서 다섯 차례 급반등이 있었던 점을 고려하면, 비중 확대 전략이 여전히 유리하다.",
+        "date": "2026-11-17",
+        "sourceUrl": "https://www.isabelnet.com/performance-of-sp-500-megacap-growth-stocks-vs-rest-of-sp-500/",
+        "image": "/isabelnet-charts/2026-11-18/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Insider Transactions Ratio",
+        "titleKo": "내부자 거래 비율",
+        "desc": "Insider buying and selling remain nearly balanced, keeping the Insider Transactions Ratio in neutral territory. For now, corporate insiders are holding back, waiting for the market to pick a direction.",
+        "descKo": "내부자 매수와 매도가 균형을 이루며 내부자 거래 비율은 중립 구간에 머물러 있다. 기업 내부자들은 현재 시장이 방향성을 잡을 때까지 관망세를 유지하고 있다.",
+        "date": "2026-11-17",
+        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
+        "image": "/isabelnet-charts/2026-11-18/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Flows into Global Equity Funds",
+        "titleKo": "글로벌 주식형 펀드 자금 유입",
+        "desc": "Cash continues to flood DM and EM equity funds. The sharp jump in monthly inflows shows investors are aggressively chasing risk once again.",
+        "descKo": "선진국(DM) 및 신흥국(EM) 주식형 펀드로 자금 유입이 지속되고 있다. 월간 유입액의 급격한 증가는 투자자들이 다시 공격적으로 위험 자산을 쫓고 있음을 보여준다.",
+        "date": "2026-11-17",
+        "sourceUrl": "https://www.isabelnet.com/flows-into-global-equity-funds/",
+        "image": "/isabelnet-charts/2026-11-18/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-17",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-10-29",
         "sourceUrl": "https://www.isabelnet.com/u-s-2-year-government-bond-yield/",
         "image": "/isabelnet-charts/2026-10-30/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-10-29",
-    "charts": [
-      {
-        "title": "S&P 500 Performance from the October 26 Close to December 31, by Market Regime",
-        "titleKo": "시장 국면별 S&P 500의 10월 26일 종가 대비 연말 수익률",
-        "desc": "In the nine midterm years since 1951 when the S&P 500 was up year to date on October 26, it rose through year-end every single time, gaining an average of 6.14%.",
-        "descKo": "1951년 이후 S&P 500 지수가 10월 26일 시점에 연초 대비 상승세를 보였던 9번의 중간선거 해에는 예외 없이 연말까지 상승했으며, 평균 6.14%의 수익률을 기록했다.",
-        "date": "2026-10-28",
-        "sourceUrl": "https://www.isabelnet.com/secular-bull-and-secular-bear-markets/",
-        "image": "/isabelnet-charts/2026-10-29/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Average Performance per Day",
-        "titleKo": "S&P 500 일평균 수익률 현황",
-        "desc": "The calendar favors the bulls: October 28 has historically been the S&P 500’s best day of the year. Will the Fed spoil the party today?",
-        "descKo": "통계적으로 강세장에 우호적인 날이 존재한다. 역사적으로 10월 28일은 S&P 500 지수가 연중 가장 높은 수익률을 기록했던 날이다. 과연 오늘 연준이 이 분위기에 찬물을 끼얹을 것인가?",
-        "date": "2026-10-28",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-single-day-average-returns/",
-        "image": "/isabelnet-charts/2026-10-29/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Ownership of the U.S. Equity Market",
-        "titleKo": "미국 주식 시장 보유 현황",
-        "desc": "U.S. households now own 42% of the U.S. equity market. But that ownership is heavily concentrated, with nearly 90% in the hands of the wealthiest 10%.",
-        "descKo": "현재 미국 가계가 보유한 미국 주식 시장 비중은 42%에 달한다. 하지만 상위 10% 부유층이 전체 보유액의 90% 가까이를 차지할 정도로 소유가 극도로 집중되어 있다.",
-        "date": "2026-10-28",
-        "sourceUrl": "https://www.isabelnet.com/ownership-breakdown-of-the-u-s-equity-market-share-of-corporate-equity-market/",
-        "image": "/isabelnet-charts/2026-10-29/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – Average Path of the S&P 500 Through a Year Since 1928, With Midterm and Non-Midterm Years",
-        "titleKo": "계절성 - 1928년 이후 중간선거 해와 비중간선거 해를 구분한 S&P 500의 연간 평균 경로",
-        "desc": "Averages mask wide dispersion, but if history is any guide, the S&P 500 is entering into a seasonally strong period.",
-        "descKo": "평균 수치는 큰 편차를 가리지만, 과거의 사례를 참고한다면 S&P 500은 계절적으로 강세를 보이는 시기에 진입하고 있다.",
-        "date": "2026-10-28",
-        "sourceUrl": "https://www.isabelnet.com/seasonality-average-daily-path-for-sp-500-since-1928-and-volatility/",
-        "image": "/isabelnet-charts/2026-10-29/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "CTAs Exposure to Bonds",
-        "titleKo": "CTA의 채권 노출도",
-        "desc": "CTAs are still keeping their distance from rates risk. Bond allocations sit at the 7th percentile, leaving fixed income firmly out of favor.",
-        "descKo": "CTA는 여전히 금리 리스크를 회피하고 있다. 채권 비중은 7퍼센타일 수준에 머물러 있으며, 이는 채권 자산이 투자 대상에서 확실히 외면받고 있음을 시사한다.",
-        "date": "2026-10-28",
-        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-bonds/",
-        "image": "/isabelnet-charts/2026-10-29/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
