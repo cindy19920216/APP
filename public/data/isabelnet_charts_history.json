@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-21",
+    "charts": [
+      {
+        "title": "S&P 500 Subsequent 10-Year Real Return by Starting CAPE",
+        "titleKo": "CAPE 비율로 본 S&P 500의 향후 10년 실질 수익률",
+        "desc": "A starting CAPE below 10 was followed by average real returns of 11.3% a year. Above 30, investors lost 1.0% a year after inflation, on average. At today’s valuations, U.S. stocks may offer little payoff for a decade of risk.",
+        "descKo": "CAPE가 10 미만에서 시작할 경우 연평균 11.3%의 실질 수익률을 기록했다. 반면 30을 상회할 때는 인플레이션 조정 후 연평균 1.0%의 손실을 냈다. 현재의 밸류에이션 수준에서 미국 주식은 향후 10년간의 위험 대비 수익 기대치가 낮다.",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.isabelnet.com/valuation-shiller-cyclically-adjusted-price-earnings-ratio/",
+        "image": "/isabelnet-charts/2026-11-21/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Seasonality – S&P 500 Cycle Composite for 2027",
+        "titleKo": "계절성 – 2027년 S&P 500 사이클 복합 지표",
+        "desc": "The S&P 500 Cycle Composite sees a bull market peak in 2H 2027. Earnings are stretched, and revenue growth may be rolling over. A turn in margin debt, more rate hikes, and slower capex would add to the late cycle warning.",
+        "descKo": "S&P 500 사이클 복합 지표상 강세장은 2027년 하반기에 정점에 이를 것으로 전망된다. 기업 이익은 한계치에 다다랐고 매출 성장세는 둔화될 조짐을 보인다. 마진 부채의 변곡점, 추가 금리 인상, 설비투자(CAPEX) 감소는 사이클 후반부의 경고 신호가 될 것이다.",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite/",
+        "image": "/isabelnet-charts/2026-11-21/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Fear & Greed Index – Investor Sentiment",
+        "titleKo": "공포·탐욕 지수 – 투자자 심리",
+        "desc": "With the Fear & Greed Index at 19, fear is gripping the market. When sentiment is this bleak, even a modest shift in mood can spark a bounce.",
+        "descKo": "공포·탐욕 지수가 19를 기록하며 시장이 공포에 휩싸였다. 투자 심리가 이토록 극도로 위축된 상황에서는 작은 분위기 반전만으로도 기술적 반등이 일어날 수 있다.",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.isabelnet.com/fear-greed-index-investor-sentiment/",
+        "image": "/isabelnet-charts/2026-11-21/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "NAAIM Exposure Index – Investor Sentiment​",
+        "titleKo": "NAAIM 익스포저 지수 – 투자자 심리",
+        "desc": "Active managers have sharply cut their U.S. equity exposure, sending the NAAIM Exposure Index down to 51.22, its lowest reading since April 2025, as caution deepens. The National Association of Active Investment Managers Exposure Index tracks the two-week average of U.S. equity exposure reported by NAAIM members.",
+        "descKo": "액티브 운용사들이 미국 주식 비중을 급격히 축소하며 NAAIM 익스포저 지수가 51.22까지 하락, 2025년 4월 이후 최저치를 기록했다. NAAIM 익스포저 지수는 전미액티브투자매니저협회 회원들이 보고한 미국 주식 보유 비중의 2주 이동평균을 추적한다.",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-naaim-exposure-index-and-sp-500/",
+        "image": "/isabelnet-charts/2026-11-21/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Large Cap Utilities Positioning",
+        "titleKo": "대형주 유틸리티 업종 포지셔닝",
+        "desc": "Positioning in utilities remains deeply underweight, at just the 1st percentile, leaving plenty of room for investors to add exposure if sentiment improves.",
+        "descKo": "유틸리티 업종의 포지셔닝은 1백분위수 수준으로 극도로 저평가된 상태다. 투자 심리가 개선될 경우 비중을 확대할 여지는 충분하다.",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.isabelnet.com/utilities-flows/",
+        "image": "/isabelnet-charts/2026-11-21/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-20",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-11-03",
         "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
         "image": "/isabelnet-charts/2026-11-04/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-11-03",
-    "charts": [
-      {
-        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
-        "titleKo": "투자 심리 - 미국 시장 공포·탐욕 지수",
-        "desc": "At56.95,theGreedandFearIndexsitsinneutralterritory,showinglittlesignofpanicoreuphoria.Themarketlooksoversoldinthenearterm,leavingroomforareflexivebounceafterthemidtermelection.",
-        "descKo": "공포·탐욕 지수는 56.95로 중립 구간에 머물며 패닉이나 과열의 징후를 보이지 않고 있다. 단기적으로는 시장이 과매도 상태여서 중간선거 이후 반등의 여지가 남아 있다.",
-        "date": "2026-11-02",
-        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
-        "image": "/isabelnet-charts/2026-11-03/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – S&P 500 Index Average Monthly Returns",
-        "titleKo": "계절성 - S&P 500 지수 평균 월간 수익률",
-        "desc": "As bears freeze, U.S. stocks catch fire in November: the strongest month on average since 1950, the best past 10 years, the second best in midterm years, and still shining over the past 20 years.",
-        "descKo": "약세장이 물러가고 미국 증시가 11월에 강세를 보이고 있다. 1950년 이후 평균적으로 가장 수익률이 높았던 달이며, 지난 10년간 최고의 실적을 기록했고, 중간선거가 있는 해에는 두 번째로 좋은 성과를 냈다. 최근 20년간의 흐름 또한 견조하다.",
-        "date": "2026-11-02",
-        "sourceUrl": "https://www.isabelnet.com/seasonality-sp-500-index-average-monthly-returns/",
-        "image": "/isabelnet-charts/2026-11-03/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consolidated Equity Positioning",
-        "titleKo": "통합 주식 포지셔닝",
-        "desc": "Consolidated equity positioning remains close to neutral, at the 44th percentile, leaving investors room to add risk if sentiment improves.",
-        "descKo": "통합 주식 포지셔닝은 44퍼센타일 수준으로 중립에 가까운 상태를 유지하고 있어, 투자 심리가 개선될 경우 위험 자산을 확대할 여력이 남아 있다.",
-        "date": "2026-11-02",
-        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
-        "image": "/isabelnet-charts/2026-11-03/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Price Target for 2026 and 2027",
-        "titleKo": "2026년 및 2027년 S&P 500 목표 주가",
-        "desc": "Goldman Sachs is sticking with its S&P 500 targets: 8,000 by year-end and 8,700 over the next 12 months. Earnings growth, rather than valuation expansion, is expected to carry the market higher.",
-        "descKo": "골드만삭스가 S&P 500 목표치를 연말 8,000포인트, 향후 12개월 8,700포인트로 유지했다. 밸류에이션 확장보다는 실적 성장이 시장 상승을 견인할 것으로 예상된다.",
-        "date": "2026-11-02",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-year-end-target/",
-        "image": "/isabelnet-charts/2026-11-03/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Consensus Hyperscaler Capex Estimates",
-        "titleKo": "하이퍼스케일러 설비투자(Capex) 컨센서스 전망",
-        "desc": "Hyperscaler capex has held fairly steady this earnings season, breaking from the faster pace of recent quarters. Analysts expect spending to reach $808 billion in 2026, $1.163 trillion in 2027, and $1.289 trillion in 2028.",
-        "descKo": "이번 실적 시즌 동안 하이퍼스케일러의 설비투자 규모는 최근 분기의 가파른 증가세에서 벗어나 상당히 안정적인 모습을 보였다. 애널리스트들은 관련 지출이 2026년 8,080억 달러, 2027년 1조 1,630억 달러, 2028년 1조 2,890억 달러에 이를 것으로 전망한다.",
-        "date": "2026-11-02",
-        "sourceUrl": "https://www.isabelnet.com/global-nonfinancial-equities-earnings-per-share-growth-and-capex-growth/",
-        "image": "/isabelnet-charts/2026-11-03/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
