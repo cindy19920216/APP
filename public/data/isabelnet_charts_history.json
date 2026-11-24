@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-24",
+    "charts": [
+      {
+        "title": "Investor Sentiment – U.S. Market Greed/Fear Index",
+        "titleKo": "투자 심리 – 미국 시장 공포·탐욕 지수",
+        "desc": "Last week’s sharp selloff sent the broader market into correction territory. Sentiment has deteriorated further, with the Greed and Fear Index at 42.96.",
+        "descKo": "지난주 급격한 매도세로 인해 시장 전반이 조정 국면에 진입했다. 공포·탐욕 지수가 42.96을 기록하며 투자 심리는 더욱 악화했다.",
+        "date": "2026-11-23",
+        "sourceUrl": "https://www.isabelnet.com/investor-sentiment-u-s-market-greed-fear-index/",
+        "image": "/isabelnet-charts/2026-11-24/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 and VIX",
+        "titleKo": "S&P 500과 VIX 지수",
+        "desc": "With the VIX spiking to 40.03 last Friday, the market may be nearing another bottom. Over the past decade, spikes above 40 have tended to coincide with major lows in the S&P 500. Is this another chance to buy the dip?",
+        "descKo": "지난 금요일 VIX가 40.03으로 급등하면서 시장이 또 다른 바닥에 근접했을 가능성이 제기된다. 지난 10년간 VIX가 40을 상회할 때마다 S&P 500은 주요 저점을 형성했다. 이번 급락이 저가 매수의 기회가 될지 주목된다.",
+        "date": "2026-11-23",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-and-vix/",
+        "image": "/isabelnet-charts/2026-11-24/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "GS Financial Conditions Index",
+        "titleKo": "골드만삭스 금융 여건 지수",
+        "desc": "U.S. financial conditions excluding equities have tightened with the equity selloff, but the broader financial backdrop remains loose enough to support activity.",
+        "descKo": "주식 매도세로 인해 주식을 제외한 미국 금융 여건은 긴축되었으나, 전반적인 금융 환경은 여전히 경제 활동을 뒷받침할 만큼 완화된 상태를 유지하고 있다.",
+        "date": "2026-11-23",
+        "sourceUrl": "https://www.isabelnet.com/fed-gs-u-s-financial-conditions-index/",
+        "image": "/isabelnet-charts/2026-11-24/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Consolidated Equity Positioning",
+        "titleKo": "통합 주식 포지셔닝",
+        "desc": "Consolidatedequitypositioninghasslippedtothe11thpercentile,unusuallylowgiventhestrengthofearningsgrowthandnearinglevelsthathavehistoricallyprecededarebound.",
+        "descKo": "통합 주식 포지셔닝이 11퍼센타일로 하락했다. 이는 견조한 실적 성장세를 고려할 때 이례적으로 낮은 수준이며, 역사적으로 반등 직전에 나타났던 구간에 근접해 있다.",
+        "date": "2026-11-23",
+        "sourceUrl": "https://www.isabelnet.com/consolidated-equity-positioning-2/",
+        "image": "/isabelnet-charts/2026-11-24/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "U.S. Equity Index P/E Valuations vs. History",
+        "titleKo": "미국 주식 지수 선행 PER 역사적 비교",
+        "desc": "At 19 times forward earnings, the Nasdaq 100 now trades below its 20-year median. The S&P 500 trades at 17 times, and the Russell 2000 at 20 times.",
+        "descKo": "나스닥 100의 선행 주가수익비율(PER)은 19배로 20년 중앙값을 하회하고 있다. S&P 500은 17배, 러셀 2000은 20배 수준에서 거래되고 있다.",
+        "date": "2026-11-23",
+        "sourceUrl": "https://www.isabelnet.com/valuation-sp-500-next-twelve-months-p-e-multiple/",
+        "image": "/isabelnet-charts/2026-11-24/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-21",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-11-04",
         "sourceUrl": "https://www.isabelnet.com/annual-sp-500-eps-growth-through-2022/",
         "image": "/isabelnet-charts/2026-11-05/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-11-04",
-    "charts": [
-      {
-        "title": "S&P 500 Index and Technical Score",
-        "titleKo": "S&P 500 지수 및 기술적 점수",
-        "desc": "The S&P 500’s technical reading eased to 53.53, back to neutral territory. A rally is still possible, but a sharper pullback could open the door to further losses. Until sentiment turns, caution remains the better call.",
-        "descKo": "S&P 500의 기술적 지표가 53.53으로 하락하며 중립 구간으로 복귀했다. 추가 상승 가능성은 남아있으나, 급격한 조정 발생 시 하락세가 심화될 수 있다. 시장 심리가 개선될 때까지는 신중한 접근이 요구된다.",
-        "date": "2026-11-03",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-and-technical-score/",
-        "image": "/isabelnet-charts/2026-11-04/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Various S&P 500 Index 6-Month Returns",
-        "titleKo": "S&P 500 지수 6개월 수익률 추이",
-        "desc": "From November through April, Wall Street gets a seasonal tailwind: the market’s so-called “best six months.” Holiday shopping, year-end bonus season and tax considerations help push stocks higher.",
-        "descKo": "11월부터 4월까지는 월가에서 이른바 '최고의 6개월'이라 불리는 계절적 순풍이 부는 시기다. 연말 쇼핑 시즌과 보너스 지급, 세금 관련 요인들이 증시 상승을 견인한다.",
-        "date": "2026-11-03",
-        "sourceUrl": "https://www.isabelnet.com/sell-in-may-various-sp-500-index-6-month-returns/",
-        "image": "/isabelnet-charts/2026-11-04/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "MSCI AC World EPS",
-        "titleKo": "MSCI AC 세계 지수 EPS",
-        "desc": "Earnings estimates for 2027 and 2028 are holding firm, with analysts still seeing room for upgrades.",
-        "descKo": "2027년 및 2028년 주당순이익(EPS) 전망치가 견조하게 유지되고 있으며, 분석가들은 여전히 실적 상향 조정 가능성을 열어두고 있다.",
-        "date": "2026-11-03",
-        "sourceUrl": "https://www.isabelnet.com/msci-world-eps-and-south-korea-exports/",
-        "image": "/isabelnet-charts/2026-11-04/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Insider Transactions Ratio",
-        "titleKo": "내부자 거래 비율",
-        "desc": "Buying and selling have come back into balance, pushing the Insider Transactions Ratio into neutral territory. Corporate insiders are sitting on the sidelines, showing little conviction in either direction.",
-        "descKo": "매수와 매도가 균형을 되찾으면서 내부자 거래 비율이 중립 영역에 진입했다. 기업 내부자들은 관망세를 보이며 향후 방향성에 대해 확신을 드러내지 않고 있다.",
-        "date": "2026-11-03",
-        "sourceUrl": "https://www.isabelnet.com/insider-transactions-ratio/",
-        "image": "/isabelnet-charts/2026-11-04/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Discretionary vs. Systematic Equity Positioning",
-        "titleKo": "재량적 투자 vs 체계적 투자 전략의 주식 비중",
-        "desc": "Systematic strategies remain firmly overweight, with positioning in the 79th percentile. Discretionary investors are more cautious, still underweight in the 21st percentile and with ample room to add risk.",
-        "descKo": "체계적 투자 전략은 79% 수준의 비중을 유지하며 여전히 비중 확대 상태를 보이고 있다. 반면 재량적 투자자들은 21% 수준의 비중 축소 상태를 유지하며 리스크 확대에 신중한 태도를 보이고 있다.",
-        "date": "2026-11-03",
-        "sourceUrl": "https://www.isabelnet.com/discretionary-vs-systematic-equity-positioning/",
-        "image": "/isabelnet-charts/2026-11-04/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
