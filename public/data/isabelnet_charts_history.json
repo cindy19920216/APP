@@ -1,5 +1,60 @@
 [
   {
+    "runDate": "2026-11-26",
+    "charts": [
+      {
+        "title": "S&P 500 First Breaks of the 200-Day Moving Average Since 1950",
+        "titleKo": "1950년 이후 S&P 500의 첫 200일 이동평균선 하향 돌파 사례 분석",
+        "desc": "Since 1950, the market has broken below its 200-DMA for the first time 34 times. Each of the 8 times it sank at least 2.9% below the average within 4 sessions, it remained below it 4 weeks later. This time, the drop has reached 6%.",
+        "descKo": "1950년 이후 S&P 500 지수가 200일 이동평균선을 처음 하향 돌파한 사례는 총 34번이다. 지수가 4거래일 내에 이동평균선 아래로 최소 2.9% 이상 하락했던 8번의 사례에서는 모두 4주 후에도 해당 선을 회복하지 못했다. 이번 하락폭은 6%에 달했다.",
+        "date": "2026-11-25",
+        "sourceUrl": "https://www.isabelnet.com/percentage-of-sp-500-stocks-above-200-day-moving-average/",
+        "image": "/isabelnet-charts/2026-11-26/1.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Bull Markets Since 1949",
+        "titleKo": "1949년 이후 S&P 500 강세장 분석",
+        "desc": "Since 1949, the average U.S. bull market has lasted 5.5 years and delivered a 191.5% gain. History suggests a bull market that reaches year three can keep going at least a couple more years. Will this one keep charging?",
+        "descKo": "1949년 이후 미국 증시의 강세장은 평균 5.5년간 지속되며 191.5%의 수익률을 기록했다. 과거 사례에 따르면 3년 차에 접어든 강세장은 최소 2년 이상 더 지속되는 경향을 보였다. 현재의 강세장도 상승세를 이어갈 수 있을 것인가?",
+        "date": "2026-11-25",
+        "sourceUrl": "https://www.isabelnet.com/secular-bull-and-bear-markets/",
+        "image": "/isabelnet-charts/2026-11-26/2.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Different Market Sentiment Indicators",
+        "titleKo": "주요 시장 투자 심리 지표 분석",
+        "desc": "Most sentiment indicators show investors are still favoring safety.",
+        "descKo": "대다수 투자 심리 지표는 투자자들이 여전히 안전 자산을 선호하고 있음을 시사한다.",
+        "date": "2026-11-25",
+        "sourceUrl": "https://www.isabelnet.com/different-market-sentiment-indicators/",
+        "image": "/isabelnet-charts/2026-11-26/3.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "Truck Tonnage vs. S&P 500 Index",
+        "titleKo": "트럭 운송 물동량 지수와 S&P 500 지수의 상관관계",
+        "desc": "The Truck Tonnage Index fell 1.8% in October. Trucks represent 72.7% of U.S. freight and serve as a barometer of the U.S. economy. This chart shows that, historically, the U.S. stock market has tended to increase in line with the physical size and expansion of the U.S. economy (R² = 0.67 since 2002). The Truck Tonnage Index is not a leading indicator of the U.S. stock market. But the chart is very interesting, because it shows how the U.S. stock market has tended to follow the physical expansion and contraction of the U.S. economy.",
+        "descKo": "10월 트럭 운송 물동량 지수는 1.8% 하락했다. 미국 화물의 72.7%를 담당하는 트럭 운송은 미국 경제의 선행 지표 역할을 한다. 차트에 따르면 역사적으로 미국 증시는 실물 경제의 규모 및 확장과 궤를 같이해 왔다(2002년 이후 결정계수 R² = 0.67). 트럭 운송 물동량 지수가 S&P 500의 선행 지표는 아니지만, 이 차트는 미국 증시가 실물 경제의 확장과 수축 과정을 어떻게 따라왔는지 잘 보여준다.",
+        "date": "2026-11-25",
+        "sourceUrl": "https://www.isabelnet.com/truck-tonnage-vs-sp-500-index/",
+        "image": "/isabelnet-charts/2026-11-26/4.png",
+        "credit": "Source: ISABELNET"
+      },
+      {
+        "title": "S&P 500 Year/Year EPS Growth",
+        "titleKo": "S&P 500 기업의 전년 대비 주당순이익(EPS) 성장률",
+        "desc": "Earnings growth across the S&P 500 may cool in the coming quarters, particularly among AI infrastructure stocks.",
+        "descKo": "향후 분기 동안 S&P 500 기업들의 이익 성장세는 둔화될 것으로 보이며, 특히 AI 인프라 관련주에서 이러한 현상이 두드러질 전망이다.",
+        "date": "2026-11-25",
+        "sourceUrl": "https://www.isabelnet.com/sp-500-yoy-eps-growth/",
+        "image": "/isabelnet-charts/2026-11-26/5.png",
+        "credit": "Source: ISABELNET"
+      }
+    ]
+  },
+  {
     "runDate": "2026-11-25",
     "charts": [
       {
@@ -710,61 +765,6 @@
         "date": "2026-11-06",
         "sourceUrl": "https://www.isabelnet.com/sp-500-consensus-quarterly-earnings-actual-and-consensus-estimates/",
         "image": "/isabelnet-charts/2026-11-07/5.png",
-        "credit": "Source: ISABELNET"
-      }
-    ]
-  },
-  {
-    "runDate": "2026-11-06",
-    "charts": [
-      {
-        "title": "Average S&P 500 Total Return Following Midterm Election Day",
-        "titleKo": "중간선거일 이후 S&P 500의 평균 총수익률",
-        "desc": "Since 1874, U.S. stocks have averaged a 6% gain in the three months after a midterm election and a 14% gain in the year after. Once the vote is behind investors, the uncertainty discount tends to fade.",
-        "descKo": "1874년 이후 미국 증시는 중간선거 이후 3개월간 평균 6%, 1년 뒤에는 14%의 수익률을 기록했다. 투표가 끝나 불확실성이 해소되면 투자자들의 불안 심리로 인한 할인 요인이 사라지는 경향이 있기 때문이다.",
-        "date": "2026-11-05",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-index-midterm-returns-after-two-consecutive-negative-quarters/",
-        "image": "/isabelnet-charts/2026-11-06/1.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "S&P 500 Returns Following Midterms That Left a Republican President Facing a Democratic Congress",
-        "titleKo": "공화당 대통령과 민주당 의회 구성 시 S&P 500 수익률",
-        "desc": "Bulls may have the wind at their backs. The S&P 500 rose in all seven periods when a Republican president faced a Democratic Congress, averaging gains of 17.5% after six months and 15.5% after a year.",
-        "descKo": "강세론자들에게 우호적인 환경이 조성될 수 있다. 과거 공화당 대통령과 민주당 의회가 공존했던 7번의 사례에서 S&P 500은 모두 상승했으며, 6개월 후 평균 17.5%, 1년 후 평균 15.5%의 수익률을 기록했다.",
-        "date": "2026-11-05",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-returns-following-midterms-that-left-a-republican-president-facing-a-democratic-congress/",
-        "image": "/isabelnet-charts/2026-11-06/2.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Seasonality – S&P 500 Cycle Composite for 2026",
-        "titleKo": "계절성 – 2026년 S&P 500 사이클 종합 지표",
-        "desc": "After the early-year pullback, the S&P 500 Cycle Composite for 2026 points to a year-end rally, giving bulls plenty of reason to stay optimistic.",
-        "descKo": "연초 조정을 거친 후 2026년 S&P 500 사이클 종합 지표는 연말 랠리를 가리키고 있으며, 이는 강세론자들이 낙관론을 유지할 충분한 근거를 제공한다.",
-        "date": "2026-11-05",
-        "sourceUrl": "https://www.isabelnet.com/sp-500-cycle-composite-for-2019/",
-        "image": "/isabelnet-charts/2026-11-06/3.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "Gold Model",
-        "titleKo": "금 가격 모델",
-        "desc": "Using a model that incorporates real yields, the dollar, the S&P 500, and copper, gold now appears to be trading under its fair value. That gives the bulls a cautious edge.",
-        "descKo": "실질 금리, 달러화, S&P 500, 구리 가격을 반영한 모델을 분석한 결과, 현재 금은 적정 가치보다 낮은 수준에서 거래되고 있다. 이는 강세론자들에게 신중한 우위를 제공한다.",
-        "date": "2026-11-05",
-        "sourceUrl": "https://www.isabelnet.com/gold-prices-forecast-vs-forwards/",
-        "image": "/isabelnet-charts/2026-11-06/4.png",
-        "credit": "Source: ISABELNET"
-      },
-      {
-        "title": "CTAs Exposure to Equities",
-        "titleKo": "CTA의 주식 익스포저",
-        "desc": "CTAs remain heavily positioned in the S&P 500, at the 82nd percentile. They’re closer to neutral in the Nasdaq-100 at the 55th percentile, and notably subdued in the Russell 2000 at the 29th percentile.",
-        "descKo": "CTA(원자재거래자문사)의 S&P 500 익스포저는 82퍼센타일로 여전히 높은 수준이다. 나스닥 100에 대해서는 55퍼센타일로 중립에 가까우며, 러셀 2000에 대해서는 29퍼센타일로 눈에 띄게 낮은 수준을 보이고 있다.",
-        "date": "2026-11-05",
-        "sourceUrl": "https://www.isabelnet.com/ctas-exposure-to-equities-2/",
-        "image": "/isabelnet-charts/2026-11-06/5.png",
         "credit": "Source: ISABELNET"
       }
     ]
